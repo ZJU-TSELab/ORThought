@@ -1,0 +1,31 @@
+Set:
+1. PillType
+The set of pill types, \( P = \{0, 1\} \) # 0 for Pill A, 1 for Pill B
+2. MedicineType
+The set of medicine types, \( M = \{0, 1\} \) # 0 for Sleep-inducing, 1 for Anti-inflammatory
+
+Parameter:
+1. Cost
+[4, 5] # Cost per pill for each pill type
+2. MinMedicineRequirement
+[40, 50] # Minimum required units for each medicine type
+3. MedicineContent
+[[3, 6], [5, 1]] # Units of each medicine per pill of each type
+
+Decision variable:
+1. PillCount
+Integer variable, \( x_{p} \) for all \( p \in P \), representing the number of pills of type \( p \) to consume.
+
+Objective:
+Minimize the total cost for the patient.
+min: \sum_{p \in P} Cost[p] * x_{p}
+
+Constraint:
+1. Medicine requirement constraint
+\sum_{p \in P} MedicineContent[m][p] * x_{p} \geq MinMedicineRequirement[m], for all \( m \in M \)
+2. Non-negativity
+x_{p} \geq 0, for all \( p \in P \)
+
+Type:
+Integer, linear, linear
+IP

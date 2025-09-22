@@ -1,0 +1,10 @@
+HAPPY pharmaceutical produces the drug Panacea from four chemicals. Today they must produce 1,000 lb of the drug. The three active ingredients in Panacea are A, B, and C. By weight, at least 8% of Panacea must consist of A, at least 4% of B, and at least 2% of C. The cost per pound of each chemical and the amount of each active ingredient in 1 lb of each chemical are given in Table as follows:
+
+| Chemical | Cost ($ per Lb) | A    | B    | C    |
+|----------|-----------------|------|------|------|
+| 1        | 8               | .03  | .02  | .01  |
+| 2        | 10              | .06  | .04  | .01  |
+| 3        | 11              | .10  | .03  | .04  |
+| 4        | 14              | .12  | .09  | .04  |
+
+It is necessary that at least 100 lb of chemical 2 be used. Find a solution would determine the cheapest way of producing today's batch of Panacea.

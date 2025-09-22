@@ -1,0 +1,35 @@
+Set:
+1. Person
+The set of persons, \( P = \{A, B, \dots, F\} \)
+2. Tasks
+The set of tasks, \( T = \{1, 2, \dots, 5\} \)
+
+Parameter:
+1. PersonNum
+6
+2. TaskNum
+5
+3. CompleteTime
+[[5, 2, 3, 15, 9, 10], [5, 6, 15, 2, 4, 7], [15, 5, 14, 7, 15, 6], [20, 15, 18, 6, 8, 11], [8, 11, 18, 10, 15, 6]]
+
+Decision variable:
+1. Assignment
+Binary variable, \( x_{ij} \) for all \( i \in P, j \in T \), representing whether person \( i \) is assigned to task \( j \) (1 if assigned, 0 otherwise)
+
+Objective:
+The total time spent
+min: \sum_{i\in P}\sum_{j\in T}CompleteTime_{ij}\cdot x_{ij}
+
+Constraint:
+1. Person assignment
+\sum_{j\in T}x_{ij} \leq 1, \forall i \in P
+2. Task assignment
+\sum_{i\in P}x_{ij} = 1, \forall j \in T
+3. Person A 
+\sum_{j\in T}x_{P[0]j} = 1
+4. Person D 
+x_{P[3]j} = 0, \forall j \in T
+
+Type:
+Integer, Linear, Linear
+ILP

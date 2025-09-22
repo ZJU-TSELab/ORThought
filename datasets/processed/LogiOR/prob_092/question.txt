@@ -1,0 +1,16 @@
+A container terminal needs to allocate berths for a fleet of 10 cargo ships within the next 72 hours. The terminal has 3 available berths (B1, B2, B3). Due to interdependencies where some ships carry import/export goods required by other ships, there are collaborative operation requirements between them. Specifically, ship C can only start loading after ship A completes unloading; ship E can only start loading after ship D completes unloading... To incentivize efficient collaboration, a **¥50,000 "rapid transshipment" bonus** can be earned if the start time of a dependent task (e.g., C starting to load) immediately follows the completion time of its predecessor task (e.g., A completing unloading) with a time gap of 2 hours or less. Ship information and operational requirements are shown in Table 1. The objective is to assign each ship a unique berth and a conflict-free berthing time window to maximize the total rapid transshipment bonus while minimizing the ships' waiting time costs in the port** (¥2,000 per hour).
+
+Table 1: Ship Information and Operational Requirements
+
+| Ship ID | Operation Type | Dependencies | Estimated Arrival Time (hours) | Required Berth Operation Time (hours) |
+|:---|:---|:---|:---:|:---:|
+| A | Unloading | - | 2 | 8 |
+| B | Loading/Unloading | - | 5 | 10 |
+| C | Loading | A | 10 | 6 |
+| D | Unloading | - | 12 | 9 |
+| E | Loading | D | 18 | 7 |
+| F | Loading | - | 20 | 11 |
+| G | Loading | B | 25 | 8 |
+| H | Unloading | - | 30 | 12 |
+| I | Loading | H | 35 | 5 |
+| J | Unloading | G | 40 | 9 |

@@ -1,0 +1,31 @@
+Set:
+1. ContainerType
+The set of container types, \( T = \{0, 1\} \) # 0 for Small, 1 for Large
+2. IngredientType
+The set of ingredient types, \( I = \{0, 1\} \) # 0 for Water, 1 for Powdered Pill
+
+Parameter:
+1. PasteProduced
+[20, 30] # Units of paste produced by each container type
+2. IngredientAvailability
+[500, 700] # Available units for each ingredient type
+3. IngredientConsumption
+[[10, 20], [15, 20]] # Units of each ingredient required by each container type
+
+Decision variable:
+1. ContainerCount
+Integer variable, \( x_{t} \) for all \( t \in T \), representing the number of containers of type \( t \) to use.
+
+Objective:
+Maximize the total amount of paste that can be made.
+max: \sum_{t \in T} PasteProduced[t] * x_{t}
+
+Constraint:
+1. Ingredient availability constraint
+\sum_{t \in T} IngredientConsumption[i][t] * x_{t} \leq IngredientAvailability[i], for all \( i \in I \)
+2. Non-negativity
+x_{t} \geq 0, for all \( t \in T \)
+
+Type:
+Integer, linear, linear
+IP

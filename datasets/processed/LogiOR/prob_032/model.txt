@@ -1,0 +1,35 @@
+Set:
+1. facility
+The set of production facilities, \( F = \{1, 2, 3\} \)
+2. pollutant
+The set of pollutants, \( P = \{1, 2\} \)  # 1: pollutant X, 2: pollutant Y
+
+Parameter:
+1. TreatmentCost
+[12, 8, 18]
+2. PollutantReduction
+[
+    [0.15, 0.35],  # facility 1
+    [0.25, 0.20],  # facility 2
+    [0.30, 0.40]   # facility 3
+]
+3. PollutionTarget
+[25, 35]
+
+Decision variable:
+1. TreatmentAmount
+Continuous variable, \( TreatmentAmount[f] \forall f \in F \), where \( TreatmentAmount[f] \) is the amount of waste treated at facility \( f \).
+
+Objective:
+1. Minimize the total cost of treating waste.
+min: \sum_{f \in F} TreatmentCost[f] * TreatmentAmount[f]
+
+Constraint:
+1. Pollution reduction constraint.
+PollutantReduction[f][p] * TreatmentAmount[f] \geq PollutionTarget[p] \forall p \in P, f \in F
+2. Treatment amount non-negativity constraint.
+TreatmentAmount[f] \geq 0 \forall f \in F
+
+Type:
+Continuous, Linear, Linear
+LP

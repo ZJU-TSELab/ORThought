@@ -1,0 +1,45 @@
+Set:
+1. TimeSlots
+The set of departure times in minutes from 6:00 AM to 9:00 AM, \( T = \{StartTime, 1, 2, \dots, EndTime\} \)
+
+Parameter:
+1. StartTime
+0
+2. EndTime
+180
+3. MinimumDepartureInterval
+5
+4. MaximumDepartureInterval
+15
+5. RoundtripTime
+40
+6. MaximumBuses
+8
+7. PassengerArrivalRate
+30
+
+Decision variable:
+1. Departures
+Binary variable \( x_t \in \{0, 1\} \) for all \( t \in T \), where \( x_t = 1 \) if there is a departure at time \( t \), and \( x_t = 0 \) otherwise.
+
+Objective:
+The total passenger waiting time
+min: \sum_{s\in T}\sum_{t\in T,s>t}(s-t)^2\cdot x_t\cdot x_s
+
+Constraint:
+1. Minimum Departure Interval: The interval between consecutive departures must be at least 5 minutes
+\sum_{i=t}^{t+MinimumDepartureInterval-1} x_t \leq 1, \forall t \in T \text{ such that } t+MinimumDepartureInterval-1 \leq EndTime
+
+2. Maximum Departure Interval: The interval between consecutive departures must be at most 15 minutes
+\sum_{s=t+MinimumDepartureInterval}^{t+MaximumDepartureInterval-1} x_s, \forall t \in T \text{ such that } t+MaximumDepartureInterval-1 \leq EndTime
+
+3. Maximum departure times
+\sum_{t\in T}x_t \leq (\left\lfloor\frac{EndTime-StartTime}{RoundtripTime}\right\rfloor+1)MaximumBuses
+
+x_{StartTime} = 1
+x_{EndTime} = 1
+
+
+Type:
+Binary, Quadratic, Linear
+NLP

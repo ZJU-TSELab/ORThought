@@ -1,0 +1,33 @@
+Set:
+1. WorkerType
+The set of worker types, \( I = \{0, 1\} \) # 0 for Full-time, 1 for Part-time
+
+Parameter:
+1. HoursPerShift
+[8, 4] # Hours worked per shift by each worker type
+2. CostPerShift
+[300, 100] # Dollars paid per shift to each worker type
+3. MinHours
+500 # Minimum total hours of labor required
+4. MaxBudget
+15000 # Dollars available in the budget
+
+Decision variable:
+1. WorkerCount
+Integer variable, \( x_{i} \) for all \( i \in I \), representing the number of workers of type \( i \) to be scheduled.
+
+Objective:
+Minimize the total number of workers.
+min: \( \sum_{i \in I} x_{i} \)
+
+Constraint:
+1. Labor hours constraint
+\( \sum_{i \in I} HoursPerShift[i] \cdot x_{i} \geq MinHours \)
+2. Budget constraint
+\( \sum_{i \in I} CostPerShift[i] \cdot x_{i} \leq MaxBudget \)
+3. Non-negativity
+\( x_{i} \geq 0 \), for all \( i \in I \)
+
+Type:
+Integer, linear, linear
+IP

@@ -1,0 +1,37 @@
+Set:
+1. LightType
+The set of light types, \( I = \{0, 1\} \) # 0 for LED, 1 for Fluorescence
+
+Parameter:
+1. ElectricityPerHour
+[5, 8] # Units of electricity used per hour for each light type
+2. ChangesPerDecade
+[3, 4] # Number of times each light type needs to be changed per decade
+3. MinTotalFixtures
+300 # Minimum total number of light fixtures required
+4. MaxElectricity
+2000 # Maximum units of electricity that can be used
+5. MinFluorescenceRatio
+0.3 # Minimum ratio of fluorescence lamps to total lights
+
+Decision variable:
+1. NumberOfLights
+Integer variable, \( x_{i} \) for all \( i \in I \), representing the number of lights of each type to be installed.
+
+Objective:
+Minimize the total number of light changes.
+min: \( \sum_{i \in I} ChangesPerDecade[i] \cdot x_{i} \)
+
+Constraint:
+1. Minimum total fixtures
+\( \sum_{i \in I} x_{i} \geq MinTotalFixtures \)
+2. Electricity consumption limit
+\( \sum_{i \in I} ElectricityPerHour[i] \cdot x_{i} \leq MaxElectricity \)
+3. Fluorescence proportion
+\( x_{1} \geq MinFluorescenceRatio \cdot \sum_{i \in I} x_{i} \)
+4. Non-negativity
+\( x_{i} \geq 0 \), for all \( i \in I \)
+
+Type:
+Integer, linear, linear
+IP

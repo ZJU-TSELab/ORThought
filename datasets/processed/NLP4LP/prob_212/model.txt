@@ -1,0 +1,41 @@
+Set:
+1. PlatformType
+The set of streaming platforms, \( I = \{0, 1, 2\} \) # 0 for Pi TV, 1 for Beta Video, 2 for Gamma Live
+
+Parameter:
+1. Cost
+[1200, 2000, 4000] # Cost for a commercial on each platform
+2. Reach
+[2000, 5000, 9000] # Expected audience reach for each platform
+3. Budget
+20000 # Weekly budget for commercials
+4. BetaLimit
+8 # Maximum number of commercials on Beta Video
+5. GammaMaxProportion
+1/3 # Maximum proportion of commercials on Gamma Live
+6. PiMinProportion
+0.20 # Minimum proportion of commercials on Pi TV
+
+Decision variable:
+1. NumCommercials
+Integer variable, \( x_{i} \) for all \( i \in I \), representing the number of commercials to run on each platform.
+
+Objective:
+Maximize the total audience reach.
+max: \( \sum_{i \in I} Reach[i] \cdot x_{i} \)
+
+Constraint:
+1. Budget constraint
+\( \sum_{i \in I} Cost[i] \cdot x_{i} \leq Budget \)
+2. Beta Video limit
+\( x_{1} \leq BetaLimit \)
+3. Gamma Live proportion constraint
+\( x_{2} \leq GammaMaxProportion \cdot \sum_{i \in I} x_{i} \), which simplifies to \( 2x_{2} \leq x_{0} + x_{1} \)
+4. Pi TV proportion constraint
+\( x_{0} \geq PiMinProportion \cdot \sum_{i \in I} x_{i} \), which simplifies to \( 4x_{0} \geq x_{1} + x_{2} \)
+5. Non-negativity and Integer
+\( x_{i} \geq 0 \) and integer, for all \( i \in I \)
+
+Type:
+Integer, linear, linear
+ILP

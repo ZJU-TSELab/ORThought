@@ -1,0 +1,35 @@
+Set:
+1. SupplementType
+The set of supplement types, \( I = \{0, 1\} \) # 0 for Supplement A, 1 for Supplement B
+
+Parameter:
+1. CostPerServing
+[14, 25] # Cost per serving for each supplement type
+2. CalciumPerServing
+[30, 60] # Grams of Calcium in each supplement type
+3. MagnesiumPerServing
+[50, 10] # Grams of Magnesium in each supplement type
+4. MinCalcium
+400 # Minimum required grams of Calcium
+5. MinMagnesium
+50 # Minimum required grams of Magnesium
+
+Decision variable:
+1. NumberOfServings
+Continuous variable, \( x_{i} \) for all \( i \in I \), representing the number of servings of each supplement type to consume.
+
+Objective:
+Minimize the total daily cost.
+min: \( \sum_{i \in I} CostPerServing[i] \cdot x_{i} \)
+
+Constraint:
+1. Calcium constraint
+\( \sum_{i \in I} CalciumPerServing[i] \cdot x_{i} \geq MinCalcium \)
+2. Magnesium constraint
+\( \sum_{i \in I} MagnesiumPerServing[i] \cdot x_{i} \geq MinMagnesium \)
+3. Non-negativity
+\( x_{i} \geq 0 \), for all \( i \in I \)
+
+Type:
+Continuous, linear, linear
+LP

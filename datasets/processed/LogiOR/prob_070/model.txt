@@ -1,0 +1,43 @@
+Set:
+1. Customers / Jobs
+   The set of Customers, \( J = \{C1, C2, C3, C4\} \)
+2. Trucks / Machines
+   The set of Trucks, \( M = \{T1, T2, T3\} \)
+
+Parameter:
+1. ProcessingTime
+   The time \( p_{jm} \) required for the package of job \( j \) on machine \( m \).
+   | Customer / Job | Package for T1 | Package for T2 | Package for T3 |
+   | :--- | :--- | :--- | :--- |
+   | C1 | 2 | 3 | 1 |
+   | C2 | 4 | 2 | 3 |
+   | C3 | 1 | 5 | 2 |
+   | C4 | 3 | 2 | 4 |
+   
+Decision variable:
+1. StartTime
+   Continuous variable \( s_{jm} \geq 0 \), the start time of the package for job \( j \) on machine \( m \).
+2. Makespan
+   Continuous variable \( C_{max} \geq 0 \), representing the total completion time.
+3. MachineSequence
+   Binary variable \( x_{ijm} \in \{0,1\} \). If two jobs `i` and `j` are on the same machine `m`, this variable decides their order: `x_ijm = 1` if `i` comes before `j`.
+4. JobSequence
+   Binary variable \( y_{jmn} \in \{0,1\} \). For a single job `j`, this variable decides the order of its operations on machines `m` and `n`: `y_jmn = 1` if the operation on `m` comes before the operation on `n`.
+
+Objective:
+Minimize the makespan.
+min: \( C_{max} \)
+
+Constraint:
+1. Machine Non-Overlap: For any two jobs `i` and `j` on the same machine `m`, their processing intervals cannot overlap.
+   \( s_{im} + p_{im} \leq s_{jm} + M \cdot (1 - x_{ijm}), \quad \forall i, j \in J, i \neq j, m \in M \)
+   \( s_{jm} + p_{jm} \leq s_{im} + M \cdot x_{ijm}, \quad \forall i, j \in J, i \neq j, m \in M \)
+2. Job Non-Overlap: For any single job `j`, its operations on two different machines `m` and `n` cannot overlap.
+   \( s_{jm} + p_{jm} \leq s_{jn} + M \cdot (1 - y_{jmn}), \quad \forall j \in J, m, n \in M, m \neq n \)
+   \( s_{jn} + p_{jn} \leq s_{jm} + M \cdot y_{jmn}, \quad \forall j \in J, m, n \in M, m \neq n \)
+3. Makespan Definition: The makespan must be greater than or equal to the completion time of every single package.
+   \( s_{jm} + p_{jm} \leq C_{max}, \quad \forall j \in J, m \in M \)
+
+Type:
+Mixed, Linear, Linear
+MILP

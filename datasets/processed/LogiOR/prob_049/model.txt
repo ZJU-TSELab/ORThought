@@ -1,0 +1,56 @@
+Set:
+1. Area
+The set of areas, \( A = \{1, 2, 3, 4\} \)  # 1: Packaging Area, 2: Loading Dock, 3: Sorting Facility, 4: Storage Facility
+
+Parameter:
+1. PackagingAreaCoordinates
+(0, 0)  # coordinates of the Packaging Area
+2. LoadingDockCoordinates
+(800, 600)  # coordinates of the Loading Dock
+3. DistanceBetweenPackagingAndLoading
+1400
+4. DailyTrips
+[[0, 20, 15, 10], [20, 0, 25, 30], [15, 25, 0, 40], [10, 30, 40, 0]]  # daily trips between areas
+5. CostPerMeterPerTrip
+0.50  # cost of moving goods per meter per trip
+6. DistributionCenterBoundaries
+(0, 0, 800, 600)  # boundaries of the distribution center (x_min, y_min, x_max, y_max)
+7. MinimalDistance
+100  # minimal distance between two areas in meters
+
+Decision variable:
+1. DistanceBetweenSortingAndStorage
+Continuous variable, \( DistanceBetweenSortingAndStorage \), the distance between the Sorting Facility and Storage Facility in meters.
+2. DistanceBetweenSortingAndPackaging
+Continuous variable, \( DistanceBetweenSortingAndPackaging \), the distance between the Sorting Facility and Packaging Area in meters.
+3. DistanceBetweenSortingAndLoading
+Continuous variable, \( DistanceBetweenSortingAndLoading \), the distance between the Sorting Facility and Loading Dock in meters.
+4. DistanceBetweenStorageAndPackaging
+Continuous variable, \( DistanceBetweenStorageAndPackaging \), the distance between the Storage Facility and Packaging Area in meters.
+5. DistanceBetweenStorageAndLoading
+Continuous variable, \( DistanceBetweenStorageAndLoading \), the distance between the Storage Facility and Loading Dock in meters.
+
+Objective:
+1. Minimize the total daily transportation cost.
+min: [(DailyTrips[1][2]+DailyTrips[2][1])*DistanceBetweenPackagingAndLoading + 
+       (DailyTrips[1][3]+DailyTrips[3][1])*DistanceBetweenSortingAndPackaging + 
+       (DailyTrips[1][4]+DailyTrips[4][1])*DistanceBetweenStorageAndPackaging + 
+       (DailyTrips[2][3]+DailyTrips[3][2])*DistanceBetweenSortingAndLoading + 
+       (DailyTrips[2][4]+DailyTrips[4][2])*DistanceBetweenStorageAndLoading + 
+       (DailyTrips[3][4]+DailyTrips[4][3])*DistanceBetweenSortingAndStorage] * CostPerMeterPerTrip
+
+Constraint:
+1. DistanceRelationships
+DistanceBetweenSortingAndLoading + DistanceBetweenSortingAndPackaging == DistanceBetweenPackagingAndLoading
+DistanceBetweenStorageAndPackaging + DistanceBetweenStorageAndLoading == DistanceBetweenPackagingAndLoading
+DistanceBetweenSortingAndStorage <= DistanceBetweenPackagingAndLoading
+2. MinimalDistanceConstraint
+DistanceBetweenSortingAndStorage >= MinimalDistance
+DistanceBetweenSortingAndLoading >= MinimalDistance
+DistanceBetweenSortingAndPackaging >= MinimalDistance
+DistanceBetweenStorageAndLoading >= MinimalDistance
+DistanceBetweenStorageAndPackaging >= MinimalDistance
+
+Type:
+Continuous, Linear, Linear
+LP

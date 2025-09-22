@@ -1,0 +1,49 @@
+Sets:
+1.  Categories C: The set of product categories, C = {1, 2, ..., 10}.
+2.  Variants Vc: The set of variants for each category c in C, Vc = {A, B, C, D, E}.
+
+Parameters:
+1.  Resource Limits:
+    WeightLimit = 12 (tons)
+    VolumeLimit = 35 (m³)
+    PowerLimit = 40 (kW)
+    TimeLimit = 100 (hours)
+2.  Product Data: For each c in C, v in Vc:
+    Weight_cv: Weight of variant v in category c.
+    Volume_cv: Volume of variant v in category c.
+    Power_cv: Power consumption of variant v in category c.
+    Time_cv: Cool-down time for variant v in category c.
+    Profit_cv: Profit of variant v in category c.
+3.  Synergy Bonus:
+    BonusProfit = 150
+
+Decision Variables:
+1.  Primary Selection x_cv: A binary variable, where x_cv = 1 if variant v from category c is selected, and 0 otherwise.
+2.  Synergy Indicator y: A binary variable, where y = 1 if the specific synergistic combination of products is selected, and 0 otherwise.
+
+Objective Function:
+Maximize the total profit, which includes the base profit from all selected items plus any synergy bonuses.
+
+Maximize Z = ( sum_{c in C} sum_{v in Vc} Profit_cv * x_cv ) + (BonusProfit * y)
+
+Constraints:
+1.  Unique Selection per Category: Exactly one variant must be chosen from each category.
+    sum_{v in Vc} x_cv = 1, for all c in C
+2.  Weight Capacity: The total weight of selected variants must not exceed the truck's limit.
+    sum_{c in C} sum_{v in Vc} Weight_cv * x_cv <= WeightLimit
+3.  Volume Capacity: The total volume of selected variants must not exceed the truck's limit.
+    sum_{c in C} sum_{v in Vc} Volume_cv * x_cv <= VolumeLimit
+4.  Power Capacity: The total refrigeration power required must not exceed the truck's limit.
+    sum_{c in C} sum_{v in Vc} Power_cv * x_cv <= PowerLimit
+5.  Cool-Down Time Capacity: The total cool-down time required must not exceed the truck's budget.
+    sum_{c in C} sum_{v in Vc} Time_cv * x_cv <= TimeLimit
+6.  Product Synergy: The synergy bonus variable y can only be 1 if both Fruit Variant B (1,B) and Baked Good Variant C (6,C) are selected.
+    x_{1,B} + x_{6,C} - 2y >= 0
+    y <= x_{1,B}
+    y <= x_{6,C}
+7.  Product Conflict: The combination of Seafood Variant A (5,A) and Dairy Variant A (3,A) is forbidden.
+    x_{5,A} + x_{3,A} <= 1
+
+Type:
+Binary, Linear, Linear
+ILP

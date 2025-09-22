@@ -1,0 +1,35 @@
+Set:
+1. FlooringType
+The set of flooring types, \( T = \{0, 1\} \) # 0 for Hardwood, 1 for Vinyl
+
+Parameter:
+1. MinDemand
+[20000, 10000] # Minimum weekly demand in square feet for each flooring type
+2. MaxProduction
+[50000, 30000] # Maximum weekly production in square feet for each flooring type
+3. MinTotalShipment
+60000 # Minimum total weekly shipment in square feet
+4. ProfitPerSqFoot
+[2.5, 3] # Profit per square foot for each flooring type
+
+Decision variable:
+1. FlooringProduction
+Continuous variable, \( x_{t} \) for all \( t \in T \), representing the square feet of flooring type \( t \) to produce weekly.
+
+Objective:
+Maximize the total profit.
+max: \sum_{t \in T} ProfitPerSqFoot[t] * x_{t}
+
+Constraint:
+1. Minimum demand constraint
+x_{t} \geq MinDemand[t], for all \( t \in T \)
+2. Maximum production constraint
+x_{t} \leq MaxProduction[t], for all \( t \in T \)
+3. Minimum total shipment constraint
+\sum_{t \in T} x_{t} \geq MinTotalShipment
+4. Non-negativity
+x_{t} \geq 0, for all \( t \in T \)
+
+Type:
+continuous, linear, linear
+LP

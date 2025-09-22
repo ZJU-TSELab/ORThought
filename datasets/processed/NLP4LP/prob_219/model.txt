@@ -1,0 +1,33 @@
+Set:
+1. PillType
+The set of pill types, \( I = \{0, 1\} \) # 0 for calcium, 1 for vitamin D
+
+Parameter:
+1. EffectiveTime
+[5, 6] # Time in minutes for each pill type to be effective
+2. MinTotalPills
+130 # Minimum total number of pills to be taken
+3. MinVitaminD
+40 # Minimum number of vitamin D pills to be taken
+
+Decision variable:
+1. NumPills
+Integer variable, \( x_{i} \) for all \( i \in I \), representing the number of pills of each type to take.
+
+Objective:
+Minimize the total time it takes for the medication to be effective.
+min: \( \sum_{i \in I} EffectiveTime[i] \cdot x_{i} \)
+
+Constraint:
+1. Total pills constraint
+\( \sum_{i \in I} x_{i} \geq MinTotalPills \)
+2. Vitamin D minimum constraint
+\( x_{1} \geq MinVitaminD \)
+3. Calcium more than vitamin D constraint
+\( x_{0} \geq x_{1} + 1 \)
+4. Non-negativity and Integer
+\( x_{i} \geq 0 \) and integer, for all \( i \in I \)
+
+Type:
+Integer, linear, linear
+IP

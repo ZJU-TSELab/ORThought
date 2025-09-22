@@ -1,0 +1,49 @@
+Set:
+1. Products
+The set of products, \( P = \{\text{Microwave, Heater}\} \).
+2. Workshops
+The set of workshops, \( W = \{A, B\} \).
+
+Parameter:
+1. ProcessingTime
+[[2, 1], [1, 3]] # Hours required in workshop A and B for each product.
+2. WorkshopCapacity
+[250, 150] # Available monthly hours for workshop A and B.
+3. WorkshopCost
+[80, 20] # Cost per hour for workshop A and B.
+4. InspectionSalesCost
+[30, 50] # Inspection and sales cost per unit for each product.
+5. MinSales
+[80, 50] # Minimum monthly sales for each product.
+6. MaxOvertimeA
+20 # Maximum overtime hours for workshop A.
+7. MaxInspectionSalesCost
+5500 # Maximum total inspection and sales cost per month.
+
+Decision variable:
+1. ProductionQty
+Integer variable, \( x_p \) for \( p \in P \), represents the number of units of product p to produce.
+2. OvertimeA
+Continuous variable, \( o_A \), represents the overtime hours used in workshop A.
+
+Objective:
+Minimize: \( 80 \cdot (2x_{\text{Microwave}} + x_{\text{Heater}}) + 20 \cdot (x_{\text{Microwave}} + 3x_{\text{Heater}}) + 30x_{\text{Microwave}} + 50x_{\text{Heater}} \)
+This simplifies to minimizing the total cost, which includes workshop operational costs and inspection/sales costs.
+
+Constraint:
+1. MinSalesMicrowave
+At least 80 microwave ovens must be produced: \( x_{\text{Microwave}} \ge 80 \)
+2. MinSalesHeater
+At least 50 water heaters must be produced: \( x_{\text{Heater}} \ge 50 \)
+3. WorkshopA_Utilization
+The hours used in workshop A must equal its regular capacity plus any overtime: \( 2x_{\text{Microwave}} + x_{\text{Heater}} = 250 + o_A \)
+4. WorkshopB_Utilization
+The hours used in workshop B must equal its capacity (assuming it must be fully utilized): \( x_{\text{Microwave}} + 3x_{\text{Heater}} = 150 \)
+5. OvertimeA_Limit
+Overtime in workshop A cannot exceed 20 hours: \( o_A \le 20 \)
+6. InspectionSalesCostLimit
+Total inspection and sales costs must not exceed 5500: \( 30x_{\text{Microwave}} + 50x_{\text{Heater}} \le 5500 \)
+
+Type:
+Mixed-Integer, linear, linear
+MILP

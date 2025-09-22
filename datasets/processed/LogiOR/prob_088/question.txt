@@ -1,0 +1,18 @@
+An urban shared e-bike company, "E-Donkey Express," needs to create a nightly battery-swapping plan for its fleet, which is distributed across three zones using its two mobile maintenance vans. The company's objective is to minimize the total nightly cost, which consists of a fixed dispatch fee for each van used and a variable operational cost. This operational cost is uniquely challenging, as it is proportional to the square of the number of batteries replaced by a van in a given zone (Cost = Coefficient × N²), reflecting a diseconomy of scale due to on-site logistical complexities.
+The plan must ensure that all e-bikes with low-power batteries are serviced, while also respecting the maximum number of new batteries each van can carry. The core decision is how to assign the battery-swapping workload—which zones each van should service, and how many batteries to replace in each—to meet all demands at the lowest possible total cost. All necessary operational data is provided below.
+
+Table 1: Zonal Demand Data
+
+| Zone | Total E-Bikes | Low Battery Percentage (%) |
+|:----:|:--------------:|:--------------------------:|
+|   A  |      200       |             60             |
+|   B  |      150       |             80             |
+|   C  |      180       |             50             |
+
+Table 2: Maintenance Station Parameters
+
+| Parameter                    | Van 1 | Van 2 |
+|:-----------------------------|:-----:|:-----:|
+| Dispatch Cost ($)            |  300  |  320  |
+| Max Battery Capacity (units) |  150  |  180  |
+| Operational Cost Coefficient | 0.08  | 0.07  |

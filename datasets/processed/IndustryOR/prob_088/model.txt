@@ -1,0 +1,42 @@
+
+
+Set:
+1. Products
+The set of products, \( P = \{A, B\} \).
+
+Parameter:
+1. Profit
+[30, 10] # Profit in £ per unit for each product.
+2. ProductionTime
+[6, 3] # Production time in hours per unit for each product.
+3. MaxProductionTime
+40 # Maximum total production time in hours per week.
+4. MinBRatio
+3 # The quantity of product B must be at least 3 times the quantity of product A.
+5. MaxAStorage
+4 # Maximum number of units of product A that can be stored.
+
+Decision variable:
+1. ProductionQty
+Integer variable, \( x_p \) for all \( p \in P \), representing the number of units of product \( p \) to produce.
+
+Objective:
+Maximize the total profit.
+max: \sum_{p \in P} \text{Profit}[p] * x_p
+
+Constraint:
+1. Production Time
+The total production time cannot exceed the maximum available time.
+\sum_{p \in P} \text{ProductionTime}[p] * x_p \leq \text{MaxProductionTime}
+2. Market Demand
+The quantity of product B must be at least three times the quantity of product A.
+x_B \geq \text{MinBRatio} * x_A
+3. Storage Space
+The quantity of product A cannot exceed the storage capacity.
+x_A \leq \text{MaxAStorage}
+4. Non-negativity
+x_p \geq 0, \forall p \in P
+
+Type:
+Integer, linear, linear
+ILP

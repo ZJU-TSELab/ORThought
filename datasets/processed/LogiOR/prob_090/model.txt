@@ -1,0 +1,47 @@
+Set:
+1. Zones
+The set of hotspot zones, \( I = \{\text{Commercial Center, University City, Tech Park, Tourist Area, Transit Hub}\} \).
+
+Parameters:
+1.  TotalScooters
+    The total number of scooters to be deployed.
+    1000
+2.  Attractiveness
+    A dictionary mapping each zone \(i \in I\) to its attractiveness value.
+     \(\{\text{Commercial Center: 500, University City: 800, Tech Park: 700, Tourist Area: 600, Transit Hub: 900}\}\)
+3.  TotalAttractiveness
+    The sum of all attractiveness values.
+    \(500 + 800 + 700 + 600 + 900 = 3500\)
+4.  MinQuotaFactor
+    The minimum allocation factor based on total fleet size.
+    0.1
+5.  TargetDeployment
+    The ideal, attractiveness-weighted deployment for each zone \(i \in I\).
+    \(\text{TargetDeployment}_i = \text{TotalScooters} \times \frac{\text{Attractiveness}_i}{\text{TotalAttractiveness}}\)
+
+Decision Variable:
+1.  Deployment
+    Integer variable, \(n_i \ge 0\) for each zone \(i \in I\), representing the number of scooters to be deployed in that zone.
+
+Objective:
+1.  Minimize the network imbalance, defined as the sum of squared deviations from the target deployment.
+    min: \(\sum_{i \in I} (n_i - \text{TargetDeployment}_i)^2\)
+
+Constraints:
+1.  Total Deployment Constraint
+    The sum of scooters deployed in all zones must equal the total number of available scooters.
+    \(\sum_{i \in I} n_i = \text{TotalScooters}\)
+2.  Minimum Quota Constraint
+    The number of scooters in each zone must be greater than or equal to a minimum quota, which is weighted by the zone's relative attractiveness.
+    \(n_i \ge \text{TotalScooters} \times \text{MinQuotaFactor} \times \frac{\text{Attractiveness}_i}{\text{TotalAttractiveness}} \quad \forall i \in I\)
+3.  Adjacency Constraint (New)
+    The absolute difference in deployment between 'Commercial Center' and 'Transit Hub' must not exceed 50.
+    \(|n_{\text{Commercial Center}} - n_{\text{Transit Hub}}| \le 50\)
+4.  Operational Cluster Capacity Constraint (New)
+    The total number of scooters in each operational cluster cannot exceed its capacity of 600.
+    \(n_{\text{Commercial Center}} + n_{\text{Tourist Area}} \le 600\)
+    \(n_{\text{University City}} + n_{\text{Tech Park}} + n_{\text{Transit Hub}} \le 600\)
+
+Type:
+Integer, Non-linear, Linear
+NLP

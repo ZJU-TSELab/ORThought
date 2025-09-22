@@ -1,0 +1,33 @@
+Set:
+1. VanType
+The set of van types, \( I = \{0, 1\} \) # 0 for Old Van, 1 for New Van
+
+Parameter:
+1. BottlesPerVan
+[100, 80] # Number of soda bottles each van type can take
+2. PollutionPerVan
+[50, 30] # Units of pollution produced by each van type
+3. MinBottles
+5000 # Minimum number of bottles to be sent
+4. MaxNewVans
+30 # Maximum number of new vans that can be used
+
+Decision variable:
+1. NumberOfVans
+Integer variable, \( x_{i} \) for all \( i \in I \), representing the number of vans of each type to use.
+
+Objective:
+Minimize the total amount of pollution produced.
+min: \( \sum_{i \in I} PollutionPerVan[i] \cdot x_{i} \)
+
+Constraint:
+1. Bottle transport requirement
+\( \sum_{i \in I} BottlesPerVan[i] \cdot x_{i} \geq MinBottles \)
+2. Maximum new vans
+\( x_{1} \leq MaxNewVans \)
+3. Non-negativity
+\( x_{i} \geq 0 \), for all \( i \in I \)
+
+Type:
+Integer, linear, linear
+IP

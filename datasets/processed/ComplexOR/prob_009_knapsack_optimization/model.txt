@@ -1,0 +1,27 @@
+Set:
+1. Items
+The set of items, \( I = \{1, 2, 3\} \)
+
+Parameter:
+1. Item Values
+\( item\_values = [60, 100, 120] \)
+2. Item Weights
+\( item\_weights = [10, 20, 30] \)
+3. Knapsack Capacity
+\( max\_weight\_knapsack = 50 \)
+
+Decision variable:
+1. ItemSelectionVariable
+Binary variable, \( x_i \in \{0, 1\} \) for all \( i \in I \), where \( x_i = 1 \) if item \( i \) is selected, and 0 otherwise
+
+Objective:
+Maximize total value
+max: \( \sum_{i \in I} item\_values_i \cdot x_i \)
+
+Constraint:
+1. Knapsack Weight Constraint
+\( \sum_{i \in I} item\_weights_i \cdot x_i \leq max\_weight\_knapsack \)
+
+Type:
+Binary, Linear, Linear
+ILP

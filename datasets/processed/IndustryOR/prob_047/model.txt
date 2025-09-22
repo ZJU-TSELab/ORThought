@@ -1,0 +1,50 @@
+Set:
+1. Products
+The set of microcomputer models, \( P = \{A, B\} \).
+
+Parameter:
+1. ProcessTime
+{'I': {'A': 4, 'B': 6}, 'II': {'A': 3, 'B': 2}} # Processing time in hours per unit for each model on each process.
+2. MaxCapacity
+{'I': 150, 'II': 70} # Maximum weekly processing capacity in hours for each process.
+3. Profit
+{'A': 300, 'B': 450} # Sales profit in yuan per unit for each model.
+4. MinProduction
+{'A': 10, 'B': 15} # Minimum weekly production quantity for each model.
+5. MinProfit
+10000 # Minimum total weekly profit in yuan.
+6. OvertimeProfitReduction
+{'A': 20, 'B': 25} # Profit reduction per unit for products made during overtime.
+7. MaxOvertime
+30 # Maximum overtime for Process II in hours per week.
+
+Decision variable:
+1. ProductionQty
+Continuous variable, \( x_p \) for \( p \in P \), represents the total number of units of model p produced per week.
+2. OvertimeQty
+Continuous variable, \( x'_{p} \) for \( p \in P \), represents the number of units of model p produced during overtime in Process II.
+
+Objective:
+Maximize: \( (300 \cdot x_A - 20 \cdot x'_{A}) + (450 \cdot x_B - 25 \cdot x'_{B}) \)
+
+Constraint:
+1. MinProduction
+The production quantity for each model must meet the minimum requirement:
+- \( x_A \ge 10 \)
+- \( x_B \ge 15 \)
+2. ProcessICapacity
+The total processing time for Process I must be exactly its maximum capacity: \( 4x_A + 6x_B = 150 \)
+3. ProcessIIRegularCapacity
+The total processing time for Process II during regular hours cannot exceed its capacity: \( 3x_A + 2x_B \le 70 + (3x'_{A} + 2x'_{B}) \)
+4. OvertimeLimit
+The total overtime hours used in Process II cannot exceed the maximum allowed: \( 3x'_{A} + 2x'_{B} \le 30 \)
+5. OvertimeQtyLink
+The quantity produced during overtime cannot exceed the total quantity produced for each model:
+- \( x'_{A} \le x_A \)
+- \( x'_{B} \le x_B \)
+6. MinProfit
+The total profit must not be less than the target: \( (300 \cdot x_A - 20 \cdot x'_{A}) + (450 \cdot x_B - 25 \cdot x'_{B}) \ge 10000 \)
+
+Type:
+Continuous, linear, linear
+LP

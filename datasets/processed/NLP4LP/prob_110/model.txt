@@ -1,0 +1,39 @@
+Set:
+1. FoodType
+The set of food types, \( I = \{0, 1\} \) # 0 for ramen, 1 for fries
+
+Parameter:
+1. Calories
+[400, 300] # Calories per pack for each food type
+2. Protein
+[20, 10] # Grams of protein per pack for each food type
+3. Sodium
+[100, 75] # mg of sodium per pack for each food type
+4. MinCalories
+3000 # Minimum calories required
+5. MinProtein
+80 # Minimum grams of protein required
+6. MaxRamenPercentage
+0.3 # Maximum percentage of ramen packs
+
+Decision variable:
+1. FoodCount
+Continuous variable, \( x_{i} \) for all \( i \in I \), representing the number of packs of each food type.
+
+Objective:
+Minimize the total sodium intake.
+min: \( \sum_{i \in I} Sodium[i] \cdot x_{i} \)
+
+Constraint:
+1. Calorie requirement
+\( \sum_{i \in I} Calories[i] \cdot x_{i} \geq MinCalories \)
+2. Protein requirement
+\( \sum_{i \in I} Protein[i] \cdot x_{i} \geq MinProtein \)
+3. Ramen percentage constraint
+\( x_{0} \leq MaxRamenPercentage \cdot (x_{0} + x_{1}) \) which simplifies to \( (1 - MaxRamenPercentage) \cdot x_{0} \leq MaxRamenPercentage \cdot x_{1} \) or \( 0.7 \cdot x_{0} \leq 0.3 \cdot x_{1} \) or \( 7 \cdot x_{0} \leq 3 \cdot x_{1} \)
+4. Non-negativity
+\( x_{i} \geq 0 \), for all \( i \in I \)
+
+Type:
+Continuous, linear, linear
+LP

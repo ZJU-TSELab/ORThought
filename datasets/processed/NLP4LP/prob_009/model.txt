@@ -1,0 +1,41 @@
+Set:
+1. PackageType
+The set of package types, \( T = \{0, 1\} \) # 0 for banana-haters, 1 for combo
+
+Parameter:
+1. Profit
+[6, 7] # Profit per package type
+2. ApplesAvailable
+10 # Total number of apples available
+3. BananasAvailable
+20 # Total number of bananas available
+4. GrapesAvailable
+80 # Total number of grapes available
+5. ApplesRequired
+[6, 5] # Apples required per package type
+6. BananasRequired
+[0, 6] # Bananas required per package type
+7. GrapesRequired
+[30, 20] # Grapes required per package type
+
+Decision variable:
+1. PackageCount
+Integer variable, \( x_{t} \) for all \( t \in T \), representing the number of packages of type \( t \) to prepare.
+
+Objective:
+Maximize the total profit.
+max: \sum_{t \in T} Profit[t] * x_{t}
+
+Constraint:
+1. Apples constraint
+\sum_{t \in T} ApplesRequired[t] * x_{t} \leq ApplesAvailable
+2. Bananas constraint
+\sum_{t \in T} BananasRequired[t] * x_{t} \leq BananasAvailable
+3. Grapes constraint
+\sum_{t \in T} GrapesRequired[t] * x_{t} \leq GrapesAvailable
+4. Non-negativity
+x_{t} \geq 0, \forall t \in T
+
+Type:
+Integer, linear, linear
+IP

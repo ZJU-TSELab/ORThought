@@ -1,0 +1,53 @@
+Set:
+1. Customer
+The set of customers, \( C = \{1, 2, \dots, CustomerNum\} \)
+2. DistributionCenter
+The set of distribution centers, \( D = \{CustomerNum + 1, \dots, CustomerNum + CenterNum\} \)
+3. Node
+The set of nodes, \( N = C \cup D \)
+4. Truck
+The set of trucks, \( K = \bigcup_{d\in D}K_d \)
+# Where \( K_d \) is the set of trucks at distribution center \( d \)
+
+Parameter:
+1. CustomerNum
+10
+2. CustomerDemand
+[2, 2, 9, 1, 4, 4, 10, 6, 4, 4]
+3. CustomerCoord
+[(-4.53, -5.12), (2.14, 5.85), (-4.88, -8.33), (2.24, 1.63), (3.91, -5.88), (-1.1, 0.25), (7.92, -3.4), (-1.89, -5.0), (0.72, -8.8), (-1.88, -2.89)]
+2. TruckNum
+[3, 3]
+4. TruckCapacity
+[20, 18]
+4. CenterNum
+2
+5. CenterCoord
+[(-5, -5), (5, 5)]
+
+Decision variable:
+1. X
+Binary variable, \( x_{ijk} \forall i \in N, j \in N, k \in K\), where \( x_{ijk} = 1 \) if truck \( k \) departs from node \( i \) and arrives at node \( j \), otherwise \( x_{ijk} = 0 \).
+
+Objective:
+The minimum total distance of the truck routes.
+min: \sum_{k \in K}\sum_{i \in N} \sum_{j \in N} Distance[i][j] * x_{ijk}
+# Where \( Distance[i][j] \) is the Euclidean distance between node \( i \) and node \( j \).
+
+Constraint:
+1. Each customer must be visited exactly once.
+\sum_{i \in N}\sum_{k \in K} x_{ijk} = 1 \forall j \in C
+2. Truck leaves customer that it enters.
+\sum_{j \in N} x_{ijk} - \sum_{j \in N} x_{jik} = 0 \forall i \in C \forall k \in K
+3. Each truck leaves the distribution center exactly once.
+\sum_{j \in N} x_{djk} = 1 \forall k \in K_d \forall d \in D
+4. The truck that leaves the distribution center must return to the distribution center.
+\sum_{i \in C} x_{idk} - \sum_{j \in C} x_{djk} = 0 \forall k \in K_d \forall d \in D
+5. Capacity constraint for each truck.
+\sum_{i \in C}\sum_{j \in N} CustomerDemand[i] * x_{ijk} <= TruckCapacity[d] \forall k \in K_d \forall d \in D
+6. Eliminate sub-tours.
+\sum_{i \in S} \sum_{j \in S} x_{ijk} <= |S| - 1 \forall k \in K, \forall S \subseteq N, 1 < |S| < |N|
+
+Type:
+Binary, Linear, Linear
+ILP

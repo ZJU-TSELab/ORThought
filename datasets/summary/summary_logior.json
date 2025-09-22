@@ -1,0 +1,1014 @@
+{
+  "prob_001": {
+    "description": "RapidLink Logistics, a regional delivery company, needs to optimize its daily outbound operations from its main distribution hub. Today, they have 3 delivery trucks of varying capacities and 8 high-priority parcels that must be shipped. The goal is to assign each of the 8 parcels to exactly one of the three trucks to maximize the total revenue for the day.\n\nThe total revenue is composed of two parts: a standard shipping fee for each parcel and a significant synergy bonus that is gained when specific pairs of parcels are placed in the *same* truck. These bonuses arise because certain parcels are headed to the same dense urban block or large corporate campus, allowing for a much more efficient final-mile delivery.\n\nThe capacities of the three available trucks are:\n- Truck 1: 100 kg\n- Truck 2: 120 kg\n- Truck 3: 80 kg\n\nThe details for the 8 high-priority parcels are listed below:\n| Parcel ID | Weight (kg) | Base Revenue ($) |\n| :--- | :--- | :--- |\n| 1 | 35 | 50 |\n| 2 | 45 | 75 |\n| 3 | 25 | 40 |\n| 4 | 50 | 80 |\n| 5 | 30 | 60 |\n| 6 | 40 | 65 |\n| 7 | 20 | 35 |\n| 8 | 55 | 90 |\n\nAdditionally, the logistics team has identified specific pairs of parcels that generate a synergy bonus if shipped in the same truck. These pairings and their associated bonuses are:\n| Parcel Pair | Synergy Bonus ($) | Reason |\n| :--- | :--- | :--- |\n| (1, 3) | 25 | Same residential complex |\n| (2, 5) | 30 | Same industrial park |\n| (2, 6) | 20 | Neighboring corporate offices |\n| (4, 8) | 40 | Both are heavy-lift items for one client |\n| (5, 7) | 22 | Same downtown skyscraper |\n\nThe company must decide which parcels go into which truck, respecting the weight capacity of each truck, to achieve the maximum possible total revenue.",
+    "ground_truth": 537.0,
+    "problem_type": "NLP",
+    "details": {
+      "variables_num": 24,
+      "constraints_num": 11,
+      "nonzeros_num": 48
+    },
+    "problem_size": "Small"
+  },
+  "prob_002": {
+    "description": "An airport has two available gates (G1, G2) and needs to assign three flights (F1: 10:00-11:00, F2: 10:30-11:30, F3: 11:15-12:30, F4: 10:45-11:45) to these gates. Flights assigned to the same gate must have non-overlapping time intervals, and the goal is to minimize flight delays, where each 1-minute delay beyond the scheduled departure time incurs a cost of 1 unit. How should the flights be assigned to the gates to achieve this objective?",
+    "ground_truth": 30.0,
+    "problem_type": "ILP",
+    "details": {
+      "variables_num": 12,
+      "constraints_num": 20,
+      "nonzeros_num": 60
+    },
+    "problem_size": "Small"
+  },
+  "prob_003": {
+    "description": "A logistics company has many boxes with the same structure and capacity, and the number of boxes is sufficient for the purpose at hand. The capacity of each box is 10. There are 7 items with loads of 6, 7, 8, 3, 2, 4 and 5 that need to be packed into the boxes. Find a loading method that uses the minimum number of boxes to pack all 7 items.",
+    "ground_truth": 4,
+    "problem_type": "ILP",
+    "details": {
+      "variables_num": 56,
+      "constraints_num": 14,
+      "nonzeros_num": 105
+    },
+    "problem_size": "Medium"
+  },
+  "prob_004": {
+    "description": "A logistics company has 6 boxes with capacity of [5, 9, 8, 7, 7, 8] and 7 items with loads of 6, 7, 8, 3, 2, 4 and 5 that need to be packed into the boxes. Find a loading method that uses the minimum number of boxes to pack all 7 items.",
+    "ground_truth": 5,
+    "problem_type": "ILP",
+    "details": {
+      "variables_num": 48,
+      "constraints_num": 13,
+      "nonzeros_num": 90
+    },
+    "problem_size": "Medium"
+  },
+  "prob_005": {
+    "description": "A company has three industries located in different locations and needs to deliver goods to five shops in different locations. The delivery costs from the first industry to the shops are 4, 9, 2, 6, and 5, respectively, with a storage capacity of 60. The delivery costs from the second industry to the shops are 2, 6, 1, 7, and 9, respectively, with a storage capacity of 30. The delivery costs from the third industry to the shops are 2, 4, 9, 8, and 3, respectively, with a storage capacity of 45. The demands of the five shops are 15, 35, 20, 5, and 40. How can the goods be transported to minimize the cost?",
+    "ground_truth": 405.0,
+    "problem_type": "ILP",
+    "details": {
+      "variables_num": 15,
+      "constraints_num": 8,
+      "nonzeros_num": 30
+    },
+    "problem_size": "Small"
+  },
+  "prob_006": {
+    "description": "A company has three warehouses storing three products with inventory: Warehouse 1 (600, 900, 750), Warehouse 2 (500, 1500, 1200), Warehouse 3 (800, 1100, 100). These products must be shipped to seven sales locations with demands: Location 1 (200, 400, 300), Location 2 (300, 800, 50), Location 3 (200, 300, 50), Location 4 (75, 250, 80), Location 5 (600, 700, 200), Location 6 (225, 850, 100), Location 7 (300, 200, 200). Transportation costs vary by product, warehouse, and destination: For Warehouse 1, the costs per unit are Product 1: 30, 10, 8, 10, 11, 71, 6 for Locations 1–7; Product 2: 39, 14, 11, 14, 16, 82, 8 for Locations 1–7; and Product 3: 41, 15, 12, 16, 17, 86, 8 for Locations 1–7. For Warehouse 2, the costs per unit are Product 1: 22, 7, 10, 7, 21, 82, 13 for Locations 1–7; Product 2: 27, 9, 12, 9, 26, 95, 17 for Locations 1–7; and Product 3: 29, 9, 13, 9, 28, 99, 18 for Locations 1–7. For Warehouse 3, the costs per unit are Product 1: 19, 11, 12, 10, 25, 83, 15 for Locations 1–7; Product 2: 24, 14, 17, 13, 28, 99, 20 for Locations 1–7; and Product 3: 26, 14, 17, 13, 31, 104, 20 for Locations 1–7. And shipments from any warehouse to any location cannot exceed 625 units. How to allocate shipments to minimize total transportation cost?",
+    "ground_truth": 181320,
+    "problem_type": "ILP",
+    "details": {
+      "variables_num": 63,
+      "constraints_num": 51,
+      "nonzeros_num": 189
+    },
+    "problem_size": "Medium"
+  },
+  "prob_007": {
+    "description": "Now, from 6 individuals (A, B, C, D, E, F), 5 are to be selected to complete 5 tasks (1-5). The time each person takes to complete each task is shown in the table below:\n\n| task\\person | A | B | C | D | E | F |\n|---|---|---|---|---|---|---|\n| 1 | 5 | 2 | 3 | 15 | 9 | 10 |\n| 2 | 5 | 6 | 15 | 2 | 4 | 7 |\n| 3 | 15 | 5 | 14 | 7 | 15 | 6 |\n| 4 | 20 | 15 | 18 | 6 | 8 | 11 |\n| 5 | 8 | 11 | 18 | 10 | 15 | 6 |\n\nIt is stipulated that each person can only complete one task. Due to certain reasons, individual A must be assigned a task, and individual D cannot be assigned task 4. What is the minimum total time spent?",
+    "ground_truth": 26.0,
+    "problem_type": "ILP",
+    "details": {
+      "variables_num": 30,
+      "constraints_num": 13,
+      "nonzeros_num": 66
+    },
+    "problem_size": "Medium"
+  },
+  "prob_008": {
+    "description": "A container terminal needs to allocate berths (which are arranged in a straight line with a total length of 900) for 9 vessels (A, B, C, D, E, F, G, H, I) arriving within 4 days. The lengths of the vessels are 287, 196, 261, 288, 208, 238, 190, 217 and 254 respectively. The arrival times of the vessels are 9, 27, 34, 40, 1, 31, 28, 20, and 22 hours respectively, while the required working times for loading and unloading after docking are 7, 31, 31, 25, 29, 11, 28, 24, and 20 hours respectively. The optimal berthing positions for the vessels are 375, 419, 591, 510, 567, 64, 507, 377, and 93 respectively. A berthing plan now needs to be devised, where the additional operational costs caused by deviations from the original optimal berthing positions are 8, 4, 5, 5, 2, 6, 8, 6, and 8 per unit of distance, and the delay costs are 7, 7, 3, 4, 4, 7, 2, 4, and 7 per hour of delay. What is the minimum total additional cost resulting from deviations from the optimal berthing positions and delays? (Assume vessels can only dock at integer positions on the hour.)",
+    "ground_truth": 729.0,
+    "problem_type": "ILP",
+    "details": {
+      "variables_num": 171,
+      "constraints_num": 225,
+      "nonzeros_num": 639
+    },
+    "problem_size": "Medium"
+  },
+  "prob_009": {
+    "description": "In a city planning scenario, it is necessary to select locations for public transport stations to serve a set of 15 passenger demand points, with 5 potential station locations available. The distance from each demand point to each potential station is known, and a demand point is considered \"\"covered\"\" by a station only if the distance between them is no more than 300 meters. What is the minimum number of stations that need to be selected to ensure all demand points are covered?\nThe distance matrix between each demand point and each potential station is as follows:\n| demand node\\stop | 1    | 2    | 3    | 4    | 5    |\n|-----------|------|------|------|------|------|\n| 1         | 389  | 515  | 170  | 143  | 617  |\n| 2         | 562  | 678  | 265  | 640  | 629  |\n| 3         | 206  | 594  | 180  | 564  | 683  |\n| 4         | 574  | 105  | 311  | 99   | 550  |\n| 5         | 616  | 490  | 99   | 473  | 682  |\n| 6         | 571  | 258  | 494  | 749  | 61   |\n| 7         | 573  | 234  | 207  | 635  | 318  |\n| 8         | 70   | 53   | 399  | 740  | 494  |\n| 9         | 229  | 190  | 550  | 654  | 394  |\n| 10        | 50   | 56   | 459  | 143  | 478  |\n| 11        | 95   | 378  | 507  | 647  | 135  |\n| 12        | 767  | 200  | 569  | 689  | 621  |\n| 13        | 729  | 333  | 91   | 86   | 386  |\n| 14        | 633  | 163  | 562  | 184  | 384  |\n| 15        | 67   | 515  | 224  | 502  | 345  |",
+    "ground_truth": 3.0,
+    "problem_type": "ILP",
+    "details": {
+      "variables_num": 5,
+      "constraints_num": 15,
+      "nonzeros_num": 28
+    },
+    "problem_size": "Small"
+  },
+  "prob_010": {
+    "description": "A logistics company needs to construct a logistics transfer center in a certain area. The company has identified 5 candidate locations for the transfer centers, which will need to deliver goods to 10 subordinate outlets. The distance matrix between the 5 candidate locations and the 10 outlets is as follows:\n\n| Candidate Location \\ Outlet | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 |\n|------------------------------|----------|----------|----------|----------|----------|----------|----------|----------|----------|-----------|\n| 1                            | 15       | 22       | 30       | 45       | 50       | 12       | 28       | 35       | 40       | 25        |\n| 2                            | 10       | 18       | 25       | 35       | 40       | 8        | 20       | 28       | 32       | 18        |\n| 3                            | 25       | 30       | 35       | 50       | 55       | 22       | 32       | 40       | 45       | 30        |\n| 4                            | 30       | 35       | 40       | 55       | 60       | 25       | 35       | 45       | 50       | 35        |\n| 5                            | 5        | 12       | 20       | 30       | 35       | 5        | 15       | 22       | 28       | 12        |\n\nIf 2 out of the 5 candidate locations are to be selected to build transfer centers, what is the minimum possible value of the maximum distance from all outlets to their nearest transfer center?",
+    "ground_truth": 35.0,
+    "problem_type": "ILP",
+    "details": {
+      "variables_num": 56,
+      "constraints_num": 111,
+      "nonzeros_num": 255
+    },
+    "problem_size": "Medium"
+  },
+  "prob_011": {
+    "description": "A city plans to establish a low-altitude drone delivery network covering a 100×100 area (with both horizontal and vertical coordinates ranging from [0, 100]). There are 8 demand points within this area, with coordinates at (10, 20), (25, 60), (40, 80), (65, 50), (80, 20), (15, 45), (70, 75), and (90, 90). The goal is to select 2 drone logistics hubs at arbitrary locations within the area. What is the minimum possible value of the maximum Euclidean distance from all demand points to their nearest drone logistics hub?",
+    "ground_truth": 35.35170935000974,
+    "problem_type": "NLP",
+    "details": {
+      "variables_num": 21,
+      "constraints_num": 8,
+      "nonzeros_num": 16
+    },
+    "problem_size": "Small"
+  },
+  "prob_012": {
+    "description": "A milk supplier needs to deliver milk to all scheduled customers, with the supplier's warehouse location coordinates being (5, 5), and 5 trucks with a capacity of 25 units of milk can be used for delivery. It is known that there are 20 customer points to be delivered to, with coordinates (5.2, 3.8), (8.7, 4.0), (7.9, 8.8), (1.6, 4.1), (8.3, 2.4), (4.5, 3.3), (3.7, 6.2), (8.9, 5.5), (8.4, 0.3), (0.7, 8.9), (0.3, 7.8), (5.5, 5.7), (2.4, 1.8), (3.5, 6.9), (5.4, 7.8), (2.8, 4.0), (4.9, 1.1), (6.8, 4.3), (9.2, 4.3), (0.1, 8.6), and the milk requirements are 6, 2, 7, 3, 4, 8, 7, 7, 1, 4, 1, 3, 5, 1, 2, 2, 6, 8, 2, 7 units respectively. Every truck departs from the warehouse, delivers milk to customers on the planned route, and returns to the warehouse after delivering to all customers. Under the condition of meeting all customer demands, what is the shortest total driving distance for the trucks? (Assuming that the distance between each point is calculated based on the straight-line distance.)",
+    "ground_truth": 51.78290154932,
+    "problem_type": "ILP",
+    "details": {
+      "variables_num": 2100,
+      "constraints_num": 135,
+      "nonzeros_num": 8200
+    },
+    "problem_size": "Medium"
+  },
+  "prob_013": {
+    "description": "A garbage dump needs to dispatch garbage trucks to fixed locations to collect garbage every day. The coordinates of the garbage dump are (0, 0), and it owns 4 garbage trucks, each with a capacity limit of 100 and a maximum driving distance of 45. There are 15 garbage collection points in total, with coordinates (3, -8), (-10, -5), (3, 0), (-3, -3), (5, -1), (-7, 3), (5, -3), (4, -5), (6, 4), (3, 1), (-10, 0), (-2, 7), (-6, -3), (-8, -7), (-1, 8), and garbage amounts of 20, 20, 28, 12, 30, 24, 30, 12, 27, 26, 21, 20, 12, 16, 19, respectively. Every garbage trucks need to start from the garbage dump, collect garbage from all collection points on the planned route, and return to the garbage dump. What is the shortest total driving distance for all garbage trucks? (Assume the distance between points is calculated as the straight-line distance.)",
+    "ground_truth": 88.26626658807,
+    "problem_type": "ILP",
+    "details": {
+      "variables_num": 960,
+      "constraints_num": 91,
+      "nonzeros_num": 4680
+    },
+    "problem_size": "Medium"
+  },
+  "prob_014": {
+    "description": "A logistics company needs to deliver packages to multiple booked customer, the logistics center's coordinates are (0, 0), and the company has 5 trucks with a capacity of 15 units of packages available for delivery. It is known that there are 12 customer points that need to be delivered, with coordinates (4.36, -2.75), (-7.29, -3.22), (-8.74, -2.47), (-0.68, -5.15), (-0.39, -3.49), (-6.06, -5.52), (-2.67, 9.32), (9.91, 7.87), (2.03, -2.98), (2.33, -1.47), (5.1, -2.08), (-8.04, -9.78), and the demands are 6, 7, 1, 10, 8, 7, 3, 6, 5, 2, 4, 4 units of packages respectively. Trucks start from the logistics center, complete the delivery on the planned route, and then return to the logistics center. The number of trucks used should be less than or equal to the number of trucks owned by the company. Under the condition of meeting all customer demands, what is the shortest total driving distance for the trucks? (Assuming the distance between each point is calculated based on the straight-line distance.)",
+    "ground_truth": 104.33525648686994,
+    "problem_type": "ILP",
+    "details": {
+      "variables_num": 780,
+      "constraints_num": 87,
+      "nonzeros_num": 3060
+    },
+    "problem_size": "Medium"
+  },
+  "prob_015": {
+    "description": "A logistics company has a batch of goods to transport, and the packaging boxes are neatly arranged with the same side dimensions but different thicknesses and weights. The company has 12 trucks, and each truck has space for placing goods on both sides. The total weight capacity of each truck is 10 tons, and to ensure smooth driving, the weight difference of goods on both sides of the truck should not exceed 500 kg. The total thickness capacity of each truck is 5 meters. There are 100 pieces of goods to be loaded, with thicknesses (cm) of 108, 62, 121, 31, 37, 90, 49, 49, 53, 156, 37, 62, 85, 78, 110, 119, 58, 159, 62, 150, 97, 131, 88, 89, 146, 50, 69, 58, 106, 138, 105, 95, 131, 38, 38, 92, 41, 40, 76, 133, 101, 103, 82, 134, 36, 126, 73, 121, 30, 116, 104, 140, 116, 74, 59, 66, 80, 64, 124, 100, 65, 47, 96, 83, 146, 139, 36, 47, 58, 133, 93, 60, 41, 38, 105, 31, 119, 115, 98, 93, 37, 90, 121, 83, 92, 36, 32, 56, 74, 126, 117, 72, 43, 38, 78, 65, 112, 149, 33, 88, and weights(kg) of 469, 301, 673, 239, 451, 723, 513, 417, 397, 1715, 261, 578, 916, 736, 1024, 634, 346, 1038, 428, 1008, 709, 1396, 876, 694, 737, 398, 656, 356, 1165, 1112, 729, 1070, 1015, 224, 437, 917, 273, 303, 614, 738, 1069, 636, 686, 1035, 188, 1103, 647, 1269, 271, 1234, 631, 1577, 1201, 614, 435, 564, 695, 375, 1541, 693, 413, 270, 482, 979, 1461, 1251, 329, 389, 606, 1491, 445, 493, 357, 403, 706, 196, 1405, 571, 1097, 872, 279, 581, 973, 814, 585, 221, 235, 664, 817, 929, 951, 509, 434, 339, 525, 499, 1250, 1419, 140, 720. What is the minimum number of trucks needed to meet the transportation requirements?",
+    "ground_truth": 9,
+    "problem_type": "ILP",
+    "details": {
+      "variables_num": 2412,
+      "constraints_num": 2584,
+      "nonzeros_num": 19212
+    },
+    "problem_size": "Medium"
+  },
+  "prob_016": {
+    "description": "A certain urban delivery company needs to provide fresh produce delivery services to 10 customer locations distributed across the city and surrounding areas. The company operates two distribution centers, A and B. Distribution center A is located at coordinates (-5, -5) and has 3 refrigerated trucks with a capacity of 20 tons each. Distribution center B is located at coordinates (5, 5) and has 3 refrigerated trucks with a capacity of 18 tons each. The coordinates of the 10 customers are as follows: (-4.53, -5.12), (2.14, 5.85), (-4.88, -8.33), (2.24, 1.63), (3.91, -5.88), (-1.1, 0.25), (7.92, -3.4), (-1.89, -5.0), (0.72, -8.8), (-1.88, -2.89). Their respective fresh produce demands are 2, 2, 9, 1, 4, 4, 10, 6, 4, and 4 tons. The delivery requirements are as follows: 1. Each truck must depart from its assigned distribution center and return to the same distribution center after completing deliveries; 2. Each customer must be visited exactly once. Under these conditions, what is the shortest total travel distance for the trucks? (The distance between two points is calculated as the straight-line distance.)",
+    "ground_truth": 68.92354390810,
+    "problem_type": "ILP",
+    "details": {
+      "variables_num": 792,
+      "constraints_num": 88,
+      "nonzeros_num": 2826
+    },
+    "problem_size": "Medium"
+  },
+  "prob_017": {
+    "description": "The Health Bureau of a city, in order to strengthen primary healthcare services, has equipped a mobile medical vehicle to regularly provide basic medical check-ups and medicines to various communities in the suburbs. To improve service efficiency, it is necessary to optimize the route of the mobile medical vehicle. The starting point of the medical vehicle is the Central City Hospital, located at coordinates (0, 0). The location information of the 10 communities to be served is as follows:\n\n| COMMUNITY ID | (x, y)      |\n|--------------|-------------|\n| C1           | (3.5, 4.2)  |\n| C2           | (-2.1, 5.6) |\n| C3           | (4.8, -3.2) |\n| C4           | (-3.6, -2.8)|\n| C5           | (5.2, 2.4)  |\n| C6           | (-4.1, 3.7) |\n| C7           | (2.8, -4.5) |\n| C8           | (6.3, -2.1) |\n| C9           | (-5.2, -1.8)|\n| C10          | (3.9, 5.8)  |\n\nWhat is the shortest travel distance for the medical vehicle to start from the Central City Hospital, visit all communities, and return to the Central City Hospital? (Distance is calculated as the straight-line distance.)",
+    "ground_truth": 39.12147411629252,
+    "problem_type": "ILP",
+    "details": {
+      "variables_num": 110,
+      "constraints_num": 22,
+      "nonzeros_num": 220
+    },
+    "problem_size": "Medium"
+  },
+  "prob_018": {
+    "description": "To strengthen grassroots medical services, the Health Bureau of a city has equipped a mobile medical vehicle to regularly provide basic medical check-ups and medicines to various communities in the suburbs. To improve service efficiency, it is necessary to optimize the route of the mobile medical vehicle. The starting point of the medical vehicle is the Central City Hospital, located at coordinates (0, 0). The information for the 10 communities to be served is as follows:\n\n|  COMMUNITY ID |        (x, y)       | TIME WINDOW |\n|---------------|---------------------|-------------|\n| C1            | (-5.87, -3.3)       | [8, 12]     |\n| C2            | (-4.1, 4.6)         | [9, 13]     |\n| C3            | (-2.27, -7.45)      | [10, 15]    |\n| C4            | (4.36, 3.38)        | [11, 15]    |\n| C5            | (9.05, 5.02)        | [9, 16]     |\n| C6            | (-7.46, 6.97)       | [9, 17]     |\n| C7            | (7.75, 7.38)        | [10, 18]    |\n| C8            | (0.06, -4.25)       | [13, 19]    |\n| C9            | (-6.13, -9.78)      | [8, 16]     |\n| C10           | (3.25, 9.86)        | [8, 16]     |\n\nEach community has a time window during which the medical vehicle must arrive. The medical vehicle departs from the Central City Hospital at 8:00 AM and travels at a speed of 15 km/h. After visiting all communities, the vehicle must return to the Central City Hospital. What is the shortest travel distance? (Distances are calculated as straight-line distances in kilometers.)",
+    "ground_truth": 70.65521686057,
+    "problem_type": "MILP",
+    "details": {
+      "variables_num": 132,
+      "constraints_num": 272,
+      "nonzeros_num": 920
+    },
+    "problem_size": "Medium"
+  },
+  "prob_019": {
+    "description": "A fresh food e-commerce platform has one distribution center in the city and needs to use a fleet of refrigerated trucks to deliver fresh products to 12 supermarkets. Each supermarket has a specified time window for receiving goods and a specified unloading time. The distribution center has 5 identical refrigerated trucks, each with a maximum load of 3 tons and a speed of 40 km/h. The coordinates of the distribution center are (0, 0), and the information of the supermarkets is as follows:\n\n| SUPERMARKET ID | (x,y) | DEMAND(kg) | TIME WINDOW | UNLOADING TIME(min) |\n|---------|-----------|------------|--------------|--------------|\n| S1      | (-5, 4)   | 800        | [7:00-9:00]  | 20           |\n| S2      | (3, 6)    | 600        | [8:00-10:00] | 15           |\n| S3      | (-2, -3)  | 900        | [7:30-9:30]  | 25           |\n| S4      | (4, -2)   | 700        | [8:30-10:30] | 20           |\n| S5      | (-4, -5)  | 500        | [9:00-11:00] | 15           |\n| S6      | (6, 3)    | 850        | [7:00-9:00]  | 25           |\n| S7      | (-3, 5)   | 750        | [8:00-10:00] | 20           |\n| S8      | (5, -4)   | 600        | [9:30-11:30] | 15           |\n| S9      | (-6, -2)  | 450        | [8:00-10:00] | 15           |\n| S10     | (2, 7)    | 800        | [7:30-9:30]  | 20           |\n| S11     | (-1, -6)  | 550        | [9:00-11:00] | 15           |\n| S12     | (4, 5)    | 700        | [8:30-10:30] | 20           |\n\nThe 5 refrigerated trucks leave the distribution center after 6:30 AM to deliver fresh products to the designated supermarkets and must return to the distribution center before 12:00 PM. What is the shortest total travel distance for the refrigerated trucks? (Distances are calculated as straight-line distances in kilometers.)",
+    "ground_truth": 78.78396815014308,
+    "problem_type": "MILP",
+    "details": {
+      "variables_num": 806,
+      "constraints_num": 1690,
+      "nonzeros_num": 7728
+    },
+    "problem_size": "Medium"
+  },
+  "prob_020": {
+    "description": "A delivery company has a fleet of vehicles at a certain location, consisting of 3 trucks. Each truck has a load limit of 1 ton (i.e., 1000 kg) and a speed of 30 km/h. The delivery fleet needs to provide pickup and delivery services for a group of customers. Each order has independent time windows for the pickup point and the delivery point. Below are the detailed customer order details:\n\n| Order ID | Pickup Point (x, y) | Pickup Time Window | Delivery Point (x, y) | Delivery Time Window | Delivery Weight (kg) |\n|----------|---------------------|---------------|---------------------|---------------|-------------------|\n| 1        | (1.41, 2.64)        | [9:30, 10:00] | (8.56, 1.11)        | [9:40, 10:40] | 198               |\n| 2        | (6.34, -4.45)       | [12:00, 12:30]| (3.63, -7.65)       | [12:10, 13:10]| 252               |\n| 3        | (3.04, 7.82)        | [10:30, 11:00]| (-8.88, 9.6)        | [10:50, 11:50]| 94                |\n| 4        | (8.18, -6.27)       | [12:00, 12:30]| (-4.31, -5.73)      | [12:20, 12:20]| 223               |\n| 5        | (3.03, 2.34)        | [12:30, 13:00]| (7.93, 5.0)         | [12:40, 13:40]| 163               |\n| 6        | (0.07, 9.32)        | [8:30, 9: 00] | (-7.54, -3.57)      | [9:00, 10:00] | 247               |\n| 7        | (0.57, -1.09)       | [8:00, 8:30]  | (-5.15, -4.55)      | [8:10, 9:10]  | 133               |\n| 8        | (8.87, 2.71)        | [14:00, 14:30]| (-9.87, 0.49)       | [14:30, 15:30]| 188               |\n| 9        | (-3.97, -3.81)      | [10:00, 10:30]| (-3.91, -2.12)      | [10:00, 11:00]| 216               |\n| 10       | (-0.08, -8.95)      | [9:30, 10:00] | (-6.29, -7.8)       | [9:40, 10:40] | 225               |\n\nThe delivery fleet departs from the depot at coordinates (0, 0), serves all orders, and then returns to the depot. How should the routes be planned to minimize the total distance traveled by the trucks? (Distances are calculated as straight-line distances.)",
+    "ground_truth": 172.4960492825,
+    "problem_type": "ILP",
+    "details": {
+      "variables_num": 1365,
+      "constraints_num": 3909,
+      "nonzeros_num": 16343
+    },
+    "problem_size": "Medium"
+  },
+  "prob_021": {
+    "description": "A logistics company needs to arrange forklifts for a newly built warehouse to meet daily operational demands. The forklift requirements for the warehouse over the next 7 weeks are 6, 9, 12, 8, 5, 7 and 4. The logistics company plans to lease forklifts from a rental company, which offers the following leasing options:\n\n1. Long-term forklift rental: The lease term is fixed at 7 weeks, with a rental cost of 240 yuan per week. Forklifts under long-term lease are available for the entire lease period.\n2. Short-term forklift rental: The lease term is flexible, available on a weekly basis, with a rental cost of 390 yuan per week. Short-term leased forklifts are only available during the week they are leased.\n3. Shared forklifts: These are vehicles jointly leased with other warehouses, but they are only available in weeks 2, 4, and 5. The rental cost is 220 yuan per week.\n4. Promotional forklifts: These forklifts can be leased at a discounted rate during the last 4 weeks, with a rental cost of 190 yuan per week. A maximum of 2 promotional forklifts can be leased per week.\n\nPlease design a leasing plan that fully meets the warehouse's forklift requirements over the next 7 weeks while minimizing the total leasing cost.",
+    "ground_truth": 14110.0,
+    "problem_type": "ILP",
+    "details": {
+      "variables_num": 16,
+      "constraints_num": 14,
+      "nonzeros_num": 31
+    },
+    "problem_size": "Small"
+  },
+  "prob_022": { 
+    "description": "A manufacturing plant specializes in producing customized parts, where production is scheduled based on customer orders. The factory has five machines (M1-M5), each with distinct functions: M1 for cutting, M2 for drilling, M3 for welding, M4 for polishing, and M5 for final assembly. Currently, four orders (J1-J4) have been received, each requiring a fixed sequence of processing steps that must be completed on specific machines in a prescribed order. The processing steps, required machines, and execution times for each task are as follows:\n\nJ1: (1) Cutting on M1, taking 3 hours; (2) Drilling on M2, taking 2 hours; (3) Assembly on M5, taking 4 hours.  \nJ2: (1) Welding on M3, taking 4 hours; (2) Polishing on M4, taking 3 hours; (3) Assembly on M5, taking 2 hours.  \nJ3: (1) Drilling on M2, taking 3 hours; (2) Cutting on M1, taking 5 hours; (3) Polishing on M4, taking 2 hours.  \nJ4: (1) Cutting on M1, taking 2 hours; (2) Welding on M3, taking 3 hours; (3) Polishing on M4, taking 4 hours.  \n\nEach machine can only handle one task at a time and cannot process multiple tasks simultaneously. Once a step begins processing, it cannot be paused or interrupted midway. How should the order processing be scheduled to minimize the total completion time for all tasks?",
+    "ground_truth": 13.0,
+    "problem_type": "ILP",
+    "details": {
+      "variables_num": 22,
+      "constraints_num": 34,
+      "nonzeros_num": 82
+    },
+    "problem_size": "Medium"
+  },
+  "prob_023": {
+    "description": "HAPPY pharmaceutical produces the drug Panacea from four chemicals. Today they must produce 1,000 lb of the drug. The three active ingredients in Panacea are A, B, and C. By weight, at least 8% of Panacea must consist of A, at least 4% of B, and at least 2% of C. The cost per pound of each chemical and the amount of each active ingredient in 1 lb of each chemical are given in Table as follows:\n\n| Chemical | Cost ($ per Lb) | A    | B    | C    |\n|----------|-----------------|------|------|------|\n| 1        | 8               | .03  | .02  | .01  |\n| 2        | 10              | .06  | .04  | .01  |\n| 3        | 11              | .10  | .03  | .04  |\n| 4        | 14              | .12  | .09  | .04  |\n\nIt is necessary that at least 100 lb of chemical 2 be used. Find a solution would determine the cheapest way of producing today's batch of Panacea.",
+    "ground_truth": 10637.5,
+    "problem_type": "LP",
+    "details": {
+      "variables_num": 4,
+      "constraints_num": 8,
+      "nonzeros_num": 20
+    },
+    "problem_size": "Toy"
+  },
+  "prob_024": {
+    "description": "A commodities trader oversees a secure vault facility with a maximum capacity of 500 kilograms, dedicated to storing refined platinum. At the beginning of Quarter 1, the trader holds 150 kilograms of platinum. Each quarter, the trader assesses the current inventory, sells any amount of platinum up to the available stock at the prevailing selling price, then purchase platinum at the current purchase price for the season, while ensuring that the total inventory does not exceed the vault's capacity (requires selling first before buying). The selling and purchase prices for platinum for each quarter are as follows:\n\n| Quarter | Selling Price ($/kg) | Purchase Price ($/kg) |\n|---------|-----------------------|-----------------------|\n| 1       | 30,000               | 32,000               |\n| 2       | 35,000               | 36,000               |\n| 3       | 40,000               | 38,000               |\n| 4       | 36,000               | 33,000               |\n| 5       | 38,000               | 39,000               |\n| 6       | 42,000               | 40,000               |\n\nThe trader's objective is to devise an optimal strategy for buying and selling platinum over the six quarters to maximize total profit. What is the maximum achievable profit?",
+    "ground_truth": 13300000.0,
+    "problem_type": "LP",
+    "details": {
+      "variables_num": 18,
+      "constraints_num": 12,
+      "nonzeros_num": 34
+    },
+    "problem_size": "Small"
+  },
+  "prob_025": {
+    "description": "A publishing company needs to plan the optimal strategy for printing books over the next six months. The company has forecasted the monthly demand as follows: Month 1—5,000 copies; Month 2—6,000 copies; Month 3—5,500 copies; Month 4—7,000 copies; Month 5—4,500 copies; Month 6—4,000 copies. The cost of printing one copy is $2 during regular working hours (RT) and $3 during overtime (OT). Each month, regular-time production is limited to 6,000 copies, and overtime production is limited to 2,000 copies. Additionally, the inventory holding cost is $0.5 per copy per month. What is the minimum total cost to meet the demand for the next six months on time?",
+    "ground_truth": 64750.0,
+    "problem_type": "ILP",
+    "details": {
+      "variables_num": 18,
+      "constraints_num": 24,
+      "nonzeros_num": 52
+    },
+    "problem_size": "Small"
+  },
+  "prob_026": {
+    "description": "GreenWeave specializes in transforming raw materials such as organic cotton, jute, and linen into eco-friendly textiles: organic cotton fabric, jute fabric, and linen fabric. Organic cotton fabric can be manufactured by processing either organic cotton or jute. Linen fabric can be produced from any of the raw materials—organic cotton, jute, or linen. Jute fabric, on the other hand, can be created by processing jute or linen. The production process for organic cotton fabric reduces the input fiber by 30%, leaving 70% for the final product. For linen fabric, the process removes 20% of the input fiber. For jute fabric, the process removes 25% of the input fiber. The costs of purchasing and processing each raw material, along with their availability, are detailed as follows:\n\n| Raw Material      | Purchasing Cost ($/ton) | Processing Cost ($/ton)  | Availability (tons) |\n|-------------------|-------------------------|--------------------------|---------------------|\n| Organic Cotton    | 350                     | 100                      | 1000                |\n| Jute              | 400                     | 80                       | 800                 |\n| Linen             | 300                     | 150                      | 600                 |\n\nTo fulfill market requirements, GreenWeave must produce a minimum of 300 tons of organic cotton fabric fiber, 400 tons of jute fabric fiber, and 200 tons of linen fabric fiber. What is the minimum total cost to meet GreenWeave's production needs?",
+    "ground_truth": 545357.142857143,
+    "problem_type": "LP",
+    "details": {
+      "variables_num": 7,
+      "constraints_num": 6,
+      "nonzeros_num": 14
+    },
+    "problem_size": "Small"
+  },
+  "prob_027": {
+    "description": "A national e-commerce company operates three distribution centers in the Metro region. Each center currently stores different quantities of standard and premium products as shown below:\n\n| Distribution Center | Standard Products | Premium Products |\n|---------------------|-------------------|------------------|\n| Center 1            | 150               | 30               |\n| Center 2            | 250               | 100              |\n| Center 3            | 300               | 70               |\n\nThe company plans to open three retail fulfillment hubs that will serve customers with same-day delivery. Corporate policy requires that each fulfillment hub must maintain exactly 300 products in total inventory, and each hub must stock the same number of premium products to ensure consistent customer experience across all locations. The shipping distances (in kilometers) between distribution centers and fulfillment hubs are shown as follows:\n\n| From / To           | Hub 1 | Hub 2 | Hub 3 |\n|---------------------|-------|-------|-------|\n| Center 1            | 0     | 12    | 18    |\n| Center 2            | 12    | 0     | 15    |\n| Center 3            | 18    | 15    | 0     |\n\nWhat is the minimum total transportation distance required to move the products under the company's inventory requirements?",
+    "ground_truth": 1440.0,
+    "problem_type": "ILP",
+    "details": {
+      "variables_num": 18,
+      "constraints_num": 21,
+      "nonzeros_num": 36
+    },
+    "problem_size": "Small"
+  },
+  "prob_028": {
+    "description": "A small-scale bakery operates in four towns: Greenville, Springfield, Riverside, and Hilltop. The bakery produces fresh bread, which is then delivered to local stores located in Maplewood, Oakdale, Pineville, Cedarhurst, and Brookside. The number of loaves of bread available at each bakery is provided in Table 1. Each store requires a specific number of loaves to meet daily customer demand, as shown in Table 2. The distances (in kilometers) between the bakeries and stores are given in Table 3.  Assuming the delivery cost (in USD) for each loaf of bread is calculated as the square root of the distance between the origin and destination towns, determine the optimal delivery schedule that minimizes total transportation costs while meeting all store requirements.  \n\nTable 1: Bread Availability at Bakeries  \n| Bakery       | Loaves Available |  \n|--------------|------------------|  \n| Greenville   | 200              |  \n| Springfield  | 150              |  \n| Riverside    | 250              |  \n| Hilltop      | 180              |  \n\nTable 2: Bread Requirements at Stores  \n| Store        | Loaves Required |  \n|--------------|-----------------|  \n| Maplewood    | 120             |  \n| Oakdale      | 100             |  \n| Pineville    | 130             |  \n| Cedarhurst   | 90              |  \n| Brookside    | 80              |  \n\nTable 3: Distances Between Bakeries and Stores (km)  \n| From / To    | Maplewood | Oakdale | Pineville | Cedarhurst | Brookside |  \n|--------------|-----------|---------|-----------|------------|-----------|  \n| Greenville   | 10        | 15      | 20        | 25         | 30        |  \n| Springfield  | 12        | 8       | 18        | 22         | 28        |  \n| Riverside    | 14        | 10      | 16        | 20         | 26        |  \n| Hilltop      | 16        | 12      | 14        | 18         | 24        |",
+    "ground_truth": 1947.670525618807,
+    "problem_type": "ILP",
+    "details": {
+      "variables_num": 20,
+      "constraints_num": 9,
+      "nonzeros_num": 40
+    },
+    "problem_size": "Small"
+  },
+  "prob_029": {
+    "description": "A company produces seven types of food containers, ranging in volume from 17 to 33 liters. The demand and size of each container are given in Table as follows: \n\n| Container Type | Volume (liters) | Demand (units) |\n|----------------|-----------------|----------------|\n| 1              | 17              | 500            |\n| 2              | 19              | 400            |\n| 3              | 21              | 300            |\n| 4              | 23              | 250            |\n| 5              | 25              | 200            |\n| 6              | 29              | 150            |\n| 7              | 33              | 100            |\n\nThe variable cost (in dollars) of producing each container is equal to its volume. A fixed cost of $1,000 is incurred to produce any of a particular container type. If the company desires, demand for a container may be satisfied by a container of larger size. Formulate and solve a shortest-path problem whose solution will minimize the cost of meeting the demand for food containers.",
+    "ground_truth": 46700.0,
+    "problem_type": "MILP",
+    "details": {
+      "variables_num": 35,
+      "constraints_num": 14,
+      "nonzeros_num": 63
+    },
+    "problem_size": "Medium"
+  },
+  "prob_030": {
+    "description": "LogiTrans operates two distribution centers to manage the shipment of three types of goods to various regional hubs. Each distribution center can be staffed by up to seven logistics coordinators at a time. Coordinators are paid $500 per week at distribution center 1 and $900 per week at distribution center 2. Activating a distribution center for a week incurs a fixed cost of $1,000 for center 1 and $2,000 for center 2. During a week at a distribution center, each coordinator can process the number of shipments of each type of goods as shown in Table as follows:\n\n| Goods Type \\ Distribution Center | Center 1 | Center 2 |\n|----------------------------------|----------|----------|\n| Type 1                           | 20       | 25       |\n| Type 2                           | 18       | 22       |\n| Type 3                           | 15       | 20       |\n\nEach week, LogiTrans must ensure that at least 120 shipments of goods type 1, at least 150 shipments of goods type 2, and at least 200 shipments of goods type 3 are processed. How to minimize the total cost of meeting weekly shipment demands?",
+    "ground_truth": 11000.0,
+    "problem_type": "ILP",
+    "details": {
+      "variables_num": 4,
+      "constraints_num": 5,
+      "nonzeros_num": 10
+    },
+    "problem_size": "Toy"
+  },
+  "prob_031": {
+    "description": "Global Freight Solutions (GFS), a logistics company, needs to transport goods across three regions using services from three shipping providers. Each provider offers different cost structures and service mixes for large, medium, and small shipments, as detailed in Table as follows:\n\n| Supplier | Cost Per Shipment ($) | Percent Large | Percent Medium | Percent Small |\n|----------|-----------------------|---------------|----------------|---------------|\n| 1        | 5.2                   | 45            | 35             | 20            |\n| 2        | 4.7                   | 30            | 45             | 25            |\n| 3        | 3.5                   | 15            | 20             | 65            |\n\nGFS must fulfill a minimum monthly demand of at least 500 large shipments, 300 medium shipments, and 300 small shipments while minimizing total costs. Additionally, due to capacity constraints, no more than 700 shipments can be contracted from any single provider each month. Determine what the lowest possible cost is.",
+    "ground_truth": 6553.7,
+    "problem_type": "ILP",
+    "details": {
+      "variables_num": 3,
+      "constraints_num": 6,
+      "nonzeros_num": 12
+    },
+    "problem_size": "Toy"
+  },
+  "prob_032": {
+    "description": "A manufacturing company operates three production facilities (1, 2, and 3) that produce two types of components (X and Y). Each facility generates waste during production, which can be treated to reduce environmental impact. Treating the waste incurs a cost and reduces the amount of pollutants emitted. It costs $12 to treat a ton of waste from facility 1, and each ton treated reduces the amount of pollutant X by 0.15 ton and the amount of pollutant Y by 0.35 ton. It costs $8 to treat a ton of waste from facility 2, and each ton treated reduces the amount of pollutant X by 0.25 ton and the amount of pollutant Y by 0.20 ton. It costs $18 to treat a ton of waste from facility 3, and each ton treated reduces the amount of pollutant X by 0.30 ton and the amount of pollutant Y by 0.40 ton. The company aims to reduce the amount of pollutant X by at least 25 tons and the amount of pollutant Y by at least 35 tons. How to minimize the total cost of treating waste while meeting the pollution reduction targets?",
+    "ground_truth": 1269.5652173913045,
+    "problem_type": "LP",
+    "details": {
+      "variables_num": 3,
+      "constraints_num": 2,
+      "nonzeros_num": 6
+    },
+    "problem_size": "Toy"
+  },
+  "prob_033": {
+    "description": "A fruit processing company, NatureBounty, specializes in producing two product lines: packaged fresh apples and bottled apple juice. NatureBounty grades apples on a scale of 1 (poor) to 10 (excellent). The company currently has 90,000 lbs of grade 7 apples and 110,000 lbs of grade 4 apples in inventory. To maintain product quality, the average grade of apples sold in packages must be at least 5, and the average grade of apples used for juice production must be at least 6. Additionally, the company has a production capacity constraint: it can process no more than 150,000 lbs of apples in total due to equipment limitations. Each pound of apples used for juice generates a revenue of $1.10 and incurs a variable cost of $0.80. Each pound of apples sold in packages generates a revenue of $0.35 and incurs a variable cost of $0.12. The company also has a marketing constraint: at least 20% of the total processed apples must be sold in packages to meet market demand. How to help NatureBounty maximize its profit while adhering to all constraints.",
+    "ground_truth": 42900.0,
+    "problem_type": "LP",
+    "details": {
+      "variables_num": 4,
+      "constraints_num": 6,
+      "nonzeros_num": 16
+    },
+    "problem_size": "Toy"
+  },
+  "prob_034": {
+    "description": "Green Energy Solutions specializes in producing two types of renewable fuel: bioethanol and biodiesel. The company has 8,000 liters of feedstock A and 12,000 liters of feedstock B in stock. The quality rating of each feedstock is as follows: feedstock A—12; feedstock B—6. Bioethanol must have an average quality rating of at least 10, while biodiesel must have an average quality rating of at least 8. The demand for each product is driven by marketing efforts. Each dollar spent on marketing bioethanol generates 8 liters of demand, and each dollar spent on marketing biodiesel generates 15 liters of demand. Bioethanol is sold for $30 per liter, and biodiesel is sold for $25 per liter. Help Green Energy Solutions maximize its profit. Assume that the company cannot purchase additional feedstock of either type.",
+    "ground_truth": 518433.33333333,
+    "problem_type": "LP",
+    "details": {
+      "variables_num": 6,
+      "constraints_num": 6,
+      "nonzeros_num": 14
+    },
+    "problem_size": "Small"
+  },
+  "prob_035": {
+    "description": "FreshFoods operates three farms (Farm A, Farm B, and Farm C) to grow and supply fresh produce to four grocery stores (Store 1, Store 2, Store 3, and Store 4). The production cost, yield capacity, water usage (per ton), and fertilizer usage (per ton) for each farm are given in the table below:\n\n| Farm | Production Cost ($/ton) | Yield Capacity (tons) | Water Usage (m³/ton) | Fertilizer Usage (kg/ton) |\n| ---- | ----------------------- | --------------------- | -------------------- | ------------------------- |\n| A    | 100                     | 500                   | 6                    | 5                         |\n| B    | 120                     | 400                   | 8                    | 4                         |\n| C    | 150                     | 600                   | 6                    | 3                         |\n\nThe demand (in tons) for each grocery store is as follows:\n\n| Store 1 | Store 2 | Store 3 | Store 4 |\n| ------- | ------- | ------- | ------- |\n| 200     | 300     | 400     | 500     |\n\nThe transportation cost (in $/ton) from each farm to each grocery store is given in the table below:\n\n| Farm | Store 1 | Store 2 | Store 3 | Store 4 |\n| ---- | ------- | ------- | ------- | ------- |\n| A    | 20      | 25      | 30      | 15      |\n| B    | 22      | 26      | 32      | 18      |\n| C    | 18      | 24      | 28      | 14      |\n\nTo meet sustainability goals, the total produce shipped must use no more than 7 m³ of water per ton and no more than 4 kg of fertilizer per ton. How to minimize the total cost while satisfying the demand and sustainability constraints?",
+    "ground_truth": 203500.0,
+    "problem_type": "LP",
+    "details": {
+      "variables_num": 12,
+      "constraints_num": 9,
+      "nonzeros_num": 44
+    },
+    "problem_size": "Small"
+  },
+  "prob_036": {
+    "description": "### Problem Description:\nChemCo produces two types of solvents: Standard and Premium. The solvents are produced by blending five raw materials: Alpha, Beta, Gamma, Delta, and Epsilon. Each raw material has four key properties:\n\n1.  Property 1: Viscosity Index (VI)\n2.  Property 2: Flash Point (°C)\n3.  Property 3: Boiling Point (°C)\n4.  Property 4: Density (g/cm³)\n\nThe properties, daily availability (in liters), and cost (in ¢/liter) of each raw material are given in Table 1.\n\nTable 1: Raw Materials' Properties, Daily Availability, and Costs\n\n| Raw Material | Availability (Liters) | Cost (¢/Liter) | VI  | Flash Point (°C) | Boiling Point (°C) | Density (g/cm³) |\n|--------------|-----------------------|----------------|-----|------------------|--------------------|-----------------|\n| Alpha        | 12,000                | 15.0           | 95  | 45               | 150                | 0.85            |\n| Beta         | 10,500                | 12.0           | 88  | 55               | 180                | 0.92            |\n| Gamma        | 8,000                 | 10.0           | 82  | 60               | 200                | 0.89            |\n| Delta        | 5,000                 | 18.0           | 105 | 40               | 130                | 0.87            |\n| Epsilon      | Unlimited             | 16.0           | 100 | 50               | 160                | 0.91            |\n\nThe final properties of the blended solvents are determined by the volume-weighted average of the properties of the raw materials used. The requirements for each solvent type are provided in Table 2. The Viscosity Index and Boiling Point requirements are minimums, while the Flash Point and Density requirements must be met exactly.\n\nTable 2: Solvent Requirements and Demand\n\n| Solvent  | Demand (Thousands of Liters) | VI (min) | Flash Point (°C) (exact) | Boiling Point (°C) (min) | Density (g/cm³) (exact) |\n|----------|-------------------------------|----------|--------------------------|--------------------------|------------------------|\n| Standard | 8.5                           | 85       | 50                       | 140                      | 0.88                   |\n| Premium  | 25                            | 92       | 50                       | 140                      | 0.88                   |\n\nThe daily demand (in thousands of liters) for each solvent must be met, but additional production beyond the demand is allowed. Standard solvent sells for 25.50¢/liter, while Premium solvent sells for 28.75¢/liter. Additionally, no more than 35% of the volume of each solvent type can consist of raw material Beta. How can ChemCo formulate its solvents using the available raw materials to maximize its total daily profit? Total daily profit is defined as total revenue from sales minus total raw material costs.",
+    "ground_truth": 474250.0,
+    "problem_type": "LP",
+    "details": {
+      "variables_num": 10,
+      "constraints_num": 17,
+      "nonzeros_num": 68
+    },
+    "problem_size": "Small"
+  },
+  "prob_037": {
+    "description": "LogiCorp operates a logistics network that ships two types of products: Basic and Advanced. The raw materials needed to produce these products can be purchased for $5 per unit. Processing 1 unit of raw material requires 2 hours of warehouse labor. Each unit of processed raw material yields 2 units of Basic Product and 3 units of Advanced Product. Basic Product can be sold for $10/unit, and Advanced Product can be sold for $12/unit. LogiCorp also has the option of further processing Basic and Advanced Products to produce Premium Basic and Premium Advanced, which sell for $20/unit and $25/unit, respectively. Each unit of Basic Product processed further requires an additional 3 hours of warehouse labor and $5 processing cost, yielding 1 unit of Premium Basic. Each unit of Advanced Product processed further requires an additional 4 hours of warehouse labor and $6 processing cost, yielding 1 unit of Premium Advanced. Each year, LogiCorp has 8,000 hours of warehouse labor available and can purchase up to 3,000 units of raw material. How can LogiCorp maximize its profits? Assume that the cost of warehouse labor is a fixed cost, raw materials can only be purchased in whole units.",
+    "ground_truth": 348500,
+    "problem_type": "ILP",
+    "details": {
+      "variables_num": 5,
+      "constraints_num": 3,
+      "nonzeros_num": 9
+    },
+    "problem_size": "Toy"
+  },
+  "prob_038": {
+    "description": "AutoParts Ltd. manufactures three types of automotive components: Engine Block, Transmission, and Brake System. The company sources raw materials at a cost of $60 per unit. Each unit of raw material can be processed into 7 units of Engine Block and 3 units of Transmission. Processing one unit of raw material requires $8 in energy costs and 7 hours of machine time.  \n\nEngine Block can be used in three ways:  \n- Sold directly for $25 per unit.  \n- Processed into 1 unit of Transmission, requiring 4 hours of machine time and $5 in additional costs.  \n- Processed into 1 unit of Brake System, requiring 6 hours of machine time and $10 in additional costs.  \n\nTransmission can be used in two ways:  \n- Sold directly for $35 per unit.  \n- Processed into 1 unit of Brake System, requiring 5 hours of machine time and $12 in additional costs.  \n\nBrake System is sold for $45 per unit. The company has a maximum machine time capacity of 60,000 hours per year. Additionally, there is a contractual obligation to produce at least 4,000 units of Brake System annually. The maximum market demand for each component is as follows:  \n- Engine Block: 20,000 units  \n- Transmission: 15,000 units  \n- Brake System: 12,000 units  \n\nDetermine how AutoParts Ltd. can maximize its annual profit while meeting all constraints.",
+    "ground_truth": 851452,
+    "problem_type": "ILP",
+    "details": {
+      "variables_num": 10,
+      "constraints_num": 11,
+      "nonzeros_num": 26
+    },
+    "problem_size": "Small"
+  },
+  "prob_039": {
+    "description": "HealthSupply Co. manages a medical supply chain that must fulfill demand for two types of products, Vaccine X and Vaccine Y, over the next two quarters, with demands of 100 doses of Vaccine X and 200 doses of Vaccine Y in Quarter 1, and 300 doses of Vaccine X and 100 doses of Vaccine Y in Quarter 2. The company can produce a maximum of 1,500 doses per quarter, with each dose of Vaccine X requiring 4 liters of raw biochemical material and each dose of Vaccine Y requiring 3 liters. The cost of raw material is $300 per liter in Quarter 1 and $450 per liter in Quarter 2, with a maximum purchase limit of 2,500 liters per quarter, and material can only be used in the quarter it is purchased. At the start of Quarter 1, the company has an inventory of 200 doses of Vaccine X and 300 doses of Vaccine Y, and a storage cost of $100 per dose is assessed at the end of each quarter for remaining inventory. Additionally, the company must meet a regulatory requirement that the vaccines produced each quarter have an average efficacy rate of at least 90%, with Vaccine X having an efficacy rate of 85% and Vaccine Y having an efficacy rate of 95%. How to meet the demand and regulatory requirements at minimum cost, including raw material and storage costs.",
+    "ground_truth": 460000,
+    "problem_type": "MILP",
+    "details": {
+      "variables_num": 10,
+      "constraints_num": 12,
+      "nonzeros_num": 26
+    },
+    "problem_size": "Small"
+  },
+  "prob_040": {
+    "description": "SupplyChain Logistics Co. is responsible for distributing two types of products, Product A and Product B. The company needs to meet the market demand for these two products across four quarters of the year (Q1, Q2, Q3, Q4) while aiming to minimize the total annual operating costs, which include labor costs and inventory holding costs. The demand for Product A in the four quarters is 800, 600, 700, and 900 units, respectively; the demand for Product B in the four quarters is 500, 400, 600, and 300 units, respectively.Workers operate on a fixed rotation schedule: each worker works for three consecutive quarters and then takes one quarter off. To ensure that workers take their leave in the same quarter each year, workers are divided into four groups, taking leave in Q1, Q2, Q3, and Q4, respectively. The company must decide the number of workers in each group, and this number remains constant throughout the year. Each on-duty worker, in a working quarter, can only choose to handle one type of product: either a maximum of 60 units of Product A or a maximum of 40 units of Product B. They cannot split their capacity to handle both products within the same quarter. The wage for each worker per working quarter is $600, so the annual wage for each worker is $1800.At the end of each quarter, an inventory holding cost of $70 per unit is incurred for any remaining product (either A or B) in the warehouse. It is assumed that at the beginning of the first quarter of the first year, the initial inventory for both Product A and Product B is 0 units. To simplify the model, it is assumed that at the end of the fourth quarter each year, the inventory for both Product A and Product B must be 0 units.The company's optimization objective is: to determine the number of workers in each rotation group and how to assign on-duty workers to produce Product A and Product B each quarter, in order to meet all quarterly product demands and minimize the total annual operating costs (including the total wages for all registered workers and the total inventory holding costs incurred at the end of all quarters).",
+    "ground_truth": 59400,
+    "problem_type": "ILP",
+    "details": {
+      "variables_num": 52,
+      "constraints_num": 38,
+      "nonzeros_num": 108
+    },
+    "problem_size": "Medium"
+  },
+  "prob_041": {
+    "description": "CraftBrew Inc. operates two breweries located in Portland and Asheville. The Portland brewery can produce up to 200,000 gallons of craft beer annually, while the Asheville brewery can produce up to 300,000 gallons. Once brewed, the beer is shipped to two distribution hubs: Seattle and Atlanta. Each distribution hub can handle up to 400,000 gallons per year. Due to differences in shipping and production costs, the profit (in dollars) per thousand gallons shipped depends on the brewery and the destination hub (see Table 1). CraftBrew Inc. is considering expanding the capacity of each brewery. Each thousand gallons of annual production capacity added will cost $1,000 for the Portland brewery and $1,500 for the Asheville brewery. How can CraftBrew Inc. maximize its profits, less expansion costs, over a three-year period?  \n\nTable 1:\n\n| Brewery   | Destination Hub | Profit per Thousand Gallons ($) |  \n|-----------|------------------|----------------------------------|  \n| Portland  | Seattle          | 500                              |  \n| Portland  | Atlanta          | 450                              |  \n| Asheville | Seattle          | 480                              |  \n| Asheville | Atlanta          | 520                              |",
+    "ground_truth": 903000.0,
+    "problem_type": "LP",
+    "details": {
+      "variables_num": 18,
+      "constraints_num": 12,
+      "nonzeros_num": 36
+    },
+    "problem_size": "Small"
+  },
+  "prob_042": {
+    "description": "LogiFlow Solutions manages the distribution of two types of packages: Standard and Express. Each package must be transported entirely by air freight or entirely by ground shipping. A total of 150 cubic meters of air freight capacity and 210 cubic meters of ground shipping capacity are available. A Standard package requires either 17 cubic meters of air freight or 30 cubic meters of ground shipping, while an Express package requires either 5 cubic meters of air freight or 13 cubic meters of ground shipping. Each Standard package generates $40 in revenue, and each Express package generates $15 in revenue. How to maximize LogiFlow Solutions' total revenue from package distribution?",
+    "ground_truth": 730,
+    "problem_type": "ILP",
+    "details": {
+      "variables_num": 4,
+      "constraints_num": 2,
+      "nonzeros_num": 4
+    },
+    "problem_size": "Toy"
+  },
+  "prob_043": {
+    "description": "TransitLogix Co. offers two competing shipping services: Priority and Economy. The company aims to sell these services to two distinct customer segments: small businesses and large enterprises. The perceived value of each service by the customer segments is shown in the table below: \n\n| Customer Segment | Value of Priority Service ($) | Value of Economy Service ($) |  \n|-------------------|--------------------------------|-------------------------------|  \n| Small Businesses  | 120                            | 80                            |  \n| Large Enterprises | 90                             | 110                           |  \n\nEach customer will choose either Priority or Economy, but not both. If customers believe that the value of priority service exceeding its price is greater than or equal to the value of economic service exceeding its price, they will choose priority service. Similarly, If customers believe that the value of economic service exceeding its price is greater than or equal to the value of priority service exceeding its price, they will choose economic service. The small business segment has 1,000 potential customers, and the large enterprise segment has 1,500 potential customers. TransitLogix wants to set prices for each service to ensure that small businesses choose Priority and large enterprises choose Economy. And to maintain a clear differentiation and brand image, TransitLogix has decided that the price of the Priority service must be at least $15 higher than the price of the Economy service. How can TransitLogix maximize its total revenue from these two customer segments?",
+    "ground_truth": 277500.0,
+    "problem_type": "LP",
+    "details": {
+      "variables_num": 2,
+      "constraints_num": 3,
+      "nonzeros_num": 6
+    },
+    "problem_size": "Toy"
+  },
+  "prob_044": {
+    "description": "CargoLink Logistics operates two types of delivery vehicles: Type X and Type Y. New environmental regulations require that the average carbon emissions of all vehicles deployed over the next three years cannot exceed 40 grams per kilometer annually. Each Type X vehicle generates $25,000 in revenue, costs $18,000 to operate, and emits 70 grams of carbon per kilometer. Each Type Y vehicle generates $20,000 in revenue, costs $16,000 to operate, and emits 30 grams of carbon per kilometer. Due to fleet capacity constraints, CargoLink can deploy a maximum of 400 vehicles each year. The maximum number of each vehicle type that can be deployed annually is shown in the table below. For example, at most, 350 Type X vehicles can be deployed in year 3. How can CargoLink Logistics maximize its total profit over the next three years while complying with environmental regulations?\n\n| Year | Maximum Type X Vehicles | Maximum Type Y Vehicles |  \n|------|--------------------------|--------------------------|  \n| 1    | 300                      | 250                      |  \n| 2    | 320                      | 280                      |  \n| 3    | 350                      | 300                      |",
+    "ground_truth": 5252000.0,
+    "problem_type": "ILP",
+    "details": {
+      "variables_num": 6,
+      "constraints_num": 12,
+      "nonzeros_num": 18
+    },
+    "problem_size": "Small"
+  },
+  "prob_045": {
+    "description": "You are in charge of GreenTech Manufacturing, a company that produces eco-friendly packaging materials from recycled paper. The company produces two types of packaging: Premium and Standard. Premium packaging sells for $15 per ton and must have an average quality score of at least 9. Standard packaging sells for $8 per ton and must have an average quality score of at least 7. The maximum demand is 2,500 tons of Premium packaging and 800 tons of Standard packaging per month. \n\nRecycled paper can be processed using one of three methods. The yield and cost per ton for each method are shown in the table below. For example, processing one ton of recycled paper using Method 1 costs $4.20 and yields 0.3 tons of quality score 6, 0.4 tons of quality score 8, and 0.3 tons of quality score 10. These costs include the expenses of acquiring the recycled paper. Before being converted into packaging materials, quality scores 6 and 8 can be enhanced through a refinement process. For $1.20 per ton, one ton of quality score 6 can be upgraded to quality score 8. For $1.80 per ton, one ton of quality score 8 can be upgraded to quality score 10. How can GreenTech Manufacturing maximize its monthly profit while meeting quality and demand requirements?\n\n| Processing Method | Cost per Ton ($) | Yield (Quality 6) | Yield (Quality 8) | Yield (Quality 10) |  \n|--------------------|-------------------|--------------------|--------------------|---------------------|  \n| Method 1           | 4.20              | 0.3                | 0.4                | 0.3                 |  \n| Method 2           | 3.80              | 0.5                | 0.3                | 0.2                 |  \n| Method 3           | 4.50              | 0.2                | 0.5                | 0.3                 |",
+    "ground_truth": 28864.0,
+    "problem_type": "LP",
+    "details": {
+      "variables_num": 11,
+      "constraints_num": 7,
+      "nonzeros_num": 31
+    },
+    "problem_size": "Small"
+  },
+  "prob_046": {
+    "description": "At the start of month 1, SupplyChain Dynamics has $50,000 in available funds. At the beginning of months 1, 2, 3, and 4, the company receives specific revenues from its logistics operations, after which it must pay operational expenses(see table below). Any remaining funds can be allocated to short-term investments with the following options (Interest is earned after paying operational expenses):  \n- Invest for one month at an interest rate of 0.2% per month.  \n- Invest for two months at an interest rate of 0.8% per month.  \n- Invest for three months at an interest rate of 1.5% per month.  \n- Invest for four months at an interest rate of 3% per month.  \n\nHow can SupplyChain Dynamics allocate its funds to maximize the cash on hand at the beginning of month 5 while meeting its operational obligations?\n\n| Month | Revenue ($) | Operational Expenses ($) |  \n|-------|-------------|---------------------------|  \n| 1     | 20,000      | 15,000                    |  \n| 2     | 25,000      | 35,000                    |  \n| 3     | 30,000      | 22,000                    |  \n| 4     | 35,000      | 28,000                    |",
+    "ground_truth": 65542.0,
+    "problem_type": "LP",
+    "details": {
+      "variables_num": 14,
+      "constraints_num": 8,
+      "nonzeros_num": 26
+    },
+    "problem_size": "Small"
+  },
+  "prob_047": {
+    "description": "Warehouse 24 operates around the clock to fulfill online orders. Workers are scheduled in two consecutive 6-hour shifts and are paid $12 per hour. The possible shifts are as follows: midnight–6 A.M., 6 A.M.–noon, noon–6 P.M., and 6 P.M.–midnight. During each shift, the following numbers of orders arrive: midnight–6 A.M., 150; 6 A.M.–noon, 250; noon–6 P.M., 400; 6 P.M.–midnight, 300. Each worker can process up to 60 orders per shift. To account for customer dissatisfaction due to delayed orders, any order that remains unprocessed at the end of a shift incurs a penalty of $1. The warehouse ensures that all orders received by midnight are processed by the start of the next day, so the midnight–6 A.M. shift begins with no pending orders. How can Warehouse 24 minimize the total cost of labor and customer dissatisfaction penalties while meeting its order processing requirements?\n\n| Shift              | Orders Received |  \n|--------------------|-----------------|  \n| Midnight–6 A.M.    | 150             |  \n| 6 A.M.–Noon        | 250             |  \n| Noon–6 P.M.        | 400             |  \n| 6 P.M.–Midnight    | 300             |",
+    "ground_truth": 1378.0,
+    "problem_type": "ILP",
+    "details": {
+      "variables_num": 12,
+      "constraints_num": 9,
+      "nonzeros_num": 20
+    },
+    "problem_size": "Small"
+  },
+  "prob_048": {
+    "description": "The operations manager of QuickShip Logistics is trying to determine the number of warehouse supervisors needed to manage the company's distribution operations throughout the year. The estimated number of operational hours required each month is as follows:  \n\n| Month     | Operational Hours Needed |  \n|-----------|--------------------------|  \n| January   | 600                      |  \n| February  | 450                      |  \n| March     | 350                      |  \n| April     | 800                      |  \n| May       | 1,000                    |  \n| June      | 450                      |  \n| July      | 350                      |  \n| August    | 600                      |  \n| September | 450                      |  \n| October   | 350                      |  \n| November  | 250                      |  \n| December  | 150                      |  \n\nQuickShip Logistics aims to determine the optimal number of full-time warehouse supervisors to employ for the entire year, with the primary goal of minimizing total annual labor costs. These costs are composed of fixed monthly salaries of $5,000 for each supervisor (who are employed for all 12 months) and any overtime expenses incurred to meet fluctuating monthly operational hour demands. The company must ensure all operational tasks for each month are completed within that month, and all annual tasks are finalized by the end of December. \n\nEach of the N supervisors, when not taking their mandatory one-month annual paid vacation, can provide up to 160 standard operational hours monthly. To cover demands exceeding this standard capacity, these non-vacationing supervisors can work up to an additional 40 hours of overtime each per month, with overtime labor paid at a rate of $45 per hour. How can QuickShip Logistics minimize employment costs?",
+    "ground_truth": 309000.0,
+    "problem_type": "ILP",
+    "details": {
+      "variables_num": 25,
+      "constraints_num": 37,
+      "nonzeros_num": 85
+    },
+    "problem_size": "Medium"
+  },
+  "prob_049": {
+    "description": "LogiTech’s main distribution center is organized into two key areas: a packaging area located at coordinates (0, 0) and a loading dock located at coordinates (800, 600) (distances are in meters). The company must determine where to locate a sorting facility and a storage facility to minimize the daily cost of moving goods through the center. All movement within the distribution center is restricted to either east–west or north–south directions.  \n\nThe number of daily trips between the areas are as follows:  \n\n| From/To          | Packaging Area | Loading Dock | Sorting Facility | Storage Facility |  \n|-------------------|----------------|--------------|-------------------|------------------|  \n| Packaging Area    | -              | 20           | 15                | 10               |  \n| Loading Dock      | 20             | -            | 25                | 30               |  \n| Sorting Facility  | 15             | 25           | -                 | 40               |  \n| Storage Facility  | 10             | 30           | 40                | -                |  \n\nThe cost of moving goods is $0.50 per meter per trip. The sorting facility and storage facility must be located within the boundaries of the distribution center, which spans from (0, 0) to (1000, 1000). And any two areas among the four areas are at least 100 units apart.\n\nHow should LogiTech locate the sorting and storage facilities to minimize daily transportation costs?",
+    "ground_truth": 70000.0,
+    "problem_type": "LP",
+    "details": {
+      "variables_num": 5,
+      "constraints_num": 3,
+      "nonzeros_num": 5
+    },
+    "problem_size": "Toy"
+  },
+  "prob_050": {
+    "description": "A delivery company is using a drone to make a series of urgent deliveries to 6 specific customer locations (C1 to C6) within a dense urban area. The drone must start from its depot, visit each of the 6 customer locations exactly once to drop off a package, and then return to the depot. The company has calculated the flight time (in minutes) between all pairs of locations (depot and customer sites), considering air-traffic restrictions and optimal flight paths.\n\nFlight Time Matrix (Minutes - Symmetric):\n\n|        | Depot | C1    | C2    | C3    | C4    | C5    | C6    |\n| :----- | :---- | :---- | :---- | :---- | :---- | :---- | :---- |\n| Depot  | -     | 8     | 12    | 15    | 7     | 10    | 14    |\n|   C1   | 8     | -     | 5     | 11    | 6     | 9     | 13    |\n|   C2   | 12    | 5     | -     | 7     | 10    | 4     | 8     |\n|   C3   | 15    | 11    | 7     | -     | 9     | 6     | 5     |\n|   C4   | 7     | 6     | 10    | 9     | -     | 3     | 11    |\n|   C5   | 10    | 9     | 4     | 6     | 3     | -     | 7     |\n|   C6   | 14    | 13    | 8     | 5     | 11    | 7     | -     |",
+    "ground_truth": 42.0,
+    "problem_type": "ILP",
+    "details": {
+      "variables_num": 48,
+      "constraints_num": 44,
+      "nonzeros_num": 174
+    },
+    "problem_size": "Medium"
+  },
+  "prob_051": {
+    "description": "An assembly line needs to produce a product with 10 tasks. The cycle time is 66 time units. The tasks, their durations, and precedence relationships are given in the following table:\n\nTask | Duration | Predecessors\n-----|----------|-------------\n1    | 36       | -\n2    | 36       | 1\n3    | 30       | -\n4    | 30       | 3\n5    | 24       | 1,4\n6    | 30       | 5\n7    | 24       | 2\n8    | 12       | 6,7\n9    | 54       | 8\n10   | 12       | 9\n\nThe problem requires assigning these tasks to workstations while respecting the precedence relationships and cycle time constraint, with the objective of minimizing the number of workstations needed. Each task must be assigned to exactly one workstation, and the total duration of tasks assigned to any workstation cannot exceed the cycle time of 66 units.",
+    "ground_truth": 5.0,
+    "problem_type": "ILP",
+    "details": {
+      "variables_num": 77,
+      "constraints_num": 33,
+      "nonzeros_num": 299
+    },
+    "problem_size": "Medium"
+  },
+  "prob_052": {
+    "description": "Problem Description:\nA city needs to place emergency response facilities to ensure that every residential area can be reached within 10 minutes. There are 5 potential facility locations (F1-F5) and 8 residential areas (R1-R8). The travel time (in minutes) between each facility location and residential area is given in the following table:\n\n| Facility\\Residential | R1 | R2 | R3 | R4 | R5 | R6 | R7 | R8 |\n|----------------------|----|----|----|----|----|----|----|----|\n| F1                   | 8  | 12 | 9  | 15 | 7  | 11 | 14 | 6  |\n| F2                   | 10 | 8  | 13 | 7  | 9  | 12 | 5  | 11 |\n| F3                   | 14 | 6  | 10 | 8  | 12 | 7  | 9  | 13 |\n| F4                   | 7  | 11 | 14 | 6  | 8  | 10 | 12 | 9  |\n| F5                   | 9  | 13 | 7  | 11 | 6  | 14 | 8  | 10 |\n\nThe goal is to select the minimum number of facilities such that every residential area is covered (reachable within 10 minutes) by at least one selected facility.",
+    "ground_truth": 2.0,
+    "problem_type": "ILP",
+    "details": {
+      "variables_num": 5,
+      "constraints_num": 8,
+      "nonzeros_num": 24
+    },
+    "problem_size": "Small"
+  },
+  "prob_053": {
+    "description": "A retail chain wants to open warehouses in 3 potential locations to serve 5 customer zones. The distances (in km) between each potential warehouse location and customer zone are given in the table below. The goal is to select exactly 2 warehouse locations that minimize the total distance between each customer zone and its nearest warehouse. \n\nCustomer Zones: {C1, C2, C3, C4, C5}\nPotential Warehouse Locations: {W1, W2, W3}\n\nDistance Matrix (km):\n|       | C1 | C2 | C3 | C4 | C5 |\n|-------|----|----|----|----|----|\n|W1     | 10 | 15 | 12 | 8  | 20 |\n|W2     | 8  | 10 | 15 | 12 | 18 |\n|W3     | 12 | 8  | 10 | 15 | 12 |",
+    "ground_truth": 48.0,
+    "problem_type": "ILP",
+    "details": {
+      "variables_num": 18,
+      "constraints_num": 21,
+      "nonzeros_num": 48
+    },
+    "problem_size": "Small"
+  },
+  "prob_054": {
+    "description": "A large-scale logistics company specializes in transporting a wide variety of perishable goods from a central distribution hub to several supermarket chains. The company uses a fleet of advanced refrigerated trucks, and for a specific delivery route, one truck needs to be loaded. Each truck has strict capacity limits in four dimensions: a maximum weight of 12 tons, a total volume of 35 m³, a refrigeration power output of 40 kW, and a total cool-down time budget of 100 hours (a proxy for the energy and time required to bring goods to their optimal temperature and maintain it).\n\nThe goods are classified into 10 distinct categories. For each category, the company can choose from 5 different variants, each sourced from a different supplier and having unique characteristics. The company must select exactly one variant from each of the 10 categories to be included in the shipment with the primary goal to maximize the total profit.\n\nFurthermore, there are two special conditions for this delivery:\n1.  Product Synergy: If Variant B of Fruits (Category 1) and Variant C of Baked Goods (Category 6) are shipped together, a special packaging collaboration creates an additional bonus profit of $150.\n2.  Product Conflict: Due to the high risk of cross-contamination, shipping Variant A of Seafood (Category 5) and Variant A of Dairy (Category 3) together is forbidden.\n\nThe complete data for all available goods is as follows:\n\n| Category | Variant | Weight (t) | Volume (m³) | Power (kW) | Cool-Down (hr) | Profit ($) |\n| :--- | :--- | :--- | :--- | :--- | :--- | :--- |\n| **1: Fruits** | A | 1.1 | 2.8 | 2.0 | 8.0 | 210 |\n| | B | 1.3 | 3.2 | 2.5 | 10.0 | 290 |\n| | C | 0.9 | 2.4 | 1.8 | 7.0 | 190 |\n| | D | 1.4 | 3.5 | 2.8 | 11.0 | 320 |\n| | E | 1.0 | 2.6 | 1.9 | 7.5 | 200 |\n| **2: Vegetables** | A | 0.8 | 2.0 | 1.0 | 5.0 | 160 |\n| | B | 1.0 | 2.5 | 1.5 | 6.0 | 230 |\n| | C | 0.7 | 1.8 | 0.9 | 4.5 | 140 |\n| | D | 1.2 | 2.8 | 1.8 | 7.0 | 260 |\n| | E | 0.9 | 2.2 | 1.2 | 5.5 | 190 |\n| **3: Dairy** | A | 1.5 | 4.5 | 4.2 | 12.0 | 360 |\n| | B | 1.3 | 4.0 | 3.5 | 10.0 | 310 |\n| | C | 1.7 | 5.0 | 4.8 | 14.0 | 420 |\n| | D | 1.4 | 4.2 | 3.8 | 11.0 | 340 |\n| | E | 1.6 | 4.8 | 4.5 | 13.0 | 400 |\n| **4: Meat** | A | 1.9 | 4.0 | 6.5 | 15.0 | 520 |\n| | B | 1.6 | 3.5 | 5.5 | 13.0 | 460 |\n| | C | 2.1 | 4.5 | 7.2 | 17.0 | 580 |\n| | D | 1.8 | 3.8 | 6.0 | 14.0 | 500 |\n| | E | 2.2 | 4.8 | 7.5 | 18.0 | 600 |\n| **5: Seafood** | A | 1.4 | 3.0 | 8.0 | 16.0 | 480 |\n| | B | 1.2 | 2.8 | 7.0 | 14.0 | 430 |\n| | C | 1.6 | 3.5 | 9.0 | 18.0 | 550 |\n| | D | 1.3 | 2.9 | 7.5 | 15.0 | 450 |\n| | E | 1.7 | 3.8 | 9.5 | 19.0 | 590 |\n| **6: Baked Goods**| A | 0.5 | 1.5 | 0.5 | 2.0 | 90 |\n| | B | 0.7 | 2.0 | 0.8 | 3.0 | 140 |\n| | C | 0.6 | 1.8 | 0.6 | 2.5 | 120 |\n| | D | 0.8 | 2.2 | 1.0 | 3.5 | 160 |\n| | E | 0.4 | 1.2 | 0.4 | 1.5 | 80 |\n| **7: Beverages** | A | 1.8 | 3.0 | 1.5 | 4.0 | 250 |\n| | B | 2.0 | 3.5 | 1.8 | 5.0 | 290 |\n| | C | 1.6 | 2.8 | 1.4 | 3.5 | 220 |\n| | D | 2.2 | 3.8 | 2.0 | 6.0 | 330 |\n| | E | 1.7 | 2.9 | 1.6 | 4.5 | 240 |\n| **8: Frozen** | A | 2.0 | 5.0 | 8.0 | 20.0 | 500 |\n| | B | 1.8 | 4.5 | 7.0 | 18.0 | 450 |\n| | C | 2.3 | 5.5 | 9.0 | 22.0 | 580 |\n| | D | 2.1 | 5.2 | 8.5 | 21.0 | 540 |\n| | E | 2.5 | 6.0 | 9.8 | 24.0 | 620 |\n| **9: Deli Meats** | A | 0.9 | 2.0 | 3.0 | 6.0 | 180 |\n| | B | 1.1 | 2.5 | 3.5 | 7.0 | 240 |\n| | C | 0.8 | 1.8 | 2.8 | 5.5 | 160 |\n| | D | 1.2 | 2.8 | 4.0 | 8.0 | 270 |\n| | E | 1.0 | 2.2 | 3.2 | 6.5 | 210 |\n| **10: Prepared** | A | 1.3 | 3.0 | 4.0 | 9.0 | 300 |\n| | B | 1.5 | 3.5 | 4.5 | 10.0 | 350 |\n| | C | 1.2 | 2.8 | 3.8 | 8.0 | 280 |\n| | D | 1.6 | 3.8 | 5.0 | 11.0 | 380 |\n| | E | 1.4 | 3.2 | 4.2 | 9.5 | 330 |",
+    "ground_truth": 2880.0,
+    "problem_type": "ILP",
+    "details": {
+      "variables_num": 51,
+      "constraints_num": 18,
+      "nonzeros_num": 259
+    },
+    "problem_size": "Medium"
+  },
+  "prob_055": {
+    "description": "A logistics company needs to optimize the loading of 5 different types of cargo items (A, B, C, D, E) onto a single truck with a maximum weight capacity of 2000 kg. Each item has a base profit value and weight, but certain item combinations generate additional synergy profits when transported together (e.g., perishable items with refrigeration equipment). The item characteristics and synergy matrix are given below:\n\nItem Data:\n| Item | Weight (kg) | Base Profit ($) |\n|------|------------|----------------|\n| A    | 400        | 120            |\n| B    | 600        | 180            |\n| C    | 300        | 90             |\n| D    | 500        | 150            |\n| E    | 700        | 210            |\n\nSynergy Profit Matrix ($):\n|   | A  | B  | C  | D  | E  |\n|---|---|---|---|---|---|\n| A | 0  | 25 | 15 | 0  | -10|\n| B | 25 | 0  | 30 | 20 | 0  |\n| C | 15 | 30 | 0  | 10 | 5  |\n| D | 0  | 20 | 10 | 0  | 15 |\n| E |-10 | 0  | 5  | 15 | 0  |\n\nNegative values indicate incompatibility costs (e.g., item A and E require separate storage space).",
+    "ground_truth": 665.0,
+    "problem_type": "NLP",
+    "details": {
+      "variables_num": 5,
+      "constraints_num": 1,
+      "nonzeros_num": 5
+    },
+    "problem_size": "Toy"
+  },
+  "prob_056": {
+    "description": "A bus company needs to schedule departures for a specific route during the morning peak hours (7:00 AM to 9:00 AM) to minimize the total passenger waiting time. Each bus has a minimum departure interval of 5 minutes and a maximum departure interval of 10 minutes, with a round-trip time of 30 minutes including stops. The company has a maximum of 5 buses available for scheduling. Passengers arrive at the station uniformly at a constant rate during the morning rush hour. The objective is to determine the optimal departure schedule by formulating an integer programming model that minimizes the total passenger waiting time while satisfying the given constraints.",
+    "ground_truth": 296730.0,
+    "problem_type": "NLP",
+    "details": {
+      "variables_num": 121,
+      "constraints_num": 232,
+      "nonzeros_num": 1380
+    },
+    "problem_size": "Medium"
+  },
+  "prob_057": {
+    "description": "A logistics company needs to optimize its warehouse storage by selecting a subset of products to store that maximizes profit while considering space constraints and product compatibility. The warehouse has a total capacity of 500 cubic meters. There are 8 products available, each with a specific volume, profit, and compatibility restrictions (some products cannot be stored together due to safety or regulatory reasons). The products and their attributes are as follows:\n\n| Product ID | Volume (m³) | Profit ($) | Incompatible Products |\n|------------|-------------|------------|------------------------|\n| 1          | 80          | 1200       | 3, 5                   |\n| 2          | 60          | 900        | 4                      |\n| 3          | 40          | 700        | 1, 6                   |\n| 4          | 70          | 1100       | 2, 7                   |\n| 5          | 50          | 800        | 1                      |\n| 6          | 30          | 500        | 3                      |\n| 7          | 90          | 1300       | 4                      |\n| 8          | 20          | 300        | None                   |",
+    "ground_truth": 4200.0,
+    "problem_type": "ILP",
+    "details": {
+      "variables_num": 8,
+      "constraints_num": 11,
+      "nonzeros_num": 28
+    },
+    "problem_size": "Small"
+  },
+  "prob_058": {
+    "description": "A logistics company needs to pack 12 rectangular parcels into a shipping container with fixed width of 100 cm and variable height. The parcels have different dimensions and must be placed orthogonally (no rotations allowed). The goal is to arrange all parcels within the container while minimizing the total height used. The parcels have the following dimensions (width × height in cm):\n1. 30×40, 2. 25×35, 3. 40×20, 4. 15×25, 5. 35×30, 6. 20×15, 7. 25×20, 8. 30×25, 9. 15×10, 10. 20×30, 11. 10×15, 12. 25×10. Parcels cannot overlap and must be completely contained within the container's width. The container has unlimited height capacity, but the objective is to minimize the used height.",
+    "ground_truth": 75.0,
+    "problem_type": "MILP",
+    "details": {
+      "variables_num": 313,
+      "constraints_num": 354,
+      "nonzeros_num": 1092
+    },
+    "problem_size": "Medium"
+  },
+  "prob_059": {
+    "description": "A logistics company needs to pack 6 heavy cylindrical containers into a specialized truck bed. The truck bed has a fixed width of 2.5 meters, and the company wants to find the minimum possible length required to fit all containers. The diameters of the 6 containers (in meters) are: [1.2, 1.1, 1.0, 0.9, 0.8, 0.7].\n\nThe containers must be placed flat on the truck bed according to the following rules:\n1.  Each container must be fully contained within the truck bed's boundaries.\n2.  No two containers can overlap.\n3.  The goal is to find an arrangement that minimizes the total length of the truck bed used.\n\nThe position of each container is determined by the (x, y) coordinates of its center. The x-axis runs along the length of the truck, and the y-axis runs along its fixed width.",
+    "ground_truth": 2.373934757,
+    "problem_type": "NLP",
+    "details": {
+      "variables_num": 13,
+      "constraints_num": 24,
+      "nonzeros_num": 30
+    },
+    "problem_size": "Small"
+  },
+  "prob_060": {
+    "description": "A logistics company operates a two-echelon distribution network with 1 central depot (D), 3 intermediate warehouses (W1, W2, W3), and 15 customers (C1-C15). The depot has 3 trucks with a capacity of 50 units each for first-level transport. Each warehouse has an allocation of 2 smaller vehicles with a capacity of 20 units each for second-level delivery.\n\nThe goal is to assign customers to warehouses and plan optimal delivery routes for all vehicles to minimize the total distance traveled, subject to the following constraints:\n- Each customer must be served by exactly one van.\n- Each van must start and end its tour at its assigned warehouse.\n- The total demand on any vehicle's route cannot exceed its capacity.\n- The total demand flowing through an opened warehouse cannot exceed the capacity of the truck serving it.\n\n**Distances (km):**\n- **Depot to Warehouses:** Depot-W1: 30, Depot-W2: 40, Depot-W3: 35.\n- **Between Warehouses:** W1-W2: 25, W1-W3: 20, W2-W3: 30.\n- **Between Customers:** A full distance matrix is provided for travel between any two customers as follows:\n\n| | C1 | C2 | C3 | C4 | C5 | C6 | C7 | C8 | C9 | C10 | C11 | C12 | C13 | C14 | C15 |\n|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|\n| C1 | 0 | 15 | 24 | 11 | 20 | 9 | 20 | 11 | 5 | 18 | 15 | 24 | 12 | 10 | 10 |\n| C2 | 15 | 0 | 18 | 21 | 13 | 12 | 5 | 12 | 15 | 24 | 18 | 11 | 22 | 19 | 13 |\n| C3 | 24 | 18 | 0 | 6 | 13 | 11 | 24 | 11 | 13 | 10 | 11 | 18 | 19 | 13 | 11 |\n| C4 | 11 | 21 | 6 | 0 | 11 | 16 | 12 | 18 | 11 | 19 | 10 | 11 | 14 | 19 | 10 |\n| C5 | 20 | 13 | 13 | 11 | 0 | 14 | 24 | 10 | 16 | 21 | 16 | 11 | 14 | 17 | 15 |\n| C6 | 9 | 12 | 11 | 16 | 14 | 0 | 19 | 18 | 23 | 19 | 18 | 10 | 15 | 11 | 12 |\n| C7 | 20 | 5 | 24 | 12 | 24 | 19 | 0 | 16 | 11 | 17 | 12 | 17 | 13 | 17 | 12 |\n| C8 | 11 | 12 | 11 | 18 | 10 | 18 | 16 | 0 | 18 | 13 | 12 | 17 | 18 | 13 | 16 |\n| C9 | 5 | 15 | 13 | 11 | 16 | 23 | 11 | 18 | 0 | 13 | 24 | 21 | 18 | 18 | 11 |\n| C10 | 18 | 24 | 10 | 19 | 21 | 19 | 17 | 13 | 13 | 0 | 12 | 22 | 12 | 19 | 17 |\n| C11 | 15 | 18 | 11 | 10 | 16 | 18 | 12 | 12 | 24 | 12 | 0 | 16 | 18 | 15 | 13 |\n| C12 | 24 | 11 | 18 | 11 | 11 | 10 | 17 | 17 | 21 | 22 | 16 | 0 | 19 | 19 | 13 |\n| C13 | 12 | 22 | 19 | 14 | 14 | 15 | 13 | 18 | 18 | 12 | 18 | 19 | 0 | 13 | 18 |\n| C14 | 10 | 19 | 13 | 19 | 17 | 11 | 17 | 13 | 18 | 19 | 15 | 19 | 13 | 0 | 18 |\n| C15 | 10 | 13 | 11 | 10 | 15 | 12 | 12 | 16 | 11 | 17 | 13 | 13 | 18 | 18 | 0 |\n\n- **Warehouses to Customers:** The specific distances are defined as follows:\n\n| From | To | Dist | | From | To | Dist | | From | To | Dist |\n| :--- | :--- | :--- |-|:--- | :--- | :--- |-|:--- | :--- | :--- |\n| W1   | C1   | 12   | | W2   | C1   | 28   | | W3   | C1   | 18   |\n| W1   | C2   | 8    | | W2   | C2   | 22   | | W3   | C2   | 25   |\n| W1   | C3   | 15   | | W2   | C3   | 10   | | W3   | C3   | 9    |\n| W1   | C4   | 11   | | W2   | C4   | 14   | | W3   | C4   | 19   |\n| W1   | C5   | 7    | | W2   | C5   | 18   | | W3   | C5   | 24   |\n| W1   | C6   | 14   | | W2   | C6   | 9    | | W3   | C6   | 16   |\n| W1   | C7   | 10   | | W2   | C7   | 13   | | W3   | C7   | 12   |\n| W1   | C8   | 9    | | W2   | C8   | 17   | | W3   | C8   | 21   |\n| W1   | C9   | 13   | | W2   | C9   | 11   | | W3   | C9   | 7    |\n| W1   | C10  | 6    | | W2   | C10  | 20   | | W3   | C10  | 23   |\n| W1   | C11  | 14   | | W2   | C11  | 7    | | W3   | C11  | 10   |\n| W1   | C12  | 9    | | W2   | C12  | 16   | | W3   | C12  | 17   |\n| W1   | C13  | 11   | | W2   | C13  | 19   | | W3   | C13  | 22   |\n| W1   | C14  | 7    | | W2   | C14  | 12   | | W3   | C14  | 14   |\n| W1   | C15  | 13   | | W2   | C15  | 15   | | W3   | C15  | 8    |\n\n**Demands (units):**\n- C1:4, C2:7, C3:5, C4:6, C5:3, C6:8, C7:5, C8:6, C9:4, C10:7, C11:5, C12:6, C13:3, C14:8, C15:5.",
+    "ground_truth": 275.0,
+    "problem_type": "ILP",
+    "details": {
+      "variables_num": 2145,
+      "constraints_num": 1695,
+      "nonzeros_num": 8622
+    },
+    "problem_size": "Medium"
+  },
+  "prob_061": {
+    "description": "A regional logistics company needs to optimize its cargo transportation network involving 3 supply points (S1, S2, S3), 2 transshipment hubs (H1, H2), and 4 demand points (D1, D2, D3, D4). The supply capacities are 200, 150, and 180 units respectively. Demand requirements are 120, 90, 110, and 130 units respectively. Transportation costs (per unit) between nodes are: S1-H1=5, S1-H2=7, S2-H1=6, S2-H2=8, S3-H1=4, S3-H2=5, H1-D1=3, H1-D2=4, H1-D3=5, H1-D4=6, H2-D1=4, H2-D2=3, H2-D3=6, H2-D4=5. All routes have unlimited capacity. The objective is to minimize total transportation costs while meeting all supply and demand constraints.",
+    "ground_truth": 4190.0,
+    "problem_type": "LP",
+    "details": {
+      "variables_num": 14,
+      "constraints_num": 9,
+      "nonzeros_num": 28
+    },
+    "problem_size": "Small"
+  },
+  "prob_062": {
+    "description": "A regional beverage distributor needs to design an optimal delivery network from their central warehouse (node 0) to 8 retail stores (nodes 1-8). The road network between locations has the following distances (in km): [(0,1)=12, (0,2)=8, (1,2)=5, (1,3)=9, (2,4)=7, (3,4)=6, (3,5)=11, (4,6)=10, (5,6)=4, (5,7)=8, (6,8)=7, (7,8)=6]. Each delivery truck has a capacity of serving maximum 3 stores (including transfers). The company wants to minimize total travel distance while ensuring no truck serves more than 3 nodes in its subtree. The warehouse must be connected to all stores through a single network without cycles.",
+    "ground_truth": 72.0,
+    "problem_type": "MILP",
+    "details": {
+      "variables_num": 48,
+      "constraints_num": 54,
+      "nonzeros_num": 180
+    },
+    "problem_size": "Medium"
+  },
+  "prob_063": {
+    "description": "A logistics company needs to schedule deliveries for 8 customer orders using 3 available trucks. Each order has a specific processing time (hours) and must be assigned to exactly one truck. Some orders require multiple visits to the same truck (reentrant processing) due to intermediate handling requirements. The trucks have different capacities (maximum total processing time they can handle) and operating costs per hour. The objective is to minimize the total operating cost while ensuring no truck exceeds its capacity and all orders are completed. \n\nOrder details:\n- Order processing times: [4, 5, 3, 6, 2, 5, 4, 3]\n- Reentrant requirements: Orders 2 and 5 must be processed twice by their assigned truck\n- Truck capacities: [15, 18, 12] hours\n- Truck operating costs: [30, 25, 35] per hour",
+    "ground_truth": 1110.0,
+    "problem_type": "ILP",
+    "details": {
+      "variables_num": 27,
+      "constraints_num": 14,
+      "nonzeros_num": 75
+    },
+    "problem_size": "Medium"
+  },
+  "prob_064": {
+    "description": "A logistics company needs to optimize the delivery of three types of drinks (Cola, Juice, and Mineral Water) from two production facilities (P1 and P2) to three retail stores (S1, S2, S3) via a transportation network with 5 intermediate nodes (N1-N5). The directed arcs between nodes have capacity limits (in pallets) and unit transportation costs ($/pallet).\n\nThe network connections, capacities, and costs are as follows:\n- P1→N1 (Capacity: 80, Cost: 2)\n- P1→N2 (Capacity: 60, Cost: 3)\n- P2→N3 (Capacity: 90, Cost: 2)\n- N1→N3 (Capacity: 50, Cost: 1)\n- N2→N4 (Capacity: 70, Cost: 2)\n- N3→N5 (Capacity: 100, Cost: 3)\n- N4→S1 (Capacity: ∞, Cost: 1)\n- N4→S2 (Capacity: ∞, Cost: 2)\n- N5→S2 (Capacity: ∞, Cost: 1)\n- N5→S3 (Capacity: ∞, Cost: 2)\n\nThe demand requirements are: Cola (S1:30, S2:20, S3:10), Juice (S1:15, S2:25, S3:5), Water (S1:10, S2:15, S3:20). Production capacities are P1 (Cola:40, Juice:30, Water:20) and P2 (Cola:30, Juice:25, Water:40). The goal is to satisfy all demands while minimizing total transportation costs.",
+    "ground_truth": 940.0,
+    "problem_type": "LP",
+    "details": {
+      "variables_num": 30,
+      "constraints_num": 36,
+      "nonzeros_num": 78
+    },
+    "problem_size": "Medium"
+  },
+  "prob_065": {
+    "description": "A logistics company needs to deliver goods to 15 customers over a 5-day workweek (Monday to Friday). Each customer has specific delivery frequency requirements: 3 customers require daily deliveries, 5 require deliveries every other day, and 7 require weekly deliveries. The company has 3 available vehicles, each with a capacity of 200 units. The distances between customers and the depot are given in the following matrix (in km):\n\nDistance Table (depot = 0, customers = 1-15):\n\n| From\\To | 0   | 1   | 2   | 3   | 4   | 5   | 6   | 7   | 8   | 9   | 10  | 11  | 12  | 13  | 14  | 15  |\n|---------|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|\n|   0     | 0   | 12  | 18  | 9   | 15  | 22  | 7   | 14  | 20  | 11  | 16  | 8   | 13  | 19  | 10  | 17  |\n|   1     | 12  | 0   | 6   | 15  | 21  | 8   | 17  | 23  | 10  | 19  | 4   | 16  | 5   | 11  | 18  | 7   |\n|   2     | 18  | 6   | 0   | 21  | 3   | 14  | 9   | 15  | 12  | 5   | 10  | 7   | 13  | 8   | 4   | 11  |\n|   3     | 9   | 15  | 21  | 0   | 18  | 11  | 16  | 22  | 7   | 14  | 20  | 3   | 19  | 10  | 17  | 6   |\n|   4     | 15  | 21  | 3   | 18  | 0   | 17  | 12  | 8   | 15  | 10  | 7   | 13  | 4   | 9   | 14  | 11  |\n|   5     | 22  | 8   | 14  | 11  | 17  | 0   | 19  | 5   | 12  | 7   | 14  | 10  | 17  | 6   | 13  | 8   |\n|   6     | 7   | 17  | 9   | 16  | 12  | 19  | 0   | 14  | 21  | 8   | 15  | 11  | 18  | 5   | 12  | 9   |\n|   7     | 14  | 23  | 15  | 22  | 8   | 5   | 14  | 0   | 17  | 12  | 9   | 15  | 6   | 11  | 16  | 13  |\n|   8     | 20  | 10  | 12  | 7   | 15  | 12  | 21  | 17  | 0   | 13  | 18  | 4   | 19  | 14  | 9   | 16  |\n|   9     | 11  | 19  | 5   | 14  | 10  | 7   | 8   | 12  | 13  | 0   | 15  | 11  | 6   | 17  | 12  | 9   |\n|   10    | 16  | 4   | 10  | 20  | 7   | 14  | 15  | 9   | 18  | 15  | 0   | 17  | 8   | 13  | 18  | 5   |\n|   11    | 8   | 16  | 7   | 3   | 13  | 10  | 11  | 15  | 4   | 11  | 17  | 0   | 14  | 9   | 16  | 7   |\n|   12    | 13  | 5   | 13  | 19  | 4   | 17  | 18  | 6   | 19  | 6   | 8   | 14  | 0   | 15  | 10  | 17  |\n|   13    | 19  | 11  | 8   | 10  | 9   | 6   | 5   | 11  | 14  | 17  | 13  | 9   | 15  | 0   | 7   | 12  |\n|   14    | 10  | 18  | 4   | 17  | 14  | 13  | 12  | 16  | 9   | 12  | 18  | 16  | 10  | 7   | 0   | 11  |\n|   15    | 17  | 7   | 11  | 6   | 11  | 8   | 9   | 13  | 16  | 9   | 5   | 7   | 17  | 12  | 11  | 0   |\n\nEach customer's daily demand (in units) is: [25, 30, 20, 15, 35, 40, 18, 22, 28, 32, 19, 21, 26, 24, 23]. The objective is to plan vehicle routes for each day of the week to satisfy all delivery requirements while minimizing total distance traveled.",
+    "ground_truth": 352.0,
+    "problem_type": "MILP",
+    "details": {
+      "variables_num": 1266,
+      "constraints_num": 586,
+      "nonzeros_num": 6307
+    },
+    "problem_size": "Medium"
+  },
+  "prob_066": {
+    "description": "A regional tobacco distribution company operates three distribution centers located in different zones of a metropolitan area to serve 15 retail outlets. The company needs to optimize its weekly delivery operations to minimize total transportation costs while satisfying regulatory constraints and customer demands.\n\nThe three distribution centers have different storage capacities and operational costs. Center A can handle up to 800 units per week with a fixed operating cost of $2,500, Center B can handle up to 600 units per week with a fixed cost of $2,000, and Center C can handle up to 500 units per week with a fixed cost of $1,800. Each retail outlet has specific weekly demand requirements ranging from 45 to 120 units, and due to regulatory compliance, each outlet must receive deliveries from exactly one distribution center to maintain proper tracking and accountability.\n\nThe transportation cost varies based on the distance between distribution centers and retail outlets, ranging from $8 to $25 per unit delivered. Additionally, there are regulatory constraints that limit the maximum number of outlets each distribution center can serve - Center A can serve at most 7 outlets, Center B can serve at most 6 outlets, and Center C can serve at most 5 outlets. The company must also ensure that the total demand assigned to each center does not exceed its capacity, and all retail outlets must be served to maintain market coverage.\n\n| Outlet | Demand | Cost from A | Cost from B | Cost from C |\n|--------|--------|-------------|-------------|-------------|\n| 1      | 85     | $12         | $18         | $22         |\n| 2      | 67     | $15         | $11         | $25         |\n| 3      | 92     | $20         | $14         | $16         |\n| 4      | 78     | $13         | $19         | $23         |\n| 5      | 105    | $17         | $12         | $20         |\n| 6      | 56     | $25         | $16         | $14         |\n| 7      | 120    | $14         | $21         | $18         |\n| 8      | 73     | $16         | $13         | $24         |\n| 9      | 89     | $19         | $15         | $17         |\n| 10     | 95     | $11         | $22         | $19         |\n| 11     | 62     | $23         | $17         | $15         |\n| 12     | 84     | $18         | $14         | $21         |\n| 13     | 76     | $21         | $20         | $13         |\n| 14     | 45     | $24         | $25         | $16         |\n| 15     | 58     | $22         | $23         | $12         |",
+    "ground_truth": 21922.0,
+    "problem_type": "ILP",
+    "details": {
+      "variables_num": 48,
+      "constraints_num": 66,
+      "nonzeros_num": 231
+    },
+    "problem_size": "Medium"
+  },
+  "prob_067": {
+    "description": "A distribution company is planning its logistics network for the upcoming year to serve 15 retail stores from 5 potential hub locations. The company aims to minimize its total annual operational cost, which consists of fixed daily costs for opening hubs and variable transportation costs for delivering goods.\n\nThe core decisions are which of the 5 potential hubs to open and which open hub should be assigned to serve each of the 15 retail stores.\n\nEach potential hub has a specific daily operating cost, a maximum daily capacity, and an operational reliability score. The company has a strategic requirement that the average reliability of all opened hubs must be at least 90%. The transportation cost is fixed at $0.80 per unit per mile, and the planning horizon is a full year (365 days).\n\nThe plan must assign each store to exactly one hub, ensure that no hub's daily capacity is exceeded, meet the minimum average reliability standard, and minimize the total annual cost.\n\nHub Data:  \n\n| Hub ID | Daily Setup Cost | Daily Capacity (units) | Reliability |\n|:------:|:----------------:|:----------------------:|:-----------:|\n| 1      | $100,000         | 1000                   | 0.85        |\n| 2      | $80,000          | 800                    | 0.90        |\n| 3      | $120,000         | 1500                   | 0.70        |\n| 4      | $90,000          | 1200                   | 0.95        |\n| 5      | $110,000         | 900                    | 0.80        |\n\nStore Demand Data (units per day):  \n\n| Store | Demand | | Store | Demand | | Store | Demand |\n|:-----:|:------:| |:-----:|:------:| |:-----:|:------:|\n| 1     | 151    | | 6     | 187    | | 11    | 121    |\n| 2     | 188    | | 7     | 199    | | 12    | 173    |\n| 3     | 174    | | 8     | 104    | | 13    | 100    |\n| 4     | 161    | | 9     | 116    | | 14    | 187    |\n| 5     | 111    | | 10    | 88     | | 15    | 199    |\n\nDistance Matrix (Hub to Store, in miles):  \n\n| Hub | S1 | S2 | S3 | S4 | S5 | S6 | S7 | S8 | S9 | S10 | S11 | S12 | S13 | S14 | S15 |\n|:---:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:---:|:---:|:---:|:---:|:---:|:---:|\n|  1  | 18 | 45 | 42 | 38 | 18 | 44 | 47 | 12 | 20 | 10  | 23  | 41  | 10  | 44  | 47  |\n|  2  | 30 | 27 | 21 | 16 | 17 | 12 | 29 | 21 | 38 | 48  | 23  | 15  | 12  | 20  | 26  |\n|  3  | 16 | 13 | 21 | 31 | 30 | 39 | 44 | 44 | 18 | 12  | 13  | 16  | 42  | 49  | 11  |\n|  4  | 34 | 25 | 30 | 20 | 24 | 28 | 42 | 39 | 31 | 44  | 34  | 11  | 36  | 16  | 23  |\n|  5  | 49 | 41 | 17 | 34 | 16 | 49 | 49 | 28 | 42 | 18  | 46  | 23  | 29  | 21  | 49  |",
+    "ground_truth": 110628288.0,
+    "problem_type": "ILP",
+    "details": {
+      "variables_num": 80,
+      "constraints_num": 96,
+      "nonzeros_num": 309
+    },
+    "problem_size": "Medium"
+  },
+  "prob_068": {
+    "description": "A manufacturing company needs to procure 5 key components (C1-C5, fractional procurement allowed) from 3 potential suppliers (S1-S3) for the next quarter. Each supplier has different pricing, reliability scores (0-1 scale), and maximum supply capacities. The company has forecasted component demands and wants to minimize total procurement cost while ensuring: (1) at least 60% of each component comes from suppliers with reliability ≥0.8, (2) no more than 40% of total spend goes to any single supplier, and (3) all demand is met. The quarterly demand is [1200, 800, 1500, 900, 600] units for C1-C5 respectively. Supplier data: S1 offers prices [12,15,18,20,22] $/unit with reliability 0.85 and capacity 2000 units; S2 offers [14,16,17,19,21] $/unit with reliability 0.75 and capacity 1800 units; S3 offers [13,14,19,18,20] $/unit with with reliability 0.90 and capacity 2500 units.",
+    "ground_truth": 80740.21739,
+    "problem_type": "LP",
+    "details": {
+      "variables_num": 15,
+      "constraints_num": 16,
+      "nonzeros_num": 85
+    },
+    "problem_size": "Medium"
+  },
+  "prob_069": {
+    "description": "A regional water distribution company needs to optimize its pipeline network to maximize the daily water supply from Reservoir A (source) to City D (sink). The network consists of 5 pumping stations (nodes B, C, E, F, G) connected by pipelines with the following capacities (in thousand cubic meters/day): A→B (15), A→C (10), B→C (5), B→D (10), C→E (8), C→F (12), E→D (7), F→D (20), G→D (0, currently inactive). Pumping station G is temporarily out of service. The system must maintain flow conservation at all intermediate nodes while respecting pipeline capacities.",
+    "ground_truth": 25.0,
+    "problem_type": "LP",
+    "details": {
+      "variables_num": 8,
+      "constraints_num": 13,
+      "nonzeros_num": 19
+    },
+    "problem_size": "Small"
+  },
+  "prob_070": {
+    "description": "A regional distribution center needs to create a delivery schedule for 4 customer orders using 3 available trucks. Each customer order is a \"job\" that consists of 3 separate \"packages\" or \"operations,\" one for each truck. The time required to process each package on its designated truck is known.\n\nThe center wants to determine the start time for every single package to minimize the **makespan**, which is the total time elapsed until the very last package across all trucks is delivered.\n\nThe scheduling must adhere to two critical constraints:\n1.  **Truck Constraint:** Each truck can only process one package at a time.\n2.  **Customer Constraint:** For a single customer, their different packages (on different trucks) cannot be processed simultaneously.\n\nThe processing times (in hours) are as follows:\n| Customer / Job | Package for T1 | Package for T2 | Package for T3 |\n|:--------------:|:--------------:|:--------------:|:--------------:|\n| C1             | 2              | 3              | 1              |\n| C2             | 4              | 2              | 3              |\n| C3             | 1              | 5              | 2              |\n| C4             | 3              | 2              | 4              |",
+    "ground_truth": 12.0,
+    "problem_type": "MILP",
+    "details": {
+      "variables_num": 97,
+      "constraints_num": 72,
+      "nonzeros_num": 204
+    },
+    "problem_size": "Medium"
+  },
+  "prob_071": {
+    "description": "Problem description:\nA logistics company manages shipments between 3 suppliers (S1, S2, S3), 2 cross-docking warehouses (W1, W2), and 4 customers (C1, C2, C3, C4). The suppliers have weekly capacities of [120, 150, 90] units respectively. Customers demand [80, 60, 70, 90] units weekly. \n\nTransport costs per unit:\n- Direct shipping: S1→[C1,C2,C3,C4] costs [8,10,12,14], S2→[C1,C2,C3,C4] costs [9,7,11,13], S3→[C1,C2,C3,C4] costs [11,9,8,10]\n- Cross-docking first leg: S1→[W1,W2] costs [4,5], S2→[W1,W2] costs [6,3], S3→[W1,W2] costs [5,4]\n- Cross-docking second leg: W1→[C1,C2,C3,C4] costs [6,5,7,9], W2→[C1,C2,C3,C4] costs [7,6,5,8]\nCross-docking handling cost is $2/unit at each warehouse. Maximum throughput at W1 is 200 units, W2 is 180 units. \n\nThe company wants to minimize total logistics costs while meeting all customer demands without exceeding supplier capacities and warehouse throughput limits.",
+    "ground_truth": 2660.0,
+    "problem_type": "LP",
+    "details": {
+      "variables_num": 26,
+      "constraints_num": 11,
+      "nonzeros_num": 58
+    },
+    "problem_size": "Medium"
+  },
+  "prob_072": {
+    "description": "A warehouse needs to distribute 5 types of products (A, B, C, D, E) to 3 retail stores (Store1, Store2, Store3) using delivery trucks. Each truck has a maximum capacity of 15 tons. The products have the following weights per unit: A=2 tons, B=3 tons, C=1 ton, D=4 tons, E=2 tons. The stores require the following quantities: Store1 needs 2A+1B+3C, Store2 needs 1A+2D+1E, Store3 needs 3B+2C+1E. The warehouse has 4 trucks available. The goal is to minimize the total number of trucks used while meeting all store demands without exceeding truck capacities.",
+    "ground_truth": 3.0,
+    "problem_type": "ILP",
+    "details": {
+      "variables_num": 64,
+      "constraints_num": 79,
+      "nonzeros_num": 244
+    },
+    "problem_size": "Medium"
+  },
+  "prob_073": {
+    "description": "A regional distribution center needs to optimize its daily delivery routes for 5 stores located at different distances. The center has 3 available delivery trucks with capacities of 8, 10, and 12 tons respectively. The daily demands of the stores are: Store1 (3 tons), Store2 (4 tons), Store3 (5 tons), Store4 (2 tons), and Store5 (6 tons). The distance matrix (in km) between the distribution center (DC) and stores is: DC-Store1: 15, DC-Store2: 20, DC-Store3: 25, DC-Store4: 30, DC-Store5: 35. Each truck can visit multiple stores but cannot exceed its capacity. The objective is to minimize the total distance traveled by all trucks while ensuring all store demands are met.",
+    "ground_truth": 60.0,
+    "problem_type": "MILP",
+    "details": {
+      "variables_num": 21,
+      "constraints_num": 26,
+      "nonzeros_num": 78
+    },
+    "problem_size": "Small"
+  },
+  "prob_074": {
+    "description": "A regional beverage distributor needs to optimize the delivery of 5 products (A,B,C,D,E) from their central warehouse (Node 1) to 3 retail stores (Nodes 4,5,6) through a transportation network with 6 nodes and 8 directed arcs. Each arc has a maximum capacity (in pallets/day) and transportation cost ($/pallet): (1→2): 20 pallets, $3; (1→3): 15 pallets, $4; (2→3): 10 pallets, $2; (2→4): 12 pallets, $5; (3→5): 18 pallets, $3; (3→6): 10 pallets, $6; (4→5): 8 pallets, $1; (5→6): 15 pallets, $2. The daily demands are: Store 4 needs 8 pallets (A:3, B:2, C:3), Store 5 needs 12 pallets (B:4, D:5, E:3), Store 6 needs 10 pallets (A:2, C:3, E:5). The warehouse can supply up to 30 pallets total daily. The goal is to satisfy all demands at minimum transportation cost while respecting arc capacities and product-specific requirements.",
+    "ground_truth": 249.0,
+    "problem_type": "LP",
+    "details": {
+      "variables_num": 40,
+      "constraints_num": 34,
+      "nonzeros_num": 120
+    },
+    "problem_size": "Medium"
+  },
+  "prob_075": {
+    "description": "A distribution center needs to assign 4 delivery trucks to 4 customer locations for same-day shipments. Each truck has different transportation costs to each location due to varying distances and fuel consumption rates. The cost matrix (in USD) for assigning trucks to locations is as follows:\n\n| Truck\\Location | Loc1 | Loc2 | Loc3 | Loc4 |\n|----------------|------|------|------|------|\n| Truck1         | 120  | 150  | 180  | 90   |\n| Truck2         | 110  | 140  | 170  | 80   |\n| Truck3         | 130  | 160  | 190  | 100  |\n| Truck4         | 140  | 170  | 200  | 110  |\n\nThe distribution center aims to minimize total transportation costs while ensuring each truck is assigned to exactly one location and each location receives exactly one truck.",
+    "ground_truth": 560.0,
+    "problem_type": "ILP",
+    "details": {
+      "variables_num": 16,
+      "constraints_num": 8,
+      "nonzeros_num": 32
+    },
+    "problem_size": "Small"
+  },
+  "prob_076": {
+    "description": "# Problem Description:\nA mining company operates three ore processing plants (P1, P2, P3) with monthly processing capacities of 8000, 10000, and 12000 tons respectively. The company sources ore from four different mines (M1, M2, M3, M4) with available quantities of 6000, 9000, 7000, and 5000 tons per month. \n\nEach ore type has different characteristics:\n- Metal recovery rates: M1=85%, M2=92%, M3=78%, M4=88%\n- Processing costs per ton: M1=$12, M2=$18, M3=$10, M4=$15\n- Sulfur content (impurity): M1=1.2%, M2=0.8%, M3=2.1%, M4=1.5%\n- Maximum allowed average sulfur content across all plants: 1.5%\n\nTransportation costs per ton from mines to plants:\n|       | P1  | P2  | P3  |\n|-------|-----|-----|-----|\n|   M1  | $4  | $6  | $5  |\n|   M2  | $7  | $5  | $8  |\n|   M3  | $3  | $4  | $6  |\n|   M4  | $8  | $6  | $7  |\n\nThe company needs to determine the optimal ore allocation from mines to plants to maximize total metal recovery while keeping total costs under $500,000 and meeting all operational constraints.",
+    "ground_truth": 22933.33333,
+    "problem_type": "LP",
+    "details": {
+      "variables_num": 12,
+      "constraints_num": 9,
+      "nonzeros_num": 45
+    },
+    "problem_size": "Small"
+  },
+  "prob_077": {
+    "description": "A regional grocery chain is launching a new energy drink product and needs to optimally allocate initial stock to its stores. There are 6 stores (S1-S6) with varying characteristics. Each store has a known customer traffic (daily visits: S1-1200, S2-800, S3-1500, S4-900, S5-1100, S6-700), shelf space allocation (units: S1-50, S2-30, S3-60, S4-35, S5-45, S6-25), and historical sales similarity score for similar products (0-1 scale: S1-0.8, S2-0.6, S3-0.9, S4-0.7, S5-0.75, S6-0.5). The warehouse has 300 units available for initial distribution. There are two types of display setups: standard (costs $5 per store) and promotional (costs $15 per store but increases effective shelf space by 20%). The total display budget is $120. The goal is to maximize expected product exposure, calculated as: (customer traffic) × (units allocated) × (sales similarity score).",
+    "ground_truth": 253590.0,
+    "problem_type": "ILP",
+    "details": {
+      "variables_num": 12,
+      "constraints_num": 8,
+      "nonzeros_num": 24
+    },
+    "problem_size": "Small"
+  },
+  "prob_078": {
+    "description": "A shipping company operates a fleet of cargo ships to transport containers between three ports: PortA, PortB, and PortC. The company aims to allocate its ships across six possible shipping routes in a way that maximizes overall profit while satisfying all container demand and adhering to operational constraints.\n\nEach ship has a capacity of 8000 TEUs (Twenty-foot Equivalent Units) and consumes 200 tons of fuel per 1000 nautical miles traveled. Fuel costs 600 USD per ton. There are 12 ships available in total, but at least 2 must remain in reserve and cannot be assigned to any route. Each ship can only be assigned to one route per day.\n\nThe six possible shipping routes, along with their respective distances, are as follows:\n- Route1: PortA → PortB (1200 nautical miles)\n- Route2: PortA → PortC (1800 nautical miles)\n- Route3: PortB → PortC (900 nautical miles)\n- Route4: PortB → PortA (1200 nautical miles)\n- Route5: PortC → PortA (1800 nautical miles)\n- Route6: PortC → PortB (900 nautical miles)\n\nFor each route, the container demand in TEUs is:\n- Route1: 6500 TEUs\n- Route2: 7200 TEUs\n- Route3: 4800 TEUs\n- Route4: 5100 TEUs\n- Route5: 6200 TEUs\n- Route6: 3900 TEUs\n\nRevenue generated per TEU varies by route:\n- Route1: $120 per TEU\n- Route2: $150 per TEU\n- Route3: $90 per TEU\n- Route4: $110 per TEU\n- Route5: $140 per TEU\n- Route6: $80 per TEU\n\nOperational constraints include:\n- A ship assigned to a route must carry at least 70% of its capacity, i.e., at least 5600 TEUs.\n- The number of ships assigned to a route cannot exceed the ceiling of the ratio of demand to ship capacity (i.e., ceiling(demand / 8000)).\n- All container demand for each route must be fully satisfied.\n\nThe objective is to determine the optimal allocation of ships to routes that maximizes net profit (revenue from transported containers minus fuel costs), while respecting all constraints.",
+    "ground_truth": 4584000.0,
+    "problem_type": "LP",
+    "details": {
+      "variables_num": 66,
+      "constraints_num": 35,
+      "nonzeros_num": 318
+    },
+    "problem_size": "Medium"
+  },
+  "prob_079": {
+    "description": "A specialty coffee roasting company has received shipments of two premium green coffee beans: Ethiopia Yirgacheffe (8,000 kg) and Colombia Supremo (12,000 kg). The company needs to allocate these beans to two different product lines to maximize its weekly profit:\n1.  **Single-Origin Bags (SO):** High-end bags of whole beans sold to specialty cafes.\n2.  **House Blend (HB):** A signature blend sold ground to retail partners.\n\n**Economic & Quality Data:**\nThe profitability of each product line depends on the cost of the beans and the processing involved. Furthermore, each product line must meet a minimum average quality standard, measured by the coffee's \"cupping score\" (a 0-100 scale).\n\n| Bean Origin | Available (kg) | Cupping Score |\n|:-----------:|:--------------:|:-------------:|\n| Ethiopia    | 8,000          | 92            |\n| Colombia    | 12,000         | 87            |\n\n| Product Line      | Revenue per kg | Processing Cost per kg | Minimum Avg. Cupping Score |\n|:------------------|:--------------:|:----------------------:|:--------------------------:|\n| Single-Origin (SO)| $40.00         | $5.00                  | 90                         |\n| House Blend (HB)  | $28.00         | $8.50                  | 88                         |\n\n**Operational Constraints:**\n- The company's primary roaster, used for the House Blend, has a maximum weekly processing capacity of 10,000 kg.\n- Due to a contract with a key client, the company must produce at least 2,000 kg of Single-Origin bags per week.\n\nThe goal is to determine the optimal quantity (in kg) of each type of green bean to allocate to each product line to maximize total weekly profit, while respecting all inventory, quality, and operational constraints.",
+    "ground_truth": 545000.0,
+    "problem_type": "LP",
+    "details": {
+      "variables_num": 4,
+      "constraints_num": 6,
+      "nonzeros_num": 12
+    },
+    "problem_size": "Toy"
+  },
+  "prob_080": {
+    "description": "PharmaLogistics Inc. is planning the distribution network for its new temperature-sensitive drug, 'VitaBoost', for the upcoming 6 months (Month 1 to Month 6). The company has two manufacturing plants (P1 located in City A, P2 located in City B) and is considering opening and operating up to three potential distribution centers (DC1 in Region X, DC2 in Region Y, DC3 in Region Z) to serve four key demand regions (R1, R2, R3, R4). The primary objective is to minimize the total operational costs over the 6-month planning horizon. These costs include: the fixed monthly costs of operating any active DCs, transportation costs for shipping VitaBoost from plants to DCs and from DCs to demand regions, inventory holding costs for products stored at DCs, costs associated with product expiry and disposal, and shortage costs incurred for any unmet demand in the regions.\n\nVitaBoost has a strict shelf life of 2 months. This means that any product manufactured in a given month (say, Month `m`) must be used to satisfy demand by the end of the following month (Month `m+1`). Product not used by this deadline expires and must be disposed of.\n\nAt the beginning of Month 1, DC1 has an initial stock of VitaBoost, provided it is chosen to be operational in Month 1: 10 units that were produced in the immediately preceding month (referred to as 'Month 0' batch, thus being 1-month old at the start of Month 1) and 5 units that were produced two months prior (referred to as 'Month -1' batch, thus being 2-months old at the start of Month 1). This 'Month -1' batch must be used or discarded during Month 1. No other initial inventory exists at other potential DCs or plants.\n\nThe monthly production capacities for the manufacturing plants are as follows (in units, for Months 1 through 6 respectively):\n-   Plant P1: [250, 250, 260, 260, 270, 270]\n-   Plant P2: [200, 200, 210, 210, 220, 220]\n\nThe potential distribution centers have associated costs and capacities:\n-   Fixed monthly operating costs if active: DC1: $10,000; DC2: $12,000; DC3: $9,000.\n-   Storage capacities (max units): DC1: 300; DC2: 350; DC3: 280.\n\nTransportation costs per unit of VitaBoost are:\n-   From Plant P1 to DCs: DC1: $5, DC2: $7, DC3: $6.\n-   From Plant P2 to DCs: DC1: $8, DC2: $4, DC3: $7.\n-   From DC1 to Regions: R1: $3, R2: $4, R3: $5, R4: $6.\n-   From DC2 to Regions: R1: $5, R2: $3, R3: $4, R4: $5.\n-   From DC3 to Regions: R1: $4, R2: $5, R3: $3, R4: $4.\n\nOther relevant costs are:\n-   Monthly inventory holding cost per unit at DCs: DC1: $2.0; DC2: $2.5; DC3: $1.8.\n-   Disposal cost for expired product: $1 per unit at any DC.\n-   Shortage cost for unmet demand: $50 per unit, uniform across all regions and months.\n\nThe forecasted monthly demand for VitaBoost (in units) for each region over the 6-month horizon is:\n-   Region R1: [100, 110, 120, 130, 140, 150]\n-   Region R2: [80, 85, 90, 95, 100, 105]\n-   Region R3: [120, 125, 130, 135, 140, 145]\n-   Region R4: [60, 65, 70, 75, 80, 85]\n\nPharmaLogistics Inc. needs to determine an optimal plan that specifies: which DCs to operate in each month, the quantity of VitaBoost to produce at each plant monthly, and the detailed shipping and inventory quantities across the network. This plan must ensure that demand is met as effectively as possible while respecting the product's shelf life and minimizing total costs.",
+    "ground_truth": 81060.0,
+    "problem_type": "MILP",
+    "details": {
+      "variables_num": 954,
+      "constraints_num": 453,
+      "nonzeros_num": 2532
+    },
+    "problem_size": "Medium"
+  },
+  "prob_081": {
+    "description": "A large manufacturing enterprise needs to ship a consignment of 1,000 tons of goods from its factory in City F to a distribution center in City D. There are three potential transportation routes available. Each route is composed of segments using different modes of transport (road or rail). The transportation cost for each segment is calculated based on a per ton-kilometer rate. Furthermore, certain road segments are subject to a congestion fee to account for the social costs of traffic. This fee is non-linear and is calculated as `Congestion Coefficient * (Total Traffic Flow)^2`. The total traffic flow on a segment is the sum of the cargo shipped by the enterprise and the existing background traffic from other companies.\n\nThe details for the three routes are provided in the table below. For congested segments, the existing background traffic is also listed.\n\n| Route | Segment | Mode | Distance (km) | Base Fee ($/ton-km) | Congestion Coefficient | Background Traffic (tons) |\n| ----- | ------- | ---- | ------------- | ------------------- | ---------------------- | ------------------------- |\n| 1     | 1A      | Road | 150           | 2.00                | 5×10−7                 | 2,000                     |\n|       | 1B      | Rail | 500           | 0.80                | -                      | -                         |\n| 2     | 2A      | Road | 200           | 2.10                | -                      | -                         |\n|       | 2B      | Road | 350           | 1.90                | 8×10−7                 | 1,500                     |\n| 3     | 3A      | Road | 100           | 2.20                | -                      | -                         |\n|       | 3B      | Rail | 600           | 0.75                | -                      | -                         |\n\nHow should the enterprise allocate the shipment of 1,000 tons of goods across the three routes to minimize the total transportation cost?",
+    "ground_truth": 670003.8,
+    "problem_type": "NLP",
+    "details": {
+      "variables_num": 3,
+      "constraints_num": 1,
+      "nonzeros_num": 3
+    },
+    "problem_size": "Toy"
+  },
+  "prob_082": {
+    "description": "A container shipping company needs to execute a transport contract from Shanghai to Los Angeles, a total sailing distance of 6000 nautical miles. The voyage must be completed within 12 days (288 hours). The company can choose one of three different types of vessels from its fleet to carry out this mission. The fuel consumption rate for each vessel is an approximate quadratic function of its sailing speed v. The price of fuel is ¥4000 per ton. Additionally, due to new environmental regulations, the company must pay for its carbon dioxide emissions at a rate of ¥300 per ton of CO2. Specific information for the three vessels is shown in Table 1, including their fuel consumption formulas, CO2 emission factors, and a fixed cost for selecting each vessel.\n\nTable 1: Vessel Information \n\n| Vessel | Fuel Consumption (tons/hour) | CO2 Emission Factor (ton CO2/ton fuel) | Selection Fixed Cost (¥) |\n|------|----------------------------------|------|---------|\n| Ship A | $0.005 \\times v^2 + 0.1v + 1.2$  | 3.2  | 500,000 |\n| Ship B | $0.004 \\times v^2 + 0.08v + 1.5$ | 3.15 | 600,000 |\n| Ship C | $0.006 \\times v^2 + 0.12v + 1.0$ | 3.25 | 450,000 |\n\nThe objective is to select one vessel and determine its optimal sailing speed to minimize the total cost of the voyage.",
+    "ground_truth": 7582340.0,
+    "problem_type": "NLP",
+    "details": {
+      "variables_num": 9,
+      "constraints_num": 7,
+      "nonzeros_num": 15
+    },
+    "problem_size": "Small"
+  },
+  "prob_083": {
+    "description": "A food delivery platform is facing a shortage of delivery capacity during peak hours. To address this, it plans to adopt a crowdsourcing model by recruiting gig workers (\"crowdsourced riders\") to complete a portion of the orders. The platform has found that the number of crowdsourced riders willing to accept orders is related to the compensation structure, which consists of a base delivery fee and an additional bonus per order. The specific relationship is modeled as:\n\nNumber of available riders = 0.8 * (base delivery fee)² + 17 * (additional bonus)\n\nDuring the peak period, there are 1,500 orders that need to be delivered by crowdsourced riders., and each available crowdsourced rider can complete an average of 12 orders. The platform earns an average revenue of $15 for each completed order. The platform has two key requirements: 1) A minimum of 1,000 orders must be completed; 2) The base delivery fee offered to riders must be at least $3. The platform needs to design an optimal \"base delivery fee + additional bonus\" compensation plan to maximize its profit, while ensuring the minimum order completion target is met.",
+    "ground_truth": 7871.548039215685,
+    "problem_type": "NLP",
+    "details": {
+      "variables_num": 3,
+      "constraints_num": 0,
+      "nonzeros_num": 0
+    },
+    "problem_size": "Toy"
+  },
+  "prob_084": {
+    "description": "You are in charge of Green Freight, a logistics company that owns 5 old diesel trucks and plans to renew part of its fleet with new electric trucks to reduce costs and emissions. The company needs to decide which of the 5 old trucks to retire and may purchase up to 3 new electric trucks, while it must maintain a total fleet capacity of at least 4 trucks. The government imposes a punitive carbon tax on the company's total carbon emissions, which is proportional to the square of the total emissions, with a tax coefficient of 80. The company's goal is to make an optimal vehicle replacement decision to minimize the total operating cost for the coming year, which consists of vehicle costs, operating costs, and the punitive carbon tax. The specific vehicle information and cost data are shown in Table 1.\n\nHow should Green Freight decide which trucks to keep and which to buy to minimize its total annual cost?\n\nTable 1: Vehicle Cost and Emission Data\n| Vehicle Model | Attribute | Annual Operating Cost (¥) | Annual Carbon Emissions (tons) | Annualized Investment/Depreciation Cost (¥) |\n| :--- | :--- | :--- | :--- | :--- |\n| Old Diesel Truck D1 | - | 80,000 | 15 | - |\n| Old Diesel Truck D2 | - | 85,000 | 16 | - |\n| Old Diesel Truck D3 | - | 78,000 | 14 | - |\n| Old Diesel Truck D4 | - | 92,000 | 18 | - |\n| Old Diesel Truck D5 | - | 88,000 | 17 | - |\n| New Electric Truck | (per vehicle) | 30,000 | 0 | 120,000 |",
+    "ground_truth": 525280.0,
+    "problem_type": "NLP",
+    "details": {
+      "variables_num": 6,
+      "constraints_num": 2,
+      "nonzeros_num": 7
+    },
+    "problem_size": "Small"
+  },
+  "prob_085": {
+    "description": "You are the manager of a large cross-docking center responsible for assigning docks for the next hour's operations, which involves 4 arriving shipments and 3 departing shipments. The center has 4 inbound docks (I1, I2, I3, I4) and 3 outbound docks (O1, O2, O3), distributed across two different operational zones. The docks in Zone A include I1, I2, and O1, while Zone B includes I3, I4, O2, and O3. The efficiency of forklift operations within a zone decreases with congestion, which is modeled as a cost function that is quadratic in the total number of items passing through that zone. The congestion cost coefficient is 0.00005 for Zone A and 0.00004 for Zone B. Decision-makers need to assign a unique dock to each shipment to minimize the total internal handling cost, which is composed of a base handling cost and a zonal congestion cost. The base handling cost is ¥0.1 per item. The arriving shipments consist of four suppliers: S1 with 200 items, S2 with 150 items, S3 with 180 items, and S4 with 220 items. The departing shipments consist of three retailers: R1 with 250 items, R2 with 300 items, and R3 with 200 items. How should the center assign each shipment to a unique dock to minimize the total internal handling cost?",
+    "ground_truth": 200.001,
+    "problem_type": "NLP",
+    "details": {
+      "variables_num": 25,
+      "constraints_num": 14,
+      "nonzeros_num": 50
+    },
+    "problem_size": "Small"
+  },
+  "prob_086": {
+    "description": "You are in charge of a national health agency planning to establish 2 regional emergency blood centers in a province by selecting from 4 candidate cities. These centers will serve the province's 3 main hospitals. The success probability of blood transportation is known to decrease with the square of the distance, following the formula: p = 1 - 0.00005 * (distance)², where p is the success probability. Regulations require that for each hospital, the joint supply failure probability (i.e., the probability that all designated service channels fail) must be less than 10%. The agency's objective is to select the two locations that minimize the total construction cost while satisfying this reliability constraint. The costs for candidate locations, hospital locations, and distance data are shown in Table 1.\n\nHow should the agency select the two locations for the centers to minimize the total construction cost, subject to the reliability requirement?\n\nTable 1: Blood Center Location Data\n| Candidate City | Construction Cost (¥M) | Distance to H1 (km) | Distance to H2 (km) | Distance to H3 (km) |\n|:---:|:---:|:---:|:---:|:---:|\n| C1 | 8 | 50 | 80 | 120 |\n| C2 | 7 | 60 | 40 | 90 |\n| C3 | 9 | 110 | 70 | 50 |\n| C4 | 7.5 | 130 | 100 | 60 |",
+    "ground_truth": 17.0,
+    "problem_type": "NLP",
+    "details": {
+      "variables_num": 7,
+      "constraints_num": 4,
+      "nonzeros_num": 7
+    },
+    "problem_size": "Small"
+  },
+  "prob_087": {
+    "description": "You are in charge of a taxi company, managing its fleet during the evening peak hours. The company needs to dispatch its idle taxis from 3 areas to 3 passenger demand hotspots. To improve profitability, in addition to setting a dynamic surcharge for each hotspot to incentivize drivers, the company has also established a fixed base fare of ¥15 for every successful dispatch. The supply of drivers willing to go to a certain hotspot is proportional to the square of the surcharge, with a coefficient of 0.5. The company's objective is to set the surcharges and plan the vehicle dispatch to maximize total profit. Total profit is calculated as (total base fare revenue + total surcharge revenue - total deadheading costs). Through operational optimization, the company has reduced its deadheading costs by 20%. The number of available taxis in each area, the passenger demand at each hotspot, and the adjusted deadheading costs from each area to each hotspot are shown in the table below.\n\nTable 1: Adjusted Taxi Dispatch Data \n\n| Attribute | H1 | H2 | H3 | Available Taxis |\n|:---:|:---:|:---:|:---:|:---:|\n| Demand | 30  | 50  | 40  | - |\n| Deadheading Cost from A1 | 16 | 28 | 24 | 25  |\n| Deadheading Cost from A2 | 20 | 12 | 32 | 40  |\n| Deadheading Cost from A3 | 24 | 20 | 16 | 35  |\n\nHow can the taxi company set its dynamic surcharges and dispatch plan to maximize its total profit while satisfying all supply and demand constraints?",
+    "ground_truth": 887.3785809835297,
+    "problem_type": "NLP",
+    "details": {
+      "variables_num": 15,
+      "constraints_num": 9,
+      "nonzeros_num": 24
+    },
+    "problem_size": "Small"
+  },
+  "prob_088": {
+    "description": "An urban shared e-bike company, \"E-Donkey Express,\" needs to create a nightly battery-swapping plan for its fleet, which is distributed across three zones using its two mobile maintenance vans. The company's objective is to minimize the total nightly cost, which consists of a fixed dispatch fee for each van used and a variable operational cost. This operational cost is uniquely challenging, as it is proportional to the square of the number of batteries replaced by a van in a given zone (Cost = Coefficient × N²), reflecting a diseconomy of scale due to on-site logistical complexities.\nThe plan must ensure that all e-bikes with low-power batteries are serviced, while also respecting the maximum number of new batteries each van can carry. The core decision is how to assign the battery-swapping workload—which zones each van should service, and how many batteries to replace in each—to meet all demands at the lowest possible total cost. All necessary operational data is provided below.\n\nTable 1: Zonal Demand Data\n\n| Zone | Total E-Bikes | Low Battery Percentage (%) |\n|:----:|:--------------:|:--------------------------:|\n|   A  |      200       |             60             |\n|   B  |      150       |             80             |\n|   C  |      180       |             50             |\n\nTable 2: Maintenance Station Parameters\n\n| Parameter                    | Van 1 | Van 2 |\n|:-----------------------------|:-----:|:-----:|\n| Dispatch Cost ($)            |  300  |  320  |\n| Max Battery Capacity (units) |  150  |  180  |\n| Operational Cost Coefficient | 0.08  | 0.07  |",
+    "ground_truth": 1998.5,
+    "problem_type": "NLP",
+    "details": {
+      "variables_num": 8,
+      "constraints_num": 5,
+      "nonzeros_num": 14
+    },
+    "problem_size": "Small"
+  },
+  "prob_089": {
+    "description": "A courier company needs to plan an optimal single-delivery route for one of its couriers. The route starts at a central depot, serves 10 customers, and then returns to the depot. The courier's travel speed is constant at 30 km/h, and the travel cost is ¥5 per kilometer.\nEach customer has a desired \"service time window.\" If the courier's actual arrival time deviates from the center of the customer's desired time window, the company incurs a \"customer satisfaction penalty\" cost. This cost is proportional to the square of the time deviation, calculated by the formula: $Cost = 0.2 \\times (\\text{Actual Arrival Time} - \\text{Time Window Center})^2$.\nThe company's objective is to determine a unique customer visit sequence and calculate a precise arrival time for each customer to minimize the cost. The courier departs at 8:30 AM from the depot, located at coordinates (0,0). All relevant data are listed in the table below.\n\nTable 1: Customer Data and Service Requirements\n\n| Location ID | Location Type | Position (x, y) km | Service Time (minutes) | Desired Service Window |\n|:---:|:---:|:---:|:---:|:---:|\n| 1 | Customer | (3, 5) | 5 | 9:30 - 10:00 |\n| 2 | Customer | (5, 8) | 8 | 10:00 - 10:20 |\n| 3 | Customer | (2, 1) | 5 | 9:00 - 9:20 |\n| 4 | Customer | (8, 6) | 10 | 10:30 - 11:00 |\n| 5 | Customer | (4, 2) | 6 | 9:45 - 10:15 |\n| 6 | Customer | (9, 8) | 7 | 11:15 - 11:40 |\n| 7 | Customer | (1, 9) | 9 | 10:10 - 10:40 |\n| 8 | Customer | (1, 3) | 5 | 9:15 - 9:40 |\n| 9 | Customer | (6, 4) | 12 | 10:20 - 10:50 |\n| 10 | Customer | (7, 1) | 6 | 11:00 - 11:20 |",
+    "ground_truth": 480.57577334344387,
+    "problem_type": "NLP",
+    "details": {
+      "variables_num": 143,
+      "constraints_num": 255,
+      "nonzeros_num": 853
+    },
+    "problem_size": "Small"
+  },
+  "prob_090": {
+    "description": "A shared mobility company plans to deploy a fleet of 1,000 electric scooters across five key hotspot zones in a city. To ensure service stability and a positive user experience, the company aims to achieve a balanced deployment that aligns with the demand profile of each zone.\n\nThe company's goal is to minimize the network's imbalance. This imbalance is defined as the sum of the squared differences between the number of scooters deployed in each zone and an ideal, attractiveness-weighted deployment. The ideal deployment for a zone is calculated by distributing the total fleet proportionally to that zone's share of the total attractiveness.\n\nWhen planning the deployment, the following conditions must be met:\n1. The total number of scooters deployed across all zones must equal 1,000.\n2. To align operational capacity with potential demand, the number of scooters in each zone must not be less than a minimum quota. This quota is set at 10% of the total fleet size, weighted by the proportion of that zone's attractiveness relative to the total attractiveness of all zones.\n3. The 'Commercial Center' and 'Transit Hub' zones are geographically adjacent and frequently interact with each other. To ensure service continuity, the absolute difference in the number of scooters deployed in these two zones must not exceed 50.\n4. The company has divided the zones into two operational clusters: Cluster 1 (Commercial Center, Tourist Area) and Cluster 2 (University City, Tech Park, Transit Hub). Each cluster can deploy a maximum of 600 scooters to match the management capacity of local operational teams.\n\nThe attractiveness data for each zone is provided in the table below. Please devise a deployment plan that minimizes the network imbalance while satisfying all constraints.\n\nTable: Zonal Attractiveness Data\n\n| Hotspot Zone | Attractiveness (Predicted Daily Trips) |\n|:---|:---|\n| Commercial Center | 500 |\n| University City | 800 |\n| Tech Park | 700 |\n| Tourist Area | 600 |\n| Transit Hub | 900 |",
+    "ground_truth": 6122.979591836687,
+    "problem_type": "NLP",
+    "details": {
+      "variables_num": 5,
+      "constraints_num": 10,
+      "nonzeros_num": 19
+    },
+    "problem_size": "Toy"
+  },
+  "prob_091": {
+    "description": "A community food bank plans to dispatch a refrigerated truck on a Friday afternoon to visit 4 partner supermarkets and collect same-day leftover fresh food donations. The truck has a maximum refrigerated capacity of 2 cubic meters and a payload limit of 500 kilograms. The truck will depart from the food bank at 13:00 and must return by 17:00, for a total operating time of 4 hours. The food bank's geographic coordinates are (0, 0), and the units for all location coordinates are kilometers (km). The truck's travel speed is a constant 40 km/h, and the distance between two points is calculated using straight-line Euclidean distance. Additionally, each stop at a supermarket for loading operations requires a fixed 20 minutes. The objective of the task is to plan an optimal route, deciding which supermarkets to visit and which items to collect, in order to maximize the total sum of priority weights of the collected donations. The detailed locations of each supermarket and the information on available donations are shown in the table below:\n\n| Stop | Location Coordinates (km) | Donation Item | Volume (m³) | Weight (kg) | Priority Weight |\n|:---:|:---:|:---|:---:|:---:|:---:|\n| Supermarket S1 | (5, 10) | Milk | 0.8 | 150 | 80 |\n| Supermarket S1 | (5, 10) | Cheese | 0.3 | 50 | 65 |\n| Supermarket S2 |(15, 5) | Bread | 1.0 | 100 | 50 |\n| Supermarket S2 |(15, 5) | Vegetables | 0.5 | 80 | 40 |\n| Supermarket S3 |(20, 15) | Frozen Meat | 0.6 | 200 | 100 |\n| Supermarket S3 |(20, 15) | Pasta | 0.4 | 60 | 45 |\n| Supermarket S4 |(25, 20) | Fruit | 0.7 | 120 | 60 |\n| Supermarket S4 |(25, 20) |Yogurt | 0.4 | 100 | 70 |\n| Supermarket S4 |(25, 20) | Berries | 0.2 | 30 | 55 |\n| Supermarket S5 |(30, 25) | Eggs | 0.3 | 40 | 75 |\n| Supermarket S5 |(30, 25) | Butter | 0.2 | 50 | 50 |\n| Supermarket S6 |(35, 30) | Sausages | 0.5 | 110 | 90 |\n| Supermarket S6 |(35, 30) | Fish Fillets | 0.4 | 90 | 95 |\n| Supermarket S7 |(40, 35) | Juice | 0.6 | 120 | 30 |\n| Supermarket S7 |(40, 35) | Canned Soup | 0.8 | 150 | 25 |\n| Supermarket S8 |(45, 40) | Salad Mix | 0.9 | 70 | 35 |",
+    "ground_truth": 440.0,
+    "problem_type": "NLP",
+    "details": {
+      "variables_num": 114,
+      "constraints_num": 118,
+      "nonzeros_num": 497
+    },
+    "problem_size": "Small"
+  },
+  "prob_092": {
+    "description": "A container terminal needs to allocate berths for a fleet of 10 cargo ships within the next 72 hours. The terminal has 3 available berths (B1, B2, B3). Due to interdependencies where some ships carry import/export goods required by other ships, there are collaborative operation requirements between them. Specifically, ship C can only start loading after ship A completes unloading; ship E can only start loading after ship D completes unloading. To incentivize efficient collaboration, a **¥50,000 \"rapid transshipment\" bonus** can be earned if the start time of a dependent task (e.g., C starting to load) immediately follows the completion time of its predecessor task (e.g., A completing unloading) with a time gap of 2 hours or less. Ship information and operational requirements are shown in Table 1. The objective is to assign each ship a unique berth and a conflict-free berthing time window to maximize the total rapid transshipment bonus while minimizing the ships' waiting time costs in the port** (¥2,000 per hour).\n\nTable 1: Ship Information and Operational Requirements\n\n| Ship ID | Operation Type | Dependencies | Estimated Arrival Time (hours) | Required Berth Operation Time (hours) |\n|:---|:---|:---|:---:|:---:|\n| A | Unloading | - | 2 | 8 |\n| B | Loading/Unloading | - | 5 | 10 |\n| C | Loading | A | 10 | 6 |\n| D | Unloading | - | 12 | 9 |\n| E | Loading | D | 18 | 7 |\n| F | Loading | - | 20 | 11 |\n| G | Loading | B | 25 | 8 |\n| H | Unloading | - | 30 | 12 |\n| I | Loading | H | 35 | 5 |\n| J | Unloading | G | 40 | 9 |",
+    "ground_truth": 194000.0,
+    "problem_type": "MILP",
+    "details": {
+      "variables_num": 155,
+      "constraints_num": 590,
+      "nonzeros_num": 2525
+    },
+    "problem_size": "Medium"
+  }
+}

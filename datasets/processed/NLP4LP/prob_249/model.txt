@@ -1,0 +1,39 @@
+Set:
+1. MethodType
+The set of method types, \( I = \{0, 1\} \) # 0 for method A, 1 for method B
+
+Parameter:
+1. FabricProduction
+[25, 45] # Units of fabric produced per hour for each method
+2. PlasticProduction
+[14, 25] # Units of plastic produced per hour for each method
+3. ElementRequirement
+[60, 65] # Units of special element required per hour for each method
+4. ElementAvailable
+3500 # Total units of special element available
+5. MinFabric
+1400 # Minimum units of fabric to be made
+6. MinPlastic
+1000 # Minimum units of plastic to be made
+
+Decision variable:
+1. HoursOfExecution
+Continuous variable, \( x_{i} \) for all \( i \in I \), representing the number of hours each method is executed.
+
+Objective:
+Minimize the total time needed.
+min: \( \sum_{i \in I} x_{i} \)
+
+Constraint:
+1. Fabric production
+\( \sum_{i \in I} FabricProduction[i] \cdot x_{i} \geq MinFabric \)
+2. Plastic production
+\( \sum_{i \in I} PlasticProduction[i] \cdot x_{i} \geq MinPlastic \)
+3. Element availability
+\( \sum_{i \in I} ElementRequirement[i] \cdot x_{i} \leq ElementAvailable \)
+4. Non-negativity
+\( x_{i} \geq 0 \), for all \( i \in I \)
+
+Type:
+Continuous, linear, linear
+LP

@@ -1,0 +1,43 @@
+# Model description for prob_092
+Set:
+1. Products
+The set of dairy products, \( P = \{A_1, A_2\} \).
+
+Parameter:
+1. Profit
+[24, 16] # Profit in yuan per kg for each product.
+2. MilkPerKg
+[1/3, 1/4] # Barrels of milk required per kg of each product.
+3. TimePerKg
+[4, 2] # Labor hours required per kg of each product (12 hours / 3 kg for A1, 8 hours / 4 kg for A2).
+4. MaxMilk
+50 # Maximum daily supply of milk in barrels.
+5. MaxLabor
+480 # Maximum daily labor time in hours.
+6. MaxA1
+100 # Maximum daily production capacity for product A1 in kg.
+
+Decision variable:
+1. ProductionQty
+Continuous variable, \( x_p \) for all \( p \in P \), representing the kilograms of product \( p \) to produce.
+
+Objective:
+Maximize the total daily profit.
+max: \sum_{p \in P} \text{Profit}[p] * x_p
+
+Constraint:
+1. Milk Supply
+The total milk used cannot exceed the daily supply.
+\sum_{p \in P} \text{MilkPerKg}[p] * x_p \leq \text{MaxMilk}
+2. Labor Time
+The total labor hours used cannot exceed the available time.
+\sum_{p \in P} \text{TimePerKg}[p] * x_p \leq \text{MaxLabor}
+3. A1 Capacity
+The production of product A1 cannot exceed its daily capacity.
+x_{A_1} \leq \text{MaxA1}
+4. Non-negativity
+x_p \geq 0, \forall p \in P
+
+Type:
+Continuous, linear, linear
+LP

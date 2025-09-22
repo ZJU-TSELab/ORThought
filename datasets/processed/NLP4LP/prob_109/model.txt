@@ -1,0 +1,35 @@
+Set:
+1. MachineType
+The set of machine types, \( I = \{0, 1\} \) # 0 for Machine 1, 1 for Machine 2
+
+Parameter:
+1. HeartMedicine
+[0.5, 0.3] # Units of medicine delivered to the heart per minute for each machine type
+2. BrainMedicine
+[0.8, 1.0] # Units of medicine delivered to the brain per minute for each machine type
+3. Waste
+[0.3, 0.5] # Units of waste produced per minute for each machine type
+4. MaxHeartMedicine
+8 # Maximum units of medicine for the heart
+5. MinBrainMedicine
+4 # Minimum units of medicine for the brain
+
+Decision variable:
+1. MachineUsage
+Continuous variable, \( x_{i} \) for all \( i \in I \), representing the number of minutes each machine is used.
+
+Objective:
+Minimize the total amount of waste produced.
+min: \( \sum_{i \in I} Waste[i] \cdot x_{i} \)
+
+Constraint:
+1. Heart medicine constraint
+\( \sum_{i \in I} HeartMedicine[i] \cdot x_{i} \leq MaxHeartMedicine \)
+2. Brain medicine constraint
+\( \sum_{i \in I} BrainMedicine[i] \cdot x_{i} \geq MinBrainMedicine \)
+3. Non-negativity
+\( x_{i} \geq 0 \), for all \( i \in I \)
+
+Type:
+Continuous, linear, linear
+LP

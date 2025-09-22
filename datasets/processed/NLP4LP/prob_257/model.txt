@@ -1,0 +1,35 @@
+Set:
+1. ExperimentType
+The set of experiment types, I = {0, 1} # 0 for In-vivo, 1 for Ex-vivo
+
+Parameter:
+1. PreparationTime
+[30, 45] # Minutes required for preparation for each experiment type
+2. ExecutionTime
+[60, 30] # Minutes required for execution for each experiment type
+3. Radiation
+[2, 3] # Units of radiation received from each experiment type
+4. PreparationTimeLimit
+400 # Total minutes available for preparation
+5. ExecutionTimeLimit
+500 # Total minutes available for execution
+
+Decision variable:
+1. NumberOfExperiments
+Integer variable, x_{i} for all i in I, representing the number of experiments of each type to be scheduled.
+
+Objective:
+Minimize the total radiation received.
+min: \( \sum_{i \in I} \text{Radiation}[i] \cdot x_{i} \)
+
+Constraint:
+1. Preparation Time Limit
+\( \sum_{i \in I} \text{PreparationTime}[i] \cdot x_{i} \leq \text{PreparationTimeLimit} \)
+2. Execution Time Limit
+\( \sum_{i \in I} \text{ExecutionTime}[i] \cdot x_{i} \leq \text{ExecutionTimeLimit} \)
+3. Non-negativity
+\( x_{i} \geq 0 \), for all \( i \in I \)
+
+Type:
+Integer, linear, linear
+IP

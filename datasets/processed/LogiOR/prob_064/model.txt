@@ -1,0 +1,40 @@
+Set:
+1. Nodes
+The set of all nodes \( V = \{P1, P2, N1, N2, N3, N4, N5, S1, S2, S3\} \)
+2. Arcs
+The set of directed arcs \( A \), defined by the connections in problem description
+3. Commodities
+The set of beverage types \( K = \{Cola, Juice, Water\} \)
+
+Parameter:
+1. Capacity
+\( u_{ij} \): Arc capacity from node i to j (values given in problem description, with N3->N5 capacity corrected to 100)
+2. Cost
+\( c_{ij} \): Unit transportation cost on arc (i,j).
+3. Demand
+\( d_j^k \): Demand for commodity k at store j (values given)
+4. Supply
+\( s_i^k \): Maximum supply capacity of commodity k at production facility i (values given)
+
+Decision variable:
+1. Flow
+\( x_{ij}^k \geq 0 \): Flow amount of commodity k on arc (i,j)
+
+Objective:
+Minimize total transportation cost
+min: \( \sum_{k\in K} \sum_{(i,j)\in A} c_{ij} x_{ij}^k \)
+
+Constraint:
+1. Flow conservation
+   Net outflow from production nodes must be less than or equal to supply capacity.
+   \( \sum_{j:(i,j)\in A} x_{ij}^k - \sum_{j:(j,i)\in A} x_{ji}^k \leq s_i^k \) for production nodes
+   \( \sum_{j:(i,j)\in A} x_{ij}^k - \sum_{j:(j,i)\in A} x_{ji}^k = -d_i^k \) for store nodes (demand must be met exactly)
+   \( \sum_{j:(i,j)\in A} x_{ij}^k - \sum_{j:(j,i)\in A} x_{ji}^k = 0 \) for intermediate nodes
+2. Capacity constraint
+   \( \sum_{k\in K} x_{ij}^k \leq u_{ij} \) for all (i,j) ∈ A
+3. Non-negativity
+   \( x_{ij}^k \geq 0 \) for all (i,j) ∈ A, k ∈ K
+
+Type:
+Continuous, Linear, Linear
+LP

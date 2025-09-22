@@ -1,0 +1,41 @@
+Set:
+1. DrillType
+The set of drill types, \( T = \{0, 1\} \) # 0 for High Intensity, 1 for Low Intensity
+
+Parameter:
+1. GemsProcessedPerDay
+[50, 30] # Gems processed per day by each drill type
+2. WaterRequiredPerDay
+[50, 20] # Units of water required per day by each drill type
+3. MinGemsToProcess
+800 # Minimum gems to process per day
+4. MaxWaterAvailable
+700 # Maximum units of water available per day
+5. MaxHighIntensityRatio
+0.4 # Maximum ratio of high intensity drills
+6. MinLowIntensityDrills
+10 # Minimum number of low intensity drills
+
+Decision variable:
+1. DrillCount
+Integer variable, \( x_{t} \) for all \( t \in T \), representing the number of drills of type \( t \) to use.
+
+Objective:
+Minimize the total number of drills needed.
+min: \sum_{t \in T} x_{t}
+
+Constraint:
+1. Gem processing capacity constraint
+\sum_{t \in T} GemsProcessedPerDay[t] * x_{t} \geq MinGemsToProcess
+2. Water availability constraint
+\sum_{t \in T} WaterRequiredPerDay[t] * x_{t} \leq MaxWaterAvailable
+3. High intensity drill proportion limit
+x_{0} \leq MaxHighIntensityRatio * \sum_{t \in T} x_{t}
+4. Minimum low intensity drills constraint
+x_{1} \geq MinLowIntensityDrills
+5. Non-negativity
+x_{t} \geq 0, for all \( t \in T \)
+
+Type:
+Integer, linear, linear
+IP

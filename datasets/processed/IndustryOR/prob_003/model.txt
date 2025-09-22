@@ -1,0 +1,47 @@
+Set:
+1. Animals
+The set of animals to raise, \( A = \{Cows, Sheep, Chickens\} \)
+
+Parameter:
+1. SellingPrice
+[500, 200, 8] # Selling price for cows, sheep, and chickens.
+2. FeedCost
+[100, 80, 5] # Feed cost for cows, sheep, and chickens.
+3. ManureProduction
+[10, 5, 3] # Units of manure produced per day by each cow, sheep, and chicken.
+4. MaxManure
+800 # Maximum daily manure units the farm can handle.
+5. MaxChickens
+50 # Maximum number of chickens the farm can hold.
+6. MinCows
+10 # Minimum number of cows required.
+7. MinSheep
+20 # Minimum number of sheep required.
+8. MaxTotalAnimals
+100 # Maximum total number of animals the farm can hold.
+
+Decision variable:
+1. NumberOfAnimals
+Integer variable, \( x_a \) for each animal type \( a \in A \), representing the number of animals of that type to raise.
+
+Objective:
+Maximize the total profit (Total Selling Price - Total Feed Cost).
+max: \(\sum_{a \in A} (SellingPrice_a - FeedCost_a) \cdot x_a\)
+
+Constraint:
+1. Manure Capacity
+\(\sum_{a \in A} ManureProduction_a \cdot x_a \leq MaxManure\)
+2. Chicken Capacity
+\(x_{Chickens} \leq MaxChickens\)
+3. Cow Demand
+\(x_{Cows} \geq MinCows\)
+4. Sheep Demand
+\(x_{Sheep} \geq MinSheep\)
+5. Total Animal Capacity
+\(\sum_{a \in A} x_a \leq MaxTotalAnimals\)
+6. Non-negativity
+\(x_a \geq 0, \forall a \in A\)
+
+Type:
+Integer, linear, linear
+ILP

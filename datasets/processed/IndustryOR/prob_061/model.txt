@@ -1,0 +1,28 @@
+Set:
+1. Restaurants
+The set of restaurants available for purchase, \( R = \{A, B, C, D\} \).
+
+Parameter:
+1. AnnualRevenue
+[15000, 40000, 30000, 50000] # Annual revenue for each restaurant.
+2. PurchaseCost
+[1.6, 2.5, 1.8, 3.0] # Purchase cost in millions for each restaurant.
+3. Budget
+6 # Total investment budget in millions.
+
+Decision variable:
+1. PurchaseRestaurant
+Binary variable, \( y_r \) for \( r \in R \), is 1 if restaurant r is purchased, and 0 otherwise.
+
+Objective:
+Maximize: \( 15000y_A + 40000y_B + 30000y_C + 50000y_D \)
+
+Constraint:
+1. BudgetConstraint
+The total cost of purchased restaurants cannot exceed the budget: \( 1.6y_A + 2.5y_B + 1.8y_C + 3.0y_D \le 6 \)
+2. MutualExclusion
+If Restaurant D is purchased, Restaurant A cannot be purchased: \( y_A + y_D \le 1 \)
+
+Type:
+Integer, linear, linear
+ILP

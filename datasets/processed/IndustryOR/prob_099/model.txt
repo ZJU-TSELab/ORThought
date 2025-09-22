@@ -1,0 +1,52 @@
+# Model description for prob_099
+# TODO: Add model description
+
+Set:
+1. Nodes
+The set of communication nodes, \( N = \{A, B, C, D, E\} \).
+
+Parameter:
+1. Bandwidth
+A 5x5 matrix, \( B_{ij} \), representing the bandwidth between node \( i \) and node \( j \).
+[[0, 90, 85, 0, 65], [95, 0, 70, 65, 34], [60, 0, 0, 88, 80], [67, 30, 25, 0, 84], [0, 51, 0, 56, 0]]
+
+Decision variable:
+1. Path_AC
+Binary variable, \( x_{ij} \), is 1 if the link from node \( i \) to node \( j \) is part of the path from A to C.
+2. Path_CE
+Binary variable, \( y_{ij} \), is 1 if the link from node \( i \) to node \( j \) is part of the path from C to E.
+3. MinBandwidth
+Continuous variable, \( b \), representing the minimum bandwidth of the entire A-C-E path.
+
+Objective:
+Maximize the minimum bandwidth of the path from A to E through C.
+max: b
+
+Constraint:
+1. Flow Conservation (Path A to C)
+   - One link must leave node A.
+   - One link must enter node C.
+   - For any other node \( k \notin \{A, C\} \), the number of links entering \( k \) must equal the number of links leaving \( k \).
+   \sum_j x_{Aj} = 1, \sum_i x_{iC} = 1
+   \sum_i x_{ik} = \sum_j x_{kj}, \forall k \in N \setminus \{A, C\}
+2. Flow Conservation (Path C to E)
+   - One link must leave node C.
+   - One link must enter node E.
+   - For any other node \( k \notin \{C, E\} \), the number of links entering \( k \) must equal the number of links leaving \( k \).
+   \sum_j y_{Cj} = 1, \sum_i y_{iE} = 1
+   \sum_i y_{ik} = \sum_j y_{kj}, \forall k \in N \setminus \{C, E\}
+3. No Loops
+The sum of links entering any intermediate node must be at most 1 for each path segment.
+\sum_i x_{ik} \leq 1, \forall k \in N \setminus \{A, C\}
+\sum_i y_{ik} \leq 1, \forall k \in N \setminus \{C, E\}
+The two paths must not share any nodes other than C.
+\sum_i x_{ik} + \sum_j y_{kj} \leq 1, \forall k \in N \setminus \{A, C, E\}
+4. Bottleneck Bandwidth
+The minimum bandwidth \( b \) must be less than or equal to the bandwidth of every selected link in both paths.
+b \leq B_{ij} + M(1 - x_{ij}), \forall i,j \in N
+b \leq B_{ij} + M(1 - y_{ij}), \forall i,j \in N
+(where M is a large number)
+
+Type:
+Mixed-Integer, linear, linear
+MILP

@@ -1,0 +1,35 @@
+Set:
+1. VehicleType
+The set of vehicle types, \( I = \{0, 1\} \) # 0 for Truck, 1 for Van
+
+Parameter:
+1. PattiesPerVehicle
+[1000, 500] # Number of patties each vehicle type can take
+2. CostPerTrip
+[300, 100] # Cost per trip for each vehicle type
+3. MinPatties
+50000 # Minimum number of patties to be shipped
+4. MaxCost
+12500 # Maximum budget available for shipment
+
+Decision variable:
+1. NumberOfTrips
+Integer variable, \( x_{i} \) for all \( i \in I \), representing the number of trips for each vehicle type.
+
+Objective:
+Minimize the total number of trips.
+min: \( \sum_{i \in I} x_{i} \)
+
+Constraint:
+1. Patty shipment requirement
+\( \sum_{i \in I} PattiesPerVehicle[i] \cdot x_{i} \geq MinPatties \)
+2. Budget constraint
+\( \sum_{i \in I} CostPerTrip[i] \cdot x_{i} \leq MaxCost \)
+3. Truck to van ratio constraint
+\( x_{0} \leq x_{1} \)
+4. Non-negativity
+\( x_{i} \geq 0 \), for all \( i \in I \)
+
+Type:
+Integer, linear, linear
+IP

@@ -1,0 +1,52 @@
+Set:
+1. Truck
+The set of trucks, \( K = \{1, 2, \dots, TruckNum\} \)
+2. Goods
+The set of goods, \( G = \{1, 2, \dots, GoodsNum\} \)
+3. TruckSide
+The set of truck sides, \( S = \{0, 1\} \)
+
+Parameter:
+1. TruckNum
+12
+2. GoodsNum
+100
+3. TruckMaxCapacitySide
+[5250, 4750]
+4. TruckMaxWeightDifference
+500
+5. TruckMaxThickness
+500
+6. GoodsThickness
+[108, 62, 121, 31, 37, 90, 49, 49, 53, 156, 37, 62, 85, 78, 110, 119, 58, 159, 62, 150, 97, 131, 88, 89, 146, 50, 69, 58, 106, 138, 105, 95, 131, 38, 38, 92, 41, 40, 76, 133, 101, 103, 82, 134, 36, 126, 73, 121, 30, 116, 104, 140, 116, 74, 59, 66, 80, 64, 124, 100, 65, 47, 96, 83, 146, 139, 36, 47, 58, 133, 93, 60, 41, 38, 105, 31, 119, 115, 98, 93, 37, 90, 121, 83, 92, 36, 32, 56, 74, 126, 117, 72, 43, 38, 78, 65, 112, 149, 33, 88]
+7. GoodsWeight
+[469, 301, 673, 239, 451, 723, 513, 417, 397, 1715, 261, 578, 916, 736, 1024, 634, 346, 1038, 428, 1008, 709, 1396, 876, 694, 737, 398, 656, 356, 1165, 1112, 729, 1070, 1015, 224, 437, 917, 273, 303, 614, 738, 1069, 636, 686, 1035, 188, 1103, 647, 1269, 271, 1234, 631, 1577, 1201, 614, 435, 564, 695, 375, 1541, 693, 413, 270, 482, 979, 1461, 1251, 329, 389, 606, 1491, 445, 493, 357, 403, 706, 196, 1405, 571, 1097, 872, 279, 581, 973, 814, 585, 221, 235, 664, 817, 929, 951, 509, 434, 339, 525, 499, 1250, 1419, 140, 720]
+
+
+Decision variable:
+1. X
+Binary variable, \( x_{gks} \forall g \in G, k \in K, s \in S\), where \( x_{gks} = 1 \) if good \( g \) is loaded on truck \( k \) on side \( s \), otherwise \( x_{gks} = 0 \).
+2. Y
+Binary variable, \( y_{k} \forall k \in K\), where \( y_{k} = 1 \) if truck \( k \) is used, otherwise \( y_{k} = 0 \).
+
+Objective:
+The minimum number of trucks used.
+min: \sum_{k \in K} y_{k}
+
+Constraint:
+1. Each good must be loaded on one truck side.
+\sum_{k \in K} \sum_{s \in S} x_{gks} = 1 \forall g \in G
+2. Truck capacity side constraint.
+\sum_{g \in G} GoodsWeight[g] * x_{gks} <= TruckMaxCapacitySide[s] \forall k \in K, s \in S
+3. Truck side difference constraint.
+0 <= \sum_{g \in G} GoodsWeight[g] * x_{gk0} - \sum_{g \in G} GoodsWeight[g] * x_{gk1} <= TruckMaxWeightDifference \forall k \in K
+4. Truck thickness constraint.
+\sum_{g \in G} GoodsThickness[g] * x_{gks} <= TruckMaxThickness \forall k \in K, s \in S
+5. Truck used constraint 1.
+\sum_{g \in G}\sum_{s \in S} x_{gks} >= y_{k} \forall k \in K
+6. Truck used constraint 2.
+y_{k} >= x_{gks} \forall g \in G, k \in K, s \in S
+
+Type:
+Binary, Linear, Linear
+ILP

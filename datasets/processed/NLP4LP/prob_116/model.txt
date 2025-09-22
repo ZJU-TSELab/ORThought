@@ -1,0 +1,39 @@
+Set:
+1. NutType
+The set of nut types, \( I = \{0, 1\} \) # 0 for almonds, 1 for cashews
+
+Parameter:
+1. Calories
+[200, 300] # Calories per serving for each nut type
+2. Protein
+[20, 25] # Grams of protein per serving for each nut type
+3. Fat
+[15, 12] # Grams of fat per serving for each nut type
+4. MinCalories
+10000 # Minimum calories required
+5. MinProtein
+800 # Minimum grams of protein required
+6. AlmondToCashewRatio
+2 # Minimum ratio of almond servings to cashew servings
+
+Decision variable:
+1. NutServings
+Continuous variable, \( x_{i} \) for all \( i \in I \), representing the number of servings of each nut type.
+
+Objective:
+Minimize the total fat intake.
+min: \( \sum_{i \in I} Fat[i] \cdot x_{i} \)
+
+Constraint:
+1. Calorie requirement
+\( \sum_{i \in I} Calories[i] \cdot x_{i} \geq MinCalories \)
+2. Protein requirement
+\( \sum_{i \in I} Protein[i] \cdot x_{i} \geq MinProtein \)
+3. Servings ratio constraint
+\( x_{0} \geq AlmondToCashewRatio \cdot x_{1} \)
+4. Non-negativity
+\( x_{i} \geq 0 \), for all \( i \in I \)
+
+Type:
+Continuous, linear, linear
+LP

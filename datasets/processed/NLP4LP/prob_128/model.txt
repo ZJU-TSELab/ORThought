@@ -1,0 +1,35 @@
+Set:
+1. TestType
+The set of test types, \( I = \{0, 1\} \) # 0 for spit tests, 1 for swabs
+
+Parameter:
+1. TimePerTest
+[10, 15] # Minutes per test for each test type
+2. TotalMinutes
+8000 # Total minutes the clinic operates
+3. MinSwabs
+20 # Minimum number of swabs to be administered
+4. SpitToSwabRatio
+2 # Minimum ratio of spit tests to swabs
+
+Decision variable:
+1. TestCount
+Integer variable, \( x_{i} \) for all \( i \in I \), representing the number of tests of each type to be administered.
+
+Objective:
+Maximize the total number of tests that can be administered.
+max: \( \sum_{i \in I} x_{i} \)
+
+Constraint:
+1. Time constraint
+\( \sum_{i \in I} TimePerTest[i] \cdot x_{i} \leq TotalMinutes \)
+2. Minimum swabs constraint
+\( x_{1} \geq MinSwabs \)
+3. Spit to swab ratio constraint
+\( x_{0} \geq SpitToSwabRatio \cdot x_{1} \)
+4. Non-negativity
+\( x_{i} \geq 0 \), for all \( i \in I \)
+
+Type:
+Integer, linear, linear
+IP

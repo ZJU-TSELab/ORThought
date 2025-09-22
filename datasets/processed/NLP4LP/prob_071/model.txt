@@ -1,0 +1,33 @@
+Set:
+1. ShopSize
+The set of butcher shop sizes, \( I = \{0, 1\} \) # 0 for Small, 1 for Large
+
+Parameter:
+1. HotDogProduction
+[30, 70] # Hot dogs made per day by each shop size
+2. WorkerRequirement
+[2, 4] # Workers required for each shop size
+3. MinHotDogs
+500 # Minimum total hot dogs to be made per day
+4. MaxWorkers
+30 # Maximum number of workers available
+
+Decision variable:
+1. ShopCount
+Integer variable, \( x_{i} \) for all \( i \in I \), representing the number of shops of size \( i \) to be built.
+
+Objective:
+Minimize the total number of butcher shops.
+min: \( \sum_{i \in I} x_{i} \)
+
+Constraint:
+1. Hot dog production constraint
+\( \sum_{i \in I} HotDogProduction[i] \cdot x_{i} \geq MinHotDogs \)
+2. Worker availability constraint
+\( \sum_{i \in I} WorkerRequirement[i] \cdot x_{i} \leq MaxWorkers \)
+3. Non-negativity
+\( x_{i} \geq 0 \), for all \( i \in I \)
+
+Type:
+Integer, linear, linear
+IP

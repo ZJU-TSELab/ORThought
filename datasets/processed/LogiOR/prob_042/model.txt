@@ -1,0 +1,37 @@
+Set: 
+1. Package
+The set of packages, \( P = \{1, 2\} \)  # 1: Standard, 2: Express
+2. ShippingMethod
+The set of shipping methods, \( S = \{1, 2\} \)  # 1: Air freight, 2: Ground shipping
+
+Parameter:
+1. AirFreightCapacity
+150  # in cubic meters
+2. GroundShippingCapacity
+210  # in cubic meters
+3. AirFreightRequirement
+[17, 5]  # in cubic meters
+4. GroundShippingRequirement
+[30, 13]  # in cubic meters
+5. RevenuePerPackage
+[40, 15]  # in dollars
+
+Decision variable:
+1. PackagesShipped
+Integer variable, \( PackagesShipped[p][s] \forall p \in P, s \in S \), the number of packages shipped for package type \( p \) using shipping method \( s \).
+
+Objective:
+1. Maximize the total revenue.
+max: \sum_{p \in P, s \in S} (PackagesShipped[p][s] * RevenuePerPackage[p])
+
+Constraint:
+1. Air freight capacity constraint.
+\sum_{p \in P} (PackagesShipped[p][1] * AirFreightRequirement[p]) \leq AirFreightCapacity
+2. Ground shipping capacity constraint.
+\sum_{p \in P} (PackagesShipped[p][2] * GroundShippingRequirement[p]) \leq GroundShippingCapacity
+3. Non-negativity constraint.
+PackagesShipped[p][s] \geq 0 \forall p \in P, s \in S
+
+Type:
+Integer, Linear, Linear
+ILP

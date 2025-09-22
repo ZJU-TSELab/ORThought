@@ -1,0 +1,31 @@
+Set:
+1. MealType
+The set of meal types, I = {0, 1} # 0 for Smoothie, 1 for Protein Bar
+
+Parameter:
+1. Protein
+[2, 7] # Units of protein per meal for each type
+2. Calories
+[300, 250] # Calories per meal for each type
+3. CalorieLimit
+2000 # Maximum total calories allowed
+
+Decision variable:
+1. NumberOfMeals
+Integer variable, x_{i} for all i in I, representing the number of meals of each type to eat.
+
+Objective:
+Maximize the total protein intake.
+max: \( \sum_{i \in I} \text{Protein}[i] \cdot x_{i} \)
+
+Constraint:
+1. Calorie Limit
+\( \sum_{i \in I} \text{Calories}[i] \cdot x_{i} \leq \text{CalorieLimit} \)
+2. Meal Ratio
+\( x_{1} \geq 2 \cdot x_{0} \)
+3. Non-negativity
+\( x_{i} \geq 0 \), for all \( i \in I \)
+
+Type:
+Integer, linear, linear
+IP

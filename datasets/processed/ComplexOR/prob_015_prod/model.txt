@@ -1,0 +1,34 @@
+# Model description for prob_015_prod
+# TODO: Add model description
+
+Set:
+1. Products
+The set of products, \( P = \{1, 2, 3\} \)
+
+Parameter:
+1. Parameter a
+\( a = [3, 1, 2] \)
+2. Profit Coefficient
+\( c = [5, 10, 8] \)
+3. Upper Limit
+\( u = [4, 6, 3] \)
+4. Global Constraint Parameter
+\( b = 4 \)
+
+Decision variable:
+1. ProductionVariable
+Continuous variable, \( X_j \geq 0 \) for all \( j \in P \), where \( X_j \) is the amount of product \( j \) to produce
+
+Objective:
+Maximize total profit
+max: \( \sum_{j \in P} c_j \cdot X_j \)
+
+Constraint:
+1. Resource Constraint
+\( \sum_{j \in P} (1/a_j) \cdot X_j \leq b \)
+2. Upper Limit Constraint
+\( X_j \leq u_j, \quad \forall j \in P \)
+
+Type:
+Continuous, Linear, Linear
+LP

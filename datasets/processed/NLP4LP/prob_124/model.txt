@@ -1,0 +1,35 @@
+Set:
+1. IngredientType
+The set of ingredient types, \( I = \{0, 1\} \) # 0 for sulfate, 1 for ginger
+
+Parameter:
+1. EffectivenessTime
+[0.5, 0.75] # Minutes per unit for each ingredient type to be effective
+2. MinSulfate
+100 # Minimum units of sulfate to be added
+3. TotalUnits
+400 # Total units of both ingredients
+4. SulfateToGingerRatio
+2 # Maximum ratio of sulfate to ginger
+
+Decision variable:
+1. IngredientUnits
+Integer variable, \( x_{i} \) for all \( i \in I \), representing the number of units of each ingredient type.
+
+Objective:
+Minimize the total amount of time it takes for the mixture to be effective.
+min: \( \sum_{i \in I} EffectivenessTime[i] \cdot x_{i} \)
+
+Constraint:
+1. Minimum sulfate constraint
+\( x_{0} \geq MinSulfate \)
+2. Total units constraint
+\( \sum_{i \in I} x_{i} = TotalUnits \)
+3. Sulfate to ginger ratio constraint
+\( x_{0} \leq SulfateToGingerRatio \cdot x_{1} \)
+4. Non-negativity
+\( x_{i} \geq 0 \), for all \( i \in I \)
+
+Type:
+Integer, linear, linear
+IP

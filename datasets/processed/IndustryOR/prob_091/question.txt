@@ -1,0 +1,3 @@
+A school is preparing a trip for 400 students. The transportation company has 10 buses with 50 seats each and 8 minibuses with 40 seats each, but only 9 drivers are available. The rental cost for a bus is £800, and the rental cost for a minibus is £600. Calculate how many of each type of bus should be used to achieve the lowest cost.
+
+Try to formulate a model for this problem.

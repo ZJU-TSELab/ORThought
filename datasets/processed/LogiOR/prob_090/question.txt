@@ -1,0 +1,21 @@
+A shared mobility company plans to deploy a fleet of 1,000 electric scooters across five key hotspot zones in a city. To ensure service stability and a positive user experience, the company aims to achieve a balanced deployment that aligns with the demand profile of each zone.
+
+The company's goal is to minimize the network's imbalance. This imbalance is defined as the sum of the squared differences between the number of scooters deployed in each zone and an ideal, attractiveness-weighted deployment. The ideal deployment for a zone is calculated by distributing the total fleet proportionally to that zone's share of the total attractiveness.
+
+When planning the deployment, the following conditions must be met:
+1. The total number of scooters deployed across all zones must equal 1,000.
+2. To align operational capacity with potential demand, the number of scooters in each zone must not be less than a minimum quota. This quota is set at 10% of the total fleet size, weighted by the proportion of that zone's attractiveness relative to the total attractiveness of all zones.
+3. The 'Commercial Center' and 'Transit Hub' zones are geographically adjacent and frequently interact with each other. To ensure service continuity, the absolute difference in the number of scooters deployed in these two zones must not exceed 50.
+4. The company has divided the zones into two operational clusters: Cluster 1 (Commercial Center, Tourist Area) and Cluster 2 (University City, Tech Park, Transit Hub). Each cluster can deploy a maximum of 600 scooters to match the management capacity of local operational teams.
+
+The attractiveness data for each zone is provided in the table below. Please devise a deployment plan that minimizes the network imbalance while satisfying all constraints.
+
+Table: Zonal Attractiveness Data
+
+| Hotspot Zone | Attractiveness (Predicted Daily Trips) |
+|:---|:---|
+| Commercial Center | 500 |
+| University City | 800 |
+| Tech Park | 700 |
+| Tourist Area | 600 |
+| Transit Hub | 900 |

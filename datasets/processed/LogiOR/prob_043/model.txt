@@ -1,0 +1,42 @@
+Set:
+1. Segment
+The set of customer segments, \( S = \{1, 2\} \)  # 1: Small Businesses, 2: Large Enterprises
+2. Service
+The set of services, \( T = \{1, 2\} \)  # 1: Priority, 2: Economy
+
+Parameter:
+1. PriorityServiceValue
+[120, 90]  # in dollars
+2. EconomyServiceValue
+[80, 110]  # in dollars
+3. SmallBusinessPotential
+1000  # number of customers
+4. LargeEnterprisePotential
+1500  # number of customers
+
+Decision Variable:
+1. PriorityPrice
+Continous variable, \( PriorityPrice \) 
+2. EconomyPrice
+Continous variable, \( EconomyPrice \)  
+
+Objective:
+1. Maximize the total revenue.
+max: (SmallBusinessPotential * PriorityPrice) + (LargeEnterprisePotential * EconomyPrice)
+
+Constraint:
+1. Small business chooses Priority.
+PriorityServiceValue[1] - PriorityPrice \geq EconomyServiceValue[1] - EconomyPrice
+2. Large enterprise chooses Economy.
+PriorityServiceValue[2] - PriorityPrice \leq EconomyServiceValue[2] - EconomyPrice
+3. price difference constraint.
+PriorityPrice - EconomyPrice >= 15
+4. bound constraint.
+PriorityPrice >= 0
+EconomyPrice >= 0
+PriorityPrice <= PriorityServiceValue[1]
+EconomyPrice <= EconomyServiceValue[2]
+
+Type:
+Continous, Linear, Linear
+LP

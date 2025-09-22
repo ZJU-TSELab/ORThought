@@ -1,0 +1,11 @@
+A container shipping company needs to execute a transport contract from Shanghai to Los Angeles, a total sailing distance of 6000 nautical miles. The voyage must be completed within 12 days (288 hours). The company can choose one of three different types of vessels from its fleet to carry out this mission. The fuel consumption rate for each vessel is an approximate quadratic function of its sailing speed v. The price of fuel is ¥4000 per ton. Additionally, due to new environmental regulations, the company must pay for its carbon dioxide emissions at a rate of ¥300 per ton of CO2. Specific information for the three vessels is shown in Table 1, including their fuel consumption formulas, CO2 emission factors, and a fixed cost for selecting each vessel.
+
+Table 1: Vessel Information 
+
+| Vessel | Fuel Consumption (tons/hour) | CO2 Emission Factor (ton CO2/ton fuel) | Selection Fixed Cost (¥) |
+|------|----------------------------------|------|---------|
+| Ship A | $0.005 \times v^2 + 0.1v + 1.2$  | 3.2  | 500,000 |
+| Ship B | $0.004 \times v^2 + 0.08v + 1.5$ | 3.15 | 600,000 |
+| Ship C | $0.006 \times v^2 + 0.12v + 1.0$ | 3.25 | 450,000 |
+
+The objective is to select one vessel and determine its optimal sailing speed to minimize the total cost of the voyage.

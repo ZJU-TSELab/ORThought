@@ -1,0 +1,35 @@
+Set:
+1. PillType
+The set of pill types, \( I = \{0, 1\} \) # 0 for Prevention, 1 for Treatment
+
+Parameter:
+1. CostPerPill
+[15, 25] # Cost to make each type of pill
+2. MaxBudget
+10000 # Maximum budget available for purchasing pills
+3. MinTreatmentPills
+50 # Minimum number of treatment pills to purchase
+4. PreventionToTreatmentRatio
+2 # The number of prevention pills must be at least twice the number of treatment pills
+
+Decision variable:
+1. NumberOfPills
+Integer variable, \( x_{i} \) for all \( i \in I \), representing the number of pills of each type to purchase.
+
+Objective:
+Maximize the number of patients that can be treated (number of treatment pills).
+max: \( x_{1} \)
+
+Constraint:
+1. Budget constraint
+\( \sum_{i \in I} CostPerPill[i] \cdot x_{i} \leq MaxBudget \)
+2. Minimum treatment pills
+\( x_{1} \geq MinTreatmentPills \)
+3. Prevention to treatment ratio
+\( x_{0} \geq PreventionToTreatmentRatio \cdot x_{1} \)
+4. Non-negativity
+\( x_{i} \geq 0 \), for all \( i \in I \)
+
+Type:
+Integer, linear, linear
+IP

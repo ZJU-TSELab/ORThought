@@ -1,0 +1,35 @@
+Set:
+1. FurnitureType
+The set of furniture types, \( T = \{0, 1\} \) # 0 for Chair, 1 for Dresser
+
+Parameter:
+1. Profit
+[43, 52] # Profit per furniture type: $43 for Chair, $52 for Dresser
+2. StainAvailable
+17 # Total gallons of stain available
+3. OakAvailable
+11 # Total lengths of oak wood available
+4. StainRequired
+[1.4, 1.1] # Gallons of stain required per furniture type
+5. OakRequired
+[2, 3] # Lengths of oak wood required per furniture type
+
+Decision variable:
+1. FurnitureCount
+Integer variable, \( x_{t} \) for all \( t \in T \), representing the number of items of type \( t \) to produce.
+
+Objective:
+Maximize the total profit from producing furniture.
+max: \sum_{t \in T} Profit[t] * x_{t}
+
+Constraint:
+1. Stain constraint
+\sum_{t \in T} StainRequired[t] * x_{t} \leq StainAvailable
+2. Oak constraint
+\sum_{t \in T} OakRequired[t] * x_{t} \leq OakAvailable
+3. Non-negativity
+x_{t} \geq 0, \forall t \in T
+
+Type:
+Integer, linear, linear
+IP

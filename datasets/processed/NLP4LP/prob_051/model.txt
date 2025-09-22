@@ -1,0 +1,33 @@
+Set:
+1. FactoryType
+The set of factory types, \( T = \{0, 1\} \) # 0 for Rural, 1 for Urban
+
+Parameter:
+1. PhonesPerDay
+[100, 200] # Phones made per day by each factory type
+2. ManagersRequired
+[8, 20] # Managers required to operate each factory type
+3. MinPhonesPerDay
+3000 # Minimum phones to make per day
+4. MaxManagersAvailable
+260 # Maximum number of managers available
+
+Decision variable:
+1. FactoryCount
+Integer variable, \( x_{t} \) for all \( t \in T \), representing the number of factories of type \( t \) to build.
+
+Objective:
+Minimize the total number of factories.
+min: \sum_{t \in T} x_{t}
+
+Constraint:
+1. Phone production constraint
+\sum_{t \in T} PhonesPerDay[t] * x_{t} \geq MinPhonesPerDay
+2. Manager availability constraint
+\sum_{t \in T} ManagersRequired[t] * x_{t} \leq MaxManagersAvailable
+3. Non-negativity
+x_{t} \geq 0, for all \( t \in T \)
+
+Type:
+Integer, linear, linear
+IP

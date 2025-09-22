@@ -1,0 +1,44 @@
+Set:
+1. DemandNode
+The set of demand nodes, \( D = \{1, 2, \dots, DemandNodeNum\} \)
+2. Hub
+The set of drone logistics hubs, \( H = \{1, 2, \dots, HubNum\} \)
+
+Parameter:
+1. DemandNodeNum
+8
+2. DemandNodeCoordinates
+[[10, 20], [25, 60], [40, 80], [65, 50], [80, 20], [15, 45], [70, 75], [90, 90]]
+3. HubNum
+2
+4. HubCoordinatesRange
+[[0, 100], [0, 100]]
+5. M, a large number
+20000
+
+Decision variable:
+1. HubX
+Continuous variable, \( x_{i} \) for all \( i \in H \), representing the x-coordinate of hub \( i \)
+2. HubY
+Continuous variable, \( y_{i} \) for all \( i \in H \), representing the y-coordinate of hub \( i \)
+3. Auxiliary variables to track relationships between demand nodes and hubs
+Binary variable, \(a_{ij}\) for all \( i \in H, j \in D \), representing whether demand node \( j \) is served by hub \( i \) (1 if covered, 0 otherwise).
+4. Auxiliary variable for min-max obj
+Continuous variable, \( z \) representing the maximum distance from any demand node to its nearest hub
+
+Objective:
+The minimum possible value of the maximum distance from any demand node to its nearest hub.
+min: z
+
+Constraint:
+1. Hub assignment
+\sum_{i\in H} a_{ij} = 1, \forall j \in D
+2. Max distance
+HubX_{i}**2 + HubY_{i}**2 \leq z**2 + M(1 - a_{ij}), \forall i \in H, j \in D
+3. Hub coordinates range
+HubCoordinatesRange[0][0] \leq HubX_{i} \leq HubCoordinatesRange[0][1], \forall i \in H
+HubCoordinatesRange[1][0] \leq HubY_{i} \leq HubCoordinatesRange[1][1], \forall i \in H
+
+Type:
+Mixed, Non-linear, Linear
+NLP

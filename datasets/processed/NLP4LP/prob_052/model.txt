@@ -1,0 +1,33 @@
+Set:
+1. MachineType
+The set of machine types, \( T = \{0, 1\} \) # 0 for Counter-top, 1 for Fridge-sized
+
+Parameter:
+1. ConesPerDay
+[80, 150] # Cones of ice cream produced per day by each machine type
+2. HeatOutput
+[50, 70] # Units of heat output per day by each machine type
+3. MinConesToProduce
+1000 # Minimum cones to produce per day
+4. MaxHeatOutput
+500 # Maximum units of heat output allowed per day
+
+Decision variable:
+1. MachineCount
+Integer variable, \( x_{t} \) for all \( t \in T \), representing the number of machines of type \( t \) to buy.
+
+Objective:
+Minimize the total number of machines needed.
+min: \sum_{t \in T} x_{t}
+
+Constraint:
+1. Production requirement constraint
+\sum_{t \in T} ConesPerDay[t] * x_{t} \geq MinConesToProduce
+2. Heat output constraint
+\sum_{t \in T} HeatOutput[t] * x_{t} \leq MaxHeatOutput
+3. Non-negativity
+x_{t} \geq 0, for all \( t \in T \)
+
+Type:
+Integer, linear, linear
+IP

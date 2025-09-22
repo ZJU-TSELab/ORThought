@@ -1,0 +1,37 @@
+Set:
+1. TransportType
+The set of transport types, \( I = \{0, 1\} \) # 0 for kayak, 1 for motorboat
+
+Parameter:
+1. TransportCapacity
+[4, 5] # People transported per trip for each type
+2. TimePerTrip
+[5, 3] # Minutes per trip for each type
+3. MinPeople
+550 # Minimum number of people to be transported
+4. MaxMotorboatTrips
+25 # Maximum number of motorboat trips
+5. MinKayakTripRatio
+0.75 # Minimum ratio of kayak trips to total trips
+
+Decision variable:
+1. NumberOfTrips
+Integer variable, \( x_{i} \) for all \( i \in I \), representing the number of trips for each transport type.
+
+Objective:
+Minimize the total time needed to transport all the locals.
+min: \( \sum_{i \in I} TimePerTrip[i] \cdot x_{i} \)
+
+Constraint:
+1. Total people transported
+\( \sum_{i \in I} TransportCapacity[i] \cdot x_{i} \geq MinPeople \)
+2. Maximum motorboat trips
+\( x_{1} \leq MaxMotorboatTrips \)
+3. Kayak trip ratio
+\( x_{0} \geq MinKayakTripRatio \cdot \sum_{i \in I} x_{i} \)
+4. Non-negativity
+\( x_{i} \geq 0 \), for all \( i \in I \)
+
+Type:
+Integer, linear, linear
+IP

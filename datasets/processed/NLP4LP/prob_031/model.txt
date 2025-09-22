@@ -1,0 +1,31 @@
+Set:
+1. FarmType
+The set of farm types, \( F = \{0, 1\} \) # 0 for Old Farm, 1 for New Farm
+2. BerryType
+The set of berry types, \( B = \{0, 1, 2\} \) # 0 for Raspberries, 1 for Blueberries, 2 for Strawberries
+
+Parameter:
+1. CostPerDay
+[300, 200] # Cost to operate per day for each farm type
+2. HarvestPerDay
+[[2, 4], [2, 1], [4, 2]] # kg of each berry type harvested per day from each farm type
+3. Demand
+[10, 9, 15] # kg of each berry type required by the contract
+
+Decision variable:
+1. DaysToOperate
+Continuous variable, \( x_{f} \) for all \( f \in F \), representing the number of days to operate farm type \( f \).
+
+Objective:
+Minimize the total operating cost.
+min: \sum_{f \in F} CostPerDay[f] * x_{f}
+
+Constraint:
+1. Demand satisfaction constraint
+\sum_{f \in F} HarvestPerDay[b][f] * x_{f} \geq Demand[b], for all \( b \in B \)
+2. Non-negativity
+x_{f} \geq 0, for all \( f \in F \)
+
+Type:
+continuous, linear, linear
+LP

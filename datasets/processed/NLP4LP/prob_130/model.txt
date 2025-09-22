@@ -1,0 +1,39 @@
+Set:
+1. MealTypes
+The set of meal types, \( M = \{0, 1\} \) # 0 for Turkey Dinner, 1 for Tuna Salad Sandwich
+
+Parameter:
+1. ProteinContent
+[20, 18] # Grams per meal for each meal type
+2. CarbContent
+[30, 25] # Grams per meal for each meal type
+3. FatContent
+[12, 8] # Grams per meal for each meal type
+4. MinProtein
+150 # Minimum grams of protein required
+5. MinCarbs
+200 # Minimum grams of carbs required
+6. MaxTurkeyProportion
+0.40 # Maximum proportion of meals that can be Turkey Dinners
+
+Decision variable:
+1. NumberOfMeals
+Integer variable, \( x_{m} \) for all \( m \in M \), representing the number of each meal to eat.
+
+Objective:
+Minimize total fat intake.
+min: \( \sum_{m \in M} FatContent[m] \cdot x_{m} \)
+
+Constraint:
+1. Protein requirement
+\( \sum_{m \in M} ProteinContent[m] \cdot x_{m} \geq MinProtein \)
+2. Carbohydrate requirement
+\( \sum_{m \in M} CarbContent[m] \cdot x_{m} \geq MinCarbs \)
+3. Turkey dinner proportion
+\( x_{0} \leq MaxTurkeyProportion \cdot \sum_{m \in M} x_{m} \)
+4. Non-negativity
+\( x_{m} \geq 0 \), for all \( m \in M \)
+
+Type:
+Integer, linear, linear
+IP

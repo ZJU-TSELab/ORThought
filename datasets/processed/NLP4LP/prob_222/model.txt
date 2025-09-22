@@ -1,0 +1,41 @@
+Set:
+1. PipeType
+The set of pipe types, \( I = \{0, 1\} \) # 0 for High-Volume, 1 for Low-Volume
+
+Parameter:
+1. GasFlowPerPipe
+[10000, 5000] # US gallons per day for each pipe type
+2. TechniciansPerPipe
+[12, 5] # Number of technicians required for each pipe type
+3. MinGasDemand
+150000 # Minimum US gallons of gas to be transported daily
+4. MaxTechnicians
+160 # Maximum number of technicians available
+5. MaxHighVolumeProportion
+0.35 # Maximum proportion of pipes that can be high-volume
+6. MinLowVolumePipes
+8 # Minimum number of low-volume pipes
+
+Decision variable:
+1. NumberOfPipes
+Integer variable, \( x_{i} \) for all \( i \in I \), representing the number of pipes of each type to use.
+
+Objective:
+Minimize the total number of pipes required.
+min: \( \sum_{i \in I} x_{i} \)
+
+Constraint:
+1. Gas demand constraint
+\( \sum_{i \in I} GasFlowPerPipe[i] \cdot x_{i} \geq MinGasDemand \)
+2. Staffing constraint
+\( \sum_{i \in I} TechniciansPerPipe[i] \cdot x_{i} \leq MaxTechnicians \)
+3. High-volume proportion constraint
+\( x_{0} \leq MaxHighVolumeProportion \cdot \sum_{i \in I} x_{i} \)
+4. Minimum low-volume pipes constraint
+\( x_{1} \geq MinLowVolumePipes \)
+5. Non-negativity
+\( x_{i} \geq 0 \), for all \( i \in I \)
+
+Type:
+Integer, linear, linear
+IP

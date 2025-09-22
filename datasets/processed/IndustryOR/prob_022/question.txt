@@ -1,0 +1,11 @@
+Hongdou Clothing Factory uses three special equipment to produce shirts, short-sleeved shirts, and casual clothes respectively. It is known that the labor, material usage, selling price, and variable cost of each of the above products are as shown in Table 5-10.
+
+Table 5-10
+
+| Product Name | Labor per unit | Material per unit | Selling Price | Variable Cost |
+|--------------|----------------|------------------|---------------|---------------|
+| Shirt        | 3              | 4                | 120           | 60            |
+| Short-sleeve | 2              | 3                | 80            | 40            |
+| Casual Cloth | 6              | 6                | 180           | 80            |
+
+It is known that the available labor per week is 1500 units, the available material is 1600 units, and the weekly fixed costs for the three special equipment for producing shirts, short-sleeved shirts, and casual clothes are 2000, 1500, and 1000 respectively. Design a weekly production plan for the factory to maximize its profit.

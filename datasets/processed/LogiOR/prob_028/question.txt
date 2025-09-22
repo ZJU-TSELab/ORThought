@@ -1,0 +1,26 @@
+A small-scale bakery operates in four towns: Greenville, Springfield, Riverside, and Hilltop. The bakery produces fresh bread, which is then delivered to local stores located in Maplewood, Oakdale, Pineville, Cedarhurst, and Brookside. The number of loaves of bread available at each bakery is provided in Table 1. Each store requires a specific number of loaves to meet daily customer demand, as shown in Table 2. The distances (in kilometers) between the bakeries and stores are given in Table 3.  Assuming the delivery cost (in USD) for each loaf of bread is calculated as the square root of the distance between the origin and destination towns, determine the optimal delivery schedule that minimizes total transportation costs while meeting all store requirements.  
+
+Table 1: Bread Availability at Bakeries  
+| Bakery       | Loaves Available |  
+|--------------|------------------|  
+| Greenville   | 200              |  
+| Springfield  | 150              |  
+| Riverside    | 250              |  
+| Hilltop      | 180              |  
+
+Table 2: Bread Requirements at Stores  
+| Store        | Loaves Required |  
+|--------------|-----------------|  
+| Maplewood    | 120             |  
+| Oakdale      | 100             |  
+| Pineville    | 130             |  
+| Cedarhurst   | 90              |  
+| Brookside    | 80              |  
+
+Table 3: Distances Between Bakeries and Stores (km)  
+| From / To    | Maplewood | Oakdale | Pineville | Cedarhurst | Brookside |  
+|--------------|-----------|---------|-----------|------------|-----------|  
+| Greenville   | 10        | 15      | 20        | 25         | 30        |  
+| Springfield  | 12        | 8       | 18        | 22         | 28        |  
+| Riverside    | 14        | 10      | 16        | 20         | 26        |  
+| Hilltop      | 16        | 12      | 14        | 18         | 24        |  

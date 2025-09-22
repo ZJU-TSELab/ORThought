@@ -1,0 +1,36 @@
+Set:
+1. Months
+The set of months for the planning horizon, \( T = \{\text{July, August, ..., December}\} \).
+
+Parameter:
+1. PurchasePrice
+[28, 24, 25, 27, 23, 23] # Purchase price per unit for each month \( p_t \).
+2. SellingPrice
+[29, 24, 26, 28, 22, 25] # Selling price per unit for each month \( s_t \).
+3. WarehouseCapacity
+500 # Maximum warehouse capacity in units.
+4. InitialInventory
+200 # Inventory at the end of June (start of July).
+
+Decision variable:
+1. Buy
+Integer variable, \( b_t \) for \( t \in T \), represents the quantity purchased at the beginning of month t.
+2. Sell
+Integer variable, \( s_t \) for \( t \in T \), represents the quantity sold during month t.
+3. Inventory
+Integer variable, \( i_t \) for \( t \in T \), represents the inventory at the end of month t.
+
+Objective:
+Maximize: \( \sum_{t \in T} (s_t \cdot \text{SellingPrice}_t - b_t \cdot \text{PurchasePrice}_t) \)
+
+Constraint:
+1. InventoryBalance
+For each month \( t \in T \), the ending inventory is the starting inventory plus purchases minus sales: \( i_t = i_{t-1} + b_t - s_t \), where \( i_0 \) is the initial inventory.
+2. WarehouseCapacity
+For each month \( t \in T \), the inventory level after purchasing must not exceed the warehouse capacity: \( i_{t-1} + b_t \le 500 \).
+3. SalesLimit
+For each month \( t \in T \), the quantity sold cannot exceed the available inventory after purchase: \( s_t \le i_{t-1} + b_t \).
+
+Type:
+Integer, linear, linear
+ILP

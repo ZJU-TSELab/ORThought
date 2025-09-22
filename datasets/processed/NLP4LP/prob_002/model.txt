@@ -1,0 +1,41 @@
+Set:
+1. AdType
+The set of advertisement types, \( T = \{0, 1\} \) # 0 for Radio, 1 for Social Media
+
+Parameter:
+1. Budget
+250000 # Total advertising budget
+2. AdCost
+[5000, 9150] # Cost per ad type: $5,000 for Radio, $9,150 for Social Media
+3. AdExposure
+[60500, 50000] # Expected exposure per ad type
+4. MinRadio
+15 # Minimum number of radio ads
+5. MaxRadio
+40 # Maximum number of radio ads
+6. MinSocial
+35 # Minimum number of social media ads
+
+Decision variable:
+1. AdCount
+Integer variable, \( x_{t} \) for all \( t \in T \), representing the number of ads of type \( t \) to run.
+
+Objective:
+Maximize the total exposure from the ad campaign.
+max: \sum_{t \in T} AdExposure[t] * x_{t}
+
+Constraint:
+1. Budget constraint
+\sum_{t \in T} AdCost[t] * x_{t} \leq Budget
+2. Radio ad lower bound
+x_{0} \geq MinRadio
+3. Radio ad upper bound
+x_{0} \leq MaxRadio
+4. Social media ad lower bound
+x_{1} \geq MinSocial
+5. Non-negativity
+x_{t} \geq 0, \forall t \in T
+
+Type:
+Integer, linear, linear
+IP

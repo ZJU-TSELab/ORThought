@@ -1,0 +1,35 @@
+Set:
+1. CroissantType
+The set of croissant types, \( T = \{0, 1\} \) # 0 for Almond, 1 for Pistachio
+2. IngredientType
+The set of ingredient types, \( I = \{0, 1\} \) # 0 for Butter, 1 for Flour
+
+Parameter:
+1. ProductionTime
+[12, 10] # Minutes to make each croissant type
+2. IngredientAvailability
+[600, 800] # Available units for each ingredient type
+3. IngredientConsumption
+[[5, 3], [8, 6]] # Units of each ingredient required per croissant of each type
+4. MinAlmondToPistachioRatio
+3 # Minimum ratio of almond croissants to pistachio croissants
+
+Decision variable:
+1. CroissantCount
+Integer variable, \( x_{t} \) for all \( t \in T \), representing the number of croissants of type \( t \) to make.
+
+Objective:
+Minimize the total production time.
+min: \sum_{t \in T} ProductionTime[t] * x_{t}
+
+Constraint:
+1. Ingredient availability constraint
+\sum_{t \in T} IngredientConsumption[i][t] * x_{t} \leq IngredientAvailability[i], for all \( i \in I \)
+2. Popularity constraint
+x_{0} \geq MinAlmondToPistachioRatio * x_{1}
+3. Non-negativity
+x_{t} \geq 0, for all \( t \in T \)
+
+Type:
+Integer, linear, linear
+IP

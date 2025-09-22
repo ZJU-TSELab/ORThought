@@ -1,0 +1,48 @@
+Set:
+1. Crops
+The set of crops that can be cultivated, \( C = \{\text{Soybean, Corn, Wheat}\} \).
+
+Parameter:
+1. TotalLand
+100 # Total available land in hectares.
+2. TotalFunds
+15000 # Total available funds in yuan.
+3. LaborAvailable
+{'AW': 3500, 'SS': 4000} # Available labor in person-days for Autumn/Winter and Spring/Summer.
+4. ExternalLaborIncome
+{'AW': 1.8, 'SS': 2.1} # Income from external work per person-day.
+5. CropData
+Data for each crop \( c \in C \), including labor requirements and net income per hectare.
+6. AnimalData
+Data for dairy cows and chickens, including investment cost, land use, labor requirements, net income, and capacity limits.
+
+Decision variable:
+1. Hectares
+Continuous variable, \( x_c \) for \( c \in C \), represents the hectares of land allocated to each crop.
+2. NumCows
+Integer variable, \( n_{cow} \), represents the number of dairy cows to raise.
+3. NumChickens
+Integer variable, \( n_{chicken} \), represents the number of chickens to raise.
+4. ExternalLabor
+Continuous variables, \( l_{AW} \) and \( l_{SS} \), represent the person-days of labor sold externally in each season.
+
+Objective:
+Maximize: \( \sum_{c \in C} \text{income}_c \cdot x_c + \text{income}_{cow} \cdot n_{cow} + \text{income}_{chicken} \cdot n_{chicken} + 1.8 \cdot l_{AW} + 2.1 \cdot l_{SS} \)
+
+Constraint:
+1. LandConstraint
+Total land used for crops and cow feed cannot exceed available land: \( \sum_{c \in C} x_c + 1.5 \cdot n_{cow} \le 100 \)
+2. FundsConstraint
+Total investment in animals cannot exceed available funds: \( 400 \cdot n_{cow} + 3 \cdot n_{chicken} \le 15000 \)
+3. LaborConstraintAW
+Total autumn/winter labor used for farm activities plus external labor sold cannot exceed available labor: \( \sum_{c \in C} \text{labor_aw}_c \cdot x_c + 100 \cdot n_{cow} + 0.6 \cdot n_{chicken} + l_{AW} \le 3500 \)
+4. LaborConstraintSS
+Total spring/summer labor used for farm activities plus external labor sold cannot exceed available labor: \( \sum_{c \in C} \text{labor_ss}_c \cdot x_c + 50 \cdot n_{cow} + 0.3 \cdot n_{chicken} + l_{SS} \le 4000 \)
+5. CapacityConstraint
+The number of animals cannot exceed the barn/coop capacity:
+- \( n_{cow} \le 32 \)
+- \( n_{chicken} \le 3000 \)
+
+Type:
+Mixed-Integer, linear, linear
+MILP

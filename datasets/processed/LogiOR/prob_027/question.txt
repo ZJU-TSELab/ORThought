@@ -1,0 +1,17 @@
+A national e-commerce company operates three distribution centers in the Metro region. Each center currently stores different quantities of standard and premium products as shown below:
+
+| Distribution Center | Standard Products | Premium Products |
+|---------------------|-------------------|------------------|
+| Center 1            | 150               | 30               |
+| Center 2            | 250               | 100              |
+| Center 3            | 300               | 70               |
+
+The company plans to open three retail fulfillment hubs that will serve customers with same-day delivery. Corporate policy requires that each fulfillment hub must maintain exactly 300 products in total inventory. The shipping distances (in kilometers) between distribution centers and fulfillment hubs are shown as follows:
+
+| From / To           | Hub 1 | Hub 2 | Hub 3 |
+|---------------------|-------|-------|-------|
+| Center 1            | 0     | 12    | 18    |
+| Center 2            | 12    | 0     | 15    |
+| Center 3            | 18    | 15    | 0     |
+
+What is the minimum total transportation distance required to move the products under the company's inventory requirements?

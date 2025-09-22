@@ -1,0 +1,37 @@
+Set:
+1. PillType
+The set of pill types, \( I = \{0, 1\} \) # 0 for Large Pill, 1 for Small Pill
+
+Parameter:
+1. MedicinalIngredientsPerPill
+[3, 2] # Units of medicinal ingredients required for each pill type
+2. FillerPerPill
+[2, 1] # Units of filler required for each pill type
+3. MaxMedicinalIngredients
+1000 # Maximum units of medicinal ingredients available
+4. MinLargePills
+100 # Minimum number of large pills to be made
+5. MinSmallPillProportion
+0.60 # Minimum proportion of total pills that must be small
+
+Decision variable:
+1. NumberOfPills
+Integer variable, \( x_{i} \) for all \( i \in I \), representing the number of pills of each type to be made.
+
+Objective:
+Minimize the total amount of filler material needed.
+min: \( \sum_{i \in I} FillerPerPill[i] \cdot x_{i} \)
+
+Constraint:
+1. Medicinal ingredients constraint
+\( \sum_{i \in I} MedicinalIngredientsPerPill[i] \cdot x_{i} \leq MaxMedicinalIngredients \)
+2. Minimum large pills constraint
+\( x_{0} \geq MinLargePills \)
+3. Small pill proportion constraint
+\( x_{1} \geq MinSmallPillProportion \cdot \sum_{i \in I} x_{i} \)
+4. Non-negativity
+\( x_{i} \geq 0 \), for all \( i \in I \)
+
+Type:
+Integer, linear, linear
+IP

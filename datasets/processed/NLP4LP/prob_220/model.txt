@@ -1,0 +1,35 @@
+Set:
+1. GameType
+The set of game types, \( I = \{0, 1\} \) # 0 for throwing, 1 for climbing
+
+Parameter:
+1. Customers
+[15, 8] # Customers attracted per hour by each game type
+2. PrizeCost
+[2, 3] # Prize cost per hour for each game type
+3. TotalPrizeBudget
+100 # Maximum total prize cost per hour
+4. MinClimbing
+5 # Minimum number of climbing games
+
+Decision variable:
+1. NumGames
+Integer variable, \( x_{i} \) for all \( i \in I \), representing the number of games of each type.
+
+Objective:
+Maximize the total number of customers attracted.
+max: \( \sum_{i \in I} Customers[i] \cdot x_{i} \)
+
+Constraint:
+1. Prize budget constraint
+\( \sum_{i \in I} PrizeCost[i] \cdot x_{i} \leq TotalPrizeBudget \)
+2. Game ratio constraint
+\( x_{0} \geq 2 \cdot x_{1} \)
+3. Minimum climbing games constraint
+\( x_{1} \geq MinClimbing \)
+4. Non-negativity and Integer
+\( x_{i} \geq 0 \) and integer, for all \( i \in I \)
+
+Type:
+Integer, linear, linear
+ILP

@@ -1,0 +1,12 @@
+A logistics company needs to optimize its warehouse storage by selecting a subset of products to store that maximizes profit while considering space constraints and product compatibility. The warehouse has a total capacity of 500 cubic meters. There are 8 products available, each with a specific volume, profit, and compatibility restrictions (some products cannot be stored together due to safety or regulatory reasons). The products and their attributes are as follows:
+
+| Product ID | Volume (m³) | Profit ($) | Incompatible Products |
+|------------|-------------|------------|------------------------|
+| 1          | 80          | 1200       | 3, 5                   |
+| 2          | 60          | 900        | 4                      |
+| 3          | 40          | 700        | 1, 6                   |
+| 4          | 70          | 1100       | 2, 7                   |
+| 5          | 50          | 800        | 1                      |
+| 6          | 30          | 500        | 3                      |
+| 7          | 90          | 1300       | 4                      |
+| 8          | 20          | 300        | None                   |

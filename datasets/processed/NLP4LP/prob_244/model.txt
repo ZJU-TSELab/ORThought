@@ -1,0 +1,39 @@
+Set:
+1. JackType
+The set of jack types, \( I = \{0, 1\} \) # 0 for Automatic Electric, 1 for Gas-powered
+
+Parameter:
+1. CarsPerHour
+[5, 4] # Number of cars processed per hour for each jack type
+2. ElectricityPerJack
+[6, 0] # Units of electricity used per hour for each jack type
+3. GasPerJack
+[0, 7] # Units of gas used per hour for each jack type
+4. MaxElectricJacks
+14 # Maximum number of automatic electric jacks, "less than 15" means <= 14 for integers.
+5. MaxElectricity
+50 # Maximum units of electricity available
+6. MaxGas
+80 # Maximum units of gas available
+
+Decision variable:
+1. NumberOfJacks
+Integer variable, \( x_{i} \) for all \( i \in I \), representing the number of jacks of each type to purchase.
+
+Objective:
+Maximize the total number of cars processed per hour.
+max: \( \sum_{i \in I} CarsPerHour[i] \cdot x_{i} \)
+
+Constraint:
+1. Maximum electric jacks
+\( x_{0} \leq MaxElectricJacks \)
+2. Electricity limit
+\( ElectricityPerJack[0] \cdot x_{0} \leq MaxElectricity \)
+3. Gas limit
+\( GasPerJack[1] \cdot x_{1} \leq MaxGas \)
+4. Non-negativity
+\( x_{i} \geq 0 \), for all \( i \in I \)
+
+Type:
+Integer, linear, linear
+IP

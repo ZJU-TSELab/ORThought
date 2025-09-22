@@ -1,0 +1,41 @@
+Set:
+1. TransportType
+The set of transport types, \( I = \{0, 1\} \) # 0 for Freight, 1 for Air
+
+Parameter:
+1. TonsPerTrip
+[5, 3] # Tons of candles transported per trip for each type
+2. CostPerTrip
+[300, 550] # Cost per trip for each transport type
+3. MinTotalTons
+200 # Minimum tons of candles to transport
+4. MaxBudget
+20000 # Maximum budget available for transportation
+5. MinAirTonsRatio
+0.3 # Minimum ratio of tons transported by air to total tons
+6. MinFreightTrips
+5 # Minimum number of freight trips
+
+Decision variable:
+1. NumberOfTrips
+Integer variable, \( x_{i} \) for all \( i \in I \), representing the number of trips for each transport type.
+
+Objective:
+Minimize the total number of trips.
+min: \( \sum_{i \in I} x_{i} \)
+
+Constraint:
+1. Total tons transported
+\( \sum_{i \in I} TonsPerTrip[i] \cdot x_{i} \geq MinTotalTons \)
+2. Budget constraint
+\( \sum_{i \in I} CostPerTrip[i] \cdot x_{i} \leq MaxBudget \)
+3. Air transportation proportion
+\( TonsPerTrip[1] \cdot x_{1} \geq MinAirTonsRatio \cdot \sum_{i \in I} TonsPerTrip[i] \cdot x_{i} \)
+4. Minimum freight trips
+\( x_{0} \geq MinFreightTrips \)
+5. Non-negativity
+\( x_{i} \geq 0 \), for all \( i \in I \)
+
+Type:
+Integer, linear, linear
+IP

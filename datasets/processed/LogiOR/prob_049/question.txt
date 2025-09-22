@@ -1,0 +1,14 @@
+LogiTech’s main distribution center is organized into two key areas: a packaging area located at coordinates (0, 0) and a loading dock located at coordinates (800, 600) (distances are in meters). The company must determine where to locate a sorting facility and a storage facility to minimize the daily cost of moving goods through the center. All movement within the distribution center is restricted to either east–west or north–south directions.  
+
+The number of daily trips between the areas are as follows:  
+
+| From/To          | Packaging Area | Loading Dock | Sorting Facility | Storage Facility |  
+|-------------------|----------------|--------------|-------------------|------------------|  
+| Packaging Area    | -              | 20           | 15                | 10               |  
+| Loading Dock      | 20             | -            | 25                | 30               |  
+| Sorting Facility  | 15             | 25           | -                 | 40               |  
+| Storage Facility  | 10             | 30           | 40                | -                |  
+
+The cost of moving goods is $0.50 per meter per trip. The sorting facility and storage facility must be located within the boundaries of the distribution center, which spans from (0, 0) to (1000, 1000). And any two areas among the four areas are at least 100 units apart.
+
+How should LogiTech locate the sorting and storage facilities to minimize daily transportation costs?

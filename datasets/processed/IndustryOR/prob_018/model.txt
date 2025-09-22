@@ -1,0 +1,45 @@
+Set:
+1. Manufacturer
+The set of manufacturers, \( M = \{A, B, C\} \)
+
+Parameter:
+1. CostPerChair
+[50, 45, 40] # Cost per chair for each manufacturer [A, B, C]
+2. ChairsPerOrder
+[15, 10, 10] # Number of chairs per order for each manufacturer [A, B, C]
+3. MinTotalChairs
+100 # Minimum total number of chairs to order
+4. MaxTotalChairs
+500 # Maximum total number of chairs to order
+
+Decision variable:
+1. Orders
+Integer variable, \( x_{m} \) for all \( m \in M \), representing the number of orders from manufacturer \( m \).
+2. UseManufacturer
+Binary variable, \( y_{m} \) for \( m \in \{A, B\} \), indicating if any chairs are ordered from manufacturer \( m \).
+
+Objective:
+Minimize the total cost of the orders.
+min: \sum_{m \in M} CostPerChair[m] * ChairsPerOrder[m] * x_{m}
+
+Constraint:
+1. Minimum total chairs constraint
+\sum_{m \in M} ChairsPerOrder[m] * x_{m} \geq MinTotalChairs
+2. Maximum total chairs constraint
+\sum_{m \in M} ChairsPerOrder[m] * x_{m} \leq MaxTotalChairs
+3. Conditional order from A to B
+If chairs are ordered from A, then at least one order must be placed with B.
+\( y_{A} = 1 \implies x_{B} \geq 1 \)
+4. Conditional order from B to C
+If chairs are ordered from B, then at least one order must be placed with C.
+\( y_{B} = 1 \implies x_{C} \geq 1 \)
+5. Linking orders and use variables
+These constraints link the binary 'Use' variables to the integer 'Orders' variables.
+\( x_{m} \geq y_{m} \) for \( m \in \{A, B\} \)
+\( x_{m} \leq BigM * y_{m} \) for \( m \in \{A, B\} \) (where BigM is a large number)
+6. Non-negativity
+\( x_{m} \geq 0, \forall m \in M \)
+
+Type:
+Integer, linear, linear
+ILP

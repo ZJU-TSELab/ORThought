@@ -1,0 +1,37 @@
+Set:
+1. CakeType
+The set of cake types, \( I = \{0, 1\} \) # 0 for cheesecake, 1 for caramel cake
+
+Parameter:
+1. Calories
+[200, 250] # Calories per slice for each cake type
+2. Sugar
+[40, 50] # Grams of sugar per slice for each cake type
+3. MaxCalories
+10000 # Maximum calories allowed
+4. MinCaramelSlices
+3 # Minimum number of caramel cake slices
+5. CheesecakeToCaramelRatio
+3 # Minimum ratio of cheesecake slices to caramel cake slices
+
+Decision variable:
+1. CakeSlices
+Integer variable, \( x_{i} \) for all \( i \in I \), representing the number of slices of each cake type.
+
+Objective:
+Maximize the total amount of sugar consumed.
+max: \( \sum_{i \in I} Sugar[i] \cdot x_{i} \)
+
+Constraint:
+1. Calorie constraint
+\( \sum_{i \in I} Calories[i] \cdot x_{i} \leq MaxCalories \)
+2. Minimum caramel slices constraint
+\( x_{1} \geq MinCaramelSlices \)
+3. Preference constraint
+\( x_{0} \geq CheesecakeToCaramelRatio \cdot x_{1} \)
+4. Non-negativity
+\( x_{i} \geq 0 \), for all \( i \in I \)
+
+Type:
+Integer, linear, linear
+IP

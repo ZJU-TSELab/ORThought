@@ -1,0 +1,33 @@
+Set:
+1. SawType
+The set of saw types, \( T = \{0, 1\} \) # 0 for Miter Saw, 1 for Circular Saw
+
+Parameter:
+1. PlanksCutPerDay
+[50, 70] # Planks of wood cut per day by each saw type
+2. SawdustProducedPerDay
+[60, 100] # Units of sawdust produced per day by each saw type
+3. MinPlanksToCut
+1500 # Minimum planks to cut per day
+4. MaxSawdustAllowed
+2000 # Maximum units of sawdust allowed per day
+
+Decision variable:
+1. SawCount
+Integer variable, \( x_{t} \) for all \( t \in T \), representing the number of saws of type \( t \) to purchase.
+
+Objective:
+Minimize the total number of saws needed.
+min: \sum_{t \in T} x_{t}
+
+Constraint:
+1. Wood cutting constraint
+\sum_{t \in T} PlanksCutPerDay[t] * x_{t} \geq MinPlanksToCut
+2. Sawdust production constraint
+\sum_{t \in T} SawdustProducedPerDay[t] * x_{t} \leq MaxSawdustAllowed
+3. Non-negativity
+x_{t} \geq 0, for all \( t \in T \)
+
+Type:
+Integer, linear, linear
+IP

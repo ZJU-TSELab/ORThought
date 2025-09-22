@@ -1,0 +1,41 @@
+Set:
+1. CurryType
+The set of curry types, \( I = \{0, 1\} \) # 0 for Goat, 1 for Chicken
+
+Parameter:
+1. CurryBaseUsage
+[6, 5] # Units of curry base required for each curry type
+2. GoatMeatUsage
+3 # Units of goat meat required for a goat curry
+3. ChickenMeatUsage
+5 # Units of chicken meat required for a chicken curry
+4. MaxGoatMeat
+1500 # Units of goat meat available
+5. MaxChickenMeat
+2000 # Units of chicken meat available
+6. MinChickenPercentage
+0.25 # Minimum percentage of chicken curry bowls
+
+Decision variable:
+1. CurryBowlCount
+Integer variable, \( x_{i} \) for all \( i \in I \), representing the number of curry bowls of type \( i \) to be made.
+
+Objective:
+Minimize the total amount of curry base used.
+min: \( \sum_{i \in I} CurryBaseUsage[i] \cdot x_{i} \)
+
+Constraint:
+1. Goat meat constraint
+\( GoatMeatUsage \cdot x_{0} \leq MaxGoatMeat \)
+2. Chicken meat constraint
+\( ChickenMeatUsage \cdot x_{1} \leq MaxChickenMeat \)
+3. Chicken percentage constraint
+\( x_{1} \geq MinChickenPercentage \cdot (x_{0} + x_{1}) \) which simplifies to \( 3 \cdot x_{1} \geq x_{0} \)
+4. Popularity constraint
+\( x_{0} \geq x_{1} + 1 \)
+5. Non-negativity
+\( x_{i} \geq 0 \), for all \( i \in I \)
+
+Type:
+Integer, linear, linear
+IP

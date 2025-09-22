@@ -1,0 +1,39 @@
+Set:
+1. FruitType
+The set of fruit types, \( I = \{0, 1\} \) # 0 for bananas, 1 for mangoes
+
+Parameter:
+1. Calories
+[80, 100] # Calories per fruit for each fruit type
+2. Potassium
+[20, 15] # Grams of potassium per fruit for each fruit type
+3. Sugar
+[10, 8] # Grams of sugar per fruit for each fruit type
+4. MinCalories
+4000 # Minimum calories required
+5. MinPotassium
+150 # Minimum grams of potassium required
+6. MaxMangoPercentage
+0.33 # Maximum percentage of mangoes
+
+Decision variable:
+1. FruitCount
+Integer variable, \( x_{i} \) for all \( i \in I \), representing the number of each fruit to be consumed.
+
+Objective:
+Minimize the total sugar intake.
+min: \( \sum_{i \in I} Sugar[i] \cdot x_{i} \)
+
+Constraint:
+1. Calorie requirement
+\( \sum_{i \in I} Calories[i] \cdot x_{i} \geq MinCalories \)
+2. Potassium requirement
+\( \sum_{i \in I} Potassium[i] \cdot x_{i} \geq MinPotassium \)
+3. Mango percentage constraint
+\( x_{1} \leq MaxMangoPercentage \cdot (x_{0} + x_{1}) \) which simplifies to \( (1 - MaxMangoPercentage) \cdot x_{1} \leq MaxMangoPercentage \cdot x_{0} \) or \( 0.67 \cdot x_{1} \leq 0.33 \cdot x_{0} \) which is approximately \( 2 \cdot x_{1} \leq x_{0} \)
+4. Non-negativity
+\( x_{i} \geq 0 \), for all \( i \in I \)
+
+Type:
+Integer, linear, linear
+IP

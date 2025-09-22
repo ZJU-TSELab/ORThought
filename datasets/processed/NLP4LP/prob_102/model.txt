@@ -1,0 +1,37 @@
+Set:
+1. VaccineType
+The set of vaccine types, \( I = \{0, 1\} \) # 0 for children's, 1 for adult's
+
+Parameter:
+1. MRNA
+[50, 75] # mg of mRNA per vaccine for each vaccine type
+2. FeverSuppressant
+[50, 75] # mg of fever suppressant per vaccine for each vaccine type
+3. MaxMRNA
+20000 # Maximum mg of mRNA available
+4. MinChildrenVaccines
+50 # Minimum number of children's vaccines to be made
+5. MinAdultVaccinePercentage
+0.7 # Minimum percentage of adult vaccines
+
+Decision variable:
+1. VaccineCount
+Integer variable, \( x_{i} \) for all \( i \in I \), representing the number of vaccines of type \( i \) to be made.
+
+Objective:
+Minimize the total amount of fever suppressant used.
+min: \( \sum_{i \in I} FeverSuppressant[i] \cdot x_{i} \)
+
+Constraint:
+1. mRNA constraint
+\( \sum_{i \in I} MRNA[i] \cdot x_{i} \leq MaxMRNA \)
+2. Adult vaccine percentage constraint
+\( x_{1} \geq MinAdultVaccinePercentage \cdot (x_{0} + x_{1}) \) which simplifies to \( (1 - MinAdultVaccinePercentage) \cdot x_{1} \geq MinAdultVaccinePercentage \cdot x_{0} \) or \( 0.3 \cdot x_{1} \geq 0.7 \cdot x_{0} \) or \( 3 \cdot x_{1} \geq 7 \cdot x_{0} \)
+3. Minimum children's vaccines constraint
+\( x_{0} \geq MinChildrenVaccines \)
+4. Non-negativity
+\( x_{i} \geq 0 \), for all \( i \in I \)
+
+Type:
+Integer, linear, linear
+IP

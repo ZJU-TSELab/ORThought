@@ -1,0 +1,35 @@
+Set:
+1. ContainerType
+The set of container types, \( I = \{0, 1\} \) # 0 for Cans, 1 for Glass Bottles
+
+Parameter:
+1. VolumePerUnit
+[250, 1000] # Milliliters of soda per unit for each container type
+2. MinTotalVolume
+1000000 # Minimum total milliliters of soda to be bottled every day
+3. MinBottles
+100 # Minimum number of glass bottles to be made
+4. CanToBottleRatio
+3 # The number of cans must be at least three times the number of glass bottles
+
+Decision variable:
+1. NumberOfUnits
+Integer variable, \( x_{i} \) for all \( i \in I \), representing the number of units of each container type to be made.
+
+Objective:
+Maximize the total number of units produced.
+max: \( \sum_{i \in I} x_{i} \)
+
+Constraint:
+1. Total volume constraint
+\( \sum_{i \in I} VolumePerUnit[i] \cdot x_{i} \geq MinTotalVolume \)
+2. Minimum bottles
+\( x_{1} \geq MinBottles \)
+3. Can to bottle ratio
+\( x_{0} \geq CanToBottleRatio \cdot x_{1} \)
+4. Non-negativity
+\( x_{i} \geq 0 \), for all \( i \in I \)
+
+Type:
+Integer, linear, linear
+IP

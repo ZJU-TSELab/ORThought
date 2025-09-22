@@ -1,0 +1,46 @@
+Set:
+1. Product
+The set of products, \( P = \{1, 2, 3, 4\} \)  # 1: Basic Product, 2: Advanced Product, 3: Premium Basic, 4: Premium Advanced
+
+Parameter:
+1. ProductPerRawMaterial
+[2, 3, 2, 3]
+2. LaborHoursPerRawMaterial
+2
+3. LaborHoursPerProduct
+[0, 0, 3, 4]
+4. SellingPrice
+[10, 12, 20, 25] 
+5. ProcessingCost
+[0, 0, 5, 6]
+6. RawMaterialCost
+5
+7. MaxLaborHours
+8000
+8. MaxRawMaterial
+3000
+
+Decision variable:
+1. RawMaterialPurchased
+Integer variable, \( RawMaterialPurchased \), the amount of raw material purchased in units.
+2. ProductProduced
+Integer variable, \( ProductProduced[p] \forall p \in P \), the amount of product \( p \) produced in units.
+
+Objective:
+1. Maximize the total profit.
+max: \sum_{p \in P} SellingPrice[p] * ProductProduced[p] - RawMaterialCost * RawMaterialPurchased - \sum_{p \in P} ProcessingCost[p] * ProductProduced[p]
+
+Constraint:
+1. Labor hours constraint.
+LaborHoursPerRawMaterial * RawMaterialPurchased + \sum_{p \in P} LaborHoursPerProduct[p] * ProductProduced[p] \leq MaxLaborHours
+2. Raw material constraint.
+RawMaterialPurchased \leq MaxRawMaterial
+3. Product production constraint.
+\sum_{p \in P}ProductProduced[p] == \sum_{p \in P}ProductPerRawMaterial[p] * RawMaterialPurchased
+4. Non-negativity constraint.
+ProductProduced[p] \geq 0 \forall p \in P
+RawMaterialPurchased \geq 0
+
+Type:
+Integer, Linear, Linear
+ILP

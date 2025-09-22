@@ -1,0 +1,41 @@
+Set:
+1. ProductType
+The set of product types, \( I = \{0, 1\} \) # 0 for vitamin shots, 1 for vitamin pills
+
+Parameter:
+1. VitaminC
+[30, 50] # Units of vitamin C required per batch for each product type
+2. VitaminD
+[40, 30] # Units of vitamin D required per batch for each product type
+3. PeopleSupplied
+[10, 7] # Number of people supplied per batch for each product type
+4. MaxVitaminC
+1200 # Maximum units of vitamin C available
+5. MaxVitaminD
+1500 # Maximum units of vitamin D available
+6. MaxShotBatches
+10 # Maximum number of vitamin shot batches
+
+Decision variable:
+1. BatchCount
+Integer variable, \( x_{i} \) for all \( i \in I \), representing the number of batches of each product type.
+
+Objective:
+Maximize the total number of people that can be supplied.
+max: \( \sum_{i \in I} PeopleSupplied[i] \cdot x_{i} \)
+
+Constraint:
+1. Vitamin C constraint
+\( \sum_{i \in I} VitaminC[i] \cdot x_{i} \leq MaxVitaminC \)
+2. Vitamin D constraint
+\( \sum_{i \in I} VitaminD[i] \cdot x_{i} \leq MaxVitaminD \)
+3. Batch relationship constraint
+\( x_{1} \geq x_{0} + 1 \)
+4. Maximum shot batches constraint
+\( x_{0} \leq MaxShotBatches \)
+5. Non-negativity
+\( x_{i} \geq 0 \), for all \( i \in I \)
+
+Type:
+Integer, linear, linear
+IP

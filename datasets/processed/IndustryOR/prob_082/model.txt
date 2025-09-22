@@ -1,0 +1,33 @@
+# Model description for prob_082
+Set:
+1. TimePeriods
+The set of 4-hour time periods in a day, \( T = \{0, 1, 2, 3, 4, 5\} \), corresponding to the intervals 2-6, 6-10, 10-14, 14-18, 18-22, and 22-2.
+
+Parameter:
+1. MinWaiters
+[4, 8, 10, 7, 12, 4] # Minimum number of waiters needed for each time period.
+
+Decision variable:
+1. WaitersStarting
+Integer variable, \( x_t \) for all \( t \in T \), representing the number of waiters starting their 8-hour shift at the beginning of period \( t \).
+
+Objective:
+Minimize the total number of waiters hired for the day.
+min: \sum_{t \in T} x_t
+
+Constraint:
+1. Demand Coverage
+For each period, the number of waiters on duty must meet the minimum requirement. A waiter covers the period they start in and the subsequent period.
+x_{t-1} + x_t \geq \text{MinWaiters}[t], \forall t \in T (with indices taken modulo 6)
+- Period 0 (2-6):  x_5 + x_0 \geq 4
+- Period 1 (6-10): x_0 + x_1 \geq 8
+- Period 2 (10-14): x_1 + x_2 \geq 10
+- Period 3 (14-18): x_2 + x_3 \geq 7
+- Period 4 (18-22): x_3 + x_4 \geq 12
+- Period 5 (22-2):  x_4 + x_5 \geq 4
+2. Non-negativity
+x_t \geq 0, \forall t \in T
+
+Type:
+Integer, linear, linear
+ILP

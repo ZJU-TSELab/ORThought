@@ -1,0 +1,37 @@
+Set:
+1. TransportType
+The set of transportation types, \( I = \{0, 1\} \) # 0 for cart, 1 for trolley
+
+Parameter:
+1. Capacity
+[5, 7] # kg/min transported by each type
+2. Workers
+[2, 4] # workers required for each type
+3. MinTrolleys
+12 # Minimum number of trolleys
+4. MaxTrolleyCapacityProportion
+0.4 # Maximum proportion of total capacity from trolleys
+5. RequiredRate
+100 # Required total transportation rate in kg/min
+
+Decision variable:
+1. NumTransport
+Integer variable, \( x_{i} \) for all \( i \in I \), representing the number of each transport type to use.
+
+Objective:
+Minimize the total number of workers.
+min: \( \sum_{i \in I} Workers[i] \cdot x_{i} \)
+
+Constraint:
+1. Total capacity constraint
+\( \sum_{i \in I} Capacity[i] \cdot x_{i} \geq RequiredRate \)
+2. Minimum trolleys constraint
+\( x_{1} \geq MinTrolleys \)
+3. Trolley capacity proportion constraint
+\( Capacity[1] \cdot x_{1} \leq MaxTrolleyCapacityProportion \cdot (Capacity[0] \cdot x_{0} + Capacity[1] \cdot x_{1}) \)
+4. Non-negativity and Integer
+\( x_{i} \geq 0 \) and integer, for all \( i \in I \)
+
+Type:
+Integer, linear, linear
+ILP

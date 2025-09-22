@@ -1,0 +1,31 @@
+Set:
+1. FertilizerType
+The set of fertilizer types, \( T = \{0, 1\} \) # 0 for C, 1 for Y
+2. NutrientType
+The set of nutrient types, \( N = \{0, 1\} \) # 0 for Nitrous Oxide, 1 for Vitamin Mix
+
+Parameter:
+1. Cost
+[2, 3] # Cost per kg for each fertilizer type
+2. MinNutrientRequirement
+[5, 8] # Minimum required units for each nutrient type
+3. NutrientContent
+[[1.5, 5], [3, 1]] # Units of each nutrient per kg of each fertilizer type
+
+Decision variable:
+1. FertilizerAmount
+Continuous variable, \( x_{t} \) for all \( t \in T \), representing the kilograms of fertilizer type \( t \) to use.
+
+Objective:
+Minimize the total cost of the compound.
+min: \sum_{t \in T} Cost[t] * x_{t}
+
+Constraint:
+1. Nutrient requirement constraint
+\sum_{t \in T} NutrientContent[n][t] * x_{t} \geq MinNutrientRequirement[n], for all \( n \in N \)
+2. Non-negativity
+x_{t} \geq 0, for all \( t \in T \)
+
+Type:
+continuous, linear, linear
+LP

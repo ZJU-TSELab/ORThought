@@ -1,0 +1,31 @@
+Set:
+1. Alloys
+The set of alloys, \( A = \{0, 1\} \)
+2. Elements
+The set of required elements, \( E = \{"A", "B"\} \)
+
+Parameter:
+1. Composition Data
+\( composition\_data = [[0.5, 0.5], [0.1, 0.9]] \)
+2. Desired Blend Percentage
+\( desired\_blend\_percentage = [0.5, 0.5] \)
+3. Alloy Price
+\( alloy\_price = [10.0, 20.0] \)
+
+Decision variable:
+1. AlloyAmountVariable
+Continuous variable, \( x_a \geq 0 \) for all \( a \in A \), where \( x_a \) is the amount of alloy \( a \) to be purchased
+
+Objective:
+Minimize total cost
+min: \( \sum_{a \in A} alloy\_price_a \cdot x_a \)
+
+Constraint:
+1. Element Composition Constraints
+\( \sum_{a \in A} composition\_data_{a,e} \cdot x_a = desired\_blend\_percentage_e \cdot \sum_{a \in A} x_a, \quad \forall e \in E \)
+2. Total Amount Constraint
+\( \sum_{a \in A} x_a = 1 \)
+
+Type:
+Continuous, Linear, Linear
+LP

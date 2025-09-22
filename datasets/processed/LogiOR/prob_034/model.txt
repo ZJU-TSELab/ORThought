@@ -1,0 +1,42 @@
+Set:
+1. Fuel
+The set of fuels, \( F = \{1, 2\} \)  # 1: gasoline, 2: diesel
+2. Feedstock
+The set of feedstocks, \( S = \{1, 2\} \)  # 1: feedstock A, 2: feedstock B
+
+Parameter:
+1. Inventory
+[8000, 12000]
+2. QualityRating
+[12, 6]
+3. Revenue
+[30, 25]
+4. DemandperMarketingDollar
+[8, 15]
+5. MinQualityRating
+[10, 8]
+
+Decision variable:
+1. ProductionAmount
+Continuous variable, \( ProductionAmount[f][s] \forall f \in F, s \in S \), where \( ProductionAmount[f][s] \) is the amount of fuel \( f \) produced from feedstock \( s \).
+2. MarketingBudget
+Continuous variable, \( MarketingBudget[f] \forall f \in F \), where \( MarketingBudget[f] \) is the marketing budget for fuel \( f \).
+
+Objective:
+1. Maximize the profit from selling fuels.
+max: \sum_{f \in F} Revenue[f] * \sum_{s \in S} ProductionAmount[f][s] - \sum_{f \in F} MarketingBudget[f]
+
+Constraint:
+1. Inventory constraint.
+\sum_{f \in F} ProductionAmount[f][s] \leq Inventory[s] \forall s \in S
+2. Quality rating constraint.
+\sum_{s \in S} QualityRating[s] * ProductionAmount[f][s] \geq MinQualityRating[f] * \sum_{s \in S} ProductionAmount[f][s] \forall f \in F
+3. Demand constraint.
+DemandperMarketingDollar[f] * MarketingBudget[f] \geq \sum_{s \in S} ProductionAmount[f][s] \forall f \in F
+4. Non-negativity constraint.
+ProductionAmount[f][s] \geq 0 \forall f \in F, s \in S
+MarketingBudget[f] \geq 0 \forall f \in F
+
+Type:
+Continuous, Linear, Linear
+LP

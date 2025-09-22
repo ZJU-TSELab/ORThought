@@ -1,0 +1,31 @@
+Set:
+1. ProcessType
+The set of process types, \( T = \{0, 1\} \) # 0 for Process A, 1 for Process B
+2. ResourceType
+The set of resource types, \( R = \{0, 1\} \) # 0 for Gold, 1 for Wires
+
+Parameter:
+1. CoinsPlated
+[5, 7] # Number of coins plated by each process type
+2. ResourceAvailability
+[500, 300] # Available units for each resource type
+3. ResourceConsumption
+[[3, 5], [2, 3]] # Units of each resource required by each process type
+
+Decision variable:
+1. ProcessRuns
+Integer variable, \( x_{t} \) for all \( t \in T \), representing the number of times to run process type \( t \).
+
+Objective:
+Maximize the total number of coins plated.
+max: \sum_{t \in T} CoinsPlated[t] * x_{t}
+
+Constraint:
+1. Resource availability constraint
+\sum_{t \in T} ResourceConsumption[r][t] * x_{t} \leq ResourceAvailability[r], for all \( r \in R \)
+2. Non-negativity
+x_{t} \geq 0, for all \( t \in T \)
+
+Type:
+Integer, linear, linear
+IP

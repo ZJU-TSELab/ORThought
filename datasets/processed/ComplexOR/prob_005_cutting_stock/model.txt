@@ -1,0 +1,31 @@
+Set:
+1. Widths
+The set of widths to be cut, \( W = \{1, 2, 3\} \)
+2. Patterns
+The set of cutting patterns, \( P = \{1, 2\} \)
+
+Parameter:
+1. Roll Width
+\( roll\_width = 10 \)
+2. Width Values
+\( widths = [2, 3, 5] \)
+3. Orders
+\( orders = [4, 2, 2] \)
+4. Number of Rolls per Width in each Pattern
+\( num\_rolls\_width = [[1, 2, 0], [0, 0, 1]] \)
+
+Decision variable:
+1. PatternUsageVariable
+Integer variable, \( x_p \geq 0 \) for all \( p \in P \), where \( x_p \) is the number of times pattern \( p \) is used
+
+Objective:
+Minimize total number of rolls used
+min: \( \sum_{p \in P} x_p \)
+
+Constraint:
+1. Order Fulfillment Constraint
+\( \sum_{p \in P} num\_rolls\_width_{p,w} \cdot x_p \geq orders_w, \quad \forall w \in W \)
+
+Type:
+Integer, Linear, Linear
+ILP

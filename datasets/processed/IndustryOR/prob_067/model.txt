@@ -1,0 +1,35 @@
+Set:
+1. CoalYards
+The set of coal yards (sources), \( I = \{A, B\} \).
+2. ResidentialAreas
+The set of residential areas (destinations), \( J = \{1, 2, 3\} \).
+
+Parameter:
+1. MinSupply
+[80, 100] # Minimum monthly coal supply from each yard.
+2. Demand
+[55, 75, 50] # Monthly coal demand for each residential area.
+3. Distance
+[[10, 5, 6], [4, 8, 15]] # Distance in kilometers from each coal yard to each residential area.
+
+Decision variable:
+1. CoalDistribution
+Continuous variable, \( x_{ij} \) for \( i \in I, j \in J \), represents the tons of coal transported from coal yard i to residential area j.
+
+Objective:
+Minimize: \( 10x_{A1} + 5x_{A2} + 6x_{A3} + 4x_{B1} + 8x_{B2} + 15x_{B3} \)
+
+Constraint:
+1. SupplyConstraint
+The total coal shipped from each yard must meet its minimum supply requirement:
+- \( x_{A1} + x_{A2} + x_{A3} \ge 80 \)
+- \( x_{B1} + x_{B2} + x_{B3} \ge 100 \)
+2. DemandConstraint
+The total coal received by each residential area must meet its demand exactly:
+- \( x_{A1} + x_{B1} = 55 \)
+- \( x_{A2} + x_{B2} = 75 \)
+- \( x_{A3} + x_{B3} = 50 \)
+
+Type:
+Continuous, linear, linear
+LP

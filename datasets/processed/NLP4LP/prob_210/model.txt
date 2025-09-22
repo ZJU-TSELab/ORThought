@@ -1,0 +1,33 @@
+Set:
+1. LicenseType
+The set of license types, \( I = \{0, 1\} \) # 0 for personal, 1 for commercial
+
+Parameter:
+1. Cost
+[550, 2000] # Cost to generate each license type
+2. Profit
+[450, 1200] # Profit for each license type
+3. SalesLimit
+300 # Maximum number of licenses that can be sold
+4. BudgetLimit
+400000 # Maximum budget for production
+
+Decision variable:
+1. NumLicenses
+Integer variable, \( x_{i} \) for all \( i \in I \), representing the number of each license type to produce.
+
+Objective:
+Maximize the total profit.
+max: \( \sum_{i \in I} Profit[i] \cdot x_{i} \)
+
+Constraint:
+1. Sales limit constraint
+\( \sum_{i \in I} x_{i} \leq SalesLimit \)
+2. Budget limit constraint
+\( \sum_{i \in I} Cost[i] \cdot x_{i} \leq BudgetLimit \)
+3. Non-negativity and Integer
+\( x_{i} \geq 0 \) and integer, for all \( i \in I \)
+
+Type:
+Integer, linear, linear
+IP

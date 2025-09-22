@@ -1,0 +1,29 @@
+Set:
+1. VehicleType
+The set of vehicle types, \( I = \{0, 1\} \) # 0 for Van, 1 for Truck
+
+Parameter:
+1. ShoesPerVehicle
+[50, 100] # Number of pairs of shoes each vehicle type can transport
+2. MinShoes
+2000 # Minimum number of pairs of shoes to be supplied
+
+Decision variable:
+1. NumberOfVehicles
+Integer variable, \( x_{i} \) for all \( i \in I \), representing the number of vehicles of each type to use.
+
+Objective:
+Minimize the number of vans used.
+min: \( x_{0} \)
+
+Constraint:
+1. Shoe supply constraint
+\( \sum_{i \in I} ShoesPerVehicle[i] \cdot x_{i} \geq MinShoes \)
+2. Truck to van ratio constraint
+\( x_{1} \leq x_{0} \)
+3. Non-negativity
+\( x_{i} \geq 0 \), for all \( i \in I \)
+
+Type:
+Integer, linear, linear
+IP

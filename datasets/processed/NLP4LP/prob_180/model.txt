@@ -1,0 +1,37 @@
+Set:
+1. TripType
+The set of trip types, \( I = \{0, 1\} \) # 0 for Truck, 1 for Car
+
+Parameter:
+1. PackagesPerTrip
+[50, 30] # Number of packages each vehicle type can transport per trip
+2. GasPerTrip
+[20, 15] # Liters of gas used for each trip type
+3. MaxTruckTrips
+5 # Maximum number of truck trips
+4. MinCarRatio
+0.3 # The number of car trips must be at least 30% of the total trips
+5. MinTotalPackages
+500 # Minimum total number of packages to be transported
+
+Decision variable:
+1. NumberOfTrips
+Integer variable, \( x_{i} \) for all \( i \in I \), representing the number of trips of each type.
+
+Objective:
+Minimize the total amount of gas consumed.
+min: \( \sum_{i \in I} GasPerTrip[i] \cdot x_{i} \)
+
+Constraint:
+1. Maximum truck trips constraint
+\( x_{0} \leq MaxTruckTrips \)
+2. Minimum packages constraint
+\( \sum_{i \in I} PackagesPerTrip[i] \cdot x_{i} \geq MinTotalPackages \)
+3. Trip ratio constraint
+\( x_{1} \geq \frac{MinCarRatio}{1 - MinCarRatio} \cdot x_{0} \)
+4. Non-negativity
+\( x_{i} \geq 0 \), for all \( i \in I \)
+
+Type:
+Integer, linear, linear
+IP

@@ -1,0 +1,44 @@
+Set:
+1. FactoryType
+The set of factory types, \( I = \{0, 1\} \) # 0 for Factory 1, 1 for Factory 2
+
+Parameter:
+1. AcneCreamProduction
+[12, 20] # Units of acne cream produced per hour by each factory type
+2. AntiBacterialCreamProduction
+[15, 10] # Units of anti-bacterial cream produced per hour by each factory type
+3. BaseGelUsage
+[30, 45] # Units of base gel used per hour by each factory type
+4. MinAcneCream
+800 # Minimum units of acne cream to be produced
+5. MinAntiBacterialCream
+1000 # Minimum units of anti-bacterial cream to be produced
+6. MaxBaseGel
+5000 # Maximum units of base gel available
+
+Decision variable:
+1. FactoryHours
+Continuous variable, \( x_{i} \) for all \( i \in I \), representing the number of hours each factory is run.
+2. MaxHour
+Continuous variable, \( z \), representing the maximum of the factory hours.
+
+Objective:
+Minimize the maximum of the factory hours.
+min: \( z \)
+
+Constraint:
+1. Acne cream production constraint
+\( \sum_{i \in I} AcneCreamProduction[i] \cdot x_{i} \geq MinAcneCream \)
+2. Anti-bacterial cream production constraint
+\( \sum_{i \in I} AntiBacterialCreamProduction[i] \cdot x_{i} \geq MinAntiBacterialCream \)
+3. Base gel constraint
+\( \sum_{i \in I} BaseGelUsage[i] \cdot x_{i} \leq MaxBaseGel \)
+4. Max hour constraint
+\( z \geq x_{i} \), for all \( i \in I \)
+5. Non-negativity
+\( x_{i} \geq 0 \), for all \( i \in I \)
+\( z \geq 0 \)
+
+Type:
+Continuous, linear, linear
+LP

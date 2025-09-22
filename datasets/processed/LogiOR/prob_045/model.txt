@@ -1,0 +1,54 @@
+Set:
+1. Packaging
+The set of packaging types, \( P = \{1, 2\} \)  # 1: Premium, 2: Standard
+2. Method
+The set of production methods, \( M = \{1, 2, 3\} \)  
+3. YieldQuality
+The set of quality scores, \( Q = \{1, 2, 3\} \) # 1: Quality 6, 2: Quality 8, 3: Quality 10
+
+Parameter:
+1. CostPerTonPerMethod
+[4.20, 3.80, 4.50]  # in dollars
+2. YieldPerMethod
+[[0.3, 0.4, 0.3], [0.5, 0.3, 0.2], [0.2, 0.5, 0.3]]  # yield of quality scores per method
+3. UpgradeCost
+[1.20, 1.80]  # cost to upgrade quality scores 6 to 8 and 8 to 10 in dollars
+4. PricePerTon
+[15, 8]  # price per ton for Premium and Standard packaging in dollars
+5. MinQualityScore
+[9, 7]  # minimum quality score for Premium and Standard packaging
+6. MaxDemand
+[2500, 800]  # maximum demand for Premium and Standard packaging in tons
+
+Decision variable:
+1. ProcessingAmount
+Continuous variable, \( ProcessingAmount[m] \forall m \in M \), the amount of recycled paper processed using method \( m \) in tons.
+2. Quality6UpgradeAmount
+Continuous variable, \( Quality6UpgradeAmount \), the amount of quality score 6 upgraded to quality score 8 in tons.
+3. Quality8UpgradeAmount
+Continuous variable, \( Quality8UpgradeAmount \), the amount of quality score 8 upgraded to quality score 10 in tons.
+4. PackagingProducedPerQuality
+Continuous variable, \( PackagingProduced[p][q] \forall p \in P, q \in Q \), the amount of packaging produced of type \( p \) with quality score \( q \) in tons.
+
+Objective:
+1. Maximize the total profit.
+max: \sum_{p \in P, q \in Q} (PricePerTon[p] * PackagingProduced[p][q]) - \sum_{m \in M} (CostPerTonPerMethod[m] * ProcessingAmount[m]) - UpgradeCost[0] * Quality6UpgradeAmount - UpgradeCost[1] * Quality8UpgradeAmount
+
+Constraint:
+1. Quality score constraint for packaging.
+\sum_{q \in Q} (q * PackagingProduced[p][q]) \geq MinQualityScore[p] * \sum_{q \in Q} PackagingProduced[p][q] \forall p \in P
+2. Demand constraint for packaging.
+\sum_{q \in Q} PackagingProduced[p][q] \leq MaxDemand[p] \forall p \in P
+3. Yield constraint for quality scores.
+\sum_{m \in M} (YieldPerMethod[m][0] * ProcessingAmount[m]) - Quality6UpgradeAmount \geq \sum_{p \in P} PackagingProduced[p][1] \quad \text{(Quality 6)}
+\sum_{m \in M} (YieldPerMethod[m][1] * ProcessingAmount[m]) + Quality6UpgradeAmount - Quality8UpgradeAmount \geq \sum_{p \in P} PackagingProduced[p][2] \quad \text{(Quality 8)}
+\sum_{m \in M} (YieldPerMethod[m][2] * ProcessingAmount[m]) + Quality8UpgradeAmount \geq \sum_{p \in P} PackagingProduced[p][3] \quad \text{(Quality 10)}
+4. Non-negativity constraint.
+ProcessingAmount[m] \geq 0 \forall m \in M
+PackagingProduced[p][q] \geq 0 \forall p \in P, q \in Q
+Quality6UpgradeAmount \geq 0
+Quality8UpgradeAmount \geq 0
+
+Type:
+Continuous, Linear, Linear
+LP

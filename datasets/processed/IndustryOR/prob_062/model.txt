@@ -1,0 +1,46 @@
+Set:
+1. TransportModes
+The set of transportation modes, \( M = \{\text{Horse, Bicycle, Handcart}\} \).
+
+Parameter:
+1. TotalProduce
+1000 # Total units of produce to be transported.
+2. PollutionLimit
+1000 # Maximum allowable units of pollution.
+3. MinHorseTrips
+8 # Minimum number of trips to be made by horse.
+4. Capacity
+[55, 30, 40] # Carrying capacity per trip for Horse, Bicycle, and Handcart respectively.
+5. Pollution
+[80, 0, 0] # Pollution units per trip for Horse, Bicycle, and Handcart respectively.
+6. BigM
+1000 # A large number for linking constraints.
+
+Decision variable:
+1. NumTrips
+Integer variable, \( x_m \) for \( m \in M \), represents the number of trips made using each mode.
+2. UseBicycle
+Binary variable, \( y_B \), is 1 if the bicycle is used.
+3. UseHandcart
+Binary variable, \( y_C \), is 1 if the handcart is used.
+
+Objective:
+Minimize: \( 80x_{\text{Horse}} \)
+
+Constraint:
+1. ProduceRequirement
+The total amount of produce transported must be at least 1000 units: \( 55x_{\text{Horse}} + 30x_{\text{Bicycle}} + 40x_{\text{Handcart}} \ge 1000 \)
+2. PollutionLimit
+The total pollution generated must not exceed 1000 units: \( 80x_{\text{Horse}} \le 1000 \)
+3. MinHorseTrips
+At least 8 trips must be made by horse: \( x_{\text{Horse}} \ge 8 \)
+4. ModeSelection
+Exactly one of the bicycle or handcart must be chosen: \( y_B + y_C = 1 \)
+5. LinkTripsToMode
+Trips can only be made with a chosen mode (Big-M formulation):
+- \( x_{\text{Bicycle}} \le 1000 \cdot y_B \)
+- \( x_{\text{Handcart}} \le 1000 \cdot y_C \)
+
+Type:
+Integer, linear, linear
+ILP

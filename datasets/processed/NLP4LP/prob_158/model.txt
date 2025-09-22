@@ -1,0 +1,35 @@
+Set:
+1. AnimalType
+The set of animal types, \( I = \{0, 1\} \) # 0 for Camel, 1 for Horse
+
+Parameter:
+1. PackagesPerAnimal
+[50, 60] # Number of packages each animal type can carry
+2. FoodPerAnimal
+[20, 30] # Units of food required by each animal type
+3. MinPackages
+1000 # Minimum number of packages to be delivered
+4. MaxFood
+450 # Maximum units of food available
+
+Decision variable:
+1. NumberOfAnimals
+Integer variable, \( x_{i} \) for all \( i \in I \), representing the number of animals of each type to use.
+
+Objective:
+Minimize the total number of animals.
+min: \( \sum_{i \in I} x_{i} \)
+
+Constraint:
+1. Package delivery requirement
+\( \sum_{i \in I} PackagesPerAnimal[i] \cdot x_{i} \geq MinPackages \)
+2. Food constraint
+\( \sum_{i \in I} FoodPerAnimal[i] \cdot x_{i} \leq MaxFood \)
+3. Horse to camel ratio constraint
+\( x_{1} \leq x_{0} \)
+4. Non-negativity
+\( x_{i} \geq 0 \), for all \( i \in I \)
+
+Type:
+Integer, linear, linear
+IP

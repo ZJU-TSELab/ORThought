@@ -1,0 +1,35 @@
+Set:
+1. SoilType
+The set of soil types, \( I = \{0, 1\} \) # 0 for subsoil, 1 for topsoil
+
+Parameter:
+1. Water
+[10, 6] # Water units required to hydrate each bag of soil type
+2. TotalBags
+150 # Maximum number of bags of soil that can be transported
+3. MinTopsoil
+10 # Minimum number of topsoil bags that must be used
+4. MaxTopsoilRatio
+0.3 # Maximum proportion of topsoil bags relative to the total number of bags
+
+Decision variable:
+1. NumBags
+Integer variable, \( x_{i} \) for all \( i \in I \), representing the number of bags of each soil type to buy.
+
+Objective:
+Minimize the total amount of water required.
+min: \( \sum_{i \in I} Water[i] \cdot x_{i} \)
+
+Constraint:
+1. Total bags constraint
+\( \sum_{i \in I} x_{i} \leq TotalBags \)
+2. Topsoil minimum constraint
+\( x_{1} \geq MinTopsoil \)
+3. Topsoil proportion constraint
+\( x_{1} \leq MaxTopsoilRatio \cdot \sum_{i \in I} x_{i} \)
+4. Non-negativity and Integer
+\( x_{i} \geq 0 \) and integer, for all \( i \in I \)
+
+Type:
+Integer, linear, linear
+IP

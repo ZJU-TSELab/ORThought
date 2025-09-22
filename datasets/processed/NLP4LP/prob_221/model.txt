@@ -1,0 +1,41 @@
+Set:
+1. TableType
+The set of table types, \( I = \{0, 1\} \) # 0 for Circular Table, 1 for Rectangular Table
+
+Parameter:
+1. PosterBoardsPerTable
+[4, 4] # Number of poster boards that fit at each table type
+2. ParticipantsPerTable
+[5, 4] # Number of participants that fit at each table type
+3. GuestsPerTable
+[8, 12] # Number of guests catered to by each table type
+4. SpacePerTable
+[15, 20] # Units of space taken up by each table type
+5. MinParticipants
+500 # Minimum number of participants to be accommodated
+6. MinPosterBoards
+300 # Minimum number of poster boards to be accommodated
+7. MaxSpace
+1900 # Maximum units of space available
+
+Decision variable:
+1. NumberOfTables
+Integer variable, \( x_{i} \) for all \( i \in I \), representing the number of tables of each type to set up.
+
+Objective:
+Maximize the number of catered guests.
+max: \( \sum_{i \in I} GuestsPerTable[i] \cdot x_{i} \)
+
+Constraint:
+1. Participants constraint
+\( \sum_{i \in I} ParticipantsPerTable[i] \cdot x_{i} \geq MinParticipants \)
+2. Poster boards constraint
+\( \sum_{i \in I} PosterBoardsPerTable[i] \cdot x_{i} \geq MinPosterBoards \)
+3. Space constraint
+\( \sum_{i \in I} SpacePerTable[i] \cdot x_{i} \leq MaxSpace \)
+4. Non-negativity
+\( x_{i} \geq 0 \), for all \( i \in I \)
+
+Type:
+Integer, linear, linear
+IP

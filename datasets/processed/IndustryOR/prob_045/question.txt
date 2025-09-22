@@ -1,0 +1,13 @@
+A university computer lab hires 4 undergraduates (designated 1, 2, 3, and 4) and 2 graduate students (designated 5 and 6) for duty answering questions. The maximum duty hours from Monday to Friday and the hourly wage for each person are shown in Table 5-9.
+
+Table 5-9
+| Student ID | Wage (CNY/h) | Monday | Tuesday | Wednesday | Thursday | Friday |
+|------------|--------------|--------|---------|-----------|----------|--------|
+| 1          | 10.0         | 6      | 0       | 6         | 0        | 7      |
+| 2          | 10.0         | 0      | 6       | 0         | 6        | 0      |
+| 3          | 9.9          | 4      | 8       | 3         | 0        | 5      |
+| 4          | 9.8          | 5      | 5       | 6         | 0        | 4      |
+| 5          | 10.8         | 3      | 0       | 4         | 8        | 0      |
+| 6          | 11.3         | 0      | 6       | 0         | 6        | 3      |
+
+The lab operates from 8:00 AM to 10:00 PM, and there must be one and only one student on duty during open hours. It is also required that each undergraduate must work at least 8 hours per week, and each graduate student must work at least 7 hours per week. Additionally, supplement the following requirements: each student can work no more than 2 shifts per week, and no more than 3 students can be scheduled for duty each day. Based on these conditions, establish a new mathematical model.

@@ -1,0 +1,8 @@
+Warehouse 24 operates around the clock to fulfill online orders. Workers are scheduled in two consecutive 6-hour shifts and are paid $12 per hour. The possible shifts are as follows: midnight–6 A.M., 6 A.M.–noon, noon–6 P.M., and 6 P.M.–midnight. During each shift, the following numbers of orders arrive: midnight–6 A.M., 150; 6 A.M.–noon, 250; noon–6 P.M., 400; 6 P.M.–midnight, 300. Each worker can process up to 60 orders per shift. To account for customer dissatisfaction due to delayed orders, any order that remains unprocessed at the end of a shift incurs a penalty of $1. The warehouse ensures that all orders received by midnight are processed by the start of the next day, so the midnight–6 A.M. shift begins with no pending orders. How can Warehouse 24 minimize the total cost of labor and customer dissatisfaction penalties while meeting its order processing requirements?
+
+| Shift              | Orders Received |  
+|--------------------|-----------------|  
+| Midnight–6 A.M.    | 150             |  
+| 6 A.M.–Noon        | 250             |  
+| Noon–6 P.M.        | 400             |  
+| 6 P.M.–Midnight    | 300             |  

@@ -1,0 +1,41 @@
+Set:
+1. SanitizerType
+The set of sanitizer types, \( I = \{0, 1\} \) # 0 for liquid, 1 for foam
+
+Parameter:
+1. WaterUsage
+[40, 60] # Units of water required per sanitizer for each sanitizer type
+2. AlcoholUsage
+[50, 40] # Units of alcohol required per sanitizer for each sanitizer type
+3. HandsCleaned
+[30, 20] # Number of hands cleaned per sanitizer for each sanitizer type
+4. MaxWater
+2000 # Maximum units of water available
+5. MaxAlcohol
+2100 # Maximum units of alcohol available
+6. MaxLiquidSanitizers
+30 # Maximum number of liquid hand sanitizers to be made
+
+Decision variable:
+1. SanitizerCount
+Integer variable, \( x_{i} \) for all \( i \in I \), representing the number of sanitizers of each type to be made.
+
+Objective:
+Maximize the total number of hands that can be cleaned.
+max: \( \sum_{i \in I} HandsCleaned[i] \cdot x_{i} \)
+
+Constraint:
+1. Water constraint
+\( \sum_{i \in I} WaterUsage[i] \cdot x_{i} \leq MaxWater \)
+2. Alcohol constraint
+\( \sum_{i \in I} AlcoholUsage[i] \cdot x_{i} \leq MaxAlcohol \)
+3. Production relationship constraint
+\( x_{1} \geq x_{0} + 1 \)
+4. Maximum liquid sanitizers constraint
+\( x_{0} \leq MaxLiquidSanitizers \)
+5. Non-negativity
+\( x_{i} \geq 0 \), for all \( i \in I \)
+
+Type:
+Integer, linear, linear
+IP

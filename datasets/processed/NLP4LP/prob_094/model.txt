@@ -1,0 +1,35 @@
+Set:
+1. ChemicalType
+The set of chemical types, \( I = \{0, 1\} \) # 0 for cleansing, 1 for odor-removing
+
+Parameter:
+1. EffectivenessTime
+[4, 6] # Minutes per unit for each chemical type to be effective
+2. MinCleansingChemical
+100 # Minimum units of cleansing chemical to be used
+3. MaxTotalChemicals
+300 # Maximum total units of chemicals allowed
+4. CleansingToOdorRatio
+2 # Maximum ratio of cleansing chemical to odor-removing chemical
+
+Decision variable:
+1. ChemicalUnits
+Continuous variable, \( x_{i} \) for all \( i \in I \), representing the number of units of chemical type \( i \) to be used.
+
+Objective:
+Minimize the total time it takes for a house to be cleaned.
+min: \( \sum_{i \in I} EffectivenessTime[i] \cdot x_{i} \)
+
+Constraint:
+1. Minimum cleansing chemical constraint
+\( x_{0} \geq MinCleansingChemical \)
+2. Maximum total chemicals constraint
+\( \sum_{i \in I} x_{i} \leq MaxTotalChemicals \)
+3. Strength ratio constraint
+\( x_{0} \leq CleansingToOdorRatio \cdot x_{1} \)
+4. Non-negativity
+\( x_{i} \geq 0 \), for all \( i \in I \)
+
+Type:
+Continuous, linear, linear
+LP

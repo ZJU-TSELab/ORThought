@@ -1,0 +1,44 @@
+Set:
+1. Months
+The set of months, \( M = \{1, 2, 3\} \)
+
+Parameter:
+1. PurchasePrice
+[8, 6, 9] # Purchase price per unit in each month.
+2. SellingPrice
+[9, 8, 10] # Selling price per unit in each month.
+3. WarehouseCapacity
+500 # Maximum units the warehouse can store.
+4. InitialInventory
+200 # Units in stock at the end of the previous year.
+
+Decision variable:
+1. PurchaseQty
+Integer variable, \( x_m \), the quantity to purchase in month \( m \).
+2. SellQty
+Integer variable, \( y_m \), the quantity to sell in month \( m \).
+3. Inventory
+Integer variable, \( s_m \), the inventory at the end of month \( m \).
+
+Objective:
+Maximize the total profit.
+max: \(\sum_{m \in M} (SellingPrice_m \cdot y_m - PurchasePrice_m \cdot x_m)\)
+
+Constraint:
+1. Inventory Balance
+\(s_m = s_{m-1} + x_m - y_m, \forall m \in M\) (where \(s_0 = InitialInventory\))
+2. Warehouse Capacity (End of Month)
+The inventory at the end of each month cannot exceed capacity.
+\(s_m \leq WarehouseCapacity, \forall m \in M\)
+3. Warehouse Capacity (After Purchase)
+The inventory after purchasing cannot exceed capacity.
+\(s_{m-1} + x_m \leq WarehouseCapacity, \forall m \in M\)
+4. Sales Limit
+The quantity sold cannot exceed the available inventory.
+\(y_m \leq s_{m-1} + x_m, \forall m \in M\)
+5. Non-negativity
+All decision variables \(\geq 0\).
+
+Type:
+Integer, linear, linear
+ILP

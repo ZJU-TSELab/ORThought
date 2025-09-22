@@ -1,0 +1,41 @@
+Set:
+1. Distribution Centers
+The set of distribution centers, D = {A, B, C}
+2. Retail Outlets
+The set of retail outlets, R = {1, 2, 3, ..., 15}
+
+Parameter:
+1. Center Capacity
+Capacity[A] = 800, Capacity[B] = 600, Capacity[C] = 500
+2. Fixed Operating Cost
+FixedCost[A] = 2500, FixedCost[B] = 2000, FixedCost[C] = 1800
+3. Outlet Demand
+Demand = [85, 67, 92, 78, 105, 56, 120, 73, 89, 95, 62, 84, 76, 45, 58]
+4. Transportation Cost per Unit
+TransportCost[i][j] for center i ∈ D and outlet j ∈ R (as shown in the table above)
+5. Maximum Outlets per Center
+MaxOutlets[A] = 7, MaxOutlets[B] = 6, MaxOutlets[C] = 5
+
+Decision variable:
+1. Center Operation
+Binary variable x_i ∈ {0, 1} for all i ∈ D, where x_i = 1 if distribution center i is operated, and x_i = 0 otherwise
+2. Assignment
+Binary variable y_{ij} ∈ {0, 1} for all i ∈ D, j ∈ R, where y_{ij} = 1 if outlet j is served by center i, and y_{ij} = 0 otherwise
+
+Objective:
+Minimize total cost including fixed operating costs and transportation costs
+min: Σ_{i∈D} FixedCost_i × x_i + Σ_{i∈D} Σ_{j∈R} TransportCost_{ij} × Demand_j × y_{ij}
+
+Constraint:
+1. Each outlet must be served by exactly one distribution center
+Σ_{i∈D} y_{ij} = 1, ∀j ∈ R
+2. Center capacity constraint - total demand assigned to each center cannot exceed its capacity
+Σ_{j∈R} Demand_j × y_{ij} ≤ Capacity_i × x_i, ∀i ∈ D
+3. Maximum number of outlets per center constraint
+Σ_{j∈R} y_{ij} ≤ MaxOutlets_i × x_i, ∀i ∈ D
+4. Logical constraint - outlets can only be assigned to operating centers
+y_{ij} ≤ x_i, ∀i ∈ D, ∀j ∈ R
+
+Type:
+Binary, Linear, Linear
+ILP

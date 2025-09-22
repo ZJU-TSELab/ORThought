@@ -1,0 +1,37 @@
+Set:
+1. PerformerType
+The set of performer types, \( I = \{0, 1\} \) # 0 for Otter, 1 for Dolphin
+
+Parameter:
+1. TricksPerPerformer
+[3, 1] # Number of tricks performed by each performer type
+2. TreatsPerPerformer
+[3, 5] # Number of treats required by each performer type
+3. MaxTreats
+200 # Maximum number of treats available
+4. MinDolphins
+10 # Minimum number of dolphins to be used
+5. MaxOtterProportion
+0.30 # Maximum proportion of performers that can be otters
+
+Decision variable:
+1. NumberOfPerformers
+Integer variable, \( x_{i} \) for all \( i \in I \), representing the number of performers of each type.
+
+Objective:
+Maximize the total number of tricks that can be performed.
+max: \( \sum_{i \in I} TricksPerPerformer[i] \cdot x_{i} \)
+
+Constraint:
+1. Treats constraint
+\( \sum_{i \in I} TreatsPerPerformer[i] \cdot x_{i} \leq MaxTreats \)
+2. Minimum dolphins constraint
+\( x_{1} \geq MinDolphins \)
+3. Otter proportion constraint
+\( x_{0} \leq MaxOtterProportion \cdot \sum_{i \in I} x_{i} \)
+4. Non-negativity
+\( x_{i} \geq 0 \), for all \( i \in I \)
+
+Type:
+Integer, linear, linear
+IP

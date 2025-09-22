@@ -1,0 +1,31 @@
+Set:
+1. TripType
+The set of trip types, \( I = \{0, 1\} \) # 0 for Ferry, 1 for Light Rail
+
+Parameter:
+1. BoxesPerTrip
+[20, 15] # Number of boxes of corn each trip type can take
+2. MinBoxes
+500 # Minimum number of boxes of corn to be sent
+3. RailToFerryRatio
+4 # The number of light rail trips has to be at least 4 times the number of ferry trips
+
+Decision variable:
+1. NumberOfTrips
+Integer variable, \( x_{i} \) for all \( i \in I \), representing the number of trips of each type.
+
+Objective:
+Minimize the total number of trips needed.
+min: \( \sum_{i \in I} x_{i} \)
+
+Constraint:
+1. Minimum boxes constraint
+\( \sum_{i \in I} BoxesPerTrip[i] \cdot x_{i} \geq MinBoxes \)
+2. Trip ratio constraint
+\( x_{1} \geq RailToFerryRatio \cdot x_{0} \)
+3. Non-negativity
+\( x_{i} \geq 0 \), for all \( i \in I \)
+
+Type:
+Integer, linear, linear
+IP

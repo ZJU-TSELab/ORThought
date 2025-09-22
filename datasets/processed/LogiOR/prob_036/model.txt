@@ -1,0 +1,53 @@
+Set:
+1. Solvent
+The set of solvents, \( S = \{1, 2\} \)  # 1: Standard, 2: Premium
+2. RawMaterial
+The set of raw materials, \( R = \{1, 2, 3, 4, 5\} \)  # 1: Alpha, 2: Beta, 3: Gamma, 4: Delta, 5: Epsilon
+3. Property
+The set of properties, \( P = \{1, 2, 3, 4\} \)  # 1: Viscosity Index, 2: Flash Point, 3: Boiling Point, 4: Density
+
+Parameter:
+1. Availability
+[12000, 10500, 8000, 5000, 999999]  # Daily availability of each raw material in liters
+2. Cost
+[15, 12, 10, 18, 16]  # Cost of each raw material in cents per liter
+3. PropertyValue
+[[95, 45, 150, 0.85], 
+ [88, 55, 180, 0.92], 
+ [82, 60, 200, 0.89], 
+ [105, 40, 130, 0.87], 
+ [100, 50, 160, 0.91]]  # Properties of each raw material
+4. SolventPropertyValue
+[[85, 50, 140, 0.88], 
+ [92, 50, 140, 0.88]]  # Properties of each solvent
+4. Demand
+[8500, 25000]  # Daily demand for each solvent in thousands of liters
+5. SellingPrice
+[25.50, 28.75]  # Selling price per liter for each solvent in cents
+6. MaxBetaPercentage
+0.35  # Maximum percentage of Beta in each solvent
+
+Decision variable:
+1. AmountProduced
+Continuous variable, \( AmountProduced[s][r] \forall s \in S, r \in R \), where \( AmountProduced[s][r] \) is the amount of solvent \( s \) produced from raw material \( r \) in liters.
+
+Objective:
+1. Maximize the total daily profit.
+max: \sum_{s \in S} SellingPrice[s] * Demand[s] - \sum_{r \in R} Cost[r] * \sum_{s \in S} AmountProduced[s][r]
+
+Constraint:
+1. Demand constraint.
+\sum_{r \in R} AmountProduced[s][r] \geq Demand[s] \forall s \in S
+2. Availability constraint.
+\sum_{s \in S} AmountProduced[s][r] \leq Availability[r] \forall r \in R
+3. Property constraints.
+\sum_{r \in R} PropertyValue[r][p] * AmountProduced[s][r] \geq \sum_{r \in R} SolventPropertyValue[s][p] * AmountProduced[s][r] \forall s \in S, p \in {1, 3}  # Viscosity Index and Boiling Point
+\sum_{r \in R} PropertyValue[r][p] * AmountProduced[s][r] = \sum_{r \in R} SolventPropertyValue[s][p] * AmountProduced[s][r] \forall s \in S, p \in {2, 4}  # Flash Point and Density
+4. Beta constraint.
+AmountProduced[s][2] \leq MaxBetaPercentage * \sum_{r \in R} AmountProduced[s][r] \forall s \in S # Beta is raw material 2
+5. Non-negativity constraint.
+AmountProduced[s][r] \geq 0 \forall s \in S, r \in R
+
+Type:
+Continuous, Linear, Linear
+LP

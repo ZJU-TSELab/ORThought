@@ -1,0 +1,53 @@
+Set:
+1. Good
+The set of goods, \( G = \{A, B, C, D, E\} \)
+2. Container
+A set of potential containers, \( K = \{1, ..., N\} \), where N is a sufficiently large number.
+
+Parameter:
+1. Demand
+{'A': 120, 'B': 90, 'C': 300, 'D': 90, 'E': 120} # Required quantity for each good
+2. Weight
+{'A': 0.5, 'B': 1.0, 'C': 0.4, 'D': 0.6, 'E': 0.65} # Weight per unit for each good
+3. MaxContainerWeight
+60 # Maximum weight capacity of a container (tons)
+4. MinContainerWeight
+18 # Minimum weight to be loaded in a used container (tons)
+5. MinDPerContainer
+12 # Minimum units of good D to be loaded in a used container.
+
+Decision variable:
+1. QuantityLoaded
+Continuous variable, \( x_{g,k} \) for \( g \in G, k \in K \), representing the quantity of good \( g \) loaded into container \( k \).
+2. UseContainer
+Binary variable, \( y_{k} \) for \( k \in K \), indicating if container \( k \) is used.
+3. LoadA
+Binary variable, \( z_{A,k} \) for \( k \in K \), indicating if good A is loaded into container \( k \).
+
+Objective:
+Minimize the total number of containers used.
+min: \sum_{k \in K} y_{k}
+
+Constraint:
+1. Demand satisfaction
+For each good, the total quantity loaded across all containers must meet the demand.
+\sum_{k \in K} x_{g,k} \geq Demand[g], \forall g \in G
+2. Container capacity
+The total weight in each container cannot exceed its maximum capacity.
+\sum_{g \in G} Weight[g] * x_{g,k} \leq MaxContainerWeight * y_{k}, \forall k \in K
+3. Minimum container load
+If a container is used, it must be loaded with a minimum total weight.
+\sum_{g \in G} Weight[g] * x_{g,k} \geq MinContainerWeight * y_{k}, \forall k \in K
+4. Minimum D per container
+If a container is used, it must contain at least 12 units of good D.
+\( x_{D,k} \geq MinDPerContainer * y_{k}, \forall k \in K \)
+5. Conditional loading of A and C
+If good A is loaded in a container, at least one unit of C must also be loaded in that container.
+\( x_{A,k} \leq BigM * z_{A,k}, \forall k \in K \)
+\( x_{C,k} \geq z_{A,k}, \forall k \in K \)
+6. Non-negativity
+\( x_{g,k} \geq 0, \forall g \in G, k \in K \)
+
+Type:
+Mixed-Integer, linear, linear
+MILP

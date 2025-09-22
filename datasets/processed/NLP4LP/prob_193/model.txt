@@ -1,0 +1,35 @@
+Set:
+1. FoodType
+The set of food types, \( I = \{0, 1\} \) # 0 for Milk, 1 for Vegetables
+
+Parameter:
+1. CostPerUnit
+[1, 2] # Cost per unit for each food type
+2. CalciumPerUnit
+[40, 15] # Units of calcium in each food type
+3. IronPerUnit
+[25, 30] # Units of iron in each food type
+4. MinCalcium
+100 # Minimum required units of calcium
+5. MinIron
+50 # Minimum required units of iron
+
+Decision variable:
+1. NumberOfUnits
+Continuous variable, \( x_{i} \) for all \( i \in I \), representing the quantity of each food type to consume.
+
+Objective:
+Minimize the total cost.
+min: \( \sum_{i \in I} CostPerUnit[i] \cdot x_{i} \)
+
+Constraint:
+1. Calcium constraint
+\( \sum_{i \in I} CalciumPerUnit[i] \cdot x_{i} \geq MinCalcium \)
+2. Iron constraint
+\( \sum_{i \in I} IronPerUnit[i] \cdot x_{i} \geq MinIron \)
+3. Non-negativity
+\( x_{i} \geq 0 \), for all \( i \in I \)
+
+Type:
+Continuous, linear, linear
+LP

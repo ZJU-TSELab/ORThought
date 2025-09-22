@@ -1,0 +1,47 @@
+Set:
+1. Bakery
+The set of bakeries, \( B = \{1, 2, ..., BakeryNum\} \)
+2. Store
+The set of stores, \( S = \{1, 2, ..., StoreNum\} \)
+
+Parameter:
+1. BakeryNum
+4
+2. StoreNum
+5
+3. BakerySupply
+[200, 150, 250, 180]
+4. StoreDemand
+[120, 100, 130, 90, 80]
+5. ShippingDistance
+[
+    [10, 15, 20, 25, 30],
+    [12, 8, 18, 22, 28],
+    [14, 10, 16, 20, 26],
+    [16, 12, 14, 18, 24]
+]
+6. ShippingCost
+[
+    [sqrt(10), sqrt(15), sqrt(20), sqrt(25), sqrt(30)],
+    [sqrt(12), sqrt(8), sqrt(18), sqrt(22), sqrt(28)],
+    [sqrt(14), sqrt(10), sqrt(16), sqrt(20), sqrt(26)],
+    [sqrt(16), sqrt(12), sqrt(14), sqrt(18), sqrt(24)]
+]
+
+Decision variable:
+1. ShipAmount
+Integer variable, \( ShipAmount_{b,s} \forall b \in B, s \in S \), where \( ShipAmount_{b,s} \) is the amount of bread shipped from bakery \( b \) to store \( s \).
+
+Objective:
+1. Minimize the total transportation cost required to deliver the bread.
+min: \sum_{b \in B} \sum_{s \in S} ShippingCost[b][s] * ShipAmount[b][s]
+
+Constraint:
+1. Bakery supply constraint.
+\sum_{s \in S} ShipAmount[b][s] \leq BakerySupply[b] \forall b \in B
+2. Store demand constraint.
+\sum_{b \in B} ShipAmount[b][s] = StoreDemand[s] \forall s \in S
+
+Type:
+Integer, Linear, Linear
+ILP

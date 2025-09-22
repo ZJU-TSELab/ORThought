@@ -1,0 +1,33 @@
+Set:
+1. EquipmentType
+The set of equipment types, \( I = \{0, 1\} \) # 0 for Chop Saw, 1 for Steel Cutter
+
+Parameter:
+1. SteelCutPerDay
+[25, 5] # Pounds of steel cut per day for each equipment type
+2. WastePerDay
+[25, 3] # Units of waste generated per day for each equipment type
+3. MinSteelCut
+520 # Minimum pounds of metal to be cut every day
+4. MaxWaste
+400 # Maximum units of waste that can be produced every day
+
+Decision variable:
+1. NumberOfEquipment
+Integer variable, \( x_{i} \) for all \( i \in I \), representing the number of equipment of each type to purchase.
+
+Objective:
+Minimize the total number of metal-working equipment needed.
+min: \( \sum_{i \in I} x_{i} \)
+
+Constraint:
+1. Steel cutting demand
+\( \sum_{i \in I} SteelCutPerDay[i] \cdot x_{i} \geq MinSteelCut \)
+2. Waste limitation
+\( \sum_{i \in I} WastePerDay[i] \cdot x_{i} \leq MaxWaste \)
+3. Non-negativity
+\( x_{i} \geq 0 \), for all \( i \in I \)
+
+Type:
+Integer, linear, linear
+IP

@@ -1,0 +1,11 @@
+A city needs to place emergency response facilities to ensure that every residential area can be reached within 10 minutes. There are 5 potential facility locations (F1-F5) and 8 residential areas (R1-R8). The travel time (in minutes) between each facility location and residential area is given in the following table:
+
+| Facility\Residential | R1 | R2 | R3 | R4 | R5 | R6 | R7 | R8 |
+|----------------------|----|----|----|----|----|----|----|----|
+| F1                   | 8  | 12 | 9  | 15 | 7  | 11 | 14 | 6  |
+| F2                   | 10 | 8  | 13 | 7  | 9  | 12 | 5  | 11 |
+| F3                   | 14 | 6  | 10 | 8  | 12 | 7  | 9  | 13 |
+| F4                   | 7  | 11 | 14 | 6  | 8  | 10 | 12 | 9  |
+| F5                   | 9  | 13 | 7  | 11 | 6  | 14 | 8  | 10 |
+
+The goal is to select the minimum number of facilities such that every residential area is covered (reachable within 10 minutes) by at least one selected facility.

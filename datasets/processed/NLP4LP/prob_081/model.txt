@@ -1,0 +1,33 @@
+Set:
+1. FactorySize
+The set of factory sizes, \( I = \{0, 1\} \) # 0 for Medium, 1 for Small
+
+Parameter:
+1. ToyProduction
+[50, 35] # Toys made per day by each factory size
+2. OperatorRequirement
+[3, 2] # Operators required for each factory size
+3. MinToys
+250 # Minimum total toys to be made per day
+4. MaxOperators
+16 # Maximum number of operators available
+
+Decision variable:
+1. FactoryCount
+Integer variable, \( x_{i} \) for all \( i \in I \), representing the number of factories of size \( i \) to be built.
+
+Objective:
+Minimize the total number of factories.
+min: \( \sum_{i \in I} x_{i} \)
+
+Constraint:
+1. Toy production constraint
+\( \sum_{i \in I} ToyProduction[i] \cdot x_{i} \geq MinToys \)
+2. Operator availability constraint
+\( \sum_{i \in I} OperatorRequirement[i] \cdot x_{i} \leq MaxOperators \)
+3. Non-negativity
+\( x_{i} \geq 0 \), for all \( i \in I \)
+
+Type:
+Integer, linear, linear
+IP

@@ -1,0 +1,34 @@
+Set:
+1. Children
+The set of children, \( C = \{\text{Harry, Hermione, Ron, Fred, George, Ginny}\} \).
+
+Parameter:
+1. Cost
+{'Harry': 1200, 'Hermione': 1650, 'Ron': 750, 'Fred': 800, 'George': 800, 'Ginny': 1500} # The cost of taking each child on the trip.
+
+Decision variable:
+1. TakeChild
+Binary variable, \( x_c \) for \( c \in C \), is 1 if child c is taken on the trip, and 0 otherwise.
+
+Objective:
+Minimize: \( 1200x_{\text{Harry}} + 1650x_{\text{Hermione}} + 750x_{\text{Ron}} + 800x_{\text{Fred}} + 800x_{\text{George}} + 1500x_{\text{Ginny}} \)
+
+Constraint:
+1. GinnyIsTaken
+Ginny is definitely taken: \( x_{\text{Ginny}} = 1 \)
+2. MaxChildren
+At most four children can be taken: \( \sum_{c \in C} x_c \le 4 \)
+3. MinChildren
+At least three children must be taken: \( \sum_{c \in C} x_c \ge 3 \)
+4. HarryFredExclusion
+If Harry is taken, Fred is not: \( x_{\text{Harry}} + x_{\text{Fred}} \le 1 \)
+5. HarryGeorgeExclusion
+If Harry is taken, George is not: \( x_{\text{Harry}} + x_{\text{George}} \le 1 \)
+6. GeorgeFredImplication
+If George is taken, Fred must also be taken: \( x_{\text{George}} \le x_{\text{Fred}} \)
+7. GeorgeHermioneImplication
+If George is taken, Hermione must also be taken: \( x_{\text{George}} \le x_{\text{Hermione}} \)
+
+Type:
+Integer, linear, linear
+ILP

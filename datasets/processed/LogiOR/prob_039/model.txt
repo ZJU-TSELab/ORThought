@@ -1,0 +1,58 @@
+Set:
+1. Product
+The set of products, \( P = \{1, 2\} \)  # 1: Vaccine X, 2: Vaccine Y
+2. Quarter
+The set of quarters, \( Q = \{1, 2\} \)  # 1: Quarter 1, 2: Quarter 2
+
+Parameter:
+1. Demand
+[[100, 200], [300, 100]] # Demand for each product in each quarter
+2. MaxProductionPerQuarter
+[1500, 1500]
+3. RawMaterialCost
+[300, 450]
+4. RawMaterialPerProduct
+[4, 3]
+5. MaxRawMaterialPurchase
+[2500, 2500]
+6. InitialInventory
+[[200, 300], [0, 0]] # Initial inventory for each product in each quarter
+7. StorageCost
+[100, 100] # Storage cost per dose at the end of each quarter
+8. EfficacyRate
+[0.85, 0.95] # Efficacy rate for each product
+9. RegulatoryEfficacyRate
+0.90
+
+Decision variable:
+1. RawMaterialPurchased
+Continous variable, \( RawMaterialPurchased[q] \forall q \in Q \), the amount of raw material purchased in quarter \( q \) in liters.
+2. ProductProduced
+Integer variable, \( ProductProduced[p][q] \forall p \in P, q \in Q \), the amount of product \( p \) produced in quarter \( q \) in doses.
+3. ProductStorage
+Integer variable, \( ProductStorage[p][q] \forall p \in P, q \in Q \), the amount of product \( p \) stored at the end of quarter \( q \) in doses.
+
+Objective:
+1. Minimize the total cost.
+min: \sum_{q \in Q} (RawMaterialCost[q] * RawMaterialPurchased[q] + StorageCost[q] * ProductStorage[p][q] \forall p \in P)
+
+Constraint:
+1. Demand constraint.
+ProductProduced[p][1] + InitialInventory[p] - ProductStorage[p][1] \geq Demand[p][1] \forall p \in P
+ProductProduced[p][q] + ProductStorage[p][q-1] - ProductStorage[p][q] \geq Demand[p][q] \forall p \in P, q \in Q/{1}
+2. Production capacity constraint.
+\sum_{p \in P} ProductProduced[p][q] \leq MaxProductionPerQuarter[q] \forall q \in Q
+3. Raw material constraint.
+\sum_{p \in P} RawMaterialPerProduct[p] * ProductProduced[p][q] \leq RawMaterialPurchased[q] \forall q \in Q
+4. Raw material purchase limit constraint.
+RawMaterialPurchased[q] \leq MaxRawMaterialPurchase[q] \forall q \in Q
+5. Regulatory efficacy constraint.
+\sum_{p \in P} EfficacyRate[p] * ProductProduced[p][q] \geq \sum_{p \in P} ProductProduced[p][q] * RegulatoryEfficacyRate \forall q \in Q
+6. Non-negativity constraint.
+ProductProduced[p][q] \geq 0 \forall p \in P, q \in Q
+ProductStorage[p][q] \geq 0 \forall p \in P, q \in Q
+RawMaterialPurchased[q] \geq 0 \forall q \in Q
+
+Type:
+Mixed, Linear, Linear
+MILP

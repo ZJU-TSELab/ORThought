@@ -1,0 +1,33 @@
+Set:
+1. FirefighterType
+The set of firefighter types, \( I = \{0, 1\} \) # 0 for Regular, 1 for Emergency
+
+Parameter:
+1. HoursPerShift
+[10, 6] # Hours worked per shift by each firefighter type
+2. CostPerShift
+[300, 100] # Dollars earned per shift by each firefighter type
+3. MinHours
+300 # Minimum total hours of firefighter time needed
+4. MaxBudget
+7000 # Dollars available in the budget
+
+Decision variable:
+1. FirefighterCount
+Integer variable, \( x_{i} \) for all \( i \in I \), representing the number of firefighters of type \( i \) to be hired.
+
+Objective:
+Minimize the total number of firefighters.
+min: \( \sum_{i \in I} x_{i} \)
+
+Constraint:
+1. Hours requirement constraint
+\( \sum_{i \in I} HoursPerShift[i] \cdot x_{i} \geq MinHours \)
+2. Budget constraint
+\( \sum_{i \in I} CostPerShift[i] \cdot x_{i} \leq MaxBudget \)
+3. Non-negativity
+\( x_{i} \geq 0 \), for all \( i \in I \)
+
+Type:
+Integer, linear, linear
+IP

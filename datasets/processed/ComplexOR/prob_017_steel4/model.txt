@@ -1,0 +1,35 @@
+Set:
+1. Products
+The set of products, \( P = \{"P1", "P2"\} \)
+2. Stages
+The set of production stages, \( S = \{"S1", "S2"\} \)
+
+Parameter:
+1. Production Rate
+\( rate = [[2, 3], [3, 2]] \)
+2. Profit per Ton
+\( profit = [10, 20] \)
+3. Minimum Production Commitment
+\( commit = [1, 2] \)
+4. Maximum Market Capacity
+\( market = [5, 4] \)
+5. Available Hours
+\( avail = [10, 8] \)
+
+Decision variable:
+1. ProductionVariable
+Continuous variable, \( x_p \geq 0 \) for all \( p \in P \), where \( x_p \) is the number of tons of product \( p \) to produce
+
+Objective:
+Maximize total profit
+max: \( \sum_{p \in P} profit_p \cdot x_p \)
+
+Constraint:
+1. Production Limit Constraints
+\( commit_p \leq x_p \leq market_p, \quad \forall p \in P \)
+2. Stage Capacity Constraints
+\( \sum_{p \in P} (1/rate_{p,s}) \cdot x_p \leq avail_s, \quad \forall s \in S \)
+
+Type:
+Continuous, Linear, Linear
+LP

@@ -1,0 +1,33 @@
+Set:
+1. GlassType
+The set of glass types, \( T = \{0, 1\} \) # 0 for Regular, 1 for Tempered
+
+Parameter:
+1. MaxTime
+300 # Maximum minutes per day for each machine
+2. Profit
+[8, 10] # Profit per pane for each glass type
+3. HeatingTime
+[3, 5] # Heating time in minutes per pane for each glass type
+4. CoolingTime
+[5, 8] # Cooling time in minutes per pane for each glass type
+
+Decision variable:
+1. GlassCount
+Integer variable, \( x_{t} \) for all \( t \in T \), representing the number of panes of type \( t \) to make.
+
+Objective:
+Maximize the total profit.
+max: \sum_{t \in T} Profit[t] * x_{t}
+
+Constraint:
+1. Heating machine time constraint
+\sum_{t \in T} HeatingTime[t] * x_{t} \leq MaxTime
+2. Cooling machine time constraint
+\sum_{t \in T} CoolingTime[t] * x_{t} \leq MaxTime
+3. Non-negativity
+x_{t} \geq 0, \forall t \in T
+
+Type:
+Integer, linear, linear
+IP

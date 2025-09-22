@@ -1,0 +1,31 @@
+Set:
+1. Nodes
+The set of all nodes \( N = \{A, B, C, D, E, F, G\} \), where A is source and D is sink
+2. Arcs
+The set of directed arcs \( A = \{(A,B), (A,C), (B,C), (B,D), (C,E), (C,F), (E,D), (F,D), (G,D)\} \)
+
+Parameter:
+1. Capacity
+Pipeline capacity limits \( u_{ij} \): 
+\( u_{AB} = 15 \), \( u_{AC} = 10 \), \( u_{BC} = 5 \), \( u_{BD} = 10 \), \( u_{CE} = 8 \), \( u_{CF} = 12 \), \( u_{ED} = 7 \), \( u_{FD} = 20 \), \( u_{GD} = 0 \)
+
+Decision variable:
+1. Flow
+Non-negative variable \( x_{ij} \geq 0 \) representing flow through arc \( (i,j) \in A \)
+
+Objective:
+Maximize total flow from source to sink
+max: \( x_{AB} + x_{AC} \) 
+(Equivalent to maximizing inflow at sink D)
+
+Constraint:
+1. Capacity constraints
+\( x_{ij} \leq u_{ij}, \forall (i,j) \in A \)
+2. Flow conservation
+\( \sum_{(i,k) \in A} x_{ik} = \sum_{(k,j) \in A} x_{kj}, \forall k \in N \setminus \{A,D\} \)
+3. Non-negativity
+\( x_{ij} \geq 0, \forall (i,j) \in A \)
+
+Type:
+Continuous, Linear, Linear
+LP

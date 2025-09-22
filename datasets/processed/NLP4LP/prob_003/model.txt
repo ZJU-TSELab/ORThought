@@ -1,0 +1,37 @@
+Set:
+1. CableType
+The set of cable types, \( T = \{0, 1\} \) # 0 for Long, 1 for Short
+
+Parameter:
+1. GoldAvailable
+1000 # Total gold available in mg
+2. GoldRequired
+[10, 7] # Gold required per cable type: 10mg for Long, 7mg for Short
+3. Profit
+[12, 5] # Profit per cable type: $12 for Long, $5 for Short
+4. MinLongCables
+10 # Minimum number of long cables to be made
+5. ShortToLongRatio
+5 # The ratio of short cables to long cables must be at least 5
+
+Decision variable:
+1. CableCount
+Integer variable, \( x_{t} \) for all \( t \in T \), representing the number of cables of type \( t \) to produce.
+
+Objective:
+Maximize the total profit from producing cables.
+max: \sum_{t \in T} Profit[t] * x_{t}
+
+Constraint:
+1. Gold constraint
+\sum_{t \in T} GoldRequired[t] * x_{t} \leq GoldAvailable
+2. Ratio constraint
+x_{1} \geq ShortToLongRatio * x_{0}
+3. Long cable minimum
+x_{0} \geq MinLongCables
+4. Non-negativity
+x_{t} \geq 0, \forall t \in T
+
+Type:
+Integer, linear, linear
+IP

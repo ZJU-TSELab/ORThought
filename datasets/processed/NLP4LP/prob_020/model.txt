@@ -1,0 +1,33 @@
+Set:
+1. DesktopType
+The set of desktop types, \( T = \{0, 1\} \) # 0 for Premium, 1 for Regular
+
+Parameter:
+1. SalesLimit
+200 # Maximum number of desktops sold per month
+2. BudgetLimit
+300000 # Maximum budget for making desktops in dollars
+3. Profit
+[500, 300] # Profit per desktop type
+4. Cost
+[2000, 1000] # Cost per desktop type in dollars
+
+Decision variable:
+1. DesktopCount
+Integer variable, \( x_{t} \) for all \( t \in T \), representing the number of desktops of type \( t \) to make and sell.
+
+Objective:
+Maximize the total profit.
+max: \sum_{t \in T} Profit[t] * x_{t}
+
+Constraint:
+1. Sales limit constraint
+\sum_{t \in T} x_{t} \leq SalesLimit
+2. Budget limit constraint
+\sum_{t \in T} Cost[t] * x_{t} \leq BudgetLimit
+3. Non-negativity
+x_{t} \geq 0, \forall t \in T
+
+Type:
+Integer, linear, linear
+IP

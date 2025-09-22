@@ -1,0 +1,31 @@
+Set:
+1. Trucks
+The set of delivery trucks, \( T = \{1, 2, 3, 4\} \)
+2. Locations
+The set of customer locations, \( L = \{1, 2, 3, 4\} \)
+
+Parameter:
+1. CostMatrix
+The transportation cost (USD) when truck \( t \) is assigned to location \( l \), represented as \( c_{tl} \):
+- \( c_{11} = 120 \), \( c_{12} = 150 \), \( c_{13} = 180 \), \( c_{14} = 90 \)
+- \( c_{21} = 110 \), \( c_{22} = 140 \), \( c_{23} = 170 \), \( c_{24} = 80 \)
+- \( c_{31} = 130 \), \( c_{32} = 160 \), \( c_{33} = 190 \), \( c_{34} = 100 \)
+- \( c_{41} = 140 \), \( c_{42} = 170 \), \( c_{43} = 200 \), \( c_{44} = 110 \)
+
+Decision variable:
+1. Assignment
+Binary variable \( x_{tl} \in \{0, 1\} \) for all \( t \in T, l \in L \), where \( x_{tl} =  1 \) if truck \( t \) is assigned to location \( l \), and \( x_{tl} = 0 \) otherwise
+
+Objective:
+Minimize total transportation cost
+min: \( \sum_{t\in T}\ Tsum_{l\in L}c_{tl}x_{tl} \)
+
+Constraint:
+1. Each truck must be assigned to exactly one location
+\( \sum_{l\in L}x_{tl} = 1, \forall t \in T \)
+2. Each location must receive exactly one truck
+\( \sum_{t\in T}x_{tl} = 1, \forall l \in L \)
+
+Type:
+Binary, Linear,, Linear
+ILP

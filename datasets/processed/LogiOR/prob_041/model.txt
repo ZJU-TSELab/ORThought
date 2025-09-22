@@ -1,0 +1,40 @@
+Set:
+1. Brewery
+The set of breweries, \( B = \{1, 2\} \)  # 1: Portland, 2: Asheville
+2. DestinationHub
+The set of destination hubs, \( H = \{1, 2\} \)  # 1: Seattle, 2: Atlanta
+3. Year
+The set of years, \( Y = \{1, 2, 3\} \)
+
+Parameter:
+1. ProductionCapacity
+[200000, 300000]  # in gallons
+2. ShippingCapacity
+[400000, 400000]  # in gallons
+3. ProfitPerThousandGallons
+[[500, 450], [480, 520]]  # in dollars per thousand gallons
+4. ExpansionCost
+[1000, 1500]  # in dollars per thousand gallons
+
+Decision variable:
+1. ProductionCapacityAdded
+Continous variable, \( ProductionCapacityAdded[b] \forall b \in B \), the amount of production capacity added for brewery \( b \) (in thousands of gallons).
+2. ProductionFromBrewery2Hub
+Continous variable, \( ProductionFromBrewery2Hub[b][h][y] \forall b \in B, h \in H, y \in Y \), the amount of product shipped from brewery \( b \) to hub \( h \) in year \( y \) (in thousands of gallons).
+
+Objective:
+1. Maximize the total profit.
+max: \sum_{b \in B, h \in H, y \in Y} (ProductionFromBrewery2Hub[b][h][y] * ProfitPerThousandGallons[b][h]) - \sum_{b \in B} (ProductionCapacityAdded[b] * ExpansionCost[b])
+
+Constraint:
+1. Production capacity constraint.
+\sum_{h \in H} ProductionFromBrewery2Hub[b][h][y] \leq (ProductionCapacity[b] + ProductionCapacityAdded[b]) \forall b \in B, y \in Y
+2. Shipping capacity constraint.
+\sum_{b \in B} ProductionFromBrewery2Hub[b][h][y] \leq ShippingCapacity[h] \forall h \in H, y \in Y
+3. Non-negativity constraint.
+ProductionCapacityAdded[b] \geq 0 \forall b \in B
+ProductionFromBrewery2Hub[b][h][y] \geq 0 \forall b \in B, h \in H, y \in Y
+
+Type:
+Continuous, Linear, Linear
+LP

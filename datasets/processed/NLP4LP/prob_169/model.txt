@@ -1,0 +1,41 @@
+Set:
+1. KegType
+The set of keg types, \( I = \{0, 1\} \) # 0 for Small Keg, 1 for Large Keg
+
+Parameter:
+1. VolumePerKeg
+[40, 100] # Liters of water each keg type can hold
+2. MaxAvailableKegs
+[30, 10] # Maximum number of available kegs for each type
+3. SmallToLargeRatio
+2 # The number of small kegs must be at least twice the number of large kegs
+4. MaxTotalKegs
+25 # Maximum total number of kegs that can be transported
+5. MinLargeKegs
+5 # Minimum number of large kegs to be used
+
+Decision variable:
+1. NumberOfKegs
+Integer variable, \( x_{i} \) for all \( i \in I \), representing the number of kegs of each type to use.
+
+Objective:
+Maximize the total amount of water transported.
+max: \( \sum_{i \in I} VolumePerKeg[i] \cdot x_{i} \)
+
+Constraint:
+1. Maximum small kegs constraint
+\( x_{0} \leq MaxAvailableKegs[0] \)
+2. Maximum large kegs constraint
+\( x_{1} \leq MaxAvailableKegs[1] \)
+3. Keg ratio constraint
+\( x_{0} \geq SmallToLargeRatio \cdot x_{1} \)
+4. Total kegs constraint
+\( \sum_{i \in I} x_{i} \leq MaxTotalKegs \)
+5. Minimum large kegs constraint
+\( x_{1} \geq MinLargeKegs \)
+6. Non-negativity
+\( x_{i} \geq 0 \), for all \( i \in I \)
+
+Type:
+Integer, linear, linear
+IP

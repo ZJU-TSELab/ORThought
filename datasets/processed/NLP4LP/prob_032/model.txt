@@ -1,0 +1,31 @@
+Set:
+1. FoodType
+The set of food types, \( T = \{0, 1\} \) # 0 for Rice, 1 for Kebab
+2. NutrientType
+The set of nutrient types, \( N = \{0, 1\} \) # 0 for Calories, 1 for Protein
+
+Parameter:
+1. CostPerServing
+[3, 2] # Cost per serving for each food type
+2. MinNutrientRequirement
+[2200, 30] # Minimum required units for each nutrient type
+3. NutrientContent
+[[300, 200], [4.5, 4]] # Units of each nutrient per serving of each food type
+
+Decision variable:
+1. Servings
+Continuous variable, \( x_{t} \) for all \( t \in T \), representing the number of servings of food type \( t \).
+
+Objective:
+Minimize the total cost of the diet.
+min: \sum_{t \in T} CostPerServing[t] * x_{t}
+
+Constraint:
+1. Nutrient requirement constraint
+\sum_{t \in T} NutrientContent[n][t] * x_{t} \geq MinNutrientRequirement[n], for all \( n \in N \)
+2. Non-negativity
+x_{t} \geq 0, for all \( t \in T \)
+
+Type:
+continuous, linear, linear
+LP

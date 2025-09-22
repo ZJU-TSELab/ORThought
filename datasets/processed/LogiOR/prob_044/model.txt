@@ -1,0 +1,41 @@
+Set:
+1. VehicleType
+The set of vehicle types, \( V = \{1, 2\} \)  # 1: Type X, 2: Type Y
+2. Year
+The set of years, \( Y = \{1, 2, 3\} \)  # 1: Year 1, 2: Year 2, 3: Year 3
+
+Parameter:
+1. AvgCarbonEmissionLimit
+40  # in grams per kilometer
+2. RevenuePerVehicle
+[25000, 20000]  # in dollars
+3. OperatingCostPerVehicle
+[18000, 16000]  # in dollars
+4. CarbonEmissionPerVehicle
+[70, 30]  # in grams per kilometer
+5. MaxVehiclesPerYear
+[[300, 320, 350], [250, 280, 300]] 
+6. MaxTotalVehicles
+400  # in vehicles
+
+Decision variable:
+1. VehiclesDeployed
+Integer variable, \( VehiclesDeployed[v][y] \forall v \in V, y \in Y \), the number of vehicles of type \( v \) deployed in year \( y \).
+
+Objective:
+1. Maximize the total profit.
+max: \sum_{v \in V, y \in Y} (RevenuePerVehicle[v] * VehiclesDeployed[v][y] - OperatingCostPerVehicle[v] * VehiclesDeployed[v][y])
+
+Constraint:
+1. Carbon emissions constraint.
+\sum_{v \in V} (CarbonEmissionPerVehicle[v] * VehiclesDeployed[v][y]) \leq AvgCarbonEmissionLimit * \sum_{v \in V} VehiclesDeployed[v][y] \forall y \in Y
+2. Fleet capacity constraint.
+\sum_{v \in V} VehiclesDeployed[v][y] \leq MaxTotalVehicles \forall y \in Y
+3. Yearly vehicle limit constraint.
+\sum_{v \in V} VehiclesDeployed[v][y] \leq MaxVehiclesPerYear[v][y] \forall v \in V, y \in Y
+4. Non-negativity constraint.
+VehiclesDeployed[v][y] \geq 0 \forall v \in V, y \in Y
+
+Type:
+Integer, Linear, Linear
+ILP

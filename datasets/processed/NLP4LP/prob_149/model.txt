@@ -1,0 +1,43 @@
+Set:
+1. BouquetType
+The set of bouquet types, \( I = \{0, 1\} \) # 0 for Small Bouquet, 1 for Large Bouquet
+
+Parameter:
+1. FlowersPerBouquet
+[5, 10] # Number of flowers in each bouquet type
+2. MaxSmallBouquets
+80 # Maximum number of small bouquets that can be transported
+3. MaxLargeBouquets
+50 # Maximum number of large bouquets that can be transported
+4. MaxTotalBouquets
+70 # Maximum total number of bouquets that can be transported
+5. MinLargeBouquets
+20 # Minimum number of large bouquets to be transported
+6. MinSmallToLargeRatio
+2 # Minimum ratio of small bouquets to large bouquets
+
+Decision variable:
+1. NumberOfBouquets
+Integer variable, \( x_{i} \) for all \( i \in I \), representing the number of bouquets of each type to transport.
+
+Objective:
+Maximize the total number of flowers that reach the stores.
+max: \( \sum_{i \in I} FlowersPerBouquet[i] \cdot x_{i} \)
+
+Constraint:
+1. Maximum small bouquets constraint
+\( x_{0} \leq MaxSmallBouquets \)
+2. Maximum large bouquets constraint
+\( x_{1} \leq MaxLargeBouquets \)
+3. Total bouquets constraint
+\( \sum_{i \in I} x_{i} \leq MaxTotalBouquets \)
+4. Minimum large bouquets constraint
+\( x_{1} \geq MinLargeBouquets \)
+5. Small to large ratio constraint
+\( x_{0} \geq MinSmallToLargeRatio \cdot x_{1} \)
+6. Non-negativity
+\( x_{i} \geq 0 \), for all \( i \in I \)
+
+Type:
+Integer, linear, linear
+IP

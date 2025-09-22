@@ -1,0 +1,37 @@
+Set:
+1. TripType
+The set of trip types, \( I = \{0, 1\} \) # 0 for Submarine, 1 for Boat
+
+Parameter:
+1. MailPerTrip
+[100, 80] # Pieces of mail each vehicle type can carry per trip
+2. GasPerTrip
+[30, 25] # Liters of gas used for each trip type
+3. MaxSubmarineTrips
+6 # Maximum number of submarine trips
+4. MinBoatRatio
+0.5 # The number of boat trips must be at least 50% of the total trips
+5. MinTotalMail
+1000 # Minimum total pieces of mail to be transported
+
+Decision variable:
+1. NumberOfTrips
+Integer variable, \( x_{i} \) for all \( i \in I \), representing the number of trips of each type.
+
+Objective:
+Minimize the total amount of gas used.
+min: \( \sum_{i \in I} GasPerTrip[i] \cdot x_{i} \)
+
+Constraint:
+1. Maximum submarine trips constraint
+\( x_{0} \leq MaxSubmarineTrips \)
+2. Minimum mail constraint
+\( \sum_{i \in I} MailPerTrip[i] \cdot x_{i} \geq MinTotalMail \)
+3. Trip ratio constraint
+\( x_{1} \geq x_{0} \)
+4. Non-negativity
+\( x_{i} \geq 0 \), for all \( i \in I \)
+
+Type:
+Integer, linear, linear
+IP

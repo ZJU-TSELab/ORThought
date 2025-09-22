@@ -1,0 +1,43 @@
+Set:
+1. Center
+The set of distribution centers, \( C = \{1, 2\} \)
+2. GoodsType
+The set of goods types, \( G = \{1, 2, 3\} \)
+
+Parameter:
+1. FixedCost
+[1000, 2000]
+2. StaffCost
+[500, 900]
+3. MaxStaffNum
+[7, 7]
+4. ProcessRate
+[
+    [20, 25],
+    [18, 22],
+    [15, 20]
+]
+5. Demand
+[120, 150, 200]
+
+Decision variable:
+1. ActivatingCenter
+Binary variable, \( ActivatingCenter[c] \forall c \in C \), where \( ActivatingCenter[c] = 1 \) if distribution center \( c \) is activated, and 0 otherwise.
+2. StaffNum
+Integer variable, \( StaffNum[c] \forall c \in C \), where \( StaffNum[c] \) is the number of staff at distribution center \( c \).
+
+Objective:
+1. Minimize the total cost of activating distribution centers and paying staff.
+min: \sum_{c \in C} (FixedCost[c] * ActivatingCenter[c] + StaffCost[c] * StaffNum[c])
+
+Constraint:
+1. Staff number constraint.
+StaffNum[c] \leq MaxStaffNum[c] * ActivatingCenter[c] \forall c \in C
+2. Demand satisfaction constraint.
+\sum_{c \in C} ProcessRate[g][c] * StaffNum[c] \geq Demand[g] \forall g \in G
+3. Staff number non-negativity constraint.
+StaffNum[c] \geq 0 \forall c \in C
+
+Type:
+Integer, Linear, Linear
+ILP

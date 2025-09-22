@@ -1,0 +1,53 @@
+A logistics company operates a two-echelon distribution network with 1 central depot (D), 3 intermediate warehouses (W1, W2, W3), and 15 customers (C1-C15). The depot has 3 trucks with a capacity of 50 units each for first-level transport. Each warehouse has an allocation of 2 smaller vehicles with a capacity of 20 units each for second-level delivery.
+
+The goal is to assign customers to warehouses and plan optimal delivery routes for all vehicles to minimize the total distance traveled, subject to the following constraints:
+- Each customer must be served by exactly one van.
+- Each van must start and end its tour at its assigned warehouse.
+- The total demand on any vehicle's route cannot exceed its capacity.
+- The total demand flowing through an opened warehouse cannot exceed the capacity of the truck serving it.
+
+**Distances (km):**
+- **Depot to Warehouses:** Depot-W1: 30, Depot-W2: 40, Depot-W3: 35.
+- **Between Warehouses:** W1-W2: 25, W1-W3: 20, W2-W3: 30.
+- **Between Customers:** A full distance matrix is provided for travel between any two customers as follows:
+
+| | C1 | C2 | C3 | C4 | C5 | C6 | C7 | C8 | C9 | C10 | C11 | C12 | C13 | C14 | C15 |
+|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
+| C1 | 0 | 15 | 24 | 11 | 20 | 9 | 20 | 11 | 5 | 18 | 15 | 24 | 12 | 10 | 10 |
+| C2 | 15 | 0 | 18 | 21 | 13 | 12 | 5 | 12 | 15 | 24 | 18 | 11 | 22 | 19 | 13 |
+| C3 | 24 | 18 | 0 | 6 | 13 | 11 | 24 | 11 | 13 | 10 | 11 | 18 | 19 | 13 | 11 |
+| C4 | 11 | 21 | 6 | 0 | 11 | 16 | 12 | 18 | 11 | 19 | 10 | 11 | 14 | 19 | 10 |
+| C5 | 20 | 13 | 13 | 11 | 0 | 14 | 24 | 10 | 16 | 21 | 16 | 11 | 14 | 17 | 15 |
+| C6 | 9 | 12 | 11 | 16 | 14 | 0 | 19 | 18 | 23 | 19 | 18 | 10 | 15 | 11 | 12 |
+| C7 | 20 | 5 | 24 | 12 | 24 | 19 | 0 | 16 | 11 | 17 | 12 | 17 | 13 | 17 | 12 |
+| C8 | 11 | 12 | 11 | 18 | 10 | 18 | 16 | 0 | 18 | 13 | 12 | 17 | 18 | 13 | 16 |
+| C9 | 5 | 15 | 13 | 11 | 16 | 23 | 11 | 18 | 0 | 13 | 24 | 21 | 18 | 18 | 11 |
+| C10 | 18 | 24 | 10 | 19 | 21 | 19 | 17 | 13 | 13 | 0 | 12 | 22 | 12 | 19 | 17 |
+| C11 | 15 | 18 | 11 | 10 | 16 | 18 | 12 | 12 | 24 | 12 | 0 | 16 | 18 | 15 | 13 |
+| C12 | 24 | 11 | 18 | 11 | 11 | 10 | 17 | 17 | 21 | 22 | 16 | 0 | 19 | 19 | 13 |
+| C13 | 12 | 22 | 19 | 14 | 14 | 15 | 13 | 18 | 18 | 12 | 18 | 19 | 0 | 13 | 18 |
+| C14 | 10 | 19 | 13 | 19 | 17 | 11 | 17 | 13 | 18 | 19 | 15 | 19 | 13 | 0 | 18 |
+| C15 | 10 | 13 | 11 | 10 | 15 | 12 | 12 | 16 | 11 | 17 | 13 | 13 | 18 | 18 | 0 |
+
+- **Warehouses to Customers:** The specific distances are defined as follows:
+
+| From | To | Dist | | From | To | Dist | | From | To | Dist |
+| :--- | :--- | :--- |-|:--- | :--- | :--- |-|:--- | :--- | :--- |
+| W1   | C1   | 12   | | W2   | C1   | 28   | | W3   | C1   | 18   |
+| W1   | C2   | 8    | | W2   | C2   | 22   | | W3   | C2   | 25   |
+| W1   | C3   | 15   | | W2   | C3   | 10   | | W3   | C3   | 9    |
+| W1   | C4   | 11   | | W2   | C4   | 14   | | W3   | C4   | 19   |
+| W1   | C5   | 7    | | W2   | C5   | 18   | | W3   | C5   | 24   |
+| W1   | C6   | 14   | | W2   | C6   | 9    | | W3   | C6   | 16   |
+| W1   | C7   | 10   | | W2   | C7   | 13   | | W3   | C7   | 12   |
+| W1   | C8   | 9    | | W2   | C8   | 17   | | W3   | C8   | 21   |
+| W1   | C9   | 13   | | W2   | C9   | 11   | | W3   | C9   | 7    |
+| W1   | C10  | 6    | | W2   | C10  | 20   | | W3   | C10  | 23   |
+| W1   | C11  | 14   | | W2   | C11  | 7    | | W3   | C11  | 10   |
+| W1   | C12  | 9    | | W2   | C12  | 16   | | W3   | C12  | 17   |
+| W1   | C13  | 11   | | W2   | C13  | 19   | | W3   | C13  | 22   |
+| W1   | C14  | 7    | | W2   | C14  | 12   | | W3   | C14  | 14   |
+| W1   | C15  | 13   | | W2   | C15  | 15   | | W3   | C15  | 8    |
+
+**Demands (units):**
+- C1:4, C2:7, C3:5, C4:6, C5:3, C6:8, C7:5, C8:6, C9:4, C10:7, C11:5, C12:6, C13:3, C14:8, C15:5.

@@ -1,0 +1,35 @@
+Set:
+1. Cars
+The set of cars, \( C = \{1, 2, ..., 15\} \)
+2. Sides
+The set of sides of the street, \( S = \{1, 2\} \)
+
+Parameter:
+1. CarLengths
+The length of each car, \( \lambda_i \).
+[4, 4.5, 5, 4.1, 2.4, 5.2, 3.7, 3.5, 3.2, 4.5, 2.3, 3.3, 3.8, 4.6, 3]
+
+Decision variable:
+1. Assign
+Binary variable, \( x_{is} \), is 1 if car \( i \) is parked on side \( s \), 0 otherwise.
+2. MaxSideLength
+Continuous variable, \( L_{max} \), representing the maximum length occupied on either side.
+
+Objective:
+Minimize the maximum length occupied on either side of the street.
+min: \( L_{max} \)
+
+Constraint:
+1. Car Assignment
+Each car must be assigned to exactly one side.
+\sum_{s \in S} x_{is} = 1, \forall i \in C
+2. Maximum Length Definition
+The maximum length \( L_{max} \) must be greater than or equal to the total length of cars parked on each side.
+\sum_{i \in C} \lambda_i * x_{is} \leq L_{max}, \forall s \in S
+3. Side Length Limit
+The total length of cars on any side must not exceed 30 meters.
+\sum_{i \in C} \lambda_i * x_{is} \leq 30, \forall s \in S
+
+Type:
+Mixed-Integer, linear, linear
+MILP

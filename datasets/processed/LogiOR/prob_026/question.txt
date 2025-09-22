@@ -1,0 +1,9 @@
+GreenWeave specializes in transforming raw materials such as organic cotton, jute, and linen into eco-friendly textiles: organic cotton fabric, jute fabric, and linen fabric. Organic cotton fabric can be manufactured by processing either organic cotton or jute. Linen fabric can be produced from any of the raw materials—organic cotton, jute, or linen. Jute fabric, on the other hand, can be created by processing jute or linen. The production process for organic cotton fabric reduces the input fiber by 30%, leaving 70% for the final product. For linen fabric, the process removes 20% of the input fiber. For jute fabric, the process removes 25% of the input fiber. The costs of purchasing and processing each raw material, along with their availability, are detailed as follows:
+
+| Raw Material      | Purchasing Cost ($/ton) | Processing Cost ($/ton)  | Availability (tons) |
+|-------------------|-------------------------|--------------------------|---------------------|
+| Organic Cotton    | 350                     | 100                      | 1000                |
+| Jute              | 400                     | 80                       | 800                 |
+| Linen             | 300                     | 150                      | 600                 |
+
+To fulfill market requirements, GreenWeave must produce a minimum of 300 tons of organic cotton fabric fiber, 400 tons of jute fabric fiber, and 200 tons of linen fabric fiber. What is the minimum total cost to meet GreenWeave's production needs?

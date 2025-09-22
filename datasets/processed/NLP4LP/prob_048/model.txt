@@ -1,0 +1,45 @@
+Set:
+1. BubbleTeaType
+The set of bubble tea types, \( T = \{0, 1\} \) # 0 for Mango, 1 for Lychee
+
+Parameter:
+1. TeaPerUnit
+[8, 6] # Units of tea required per bubble tea of each type
+2. MangoJuiceAvailable
+2000 # Units of mango juice available
+3. LycheeJuiceAvailable
+3000 # Units of lychee juice available
+4. MangoJuicePerMangoTea
+4 # Units of mango juice required per mango bubble tea
+5. LycheeJuicePerLycheeTea
+6 # Units of lychee juice required per lychee bubble tea
+6. MinLycheeRatio
+0.4 # Minimum ratio of lychee bubble teas
+7. TeaAvailable
+3000 # Units of tea available
+
+Decision variable:
+1. BubbleTeaCount
+Integer variable, \( x_{t} \) for all \( t \in T \), representing the number of bubble teas of type \( t \) to make.
+
+Objective:
+Minimize the total amount of tea needed.
+min: \sum_{t \in T} TeaPerUnit[t] * x_{t}
+
+Constraint:
+1. Mango juice constraint
+MangoJuicePerMangoTea * x_{0} \leq MangoJuiceAvailable
+2. Lychee juice constraint
+LycheeJuicePerLycheeTea * x_{1} \leq LycheeJuiceAvailable
+3. Tea availability constraint
+\sum_{t \in T} TeaPerUnit[t] * x_{t} \leq TeaAvailable
+4. Lychee ratio constraint
+x_{1} \geq MinLycheeRatio * (x_{0} + x_{1})
+5. Mango preference constraint
+x_{0} \geq x_{1} + 1
+6. Non-negativity
+x_{t} \geq 0, for all \( t \in T \)
+
+Type:
+Integer, linear, linear
+IP

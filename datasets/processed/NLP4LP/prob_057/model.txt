@@ -1,0 +1,35 @@
+Set:
+1. BottleType
+The set of bottle types, \( I = \{0, 1\} \) # 0 for Kids, 1 for Adult
+
+Parameter:
+1. BottleVolume
+[100, 300] # ml of cough syrup in each bottle type
+2. MaxSyrup
+25000 # ml of cough syrup available
+3. MinKidsBottles
+50 # Minimum number of kids size bottles to be made
+4. AdultToKidsRatio
+3 # Minimum ratio of adult size bottles to kids size bottles
+
+Decision variable:
+1. BottleCount
+Integer variable, \( x_{i} \) for all \( i \in I \), representing the number of bottles of type \( i \) to be made.
+
+Objective:
+Maximize the total number of bottles.
+max: \( \sum_{i \in I} x_{i} \)
+
+Constraint:
+1. Volume constraint
+\( \sum_{i \in I} BottleVolume[i] \cdot x_{i} \leq MaxSyrup \)
+2. Minimum kids bottles constraint
+\( x_{0} \geq MinKidsBottles \)
+3. Adult to kids ratio constraint
+\( x_{1} \geq AdultToKidsRatio \cdot x_{0} \)
+4. Non-negativity
+\( x_{i} \geq 0 \), for all \( i \in I \)
+
+Type:
+Integer, linear, linear
+IP

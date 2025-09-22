@@ -1,0 +1,41 @@
+Set:
+1. TeamType
+The set of team types, \( I = \{0, 1\} \) # 0 for Small Team, 1 for Large Team
+
+Parameter:
+1. EmployeesPerTeam
+[3, 5] # Number of employees required for each team type
+2. LawnAreaPerTeam
+[50, 80] # Square feet of lawn each team type can mow
+3. MaxEmployees
+150 # Maximum number of employees available
+4. MinSmallTeams
+10 # Minimum number of small teams required
+5. MinLargeTeams
+6 # Minimum number of large teams required
+6. MinSmallToLargeRatio
+3 # Minimum ratio of small teams to large teams
+
+Decision variable:
+1. NumberOfTeams
+Integer variable, \( x_{i} \) for all \( i \in I \), representing the number of teams of each type to use.
+
+Objective:
+Maximize the amount of lawn that can be mowed.
+max: \( \sum_{i \in I} LawnAreaPerTeam[i] \cdot x_{i} \)
+
+Constraint:
+1. Employee constraint
+\( \sum_{i \in I} EmployeesPerTeam[i] \cdot x_{i} \leq MaxEmployees \)
+2. Minimum small teams constraint
+\( x_{0} \geq MinSmallTeams \)
+3. Minimum large teams constraint
+\( x_{1} \geq MinLargeTeams \)
+4. Small to large team ratio constraint
+\( x_{0} \geq MinSmallToLargeRatio \cdot x_{1} \)
+5. Non-negativity
+\( x_{i} \geq 0 \), for all \( i \in I \)
+
+Type:
+Integer, linear, linear
+IP

@@ -1,0 +1,13 @@
+A delivery company is using a drone to make a series of urgent deliveries to 6 specific customer locations (C1 to C6) within a dense urban area. The drone must start from its depot, visit each of the 6 customer locations exactly once to drop off a package, and then return to the depot. The company has calculated the flight time (in minutes) between all pairs of locations (depot and customer sites), considering air-traffic restrictions and optimal flight paths.
+
+Flight Time Table (Minutes - Symmetric):
+
+|        | Depot | C1    | C2    | C3    | C4    | C5    | C6    |
+| :----- | :---- | :---- | :---- | :---- | :---- | :---- | :---- |
+| Depot  | -     | 8     | 12    | 15    | 7     | 10    | 14    |
+|   C1   | 8     | -     | 5     | 11    | 6     | 9     | 13    |
+|   C2   | 12    | 5     | -     | 7     | 10    | 4     | 8     |
+|   C3   | 15    | 11    | 7     | -     | 9     | 6     | 5     |
+|   C4   | 7     | 6     | 10    | 9     | -     | 3     | 11    |
+|   C5   | 10    | 9     | 4     | 6     | 3     | -     | 7     |
+|   C6   | 14    | 13    | 8     | 5     | 11    | 7     | -     |

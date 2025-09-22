@@ -1,0 +1,38 @@
+Set:
+1. Children
+The set of children, \( C = \{\text{Alice, Bob, Charlie, Diana, Ella}\} \).
+
+Parameter:
+1. Cost
+[1000, 900, 600, 500, 700] # Cost to take each child.
+2. MaxChildren
+3 # Maximum number of children to take.
+3. MinChildren
+2 # Minimum number of children to take.
+
+Decision variable:
+1. TakeChild
+Binary variable, \( x_c \) for \( c \in C \), is 1 if child c is taken, and 0 otherwise.
+
+Objective:
+Minimize: \( 1000x_{\text{Alice}} + 900x_{\text{Bob}} + 600x_{\text{Charlie}} + 500x_{\text{Diana}} + 700x_{\text{Ella}} \)
+
+Constraint:
+1. MaxChildrenConstraint
+At most 3 children can be taken: \( \sum_{c \in C} x_c \le 3 \)
+2. MinChildrenConstraint
+At least 2 children must be taken: \( \sum_{c \in C} x_c \ge 2 \)
+3. MustTakeBob
+Bob is definitely taken: \( x_{\text{Bob}} = 1 \)
+4. AliceDianaExclusion
+If Alice is taken, Diana is not: \( x_{\text{Alice}} + x_{\text{Diana}} \le 1 \)
+5. BobCharlieExclusion
+If Bob is taken, Charlie is not. Since Bob must be taken, this implies Charlie is not taken: \( x_{\text{Charlie}} = 0 \)
+6. CharlieDianaImplication
+If Charlie is taken, Diana must also be taken: \( x_{\text{Charlie}} \le x_{\text{Diana}} \)
+7. DianaEllaImplication
+If Diana is taken, Ella must also be taken: \( x_{\text{Diana}} \le x_{\text{Ella}} \)
+
+Type:
+Integer, linear, linear
+ILP

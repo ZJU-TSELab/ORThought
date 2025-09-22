@@ -1,0 +1,37 @@
+Set:
+1. SupplementType
+The set of supplement types, \( I = \{0, 1\} \) # 0 for gummies, 1 for pills
+
+Parameter:
+1. Magnesium
+[3, 2] # Units of magnesium per supplement for each supplement type
+2. Zinc
+[4, 5] # Units of zinc per supplement for each supplement type
+3. MaxMagnesium
+200 # Maximum units of magnesium allowed
+4. MinPills
+10 # Minimum number of pills to be taken
+5. GummyToPillRatio
+3 # Minimum ratio of gummies to pills
+
+Decision variable:
+1. SupplementCount
+Integer variable, \( x_{i} \) for all \( i \in I \), representing the number of each supplement type to be taken.
+
+Objective:
+Maximize the total zinc intake.
+max: \( \sum_{i \in I} Zinc[i] \cdot x_{i} \)
+
+Constraint:
+1. Magnesium constraint
+\( \sum_{i \in I} Magnesium[i] \cdot x_{i} \leq MaxMagnesium \)
+2. Minimum pills constraint
+\( x_{1} \geq MinPills \)
+3. Gummy to pill ratio constraint
+\( x_{0} \geq GummyToPillRatio \cdot x_{1} \)
+4. Non-negativity
+\( x_{i} \geq 0 \), for all \( i \in I \)
+
+Type:
+Integer, linear, linear
+IP

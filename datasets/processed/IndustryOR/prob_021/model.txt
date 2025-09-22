@@ -1,0 +1,45 @@
+Set:
+1. Product
+The set of products, \( P = \{A_1, A_2, A_3\} \)
+
+Parameter:
+1. MaxDemand
+[5300, 4500, 5400] # Maximum demand for each product
+2. SellingPrice
+[124, 109, 115] # Selling price per 100kg for each product
+3. ProductionCost
+[73.30, 52.90, 65.40] # Production cost per 100kg for each product
+4. ProductionQuota
+[500, 450, 550] # Maximum production units per day for each product
+5. ActivationCost
+[170000, 150000, 100000] # Fixed activation cost for each product line
+6. MinBatch
+[20, 20, 16] # Minimum production batch for each product
+7. AvailableDays
+22 # Number of available production days
+
+Decision variable:
+1. ProductionQuantity
+Integer variable, \( x_{p} \) for all \( p \in P \), representing the quantity (in 100kg units) of product \( p \) to produce.
+2. UseProduct
+Binary variable, \( y_{p} \) for all \( p \in P \), indicating if product \( p \) is produced.
+
+Objective:
+Maximize the total profit.
+max: \sum_{p \in P} (SellingPrice[p] - ProductionCost[p]) * x_{p} - \sum_{p \in P} ActivationCost[p] * y_{p}
+
+Constraint:
+1. Total production time constraint
+\sum_{p \in P} (x_{p} / ProductionQuota[p]) \leq AvailableDays
+2. Maximum demand constraint
+\( x_{p} \leq MaxDemand[p], \forall p \in P \)
+3. Minimum batch size constraint
+\( x_{p} \geq MinBatch[p] * y_{p}, \forall p \in P \)
+4. Activation link constraint
+\( x_{p} \leq MaxDemand[p] * y_{p}, \forall p \in P \)
+5. Non-negativity
+\( x_{p} \geq 0, \forall p \in P \)
+
+Type:
+Integer, linear, linear
+ILP

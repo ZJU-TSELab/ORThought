@@ -1,0 +1,31 @@
+Set:
+1. AnimalType
+The set of animal types, \( I = \{0, 1\} \) # 0 for Cow, 1 for Elephant
+
+Parameter:
+1. BricksPerAnimal
+[20, 50] # Number of bricks each animal type can carry
+2. MinBricks
+1000 # Minimum number of bricks to be transported
+
+Decision variable:
+1. NumberOfAnimals
+Integer variable, \( x_{i} \) for all \( i \in I \), representing the number of animals of each type to use.
+
+Objective:
+Minimize the total number of animals used.
+min: \( \sum_{i \in I} x_{i} \)
+
+Constraint:
+1. Minimum bricks constraint
+\( \sum_{i \in I} BricksPerAnimal[i] \cdot x_{i} \geq MinBricks \)
+2. Elephant to cow ratio constraint
+\( x_{1} \leq x_{0} \)
+3. Cow to elephant ratio constraint
+\( x_{0} \leq 2 \cdot x_{1} \)
+4. Non-negativity
+\( x_{i} \geq 0 \), for all \( i \in I \)
+
+Type:
+Integer, linear, linear
+IP

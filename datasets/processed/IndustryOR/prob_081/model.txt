@@ -1,0 +1,51 @@
+# Model description for prob_081
+# This model determines the optimal number and type of stores to open in a shopping center
+# to maximize rental income, considering space constraints and minimum/maximum store requirements.
+
+Set:
+1. StoreTypes
+The set of store types, \( T = \{1, 2, 3, 4, 5\} \) corresponding to {Jewelry, Shoes & Hats, General Merchandise, Bookstore, Catering}.
+2. StoreCounts
+The possible number of stores for each type, \( C_t \) for \( t \in T \). For example, for Jewelry (t=1), \( C_1 = \{1, 2, 3\} \).
+
+Parameter:
+1. AreaPerStore
+[250, 350, 800, 400, 500] # Area in m² required for each store type.
+2. MinStores
+[1, 1, 1, 0, 1] # Minimum number of stores for each type.
+3. MaxStores
+[3, 2, 3, 2, 3] # Maximum number of stores for each type.
+4. TotalArea
+5000 # Total available area in m².
+5. ProfitPerStore
+A table of profit (in ten thousand yuan) per store, which depends on the type and number of stores. Let's denote it as \( P_{tc} \) for type \( t \) and count \( c \).
+   - Jewelry: [9, 8, 7] for 1, 2, 3 stores.
+   - Shoes & Hats: [10, 9] for 1, 2 stores.
+   - General Merchandise: [27, 21, 20] for 1, 2, 3 stores.
+   - Bookstore: [16, 10] for 1, 2 stores.
+   - Catering: [17, 15, 12] for 1, 2, 3 stores.
+6. RentRate
+0.20 # 20% of annual profit.
+
+Decision variable:
+1. NumStores
+Integer variable, \( x_t \), the number of stores of type \( t \) to open.
+2. StoreCountIndicator
+Binary variable, \( y_{tc} \), is 1 if exactly \( c \) stores of type \( t \) are opened, 0 otherwise.
+
+Objective:
+Maximize the total rental income. The total rent for store type t is a function of the number of stores opened, x_t.
+max: \sum_{t \in T} \text{RentRate} \times \text{TotalProfit}_t(x_t)
+where \(\text{TotalProfit}_t(x_t) = x_t \times \text{ProfitPerStore}_t(x_t)\) is a non-linear function.
+
+Constraint:
+1. Total Area
+The total area used by all stores cannot exceed the available space.
+\sum_{t \in T} \text{AreaPerStore}[t] \times x_t \leq \text{TotalArea}
+2. Variable Bounds
+The number of stores must be within the min/max limits.
+\text{MinStores}[t] \leq x_t \leq \text{MaxStores}[t], \forall t \in T
+
+Type:
+Integer, non-linear, linear
+NLP

@@ -1,0 +1,35 @@
+Set:
+1. Aircraft
+The set of aircraft types, \( A = \{1, 2, 3\} \)
+2. Routes
+The set of routes, \( R = \{1, 2\} \)
+
+Parameter:
+1. Aircraft Availability
+\( availability = [2, 3, 1] \)
+2. Route Demand
+\( demand = [100, 150] \)
+3. Aircraft Capabilities
+\( capabilities_{ar} \) is the capacity of aircraft type \( a \) for route \( r \)
+\( capabilities = [[50, 70], [60, 80], [70, 90]] \)
+4. Assignment Costs
+\( costs_{ar} \) is the cost of assigning aircraft type \( a \) to route \( r \)
+\( costs = [[100, 200], [150, 250], [200, 300]] \)
+
+Decision variable:
+1. AssignmentVariable
+Integer variable, \( x_{ar} \geq 0 \) for all \( a \in A, r \in R \), where \( x_{ar} \) is the number of aircraft of type \( a \) assigned to route \( r \)
+
+Objective:
+Minimize total assignment cost
+min: \( \sum_{a \in A} \sum_{r \in R} costs_{ar} \cdot x_{ar} \)
+
+Constraint:
+1. Aircraft Availability
+\( \sum_{r \in R} x_{ar} \leq availability_a, \quad \forall a \in A \)
+2. Route Demand
+\( \sum_{a \in A} capabilities_{ar} \cdot x_{ar} \geq demand_r, \quad \forall r \in R \)
+
+Type:
+Integer, Linear, Linear
+ILP

@@ -1,0 +1,106 @@
+Sets:
+T: Set of time periods (months), ( T = {1, 2, 3, 4, 5, 6} ).
+P: Set of manufacturing plants, ( P = {P1, P2} ).
+D: Set of potential distribution centers, ( D = {DC1, DC2, DC3} ).
+R: Set of demand regions, ( R = {R1, R2, R3, R4} ).
+B: Set of batch production months, ( B = {-1, 0, 1, 2, 3, 4, 5, 6} ). Batch -1 is 2 months old at the start of period 1, batch 0 is 1 month old.
+
+Parameters:
+Demand_{rt}: Forecasted demand for product in region (r \in R) in period (t \in T).
+R1: [100, 110, 120, 130, 140, 150]
+R2: [80, 85, 90, 95, 100, 105]
+R3: [120, 125, 130, 135, 140, 145]
+R4: [60, 65, 70, 75, 80, 85]
+
+ProdCap_{pt}: Production capacity of plant (p \in P) in period (t \in T).
+P1: [250, 250, 260, 260, 270, 270]
+P2: [200, 200, 210, 210, 220, 220]
+
+FixedDCost_d: Fixed cost to operate DC (d \in D) per period.
+DC1: $10,000; DC2: $12,000; DC3: $9,000
+
+DCStoreCap_d: Storage capacity of DC (d \in D).
+DC1: 300; DC2: 350; DC3: 280
+
+TransCostPD_{pd}: Unit transportation cost from plant (p \in P) to DC (d \in D).
+P1 to (DC1, DC2, DC3): [$5, $7, $6]
+P2 to (DC1, DC2, DC3): [$8, $4, $7]
+
+TransCostDR_{dr}: Unit transportation cost from DC (d \in D) to region (r \in R).
+DC1 to (R1, R2, R3, R4): [$3, $4, $5, $6]
+DC2 to (R1, R2, R3, R4): [$5, $3, $4, $5]
+DC3 to (R1, R2, R3, R4): [$4, $5, $3, $4]
+
+InvHoldCost_d: Unit inventory holding cost at DC (d \in D) per period.
+DC1: $2.0; DC2: $2.5; DC3: $1.8
+
+DisposalCost_d: Unit cost for disposing an expired product at DC (d \in D).
+DC1: $1; DC2: $1; DC3: $1
+
+ShortageCost_r: Unit shortage cost for region (r \in R) per period.
+R1, R2, R3, R4: $50
+
+L = 2: Shelf life of the product in months.
+InitialInv_{db}: Initial inventory at DC (d \in D) from batch (b \in B) (where (b \le 0)).
+InitialInv = { (DC1, -1): 5, (DC1, 0): 10 }; all other initial inventories are 0.
+
+BigM_flow: A sufficiently large number, e.g., 2400.
+
+Decision Variables
+Y_{dt} \in \{0,1\}: Binary variable, 1 if DC (d \in D) is open in period (t \in T); 0 otherwise.
+P_{pt} \ge 0: Continuous variable, quantity produced at plant (p \in P) in period (t \in T).
+Q_{pdt} \ge 0: Continuous variable, quantity shipped from plant (p \in P) to DC (d \in D) in period (t \in T). This product belongs to batch t.
+S_{bdrt} \ge 0: Continuous variable, quantity shipped from DC (d \in D) to region (r \in R) in period (t \in T), taken from batch (b \in B).
+I_{bdt} \ge 0: Continuous variable, inventory at DC (d \in D) at the end of period (t \in T), originating from batch (b \in B).
+U_{rt} \ge 0: Continuous variable, unmet demand (shortage) in region (r \in R) in period (t \in T).
+W_{bdt} \ge 0: Continuous variable, quantity of product from batch (b \in B) that expires (is wasted) at DC (d \in D) at the end of period (t \in T).
+
+Objective Function
+Minimize total cost Z:
+( \min Z = \sum_{d \in D} \sum_{t \in T} \text{FixedDCost}d \cdot Y{dt} ) (Fixed Costs)
+( + \sum_{p \in P} \sum_{d \in D} \sum_{t \in T} \text{TransCostPD}{pd} \cdot Q{pdt} ) (Plant-to-DC Transport)
+( + \sum_{b \in B} \sum_{d \in D} \sum_{r \in R} \sum_{t \in T} \text{TransCostDR}{dr} \cdot S{bdrt} ) (DC-to-Region Transport)
+( + \sum_{b \in B} \sum_{d \in D} \sum_{t \in T} \text{InvHoldCost}d \cdot I{bdt} ) (Inventory Holding)
+( + \sum_{b \in B} \sum_{d \in D} \sum_{t \in T} \text{DisposalCost}d \cdot W{bdt} ) (Disposal)
+( + \sum_{r \in R} \sum_{t \in T} \text{ShortageCost}r \cdot U{rt} ) (Shortage)
+
+Constraints
+DC Activation & Capacity:
+
+Total inventory at DC (d) cannot exceed its capacity if open:
+( \sum_{b \in B} I_{bdt} \le \text{DCStoreCap}d \cdot Y{dt} ), for all (d \in D, t \in T ).
+
+Shipments into a DC (d) can only occur if it's open:
+( \sum_{p \in P} Q_{pdt} \le \text{BigM_flow} \cdot Y_{dt} ), for all (d \in D, t \in T ).
+
+Shipments out of a DC (d) can only occur if it's open:
+( \sum_{b \in B} \sum_{r \in R} S_{bdrt} \le \text{BigM_flow} \cdot Y_{dt} ), for all (d \in D, t \in T ).
+
+Production & Plant Flow:
+
+Production at plant (p) cannot exceed its capacity:
+( P_{pt} \le \text{ProdCap}_{pt} ), for all (p \in P, t \in T ).
+
+All products produced at plant (p) are shipped to DCs:
+( P_{pt} = \sum_{d \in D} Q_{pdt} ), for all (p \in P, t \in T ).
+
+Inventory Balance & Shelf Life: For all DCs (d), periods (t), and batches (b):
+
+Inventory Balance:
+Let (I_{bd,t-1}) be the inventory from the previous period (for (t=1), this is InitialInv).
+Let (\text{Inflow}{bdt}) be the new stock from production (equals (\sum_p Q{pdt}) if (b=t), else 0).
+Let (\text{Outflow}{bdt}) be the shipments to customers ((\sum_r S{bdrt})).
+Then: ( I_{bdt} = I_{bd,t-1} + \text{Inflow}{bdt} - \text{Outflow}{bdt} - W_{bdt} )
+
+Shelf Life: Product from batch b expires at the end of period b+L-1.
+Waste can only occur at the expiration period: ( W_{bdt} = 0 ), if ( t \neq b+L-1 ).
+Inventory must be zero after expiration: ( I_{bdt} = 0 ), if ( t \geq b+L-1 ).
+
+Demand Satisfaction: For all regions (r) and periods (t):
+
+Total quantity shipped to region (r) from all usable batches plus unmet demand equals the demand. A batch b is usable in period t if it's not expired (t < b+L).
+( \sum_{d \in D} \sum_{b \in B : t < b+L} S_{bdrt} + U_{rt} = \text{Demand}_{rt} ).
+
+Type
+Mixed, Linear, Linear
+MILP

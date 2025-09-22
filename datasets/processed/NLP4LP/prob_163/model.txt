@@ -1,0 +1,41 @@
+Set:
+1. BinType
+The set of bin types, \( I = \{0, 1\} \) # 0 for Small Bin, 1 for Large Bin
+
+Parameter:
+1. WorkersPerBin
+[2, 5] # Number of workers required for each bin type
+2. RecyclingPerBin
+[25, 60] # Units of recycling material each bin type can hold
+3. MaxWorkers
+100 # Maximum number of workers available
+4. MinSmallBins
+10 # Minimum number of small bins to be used
+5. MinLargeBins
+4 # Minimum number of large bins to be used
+6. SmallToLargeRatio
+3 # Required ratio of small bins to large bins
+
+Decision variable:
+1. NumberOfBins
+Integer variable, \( x_{i} \) for all \( i \in I \), representing the number of bins of each type to use.
+
+Objective:
+Maximize the total amount of recycling material that can be collected.
+max: \( \sum_{i \in I} RecyclingPerBin[i] \cdot x_{i} \)
+
+Constraint:
+1. Worker constraint
+\( \sum_{i \in I} WorkersPerBin[i] \cdot x_{i} \leq MaxWorkers \)
+2. Minimum small bins constraint
+\( x_{0} \geq MinSmallBins \)
+3. Minimum large bins constraint
+\( x_{1} \geq MinLargeBins \)
+4. Small to large bin ratio constraint
+\( x_{0} = SmallToLargeRatio \cdot x_{1} \)
+5. Non-negativity
+\( x_{i} \geq 0 \), for all \( i \in I \)
+
+Type:
+Integer, linear, linear
+IP

@@ -1,0 +1,49 @@
+Set:
+1. Chemical
+The set of chemicals, \( C = \{1, 2, 3, 4\} \)
+2. Ingredient
+The set of ingredients, \( I = \{1, 2, 3\} \)
+
+Parameter:
+1. ChemicalID
+['1', '2', '3', '4']
+2. IngredientID
+['A', 'B', 'C']
+3. ChemicalCost
+[8, 10, 11, 14]
+4. IngredientContent
+# units/lb
+[
+[0.03, 0.02, 0.01],
+[0.06, 0.04, 0.01],
+[0.10, 0.03, 0.04],
+[0.12, 0.09, 0.04]
+]
+5. IngredientMin
+[0.08, 0.04, 0.02]
+6. ChemicalMin
+[0, 100, 0, 0]
+7. ProduceTarget
+1000
+
+Decision variable:
+1. ChemicalAmount
+Continuous variable, \( ChemicalAmount_i \forall i \in C \), where \( ChemicalAmount_i \) is the amount of chemical \( i \) used in the production of Panacea.
+
+Objective:
+1. Minimize the total cost of chemicals used.
+min: \sum_{i \in C} ChemicalCost[i] * ChemicalAmount[i]
+
+Constraint:
+1. Ingredient minimum content. 
+\sum_{i \in C} IngredientContent[i][j] * ChemicalAmount[i] \geq IngredientMin[j] * ProduceTarget \forall j \in I
+2. Chemical minimum content.
+ChemicalAmount[i] \geq ChemicalMin[i] \forall i \in C
+3. Total amount of chemicals used.
+\sum_{i \in C} ChemicalAmount[i] = ProduceTarget
+4. Non-negativity constraint.
+ChemicalAmount[i] \geq 0 \forall i \in C
+
+Type:
+Continuous, Linear, Linear
+LP

@@ -1,0 +1,31 @@
+Set:
+1. VehicleType
+The set of vehicle types, \( I = \{0, 1\} \) # 0 for Bike, 1 for Car
+
+Parameter:
+1. PeoplePerVehicle
+[3, 5] # Number of people each vehicle type can transport
+2. MinTotalPeople
+500 # Minimum total number of people to be transported
+3. MaxCarRatio
+0.4 # The number of cars cannot exceed 40% of the total vehicles
+
+Decision variable:
+1. NumberOfVehicles
+Integer variable, \( x_{i} \) for all \( i \in I \), representing the number of vehicles of each type to use.
+
+Objective:
+Minimize the total number of bikes needed.
+min: \( x_{0} \)
+
+Constraint:
+1. Minimum people constraint
+\( \sum_{i \in I} PeoplePerVehicle[i] \cdot x_{i} \geq MinTotalPeople \)
+2. Vehicle ratio constraint
+\( x_{1} \leq \frac{MaxCarRatio}{1 - MaxCarRatio} \cdot x_{0} \)
+3. Non-negativity
+\( x_{i} \geq 0 \), for all \( i \in I \)
+
+Type:
+Integer, linear, linear
+IP

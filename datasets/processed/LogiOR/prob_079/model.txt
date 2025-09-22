@@ -1,0 +1,50 @@
+Set:
+1. Beans
+   The set of green coffee bean origins, \( B = \{\text{Ethiopia}, \text{Colombia}\} \)
+2. Processes
+   The set of product lines, \( P = \{\text{SO}, \text{HB}\} \)
+
+Parameter:
+1. Inventory (kg)
+   \( I_b \): Available inventory for each bean origin b.
+   \( I_{\text{Ethiopia}} = 8000 \), \( I_{\text{Colombia}} = 12000 \)
+2. CuppingScore
+   \( s_b \): The quality score for each bean origin b.
+   \( s_{\text{Ethiopia}} = 92 \), \( s_{\text{Colombia}} = 87 \)
+3. RevenuePerKg
+   \( R_p \): Revenue per kg for each product line p.
+   \( R_{\text{SO}} = 40 \), \( R_{\text{HB}} = 28 \)
+4. ProcessingCostPerKg
+   \( C_p \): Processing cost per kg for each product line p.
+   \( C_{\text{SO}} = 5 \), \( C_{\text{HB}} = 8.5 \)
+5. QualityThreshold
+   \( T_p \): Minimum required average cupping score for product line p.
+   \( T_{\text{SO}} = 90 \), \( T_{\text{HB}} = 88 \)
+6. OperationalLimits
+   Roaster capacity (for HB): \( \text{Cap}_{\text{HB}} = 10000 \) kg
+   Minimum SO production: \( \text{Min}_{\text{SO}} = 2000 \) kg
+
+Decision variable:
+1. Allocation
+   Continuous variable \( x_{bp} \geq 0 \) for all \( b \in B, p \in P \), representing the kilograms of bean b allocated to product line p.
+
+Objective:
+Maximize total weekly profit.
+max: \( \sum_{b \in B} \sum_{p \in P} (R_p - C_p) \cdot x_{bp} \)
+
+Constraint:
+1. Inventory limits
+   The total amount of each bean type allocated cannot exceed its available inventory.
+   \( \sum_{p \in P} x_{bp} \leq I_b, \quad \forall b \in B \)
+2. Quality requirements (linearized)
+   The weighted average cupping score for each product line must meet its threshold. This is linearized from \( \frac{\sum_b s_b \cdot x_{bp}}{\sum_b x_{bp}} \geq T_p \).
+   \( \sum_{b \in B} (s_b - T_p) \cdot x_{bp} \geq 0, \quad \forall p \in P \)
+3. Operational constraints
+   The total amount allocated to the House Blend cannot exceed the roaster's capacity.
+   \( \sum_{b \in B} x_{b, \text{HB}} \leq \text{Cap}_{\text{HB}} \)
+   The total amount allocated to Single-Origin bags must meet the minimum contractual obligation.
+   \( \sum_{b \in B} x_{b, \text{SO}} \geq \text{Min}_{\text{SO}} \)
+
+Type:
+Continuous, Linear, Linear
+LP

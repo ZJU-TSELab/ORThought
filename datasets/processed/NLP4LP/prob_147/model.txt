@@ -1,0 +1,31 @@
+Set:
+1. BusType
+The set of bus types, \( I = \{0, 1\} \) # 0 for Small Bus, 1 for Large Bus
+
+Parameter:
+1. StudentsPerBus
+[20, 50] # Number of students each bus type can carry
+2. MinStudents
+500 # Minimum number of students to be transported
+3. MaxLargeBusProportion
+0.20 # Maximum proportion of buses that can be large
+
+Decision variable:
+1. NumberOfBuses
+Integer variable, \( x_{i} \) for all \( i \in I \), representing the number of buses of each type to hire.
+
+Objective:
+Minimize the total number of buses.
+min: \( \sum_{i \in I} x_{i} \)
+
+Constraint:
+1. Student transportation requirement
+\( \sum_{i \in I} StudentsPerBus[i] \cdot x_{i} \geq MinStudents \)
+2. Large bus proportion constraint
+\( x_{1} \leq MaxLargeBusProportion \cdot \sum_{i \in I} x_{i} \)
+3. Non-negativity
+\( x_{i} \geq 0 \), for all \( i \in I \)
+
+Type:
+Integer, linear, linear
+IP

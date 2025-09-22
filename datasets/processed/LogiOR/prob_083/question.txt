@@ -1,0 +1,5 @@
+A food delivery platform is facing a shortage of delivery capacity during peak hours. To address this, it plans to adopt a crowdsourcing model by recruiting gig workers ("crowdsourced riders") to complete a portion of the orders. The platform has found that the number of crowdsourced riders willing to accept orders is related to the compensation structure, which consists of a base delivery fee and an additional bonus per order. The specific relationship is modeled as:
+
+Number of available riders = 0.8 * (base delivery fee)² + 17 * (additional bonus)
+
+During the peak period, there are 1,500 orders that need to be delivered by crowdsourced riders., and each available crowdsourced rider can complete an average of 12 orders. The platform earns an average revenue of $15 for each completed order. The platform has two key requirements: 1) A minimum of 1,000 orders must be completed; 2) The base delivery fee offered to riders must be at least $3. The platform needs to design an optimal "base delivery fee + additional bonus" compensation plan to maximize its profit, while ensuring the minimum order completion target is met.

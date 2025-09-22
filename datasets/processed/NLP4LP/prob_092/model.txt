@@ -1,0 +1,37 @@
+Set:
+1. BoneType
+The set of bone types, \( I = \{0, 1\} \) # 0 for small, 1 for large
+
+Parameter:
+1. MedicationUsage
+[10, 15] # Units of tooth medication required for each bone type
+2. MeatUsage
+[12, 15] # Units of meat required for each bone type
+3. MaxMedication
+2000 # Maximum units of tooth medication available
+4. MinLargeBones
+30 # Minimum number of large bones to be made
+5. MinSmallBonePercentage
+0.5 # Minimum percentage of small bones
+
+Decision variable:
+1. BoneCount
+Integer variable, \( x_{i} \) for all \( i \in I \), representing the number of bones of type \( i \) to be made.
+
+Objective:
+Minimize the total amount of meat needed.
+min: \( \sum_{i \in I} MeatUsage[i] \cdot x_{i} \)
+
+Constraint:
+1. Tooth medication constraint
+\( \sum_{i \in I} MedicationUsage[i] \cdot x_{i} \leq MaxMedication \)
+2. Small bone percentage constraint
+\( x_{0} \geq MinSmallBonePercentage \cdot (x_{0} + x_{1}) \) which simplifies to \( x_{0} \geq x_{1} \)
+3. Minimum large bones constraint
+\( x_{1} \geq MinLargeBones \)
+4. Non-negativity
+\( x_{i} \geq 0 \), for all \( i \in I \)
+
+Type:
+Integer, linear, linear
+IP

@@ -1,0 +1,35 @@
+Set:
+1. Sites
+The set of potential tower sites, \( S = \{1, 2\} \)
+2. Regions
+The set of regions to cover, \( R = \{1, 2, 3\} \)
+
+Parameter:
+1. Coverage Matrix
+\( delta = [[1, 0, 1], [0, 1, 0]] \)
+2. Tower Costs
+\( cost = [3, 4] \)
+3. Population
+\( population = [100, 200, 150] \)
+4. Budget
+\( budget = 4 \)
+
+Decision variable:
+1. TowerBuildVariable
+Binary variable, \( x_s \in \{0, 1\} \) for all \( s \in S \), where \( x_s = 1 \) if a tower is built at site \( s \), and 0 otherwise
+2. RegionCoverageVariable
+Binary variable, \( y_r \in \{0, 1\} \) for all \( r \in R \), where \( y_r = 1 \) if region \( r \) is covered, and 0 otherwise
+
+Objective:
+Maximize population covered
+max: \( \sum_{r \in R} population_r \cdot y_r \)
+
+Constraint:
+1. Coverage Constraint
+\( y_r \leq \sum_{s \in S} delta_{s,r} \cdot x_s, \quad \forall r \in R \)
+2. Budget Constraint
+\( \sum_{s \in S} cost_s \cdot x_s \leq budget \)
+
+Type:
+Binary, Linear, Linear
+ILP

@@ -1,0 +1,39 @@
+Set:
+1. Furnace
+The set of furnaces, \( F = \{1, 2\} \)
+2. Method
+The set of steelmaking methods, \( M = \{1, 2\} \)
+
+Parameter:
+1. TimePerOp
+[2, 3] # Hours per operation for each method
+2. CostPerOp
+[50, 70] # Fuel expense per operation for each method
+3. SteelPerOp
+10 # Tons of steel produced per operation
+4. MinTotalSteel
+30 # Minimum total tons of steel to be produced
+5. MaxFurnaceHours
+12 # Maximum hours available per furnace
+
+Decision variable:
+1. Operations
+Continuous variable, \( x_{f,m} \) for \( f \in F, m \in M \), representing the number of times furnace \( f \) uses method \( m \).
+
+Objective:
+Minimize the total fuel expenses.
+min: \sum_{f \in F} \sum_{m \in M} CostPerOp[m] * x_{f,m}
+
+Constraint:
+1. Time constraint for each furnace
+The total time used by each furnace cannot exceed its available hours.
+\sum_{m \in M} TimePerOp[m] * x_{f,m} \leq MaxFurnaceHours, \forall f \in F
+2. Steel production constraint
+The total amount of steel produced must meet the minimum requirement.
+\sum_{f \in F} \sum_{m \in M} SteelPerOp * x_{f,m} \geq MinTotalSteel
+3. Non-negativity
+\( x_{f,m} \geq 0, \forall f \in F, m \in M \)
+
+Type:
+Continuous, linear, linear
+LP

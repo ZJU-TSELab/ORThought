@@ -1,0 +1,31 @@
+Set:
+1. CarModel
+The set of car models, \( M = \{0, 1\} \) # 0 for Regular, 1 for Premium
+
+Parameter:
+1. Profit
+[5000, 8500] # Profit per car model
+2. DemandLimit
+[8, 6] # Maximum daily demand for each car model
+3. TotalCapacity
+12 # Maximum total number of cars that can be made per day
+
+Decision variable:
+1. CarProduction
+Continuous variable, \( x_{m} \) for all \( m \in M \), representing the number of cars of model \( m \) to make per day.
+
+Objective:
+Maximize the total profit.
+max: \sum_{m \in M} Profit[m] * x_{m}
+
+Constraint:
+1. Demand limit constraint
+x_{m} \leq DemandLimit[m], for all \( m \in M \)
+2. Total capacity constraint
+\sum_{m \in M} x_{m} \leq TotalCapacity
+3. Non-negativity
+x_{m} \geq 0, for all \( m \in M \)
+
+Type:
+continuous, linear, linear
+LP

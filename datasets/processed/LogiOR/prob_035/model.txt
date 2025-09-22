@@ -1,0 +1,49 @@
+Set:
+1. Farm
+The set of farms, \( F = \{1, 2, 3\} \)  # 1: Farm A, 2: Farm B, 3: Farm C
+2. Store
+The set of stores, \( S = \{1, 2, 3, 4\} \)  # 1: Store 1, 2: Store 2, 3: Store 3, 4: Store 4
+
+Parameter:
+1. ProductionCost
+[100, 120, 150]
+2. YieldCapacity
+[500, 400, 600]
+3. WaterUsage
+[6, 8, 6]
+4. FertilizerUsage
+[5, 4, 3]
+5. Demand
+[200, 300, 400, 500]
+6. TransportationCost
+[[20, 25, 30, 15], 
+ [22, 26, 32, 18], 
+ [18, 24, 28, 14]]
+7. MaxWaterUsageperTon
+7
+8. MaxFertilizerUsageperTon
+4
+
+Decision variable:
+1. AmountProduced
+Continuous variable, \( AmountProduced[f][s] \forall f \in F, s \in S \), where \( AmountProduced[f][s] \) is the amount of produce shipped from farm \( f \) to store \( s \).
+
+Objective:
+1. Minimize the total cost of production and transportation.
+min: \sum_{f \in F} ProductionCost[f] * \sum_{s \in S} AmountProduced[f][s] + \sum_{f \in F} \sum_{s \in S} TransportationCost[f][s] * AmountProduced[f][s]
+
+Constraint:
+1. Demand constraint.
+\sum_{f \in F} AmountProduced[f][s] \geq Demand[s] \forall s \in S
+2. Yield capacity constraint.
+\sum_{s \in S} AmountProduced[f][s] \leq YieldCapacity[f] \forall f \in F
+3. Water usage constraint.
+\sum_{f \in F}\sum_{s \in S} WaterUsage[f] * AmountProduced[f][s] \leq MaxWaterUsageperTon * \sum_{s \in S}\sum_{f \in F} AmountProduced[f][s]
+4. Fertilizer usage constraint.
+\sum_{f \in F}\sum_{s \in S} FertilizerUsage[f] * AmountProduced[f][s] \leq MaxFertilizerUsageperTon * \sum_{s \in S}\sum_{f \in F} AmountProduced[f][s]
+5. Non-negativity constraint.
+AmountProduced[f][s] \geq 0 \forall f \in F, s \in S
+
+Type:
+Continuous, Linear, Linear
+LP

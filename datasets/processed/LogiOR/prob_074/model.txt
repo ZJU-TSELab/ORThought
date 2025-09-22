@@ -1,0 +1,42 @@
+Set:
+1. Nodes
+The set of nodes in the network, \( N = \{1,2,3,4,5,6\} \), where 1 is the source, {4,5,6} are sinks
+2. Arcs
+The set of directed arcs, \( A = \{(1,2),(1,3),(2,3),(2,4),(3,5),(3,6),(4,5),(5,6)\} \)
+3. Products
+The set of products, \( P = \{A,B,C,D,E\} \)
+
+Parameter:
+1. ArcCapacity
+The maximum flow capacity for each arc (pallets/day):
+\( u_{12} = 20, u_{13} = 15, u_{23} = 10, u_{24} = 12, u_{35} = 18, u_{36} = 10, u_{45} = 8, u_{56} = 15 \)
+2. ArcCost
+The transportation cost per pallet for each arc ($):
+\( c_{12} = 3, c_{13} = 4, c_{23} = 2, c_{24} = 5, c_{35} = 3, c_{36} = 6, c_{45} = 1, c_{56} = 2 \)
+3. Demand
+The product-specific demand at each sink node (pallets/day):
+\( d_{4A} = 3, d_{4B} = 2, d_{4C} = 3, d_{5B} = 4, d_{5D} = 5, d_{5E} = 3, d_{6A} = 2, d_{6C} = 3, d_{6E} = 5 \)
+4. SupplyLimit
+The maximum total supply from the source: 30 pallets/day
+
+Decision variable:
+1. ProductFlow
+\( x_{ij}^p \geq 0 \) for all \( (i,j) \in A, p \in P \), representing the flow of product \( p \) on arc \( (i,j) \)
+
+Objective:
+Minimize the total transportation cost
+min: \( \sum_{(i,j)\in A} \sum_{p\in P} c_{ij} \cdot x_{ij}^p \)
+
+Constraint:
+1. Flow conservation at intermediate nodes
+\( \sum_{j:(i,j)\in A} x_{ij}^p - \sum_{j:(j,i)\in A} x_{ji}^p = 0, \forall i \in N\setminus\{1,4,5,6\}, \forall p \in P \)
+2. Demand satisfaction at sink nodes
+\( \sum_{j:(j,i)\in A} x_{ji}^p - \sum_{j:(i,j)\in A} x_{ij}^p = d_{ip}, \forall i \in \{4,5,6\}, \forall p \in P \)
+3. Arc capacity constraints
+\( \sum_{p\in P} x_{ij}^p \leq u_{ij}, \forall (i,j) \in A \)
+4. Source supply limit
+\( \sum_{j:(1,j)\in A} \sum_{p\in P} x_{1j}^p \leq 30 \)
+
+Type:
+Continuous, Linear, Linear
+LP

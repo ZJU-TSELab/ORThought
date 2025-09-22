@@ -1,0 +1,35 @@
+Set:
+1. TestType
+The set of test types, \( I = \{0, 1\} \) # 0 for ear test, 1 for blood test
+
+Parameter:
+1. TimePerTest
+[5, 30] # Minutes per test for each type
+2. TotalTime
+7525 # Total minutes the clinic operates
+3. MinEarTests
+12 # Minimum number of ear tests to be administered
+4. TestRatioMultiplier
+3 # The ratio of blood tests to ear tests must be at least this value
+
+Decision variable:
+1. NumberOfTests
+Integer variable, \( x_{i} \) for all \( i \in I \), representing the number of tests of each type to perform.
+
+Objective:
+Maximize the total number of tests performed.
+max: \( \sum_{i \in I} x_{i} \)
+
+Constraint:
+1. Total time
+\( \sum_{i \in I} TimePerTest[i] \cdot x_{i} \leq TotalTime \)
+2. Test ratio
+\( x_{1} \geq TestRatioMultiplier \cdot x_{0} \)
+3. Minimum ear tests
+\( x_{0} \geq MinEarTests \)
+4. Non-negativity
+\( x_{i} \geq 0 \), for all \( i \in I \)
+
+Type:
+Integer, linear, linear
+IP

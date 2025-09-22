@@ -1,0 +1,44 @@
+# Model description for prob_089
+
+Set:
+1. Packages
+The set of promotional packages, \( P = \{A, B\} \).
+
+Parameter:
+1. ShirtsPerPackage
+[1, 3] # Number of shirts in each package type.
+2. PantsPerPackage
+[2, 1] # Number of pants in each package type.
+3. AvailableShirts
+200 # Total number of shirts available.
+4. AvailablePants
+100 # Total number of pants available.
+5. Price
+[30, 50] # Price in £ for each package type.
+6. MinSales
+[20, 10] # Minimum number of packages to sell for each type.
+
+Decision variable:
+1. NumPackages
+Integer variable, \( x_p \) for all \( p \in P \), representing the number of packages of type \( p \) to sell.
+
+Objective:
+Maximize the total revenue from the promotion.
+max: \sum_{p \in P} \text{Price}[p] * x_p
+
+Constraint:
+1. Shirt Availability
+The total number of shirts sold cannot exceed the available inventory.
+\sum_{p \in P} \text{ShirtsPerPackage}[p] * x_p \leq \text{AvailableShirts}
+2. Pants Availability
+The total number of pants sold cannot exceed the available inventory.
+\sum_{p \in P} \text{PantsPerPackage}[p] * x_p \leq \text{AvailablePants}
+3. Minimum Sales
+The number of packages sold must meet the minimum requirement for each type.
+x_p \geq \text{MinSales}[p], \forall p \in P
+4. Non-negativity
+x_p \geq 0, \forall p \in P
+
+Type:
+Integer, linear, linear
+ILP

@@ -1,0 +1,19 @@
+An electronic system is composed of 3 types of components. The system operates normally if all three components function properly. By installing one or more spare parts for any of the components, the reliability of the components can be improved. The system's operational reliability is the product of the reliabilities of each component, and the reliability of each component is a function of the number of spare parts installed. The first half of the table below shows the function relationship between the number of spare parts and the reliability of a specific component. The prices and weights of the 3 types of components are shown in rows 8 to 9 of the table. Given that the total budget for all spare parts is limited to 150 yuan, and the weight limit is 20 kg, how should spare parts be installed to maximize the system's operational reliability? 
+
+\begin{table}[h]
+\centering
+\begin{tabular}{|c|c|c|c|}
+\hline
+\textbf{Component Number} & \textbf{1} & \textbf{2} & \textbf{3} \\ \hline
+\textbf{Number of Spares} &             &             &             \\ \hline
+0                & 0.5         & 0.6         & 0.7         \\ \hline
+1                & 0.6         & 0.75        & 0.9         \\ \hline
+2                & 0.7         & 0.95        & 1.0         \\ \hline
+3                & 0.8         & 1.0         & 1.0         \\ \hline
+4                & 0.9         & 1.0         & 1.0         \\ \hline
+5                & 1.0         & 1.0         & 1.0         \\ \hline
+\textbf{Unit Price (yuan)}  & 20           & 30           & 40           \\ \hline
+\textbf{Unit Weight (kg)}  & 2            & 4            & 6            \\ \hline
+\end{tabular}
+\caption{Spare Component Data Table}
+\end{table}

@@ -1,0 +1,49 @@
+Set:
+1. CollectionPoint
+The set of collection points, \( CP = \{1, 2, \dots, CollectionPointsNum\} \)
+2. Node
+The set of nodes, \( N = CP \cup \{0\} \)
+# 0 is the Dump node
+3. Truck
+The set of trucks, \( K = \{1, 2, \dots, TruckNum\} \)
+
+Parameter:
+1. CollectionPointsNum
+15
+2. NodesCoordinates
+[(0, 0), (3, -8), (-10, -5), (3, 0), (-3, -3), (5, -1), (-7, 3), (5, -3), (4, -5), (6, 4), (3, 1), (-10, 0), (-2, 7), (-6, -3), (-8, -7), (-1, 8)]
+3. CollectionPointsDemand
+[20, 20, 28, 12, 30, 24, 30, 12, 27, 26, 21, 20, 12, 16, 19]
+4. TruckNum
+4
+5. TruckCapacity
+100
+6. TruckMaxDistance
+45
+
+Decision variable:
+1. X
+Binary variable, \( x_{ijk} \forall i, j \in N, i \neq j \forall k \in K\), where \( x_{ijk} = 1 \) if truck \( k \) travels from node \( i \) to node \( j \), otherwise \( x_{ijk} = 0 \).
+
+Objective:
+The minimum total distance of the truck routes.
+min: \sum_{k \in K}\sum_{i \in N} \sum_{j \in N} Distance[i][j] * x_{ijk}
+# Where \( Distance[i][j] \) is the Euclidean distance between node \( i \) and node \( j \).
+
+Constraint:
+1. Each collection point must be visited exactly once.
+\sum_{i \in N} x_{ijk} = 1 \forall j \in CP \forall k \in K
+2. Truck leaves collection point that it enters.
+\sum_{j \in N} x_{ijk} - \sum_{j \in N} x_{jik} = 0 \forall i \in CP \forall k \in K
+3. Every truck must leave the dump node exactly once.
+\sum_{j \in N} x_{0jk} = 1 \forall k \in K
+4. Capacity constraint for each truck.
+\sum_{i \in CP}\sum_{j \in CP} CollectionPointsDemand[i] * x_{ijk} <= TruckCapacity \forall k \in K
+5. Distance constraint for each truck.
+\sum_{i \in N} \sum_{j \in N} Distance[i][j] * x_{ijk} <= TruckMaxDistance \forall k \in K
+6. Eliminate sub-tours.
+\sum_{i \in S} \sum_{j \in S} x_{ijk} <= |S| - 1 \forall k \in K, \forall S \subseteq N, 1 < |S| < |N|
+
+Type:
+Binary, Linear, Linear
+ILP

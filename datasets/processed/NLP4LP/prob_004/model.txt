@@ -1,0 +1,39 @@
+Set:
+1. EmployeeType
+The set of employee types, \( T = \{0, 1\} \) # 0 for Senior Citizens, 1 for Young Adults
+
+Parameter:
+1. Wage
+[500, 750] # Weekly wage per employee type
+2. WageBudget
+30000 # Maximum weekly wage bill
+3. MinTotalWorkers
+50 # Minimum number of workers required
+4. MinYoungAdults
+10 # Minimum number of young adults required
+5. YoungToSeniorRatio
+3 # The number of young adults must be at least 1/3 of the number of senior citizens, so 3 * YoungAdults >= SeniorCitizens
+
+Decision variable:
+1. EmployeeCount
+Integer variable, \( x_{t} \) for all \( t \in T \), representing the number of employees of type \( t \) to hire.
+
+Objective:
+Minimize the total weekly wage bill.
+min: \sum_{t \in T} Wage[t] * x_{t}
+
+Constraint:
+1. Wage budget constraint
+\sum_{t \in T} Wage[t] * x_{t} \leq WageBudget
+2. Total workers constraint
+\sum_{t \in T} x_{t} \geq MinTotalWorkers
+3. Minimum young adults constraint
+x_{1} \geq MinYoungAdults
+4. Young to senior ratio constraint
+YoungToSeniorRatio * x_{1} \geq x_{0}
+5. Non-negativity
+x_{t} \geq 0, \forall t \in T
+
+Type:
+Integer, linear, linear
+IP

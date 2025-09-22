@@ -1,0 +1,39 @@
+Set:
+1. VehicleType
+The set of vehicle types, \( I = \{0, 1\} \) # 0 for motorcycle, 1 for sedan
+
+Parameter:
+1. TransportCapacity
+[30, 70] # People transported per shift for each vehicle type
+2. PollutionProduction
+[4, 15] # Units of pollution produced per shift for each vehicle type
+3. Earnings
+[100, 225] # Earnings per shift for each vehicle type
+4. MaxMotorcycleRatio
+0.25 # Maximum ratio of motorcycles to total vehicles
+5. PollutionLimit
+200 # Maximum total units of pollution allowed
+6. MinTransportCapacity
+1200 # Minimum total people to be transported per shift
+
+Decision variable:
+1. NumberOfVehicles
+Integer variable, \( x_{i} \) for all \( i \in I \), representing the number of vehicles of each type to purchase.
+
+Objective:
+Maximize the total earnings for the taxi company per shift.
+max: \( \sum_{i \in I} Earnings[i] \cdot x_{i} \)
+
+Constraint:
+1. Motorcycle ratio
+\( x_{0} \leq MaxMotorcycleRatio \cdot \sum_{i \in I} x_{i} \)
+2. Pollution limit
+\( \sum_{i \in I} PollutionProduction[i] \cdot x_{i} < PollutionLimit \)
+3. Transport capacity
+\( \sum_{i \in I} TransportCapacity[i] \cdot x_{i} \geq MinTransportCapacity \)
+4. Non-negativity
+\( x_{i} \geq 0 \), for all \( i \in I \)
+
+Type:
+Integer, linear, linear
+IP

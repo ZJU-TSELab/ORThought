@@ -1,0 +1,17 @@
+Healthy Pet Foods Company produces two types of dog food: Meaties and Yummies. Each pack of Meaties contains 2 pounds of grains and 3 pounds of meat; each pack of Yummies contains 3 pounds of grains and 1.5 pounds of meat. The company believes it can sell any quantity of dog food that it can produce. Meaties sell for $2.80 per pack, and Yummies sell for $2.00 per pack. The company's production is subject to several constraints. First, a maximum of 400,000 pounds of grains can be purchased each month at a price of $0.20 per pound of grains. A maximum of 300,000 pounds of meat can be purchased each month at a price of $0.50 per pound of meat. Additionally, a special machine is required to produce Meaties, with a monthly capacity of 90,000 packs. The variable costs for mixing and packaging dog food are $0.25 per pack (Meaties) and $0.20 per pack (Yummies). Detailed information is provided in Table B-1.
+
+**Table B-1 Healthy Pet Foods Data**
+
+|                    | Meaties      | Yummies    |
+|--------------------|--------------|------------|
+| Price per pack     | $2.80        | $2.00      |
+| Raw materials      |              |            |
+| - Grains           | 2.0 lbs      | 3.0 lbs    |
+| - Meat             | 3.0 lbs      | 1.5 lbs    |
+| Variable cost      | $0.25/pack   | $0.20/pack |
+| Resources          |              |            |
+| Meaties capacity   | 90,000 packs/month |       |
+| Monthly available grains | 400,000 lbs |      |
+| Monthly available meat | 300,000 lbs |        |
+
+Assume you are the manager of the dog food department at Healthy Pet Foods Company. Your salary is based on the department's profit, so you will try to maximize profit. How should you operate the department to maximize both the profit and your salary?

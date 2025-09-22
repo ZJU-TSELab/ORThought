@@ -1,0 +1,1 @@
+A steel reinforcement workshop produces a batch of steel bars (with the same diameter), consisting of 90 pieces of 3 meters in length and 60 pieces of 4 meters in length. It is known that each piece of raw steel bar used is 10 meters in length. How can the raw material be cut most efficiently? Establish a linear programming model for this problem.

@@ -1,0 +1,39 @@
+Set:
+1. WorkbookType
+The set of workbook types, \( I = \{0, 1\} \) # 0 for Math Workbook, 1 for English Workbook
+
+Parameter:
+1. MinProduction
+[40, 60] # Minimum number of workbooks to make for each type
+2. MaxProduction
+[140, 170] # Maximum number of workbooks to make for each type
+3. MinTotalProduction
+200 # Minimum total number of workbooks to send
+4. ProfitPerWorkbook
+[15, 17] # Profit per workbook for each type
+
+Decision variable:
+1. NumberOfWorkbooks
+Integer variable, \( x_{i} \) for all \( i \in I \), representing the number of workbooks of each type to make.
+
+Objective:
+Maximize the total profit.
+max: \( \sum_{i \in I} ProfitPerWorkbook[i] \cdot x_{i} \)
+
+Constraint:
+1. Minimum production constraint for Math Workbooks
+\( x_{0} \geq MinProduction[0] \)
+2. Minimum production constraint for English Workbooks
+\( x_{1} \geq MinProduction[1] \)
+3. Maximum production constraint for Math Workbooks
+\( x_{0} \leq MaxProduction[0] \)
+4. Maximum production constraint for English Workbooks
+\( x_{1} \leq MaxProduction[1] \)
+5. Minimum total production constraint
+\( \sum_{i \in I} x_{i} \geq MinTotalProduction \)
+6. Non-negativity
+\( x_{i} \geq 0 \), for all \( i \in I \)
+
+Type:
+Integer, linear, linear
+IP

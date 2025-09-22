@@ -1,0 +1,13 @@
+A fabric dyeing plant has 3 dyeing vats. Each batch of fabric must be dyed in sequence in each vat: first, the second, and third vats. The plant must color five batches of fabric of different sizes. The time required in hours to dye batch $i$ in vat $j$ is given in the following matrix:
+
+$$
+\left(\begin{array}{ccc}
+3 & 1 & 1 \\
+2 & 1.5 & 1 \\
+3 & 1.2 & 1.3 \\
+2 & 2 & 2 \\
+2.1 & 2 & 3
+\end{array}\right)
+$$
+
+Schedule the dyeing operations in the vats to minimize the completion time of the last batch.

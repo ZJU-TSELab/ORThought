@@ -1,0 +1,41 @@
+Set:
+1. BoxType
+The set of box types, \( I = \{0, 1\} \) # 0 for cheap, 1 for expensive
+
+Parameter:
+1. MetalUsage
+[3, 5] # Units of metal per box for each box type
+2. AcidUsage
+[5, 8] # Units of acid per box for each box type
+3. FoamProduction
+[8, 10] # Units of foam produced per box for each box type
+4. HeatProduction
+[2, 3] # Units of heat given off per box for each box type
+5. MaxMetal
+200 # Maximum units of metal available
+6. MaxAcid
+300 # Maximum units of acid available
+7. MaxHeat
+50 # Maximum units of heat allowed
+
+Decision variable:
+1. BoxCount
+Integer variable, \( x_{i} \) for all \( i \in I \), representing the number of boxes of each type to be made.
+
+Objective:
+Maximize the total amount of foam produced.
+max: \( \sum_{i \in I} FoamProduction[i] \cdot x_{i} \)
+
+Constraint:
+1. Metal constraint
+\( \sum_{i \in I} MetalUsage[i] \cdot x_{i} \leq MaxMetal \)
+2. Acid constraint
+\( \sum_{i \in I} AcidUsage[i] \cdot x_{i} \leq MaxAcid \)
+3. Heat constraint
+\( \sum_{i \in I} HeatProduction[i] \cdot x_{i} \leq MaxHeat \)
+4. Non-negativity
+\( x_{i} \geq 0 \), for all \( i \in I \)
+
+Type:
+Integer, linear, linear
+IP

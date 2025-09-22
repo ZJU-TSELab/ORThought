@@ -1,0 +1,35 @@
+Set:
+1. BeamType
+The set of beam types, \( I = \{0, 1\} \) # 0 for Beam 1, 1 for Beam 2
+
+Parameter:
+1. PancreasDose
+[0.3, 0.2] # Units of medicine per minute to the pancreas for each beam type
+2. SkinDose
+[0.2, 0.1] # Units of medicine per minute to the skin for each beam type
+3. TumorDose
+[0.6, 0.4] # Units of medicine per minute to the tumor for each beam type
+4. MaxSkinDose
+4 # Maximum units of medicine to be received by the skin
+5. MinTumorDose
+3 # Minimum units of medicine to be delivered to the tumor
+
+Decision variable:
+1. BeamMinutes
+Continuous variable, \( x_{i} \) for all \( i \in I \), representing the number of minutes of each beam.
+
+Objective:
+Minimize the total radiation received by the pancreas.
+min: \( \sum_{i \in I} PancreasDose[i] \cdot x_{i} \)
+
+Constraint:
+1. Skin dose constraint
+\( \sum_{i \in I} SkinDose[i] \cdot x_{i} \leq MaxSkinDose \)
+2. Tumor dose constraint
+\( \sum_{i \in I} TumorDose[i] \cdot x_{i} \geq MinTumorDose \)
+3. Non-negativity
+\( x_{i} \geq 0 \), for all \( i \in I \)
+
+Type:
+Continuous, linear, linear
+LP

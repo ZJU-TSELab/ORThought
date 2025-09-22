@@ -1,0 +1,39 @@
+Set:
+1. Factory
+The set of factories, I = {0, 1} # 0 for Northern, 1 for Western
+
+Parameter:
+1. InjectionRate
+[800, 650] # g of anti-itch injections produced per hour for each factory
+2. CreamRate
+[700, 750] # g of topical cream produced per hour for each factory
+3. PlasticUsage
+[40, 35] # units of plastic used per hour for each factory
+4. MinInjections
+800000 # Minimum g of anti-itch injections to be produced
+5. MinCream
+700000 # Minimum g of topical cream to be produced
+6. PlasticLimit
+60000 # Total units of plastic available
+
+Decision variable:
+1. HoursOfOperation
+Continuous variable, x_{i} for all i in I, representing the number of hours each factory should be run.
+
+Objective:
+Minimize the maximum of the hours of operation for the two factories.
+min: max(x_{0}, x_{1})
+
+Constraint:
+1. Injection Production
+\( \sum_{i \in I} \text{InjectionRate}[i] \cdot x_{i} \geq \text{MinInjections} \)
+2. Cream Production
+\( \sum_{i \in I} \text{CreamRate}[i] \cdot x_{i} \geq \text{MinCream} \)
+3. Plastic Usage
+\( \sum_{i \in I} \text{PlasticUsage}[i] \cdot x_{i} \leq \text{PlasticLimit} \)
+4. Non-negativity
+\( x_{i} \geq 0 \), for all \( i \in I \)
+
+Type:
+Continuous, linear, linear
+LP

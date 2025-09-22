@@ -1,0 +1,39 @@
+Set:
+1. LabType
+The set of lab types, \( I = \{0, 1\} \) # 0 for Lab 1, 1 for Lab 2
+
+Parameter:
+1. HeartPillProduction
+[20, 30] # Heart medication pills produced per hour by each lab type
+2. LungPillProduction
+[30, 40] # Lung medication pills produced per hour by each lab type
+3. LaborHours
+[3, 5] # Worker hours required per session for each lab type
+4. MinHeartPills
+20000 # Minimum number of heart medication pills to be produced
+5. MinLungPills
+30000 # Minimum number of lung medication pills to be produced
+6. MaxLaborHours
+1500 # Maximum worker hours available
+
+Decision variable:
+1. LabSessions
+Continuous variable, \( x_{i} \) for all \( i \in I \), representing the number of sessions at each lab.
+
+Objective:
+Minimize the total time needed.
+min: \( \sum_{i \in I} LaborHours[i] \cdot x_{i} \)
+
+Constraint:
+1. Heart pill production constraint
+\( \sum_{i \in I} HeartPillProduction[i] \cdot x_{i} \geq MinHeartPills \)
+2. Lung pill production constraint
+\( \sum_{i \in I} LungPillProduction[i] \cdot x_{i} \geq MinLungPills \)
+3. Labor hours constraint
+\( \sum_{i \in I} LaborHours[i] \cdot x_{i} \leq MaxLaborHours \)
+4. Non-negativity
+\( x_{i} \geq 0 \), for all \( i \in I \)
+
+Type:
+Continuous, linear, linear
+LP

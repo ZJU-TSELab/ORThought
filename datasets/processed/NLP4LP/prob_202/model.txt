@@ -1,0 +1,33 @@
+Set:
+1. HandbagType
+The set of handbag types, \( I = \{0, 1\} \) # 0 for Regular, 1 for Premium
+
+Parameter:
+1. ProfitPerHandbag
+[30, 180] # Profit per handbag for each type
+2. CostPerHandbag
+[200, 447] # Manufacturing cost per handbag for each type
+3. MaxBudget
+250000 # Total available budget
+4. MaxTotalHandbags
+475 # Maximum total number of handbags that can be sold
+
+Decision variable:
+1. NumberOfHandbags
+Integer variable, \( x_{i} \) for all \( i \in I \), representing the number of handbags of each type to sell.
+
+Objective:
+Maximize the total monthly profit.
+max: \( \sum_{i \in I} ProfitPerHandbag[i] \cdot x_{i} \)
+
+Constraint:
+1. Budget constraint
+\( \sum_{i \in I} CostPerHandbag[i] \cdot x_{i} \leq MaxBudget \)
+2. Total handbags constraint
+\( \sum_{i \in I} x_{i} \leq MaxTotalHandbags \)
+3. Non-negativity
+\( x_{i} \geq 0 \), for all \( i \in I \)
+
+Type:
+Integer, linear, linear
+IP

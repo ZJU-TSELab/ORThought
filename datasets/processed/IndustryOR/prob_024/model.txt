@@ -1,0 +1,47 @@
+Set:
+1. InvestmentOption
+The set of investment options, \( I = \{1, 2\} \) # 1 for 1-year, 2 for 2-year
+2. Year
+The set of years for investment decisions, \( Y = \{1, 2, 3\} \)
+
+Parameter:
+1. InitialCapital
+100000 # The initial amount of money to invest
+2. ReturnRate1
+0.7 # Return rate for the 1-year investment
+3. ReturnRate2
+2.0 # Return rate for the 2-year investment (profit is 2x the investment)
+
+Decision variable:
+1. InvestmentAmount
+Continuous variable, \( x_{i,j} \) for \( i \in I, j \in Y \), representing the amount invested in option \( i \) at the start of year \( j \).
+
+Objective:
+Maximize the total earnings by the end of the third year.
+max: 0.7 * x_{1,1} + 2.0 * x_{2,1} + 0.7 * x_{1,2} + 2.0 * x_{2,2} + 0.7 * x_{1,3}
+
+Constraint:
+1. Cash availability at the start of Year 1
+\( x_{1,1} + x_{2,1} \leq InitialCapital \)
+2. Cash availability at the start of Year 2
+The money available is the uninvested capital from Year 1 plus the returns from the 1-year investment made in Year 1.
+\( x_{1,2} + x_{2,2} \leq (InitialCapital - x_{1,1} - x_{2,1}) + 1.7 * x_{1,1} \)
+Which simplifies to:
+\( x_{1,2} + x_{2,2} - 0.7 * x_{1,1} + x_{2,1} \leq InitialCapital \)
+3. Cash availability at the start of Year 3
+The money available is the uninvested capital from Year 2 plus returns from investments made in Year 1 (2-year) and Year 2 (1-year).
+\( x_{1,3} \leq (InitialCapital - x_{1,1} - x_{2,1} - x_{1,2} - x_{2,2}) + 1.7 * x_{1,1} + 1.7 * x_{1,2} + 3.0 * x_{2,1} \)
+This is complex, a better way is to track cash flow year by year.
+Let \( C_j \) be cash available at start of year \( j \).
+\( C_1 = InitialCapital \)
+\( x_{1,1} + x_{2,1} \leq C_1 \)
+\( C_2 = C_1 - x_{1,1} - x_{2,1} + 1.7 * x_{1,1} \)
+\( x_{1,2} + x_{2,2} \leq C_2 \)
+\( C_3 = C_2 - x_{1,2} - x_{2,2} + 1.7 * x_{1,2} + 3.0 * x_{2,1} \)
+\( x_{1,3} \leq C_3 \)
+4. Non-negativity
+\( x_{i,j} \geq 0, \forall i \in I, j \in Y \)
+
+Type:
+Continuous, linear, linear
+LP

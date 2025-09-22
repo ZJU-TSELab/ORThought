@@ -1,0 +1,33 @@
+Set:
+1. BranchSize
+The set of branch sizes, \( I = \{0, 1\} \) # 0 for Small, 1 for Large
+
+Parameter:
+1. CustomerServiceCapacity
+[50, 100] # Customers served per day by each branch size
+2. TellerRequirement
+[10, 15] # Bank tellers required for each branch size
+3. MinCustomerService
+1200 # Minimum total customers to be served per day
+4. MaxTellers
+200 # Maximum number of bank tellers available
+
+Decision variable:
+1. BranchCount
+Integer variable, \( x_{i} \) for all \( i \in I \), representing the number of branches of size \( i \) to be built.
+
+Objective:
+Minimize the total number of branches.
+min: \( \sum_{i \in I} x_{i} \)
+
+Constraint:
+1. Customer service constraint
+\( \sum_{i \in I} CustomerServiceCapacity[i] \cdot x_{i} \geq MinCustomerService \)
+2. Teller availability constraint
+\( \sum_{i \in I} TellerRequirement[i] \cdot x_{i} \leq MaxTellers \)
+3. Non-negativity
+\( x_{i} \geq 0 \), for all \( i \in I \)
+
+Type:
+Integer, linear, linear
+IP

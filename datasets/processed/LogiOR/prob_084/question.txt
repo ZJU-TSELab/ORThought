@@ -1,0 +1,13 @@
+You are in charge of Green Freight, a logistics company that owns 5 old diesel trucks and plans to renew part of its fleet with new electric trucks to reduce costs and emissions. The company needs to decide which of the 5 old trucks to retire and may purchase up to 3 new electric trucks, while it must maintain a total fleet capacity of at least 4 trucks. The government imposes a punitive carbon tax on the company's total carbon emissions, which is proportional to the square of the total emissions, with a tax coefficient of 80. The company's goal is to make an optimal vehicle replacement decision to minimize the total operating cost for the coming year, which consists of vehicle costs, operating costs, and the punitive carbon tax. The specific vehicle information and cost data are shown in Table 1.
+
+How should Green Freight decide which trucks to keep and which to buy to minimize its total annual cost?
+
+Table 1: Vehicle Cost and Emission Data
+| Vehicle Model | Attribute | Annual Operating Cost (¥) | Annual Carbon Emissions (tons) | Annualized Investment/Depreciation Cost (¥) |
+| :--- | :--- | :--- | :--- | :--- |
+| Old Diesel Truck D1 | - | 80,000 | 15 | - |
+| Old Diesel Truck D2 | - | 85,000 | 16 | - |
+| Old Diesel Truck D3 | - | 78,000 | 14 | - |
+| Old Diesel Truck D4 | - | 92,000 | 18 | - |
+| Old Diesel Truck D5 | - | 88,000 | 17 | - |
+| New Electric Truck | (per vehicle) | 30,000 | 0 | 120,000 |

@@ -1,0 +1,37 @@
+Set:
+1. SnackType
+The set of snack types, I = {0, 1} # 0 for Spinach, 1 for Soybeans
+
+Parameter:
+1. Fibre
+[100, 80] # Units of fibre per cup for each snack type
+2. Iron
+[5, 12] # mg of iron per cup for each snack type
+3. Calories
+[30, 100] # Calories per cup for each snack type
+4. MinFibre
+12000 # Minimum total units of fibre required
+5. MinIron
+300 # Minimum total mg of iron required
+
+Decision variable:
+1. NumberOfCups
+Integer variable, x_{i} for all i in I, representing the number of cups of each snack type.
+
+Objective:
+Maximize the total caloric intake.
+max: \( \sum_{i \in I} Calories[i] \cdot x_{i} \)
+
+Constraint:
+1. Fibre Requirement
+\( \sum_{i \in I} Fibre[i] \cdot x_{i} \geq MinFibre \)
+2. Iron Requirement
+\( \sum_{i \in I} Iron[i] \cdot x_{i} \geq MinIron \)
+3. Snack Ratio
+\( x_{0} > x_{1} \)
+4. Non-negativity
+\( x_{i} \geq 0 \), for all \( i \in I \)
+
+Type:
+Integer, linear, linear
+IP

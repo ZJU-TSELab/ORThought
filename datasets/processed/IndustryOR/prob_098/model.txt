@@ -1,0 +1,47 @@
+
+Set:
+1. Components
+The set of components, \( C = \{1, 2, 3\} \).
+2. Spares
+The set of possible numbers of spare parts, \( S = \{0, 1, 2, 3, 4, 5\} \).
+
+Parameter:
+1. Reliability
+A 3x6 matrix, \( R_{cs} \), where \( R_{cs} \) is the reliability of component \( c \) with \( s \) spares.
+[[0.5, 0.6, 0.7, 0.8, 0.9, 1.0], [0.6, 0.75, 0.95, 1.0, 1.0, 1.0], [0.7, 0.9, 1.0, 1.0, 1.0, 1.0]]
+2. Price
+[20, 30, 40] # Unit price in yuan for each component type.
+3. Weight
+[2, 4, 6] # Unit weight in kg for each component type.
+4. MaxBudget
+150 # Maximum total budget in yuan.
+5. MaxWeight
+20 # Maximum total weight in kg.
+
+Decision variable:
+1. NumSpares
+Integer variable, \( n_c \) for all \( c \in C \), representing the number of spare parts installed for component \( c \).
+(The provided code uses a binary formulation, which is more common for this type of problem).
+2. Selection
+Binary variable, \( x_{cs} \), is 1 if \( s \) spares are chosen for component \( c \), 0 otherwise.
+
+Objective:
+Maximize the total system reliability. The system reliability is the product of the individual component reliabilities.
+max: \prod_{c \in C} (\sum_{s \in S} R_{cs} * x_{cs})
+This is a non-linear objective. It is often linearized by maximizing the sum of the logarithms of the reliabilities.
+max: \sum_{c \in C} \log(\sum_{s \in S} R_{cs} * x_{cs})
+
+Constraint:
+1. Unique Selection
+For each component, exactly one number of spares must be selected.
+\sum_{s \in S} x_{cs} = 1, \forall c \in C
+2. Budget
+The total cost of all installed spare parts cannot exceed the budget.
+\sum_{c \in C} \sum_{s \in S} (\text{Price}[c] * s * x_{cs}) \leq \text{MaxBudget}
+3. Weight
+The total weight of all installed spare parts cannot exceed the limit.
+\sum_{c \in C} \sum_{s \in S} (\text{Weight}[c] * s * x_{cs}) \leq \text{MaxWeight}
+
+Type:
+Integer, non-linear, linear
+NLP

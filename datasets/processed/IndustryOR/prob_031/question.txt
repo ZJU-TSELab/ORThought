@@ -1,0 +1,11 @@
+A product consists of three components produced by four workshops, each with a limited number of production hours. Table 1.4 below provides the production rates of the three components. The objective is to determine the number of hours each workshop should allocate to each component to maximize the number of completed products. Formulate this problem as a linear programming problem.
+
+Table 1.4
+
+| Workshop | Production Capacity (hours) | Production Rate (units/hour) |   |   |
+| :------: | :-------------------------: | :--------------------------: | - | - |
+|          |                             | Component 1 | Component 2  | Component 3 |
+|    A     |           100               |      10      |      15     |      5      |
+|    B     |           150               |      15      |      10     |      5      |
+|    C     |           80                |      20      |      5      |      10     |
+|    D     |           200               |      10      |      15     |      20     |

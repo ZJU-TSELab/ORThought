@@ -1,0 +1,35 @@
+Set:
+1. MixType
+The set of mix types, \( I = \{0, 1\} \) # 0 for First Mix, 1 for Second Mix
+
+Parameter:
+1. CatPawSnackRatio
+[0.20, 0.35] # Percentage of cat paw snacks in each mix type
+2. GoldSharkSnackRatio
+[0.80, 0.65] # Percentage of gold shark snacks in each mix type
+3. MaxCatPawSnacks
+20 # Maximum available cat paw snacks in kg
+4. MaxGoldSharkSnacks
+50 # Maximum available gold shark snacks in kg
+5. ProfitPerKg
+[12, 15] # Profit per kg for each mix type
+
+Decision variable:
+1. AmountOfMix
+Continuous variable, \( x_{i} \) for all \( i \in I \), representing the kg of each mix to prepare.
+
+Objective:
+Maximize the total profit.
+max: \( \sum_{i \in I} ProfitPerKg[i] \cdot x_{i} \)
+
+Constraint:
+1. Cat paw snacks constraint
+\( \sum_{i \in I} CatPawSnackRatio[i] \cdot x_{i} \leq MaxCatPawSnacks \)
+2. Gold shark snacks constraint
+\( \sum_{i \in I} GoldSharkSnackRatio[i] \cdot x_{i} \leq MaxGoldSharkSnacks \)
+3. Non-negativity
+\( x_{i} \geq 0 \), for all \( i \in I \)
+
+Type:
+Continuous, linear, linear
+LP

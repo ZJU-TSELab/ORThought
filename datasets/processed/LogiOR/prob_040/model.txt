@@ -1,0 +1,52 @@
+Set:
+1. Product
+The set of products, \( P = \{1, 2\} \)  # 1: A, 2: B
+2. Quarter
+The set of quarters, \( Q = \{1, 2, 3, 4\} \)
+3. WorkerGroup
+The set of worker groups, \( G = \{1, 2, 3, 4\} \) 
+
+Parameter:
+1. HandleProductPerWorkerPerQuarter
+[60, 40]
+2. WorkerCostPerYear
+1800
+3. InventoryHoldingCost
+70
+4. Demand
+[[800, 600, 700, 900], [500, 400, 600, 300]]
+
+Decision variable:
+1. WorkersInGroup
+Integer variable, \( WorkersInGroup[g] \forall g \in G \), the number of workers in group \( g \).
+2. ProductProduced
+Integer variable, \( ProductProduced[p][q] \forall p \in P, q \in Q \), the amount of product \( p \) produced in quarter \( q \).
+3. ProductStorage
+Integer variable, \( ProductStorage[p][q] \forall p \in P, q \in Q \), the amount of product \( p \) stored at the end of quarter \( q \).
+4. WorkersOnDuty
+Integer variable, \( WorkersOnDuty[g][p][q] \forall g \in G, p \in P, q \in Q \), the number of workers in group \( g \) on duty for product \( p \) in quarter \( q \).
+
+Objective:
+1. Minimize the total cost.
+min: \sum_{g \in G} (WorkersInGroup[g] * WorkerCostPerYear) + \sum_{p \in P, q \in Q} (ProductStorage[p][q] * InventoryHoldingCost)
+
+Constraint:
+1. Demand constraint.
+ProductProduced[p][1] - ProductStorage[p][1] \geq Demand[p][1] \forall p \in P
+ProductProduced[p][q] + ProductStorage[p][q-1] - ProductStorage[p][q] \geq Demand[p][q] \forall p \in P, q \in Q/{1}
+2. Production handling constraint.
+\sum_{g \in G} WorkersOnDuty[g][p][q] * HandleProductPerWorkerPerQuarter[p] \geq ProductProduced[p][q] \forall p \in P, q \in Q
+3. Worker group constraint.
+\sum_{p \in P} WorkersOnDuty[g][p][q] \leq WorkersInGroup[g] \forall g \in G, q \in Q
+4. Worker off-duty constraint.
+WorkersOnDuty[g][p][g] = 0 \forall g \in G, p \in P
+5. Inventory constraint.
+ProductStorage[p][1] = 0 \forall p \in P
+ProductStorage[p][4] = 0 \forall p \in P  # End of year inventory must be 0
+4. Non-negativity constraint.
+ProductProduced[p][q] \geq 0 \forall p \in P, q \in Q
+ProductStorage[p][q] \geq 0 \forall p \in P, q \in Q
+
+Type:
+Integer, Linear, Linear
+ILP

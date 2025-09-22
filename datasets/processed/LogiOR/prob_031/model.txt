@@ -1,0 +1,35 @@
+Set:
+1. Supplier
+The set of suppliers, \( S = \{1, 2, 3\} \) 
+2. ShipmentType
+The set of shipment types, \( T = \{1, 2, 3\} \)  # 1: large, 2: medium, 3: small
+
+Parameter:
+1. CostPerShipment
+[5.2, 4.7, 3.5]
+2. Percent
+[[45, 35, 20], [30, 45, 25], [15, 20, 65]]
+3. Demand
+[500, 300, 300]
+4. MaxShipment
+[700, 700, 700]
+
+Decision variable:
+1. ShipmentNum
+Integer variable, \( ShipmentNum[s] \forall s \in S \), where \( ShipmentNum[s] \) is the number of shipments contracted from supplier \( s \).
+
+Objective:
+1. Minimize the total cost of shipments.
+min: \sum_{s \in S} CostPerShipment[s] * ShipmentNum[s]
+
+Constraint:
+1. Shipment number constraint.
+ShipmentNum[s] \leq MaxShipment[s] \forall s \in S
+2. Demand satisfaction constraint.
+\sum_{s \in S} Percent[s][g] * ShipmentNum[s] \geq Demand[g] \forall g \in T
+3. Shipment number non-negativity constraint.
+ShipmentNum[s] \geq 0 \forall s \in S
+
+Type:
+Integer, Linear, Linear
+ILP

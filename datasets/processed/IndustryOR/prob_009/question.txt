@@ -1,0 +1,16 @@
+A convenience supermarket is planning to open several chain stores in a newly built residential area in the northwest suburb of the city. For shopping convenience, the distance from any residential area to one of the chain stores should not exceed $800 \mathrm{~m}$. Table 5-1 shows the new residential areas and the residential areas within a radius of $800 \mathrm{~m}$ from each of them. Question: What is the minimum number of chain stores the supermarket needs to build among the mentioned residential areas, and in which residential areas should they be built?
+
+| Area Code | Residential Areas within $800 \mathrm{~m}$ Radius |
+|-----------|---------------------------------------------------|
+| A         | A, C, E, G, H, I                                  |
+| B         | B, H, I                                           |
+| C         | A, C, G, H, I                                     |
+| D         | D, J                                              |
+| E         | A, E, G                                           |
+| F         | F, J, K                                           |
+| G         | A, C, E, G                                        |
+| H         | A, B, C, H, I                                     |
+| I         | A, B, C, H, I                                     |
+| J         | D, F, J, K, L                                     |
+| K         | F, J, K, L                                        |
+| L         | J, K, L                                           |

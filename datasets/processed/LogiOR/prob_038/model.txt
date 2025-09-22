@@ -1,0 +1,78 @@
+Set:
+1. ComponentType
+The set of component types, \( C = \{1, 2, 3\} \)  # 1: Engine Block, 2: Transmission, 3: Brake System
+
+Parameter:
+1. RawMaterialCost
+60
+2. ComponentPerRawMaterial
+[7, 3, 0]
+3. EnergyCostPerRawMaterial
+8
+4. MachineTimePerRawMaterial
+7
+5. SellingPrice
+[25, 35, 45]
+6. Engine2TransmissionCost
+5
+7. Engine2TransmissionMachineTime
+4
+8. Engine2BrakeSystemCost
+10
+9. Engine2BrakeSystemMachineTime
+6
+10. Transmission2BrakeSystemCost
+12
+11. Transmission2BrakeSystemMachineTime
+5
+12. MaxMachineTime
+60000
+13. MinBrakeSystemProduction
+4000
+14. MaxDemand
+[20000, 15000, 12000]
+
+Decision variable:
+1. RawMaterialPurchased
+Integer variable, \( RawMaterialPurchased \), the amount of raw material purchased in units.
+2. ComponentProducedfromRawMaterial
+Integer variable, \( ComponentProducedfromRawMaterial[c] \forall c \in C \), the amount of component \( c \) produced from raw material in units.
+3. Engine2TransmissionProduced
+Integer variable, \( Engine2TransmissionProduced \), the amount of Engine Block processed into Transmission in units.
+4. Engine2BrakeSystemProduced
+Integer variable, \( Engine2BrakeSystemProduced \), the amount of Engine Block processed into Brake System in units.
+5. Transmission2BrakeSystemProduced
+Integer variable, \( Transmission2BrakeSystemProduced \), the amount of Transmission processed into Brake System in units.
+6. ComponentSold
+Integer variable, \( ComponentSold[c] \forall c \in C \), the amount of component \( c \) sold in units.
+
+Objective:
+1. Maximize the total profit.
+max: \sum_{c \in C} SellingPrice[c] * ComponentSold[c] - RawMaterialCost * RawMaterialPurchased - Engine2TransmissionCost * Engine2TransmissionProduced - Engine2BrakeSystemCost * Engine2BrakeSystemProduced - Transmission2BrakeSystemCost * Transmission2BrakeSystemProduced - EnergyCostPerRawMaterial * RawMaterialPurchased
+
+Constraint:
+1. Machine time constraint.
+MachineTimePerRawMaterial * RawMaterialPurchased + Engine2TransmissionMachineTime * Engine2TransmissionProduced + Engine2BrakeSystemMachineTime * Engine2BrakeSystemProduced + Transmission2BrakeSystemMachineTime * Transmission2BrakeSystemProduced \leq MaxMachineTime
+2. Minimum Brake System production constraint.
+Engine2BrakeSystemProduced + Transmission2BrakeSystemProduced \geq MinBrakeSystemProduction
+3. Demand constraint.
+ComponentSold[c] \leq MaxDemand[c] \forall c \in C
+4. Production constraint.
+ComponentProducedfromRawMaterial[c] == ComponentPerRawMaterial[c] * RawMaterialPurchased \forall c \in C
+5. Production constraint - Engine Block.
+ComponentSold[0] == ComponentProducedfromRawMaterial[0] -  Engine2TransmissionProduced - Engine2BrakeSystemProduced
+6. Production constraint - Transmission.
+ComponentSold[1] == ComponentProducedfromRawMaterial[0] + Engine2TransmissionProduced - Transmission2BrakeSystemProduced
+7. Production constraint - Brake System.
+ComponentSold[2] == ComponentProducedfromRawMaterial[0] + Engine2BrakeSystemProduced + Transmission2BrakeSystemProduced
+8. Non-negativity constraint.
+ComponentProducedfromRawMaterial[c] \geq 0 \forall c \in C
+ComponentSold[c] \geq 0 \forall c \in C
+RawMaterialPurchased \geq 0
+Engine2TransmissionProduced \geq 0
+Engine2BrakeSystemProduced \geq 0
+Transmission2BrakeSystemProduced \geq 0
+
+Type:
+Integer, Linear, Linear
+ILP

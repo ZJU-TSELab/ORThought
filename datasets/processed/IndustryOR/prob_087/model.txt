@@ -1,0 +1,41 @@
+Set:
+1. Products
+The set of products, \( P = \{\text{Liquid}, \text{Solid}\} \).
+2. Machines
+The set of machines, \( M = \{1, 2\} \).
+
+Parameter:
+1. MachineTime
+A 2x2 matrix representing the time in minutes required on each machine for each product.
+   - Liquid: [50, 30] for Machine 1, Machine 2
+   - Solid: [24, 33] for Machine 1, Machine 2
+2. AvailableTime
+[2400, 2100] # Available time in minutes for Machine 1 and Machine 2.
+3. InitialInventory
+[30, 90] # Initial inventory in units for Liquid and Solid fertilizer.
+4. Demand
+[75, 95] # Demand in units for Liquid and Solid fertilizer.
+
+Decision variable:
+1. ProductionQty
+Integer variable, \( p_i \) for all \( i \in P \), representing the number of units of product \( i \) to produce.
+2. EndingInventory
+Integer variable, \( e_i \) for all \( i \in P \), representing the number of units of product \( i \) in inventory at the end of the week.
+
+Objective:
+Maximize the total number of units in inventory at the end of the week.
+max: \sum_{i \in P} e_i
+
+Constraint:
+1. Machine Time
+The total time used on each machine cannot exceed its availability.
+\sum_{i \in P} \text{MachineTime}[i,j] * p_i \leq \text{AvailableTime}[j], \forall j \in M
+2. Inventory Balance
+The ending inventory is the initial inventory plus production minus demand.
+e_i = \text{InitialInventory}[i] + p_i - \text{Demand}[i], \forall i \in P
+3. Non-negativity
+p_i \geq 0, e_i \geq 0, \forall i \in P
+
+Type:
+Integer, linear, linear
+ILP

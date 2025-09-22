@@ -1,0 +1,46 @@
+Set:
+1. Month
+The set of months, \( M = \{1, 2, \ldots, 12\} \)  # 1: January, 2: February, ..., 12: December
+
+Parameter:
+1. OperationalHoursNeeded
+[600, 450, 350, 800, 1000, 450, 350, 600, 450, 350, 250, 150]  # operational hours needed for each month
+2. NormalHoursPerSupervisorPerMonth
+160  # hours each supervisor can handle per month
+3. OvertimeHoursPerSupervisorPerMonth
+40  # additional hours each supervisor can work per month as overtime
+4. SupervisorsVacationMonths
+1
+5. FixedSalaryPerSupervisorPerMonth
+5000  # fixed monthly salary for each supervisor
+6. OvertimeRatePerHour
+45  # overtime pay rate per hour
+
+Decision variable:
+1. SupervisorsNeeded
+Integer variable, \( SupervisorsNeeded \), the number of warehouse supervisors needed.
+2. WorkSupervisorPerMonth
+Integer variable, \( WorkSupervisorPerMonth[m] \forall m \in M \), the number of hours worked by supervisors in month \( m \).
+3. OvertimeHoursPerMonth
+Integer variable, \( OvertimeHoursPerMonth[m] \forall m \in M \), the total overtime hours worked by supervisors in month \( m \).
+
+Objective:
+1. Minimize the total cost.
+min: FixedSalaryPerSupervisorPerMonth \times SupervisorsNeeded \times 12 + \sum_{m \in M} (OvertimeRatePerHour \times OvertimeHoursPerMonth[m])
+
+Constraint:
+1. Operational hours constraint.
+WorkSupervisorPerMonth[m] \times NormalHoursPerSupervisorPerMonth + OvertimeHoursPerMonth[m] \geq OperationalHoursNeeded[m] \forall m \in M
+2. Vacation constraint.
+\sum_{m \in M} WorkSupervisorPerMonth[m] = (12 - SupervisorsVacationMonths) \times SupervisorsNeeded
+3. Supervisors number constraint.
+WorkSupervisorPerMonth[m] \leq SupervisorsNeeded \forall m \in M
+4. Overtime hours constraint.
+OvertimeHoursPerMonth[m] \leq WorkSupervisorPerMonth[m] \times OvertimeHoursPerSupervisorPerMonth \forall m \in M
+5. Non-negativity constraint.
+SupervisorsNeeded \geq 0
+WorkSupervisorPerMonth[m] \geq 0 \forall m \in M
+
+Type:
+Integer, Linear, Linear
+ILP

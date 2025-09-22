@@ -1,0 +1,41 @@
+Set:
+1. MedicineType
+The set of medicine types, \( I = \{0, 1\} \) # 0 for Medicine A, 1 for Medicine B
+
+Parameter:
+1. ImportedMaterial
+[30, 40] # Units of imported material required per dose for each medicine type
+2. MRNA
+[50, 30] # Units of mRNA required per dose for each medicine type
+3. PeopleTreated
+[12, 8] # Number of people treated per dose for each medicine type
+4. MaxImportedMaterial
+300 # Maximum units of imported material available
+5. MaxMRNA
+400 # Maximum units of mRNA available
+6. MaxDosesA
+5 # Maximum number of doses of medicine A
+
+Decision variable:
+1. MedicineDoses
+Integer variable, \( x_{i} \) for all \( i \in I \), representing the number of doses of each medicine type.
+
+Objective:
+Maximize the total number of people that can be treated.
+max: \( \sum_{i \in I} PeopleTreated[i] \cdot x_{i} \)
+
+Constraint:
+1. Imported material constraint
+\( \sum_{i \in I} ImportedMaterial[i] \cdot x_{i} \leq MaxImportedMaterial \)
+2. mRNA constraint
+\( \sum_{i \in I} MRNA[i] \cdot x_{i} \leq MaxMRNA \)
+3. Maximum doses of medicine A constraint
+\( x_{0} \leq MaxDosesA \)
+4. Doses relationship constraint
+\( x_{1} \geq x_{0} + 1 \)
+5. Non-negativity
+\( x_{i} \geq 0 \), for all \( i \in I \)
+
+Type:
+Integer, linear, linear
+IP

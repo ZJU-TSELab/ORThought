@@ -1,0 +1,42 @@
+Set:
+1. Batch
+The set of fabric batches, \( B = \{0, 1, 2, 3, 4\} \)
+2. Vat
+The set of dyeing vats, \( V = \{0, 1, 2\} \)
+
+Parameter:
+1. ProcessingTime
+A matrix \( p_{i,j} \) where \( i \in B, j \in V \), representing the time in hours to dye batch \( i \) in vat \( j \).
+
+Decision variable:
+1. StartTime
+Continuous variable, \( s_{i,j} \) for \( i \in B, j \in V \), representing the start time of batch \( i \) on vat \( j \).
+2. Makespan
+Continuous variable, \( C_{max} \), representing the completion time of the last batch.
+3. Precedence
+Binary variable, \( x_{i,k,j} \) for \( i, k \in B, i < k, j \in V \). \( x_{i,k,j} = 1 \) if batch \( i \) precedes batch \( k \) on vat \( j \), and 0 otherwise.
+
+Objective:
+Minimize the completion time of the last batch (makespan).
+min: \( C_{max} \)
+
+Constraint:
+1. Job precedence constraints
+A batch can only start on the next vat after it has finished on the previous one.
+\( s_{i,j} \geq s_{i,j-1} + p_{i,j-1}, \forall i \in B, j \in V, j > 0 \)
+2. Machine capacity constraints (Disjunctive constraints)
+For any two batches on the same vat, one must finish before the other starts. This is modeled using a big-M formulation.
+For each vat \( j \) and each pair of batches \( i, k \) with \( i < k \):
+\( s_{k,j} \geq s_{i,j} + p_{i,j} - L \cdot (1 - x_{i,k,j}) \)
+\( s_{i,j} \geq s_{k,j} + p_{k,j} - L \cdot x_{i,k,j} \)
+where L is a sufficiently large number.
+3. Makespan definition
+The makespan must be greater than or equal to the completion time of every batch on the last vat.
+\( C_{max} \geq s_{i, \text{last_vat}} + p_{i, \text{last_vat}}, \forall i \in B \)
+4. Non-negativity
+\( s_{i,j} \geq 0, \forall i \in B, j \in V \)
+\( C_{max} \geq 0 \)
+
+Type:
+Mixed-Integer, linear, linear
+MILP

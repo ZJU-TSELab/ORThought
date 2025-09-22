@@ -1,0 +1,37 @@
+Set:
+1. CompanyType
+The set of company types, \( I = \{0, 1\} \) # 0 for New Company, 1 for Old Company
+
+Parameter:
+1. GiftsPerTrip
+[50, 70] # Number of gifts delivered per trip for each company type
+2. DieselPerTrip
+[30, 40] # Liters of diesel used per trip for each company type
+3. MinGifts
+1000 # Minimum number of gifts to be delivered
+4. MaxNewCompanyTrips
+15 # Maximum number of trips for the new company
+5. MinOldCompanyTripProportion
+0.40 # Minimum proportion of total trips that must be by the old company
+
+Decision variable:
+1. NumberOfTrips
+Integer variable, \( x_{i} \) for all \( i \in I \), representing the number of trips for each company.
+
+Objective:
+Minimize the total amount of diesel used.
+min: \( \sum_{i \in I} DieselPerTrip[i] \cdot x_{i} \)
+
+Constraint:
+1. Gift delivery requirement
+\( \sum_{i \in I} GiftsPerTrip[i] \cdot x_{i} \geq MinGifts \)
+2. Maximum new company trips
+\( x_{0} \leq MaxNewCompanyTrips \)
+3. Old company trip proportion
+\( x_{1} \geq MinOldCompanyTripProportion \cdot \sum_{i \in I} x_{i} \)
+4. Non-negativity
+\( x_{i} \geq 0 \), for all \( i \in I \)
+
+Type:
+Integer, linear, linear
+IP

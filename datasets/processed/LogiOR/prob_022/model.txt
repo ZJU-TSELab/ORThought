@@ -1,0 +1,51 @@
+Set:
+1. Machine
+The set of machines, \( M = \{1, 2, 3, 4, 5\} \)
+2. Job
+The set of jobs, \( J = \{1, 2, 3, 4\} \)
+
+Parameter:
+1. JobProcess
+[
+[(1, 3), (2, 2), (5, 4)],
+[(3, 4), (4, 3), (5, 2)],
+[(2, 3), (1, 5), (4, 2)],
+[(1, 2), (3, 3), (4, 4)]
+]
+2. MachineID
+['M1', 'M2', 'M3', 'M4', 'M5']
+3. JobID
+['J1', 'J2', 'J3', 'J4']
+4. BigM
+A sufficiently large number, computed as the sum of all processing times.
+
+Decision variable:
+1. StartTime
+Integer variable, \( StartTime_{j,k} \forall j \in J, k \in \{0, 1, ..., |JobProcess_j|-1\}\), where \( StartTime_{j,k} \) is the start time of the \( k^{th} \) process of job \( j \).
+2. Makespan
+Integer variable representing the maximum completion time of all jobs.
+3. Indicator
+Binary variable, \( Indicator_{j_1,k_1,j_2,k_2} \) for each pair of processes on the same machine, where value 1 means process (j_1,k_1) comes before (j_2,k_2), and 0 means (j_2,k_2) comes before (j_1,k_1).
+
+Objective:
+1. Minimize the makespan.
+min: Makespan
+
+Constraint:
+1. The start time of the next process must be greater than or equal to the end time of the previous process.
+StartTime_{j,k+1} \geq StartTime_{j,k} + JobProcess_j[k][1] \forall j \in J, k \in \{0, 1, ..., |JobProcess_j|-2\}
+
+2. One machine can only process one job at a time (disjunctive constraints using binary indicators).
+For each machine m and each pair of processes (j_1,k_1) and (j_2,k_2) that use machine m:
+a. StartTime_{j_1,k_1} + JobProcess_{j_1}[k_1][1] \leq StartTime_{j_2,k_2} + BigM * Indicator_{j_1,k_1,j_2,k_2}
+b. StartTime_{j_2,k_2} + JobProcess_{j_2}[k_2][1] \leq StartTime_{j_1,k_1} + BigM * (1 - Indicator_{j_1,k_1,j_2,k_2})
+
+3. The start time of all processes must be non-negative.
+StartTime_{j,k} \geq 0 \forall j \in J, k \in \{0, 1, ..., |JobProcess_j|-1\}
+
+4. Makespan definition: makespan must be at least the completion time of every job.
+Makespan \geq StartTime_{j,|JobProcess_j|-1} + JobProcess_j[|JobProcess_j|-1][1] \forall j \in J
+
+Type:
+Integer, Linear, Linear
+ILP

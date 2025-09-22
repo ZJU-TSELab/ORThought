@@ -1,0 +1,14 @@
+At the start of month 1, SupplyChain Dynamics has $50,000 in available funds. At the beginning of months 1, 2, 3, and 4, the company receives specific revenues from its logistics operations, after which it must pay operational expenses(see table below). Any remaining funds can be allocated to short-term investments with the following options (Interest is earned after paying operational expenses):  
+- Invest for one month at an interest rate of 0.2% per month.  
+- Invest for two months at an interest rate of 0.8% per month.  
+- Invest for three months at an interest rate of 1.5% per month.  
+- Invest for four months at an interest rate of 3% per month.  
+
+How can SupplyChain Dynamics allocate its funds to maximize the cash on hand at the beginning of month 5 while meeting its operational obligations?
+
+| Month | Revenue ($) | Operational Expenses ($) |  
+|-------|-------------|---------------------------|  
+| 1     | 20,000      | 15,000                    |  
+| 2     | 25,000      | 35,000                    |  
+| 3     | 30,000      | 22,000                    |  
+| 4     | 35,000      | 28,000                    |  

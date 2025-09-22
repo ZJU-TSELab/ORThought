@@ -1,0 +1,35 @@
+Set:
+1. SandwichType
+The set of sandwich types, \( S = \{0, 1\} \) # 0 for Regular, 1 for Special
+
+Parameter:
+1. EggsAvailable
+40 (Total eggs available)
+2. BaconAvailable
+70 (Total slices of bacon available)
+3. Profit
+[3, 4] # Profit per sandwich type: $3 for Regular, $4 for Special
+4. EggsRequired
+[2, 3] # Eggs required per sandwich type: 2 for Regular, 3 for Special
+5. BaconRequired
+[3, 5] # Bacon required per sandwich type: 3 for Regular, 5 for Special
+
+Decision variable:
+1. SandwichCount
+Integer variable, \( x_{s} \) for all \( s \in S \), representing the number of sandwiches of type \( s \) to produce.
+
+Objective:
+Maximize the total profit from producing sandwiches.
+max: \sum_{s \in S} Profit[s] * x_{s}
+
+Constraint:
+1. Eggs constraint
+\sum_{s \in S} EggsRequired[s] * x_{s} \leq EggsAvailable
+2. Bacon constraint
+\sum_{s \in S} BaconRequired[s] * x_{s} \leq BaconAvailable
+3. Non-negativity
+x_{s} \geq 0, \forall s \in S
+
+Type:
+Integer, linear, linear
+IP

@@ -1,0 +1,35 @@
+Set:
+1. ContainerType
+The set of container types, \( I = \{0, 1\} \) # 0 for Small Packets, 1 for Jugs
+
+Parameter:
+1. JamVolumePerUnit
+[1000, 1250] # Milliliters of jam per unit for each container type
+2. TotalJam
+65000 # Total milliliters of jam available
+3. MinSmallPackets
+35 # Minimum number of sets of small packets to be filled
+4. JugToPacketRatio
+3 # The number of jugs must be at least three times the number of sets of small packets
+
+Decision variable:
+1. NumberOfUnits
+Integer variable, \( x_{i} \) for all \( i \in I \), representing the number of units of each container type.
+
+Objective:
+Maximize the total number of units that can be sold.
+max: \( \sum_{i \in I} x_{i} \)
+
+Constraint:
+1. Jam volume constraint
+\( \sum_{i \in I} JamVolumePerUnit[i] \cdot x_{i} \leq TotalJam \)
+2. Minimum small packets
+\( x_{0} \geq MinSmallPackets \)
+3. Jug to packet ratio
+\( x_{1} \geq JugToPacketRatio \cdot x_{0} \)
+4. Non-negativity
+\( x_{i} \geq 0 \), for all \( i \in I \)
+
+Type:
+Integer, linear, linear
+IP

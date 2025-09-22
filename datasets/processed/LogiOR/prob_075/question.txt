@@ -1,0 +1,10 @@
+A distribution center needs to assign 4 delivery trucks to 4 customer locations for same-day shipments. Each truck has different transportation costs to each location due to varying distances and fuel consumption rates. The cost matrix (in USD) for assigning trucks to locations is as follows:
+
+| Truck\Location | Loc1 | Loc2 | Loc3 | Loc4 |
+|----------------|------|------|------|------|
+| Truck1         | 120  | 150  | 180  | 90   |
+| Truck2         | 110  | 140  | 170  | 80   |
+| Truck3         | 130  | 160  | 190  | 100  |
+| Truck4         | 140  | 170  | 200  | 110  |
+
+The distribution center aims to minimize total transportation costs while ensuring each truck is assigned to exactly one location and each location receives exactly one truck.

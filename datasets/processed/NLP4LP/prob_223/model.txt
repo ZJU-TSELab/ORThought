@@ -1,0 +1,37 @@
+Set:
+1. WorkerType
+The set of worker types, \( I = \{0, 1\} \) # 0 for Ultrasound Technician, 1 for Graduate Researcher
+
+Parameter:
+1. HoursPerShift
+[8, 5] # Hours worked per shift for each worker type
+2. CostPerShift
+[300, 100] # Cost per shift for each worker type
+3. MinHours
+500 # Minimum hours of ultrasound services required
+4. MaxBudget
+14000 # Maximum budget available for shifts
+5. TechnicianToResearcherRatio
+2 # Required ratio of technician shifts to researcher shifts
+
+Decision variable:
+1. NumberOfShifts
+Integer variable, \( x_{i} \) for all \( i \in I \), representing the number of shifts for each worker type.
+
+Objective:
+Minimize the total number of workers (shifts).
+min: \( \sum_{i \in I} x_{i} \)
+
+Constraint:
+1. Hours requirement
+\( \sum_{i \in I} HoursPerShift[i] \cdot x_{i} \geq MinHours \)
+2. Budget constraint
+\( \sum_{i \in I} CostPerShift[i] \cdot x_{i} \leq MaxBudget \)
+3. Regulatory constraint
+\( x_{0} = TechnicianToResearcherRatio \cdot x_{1} \)
+4. Non-negativity
+\( x_{i} \geq 0 \), for all \( i \in I \)
+
+Type:
+Integer, linear, linear
+IP

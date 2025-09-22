@@ -1,0 +1,58 @@
+Set:
+1. Vessels
+The set of vessels, \( V = \{A, B, C, D, E, F, G, H, I\} \)
+
+Parameter:
+1. BerthLength
+900
+2. VesselNum
+9
+3. BestBerthLocation
+[375, 419, 591, 510, 567, 64, 507, 377, 93]
+4. ExpectedArrivalTime
+[9, 27, 34, 40, 1, 31, 28, 20, 22]
+5. OperationTime
+[7, 31, 31, 25, 29, 11, 28, 24, 20]
+6. VesselLength
+[287, 196, 261, 288, 208, 238, 190, 217, 254]
+7. AdditionalTravelCost
+[8, 4, 5, 5, 2, 6, 8, 6, 8]
+8. PenaltyCost
+[7, 7, 3, 4, 4, 7, 2, 4, 7]
+9. Period
+96
+10. M (a large number)
+2000
+
+Decision variable:
+1. BerthLocation
+Integer variable, \( BerthLocation_{i} \) for all \( i \in V \), representing the berth location of vessel \( i \)
+2. BerthTime
+Integer variable, \( BerthTime_{i} \) for all \( i \in V \), representing the berthing time of vessel \( i \)
+3. LocationRelation
+Binary variable, \( LocationRelation_{ij} \) for all \( i, j \in V \), representing the vessel \( i \) located to the left-hand side of vessel \( j \) (1 if true, 0 otherwise)
+4. TimeRelation
+Binary variable, \( TimeRelation_{ij} \) for all \( i, j \in V \), representing the vessel \( i \) berthing before vessel \( j \) (1 if true, 0 otherwise)
+
+Objective:
+The total distance between vessels to the yard and the total penalty cost incurred due to delays
+min: \sum_{i\in V}[AdditionalTravelCost_{j}\cdot\left|BerthLocation_{i} - BestBerthLocation_{j}\right| + PenaltyCost_{i} \cdot (BerthTime_{i} - ExpectedArrivalTime_{i}, 0)]
+
+Constraint:
+1. MaxBerthLocation
+x_{i} + VesselLength_{i} \leq BerthLength, \forall i \in V
+2. BerthLocationRelation
+x_{i} + VesselLength_{i} \leq x_{j} + M \cdot (1 - LocationRelation_{ij}), \forall i, j \in V, i \neq j
+3. BerthTimeRelation
+BerthTime_{i} + OperationTime_{i} \leq BerthTime_{j} + M \cdot (1 - TimeRelation_{ij}), \forall i, j \in V, i \neq j
+4. Relation
+LocationRelation_{ij} + LocationRelation_{ji} + TimeRelation_{ij} + TimeRelation_{ji} \geq 1, \forall i, j \in V, i < j
+5. BerthTime
+BerthTime_{i} \geq ExpectedArrivalTime_{i}, \forall i \in V
+6. BerthLocation
+BerthLocation_{i} \geq 0, \forall i \in V
+
+
+Type:
+Integer, Linear, Linear
+ILP

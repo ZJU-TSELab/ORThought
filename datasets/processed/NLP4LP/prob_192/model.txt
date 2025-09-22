@@ -1,0 +1,35 @@
+Set:
+1. TeaType
+The set of tea types, \( I = \{0, 1\} \) # 0 for Black Milk Tea, 1 for Matcha Milk Tea
+
+Parameter:
+1. MilkPerBottle
+[600, 525] # Grams of milk required for each tea type
+2. HoneyPerBottle
+[10, 5] # Grams of honey required for each tea type
+3. MaxMilk
+30000 # Maximum available milk in grams
+4. MaxHoney
+500 # Maximum available honey in grams
+5. ProfitPerBottle
+[7.5, 5] # Profit per bottle for each tea type
+
+Decision variable:
+1. NumberOfBottles
+Integer variable, \( x_{i} \) for all \( i \in I \), representing the number of bottles of each tea type to make.
+
+Objective:
+Maximize the total profit.
+max: \( \sum_{i \in I} ProfitPerBottle[i] \cdot x_{i} \)
+
+Constraint:
+1. Milk constraint
+\( \sum_{i \in I} MilkPerBottle[i] \cdot x_{i} \leq MaxMilk \)
+2. Honey constraint
+\( \sum_{i \in I} HoneyPerBottle[i] \cdot x_{i} \leq MaxHoney \)
+3. Non-negativity
+\( x_{i} \geq 0 \), for all \( i \in I \)
+
+Type:
+Integer, linear, linear
+IP

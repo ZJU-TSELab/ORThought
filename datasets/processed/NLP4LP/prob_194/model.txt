@@ -1,0 +1,35 @@
+Set:
+1. FoodType
+The set of food types, \( I = \{0, 1\} \) # 0 for Noodles, 1 for Protein Bars
+
+Parameter:
+1. CostPerServing
+[5, 2.5] # Cost per serving for each food type
+2. CaloriesPerServing
+[600, 250] # Calories per serving for each food type
+3. ProteinPerServing
+[1.5, 5] # Grams of protein per serving for each food type
+4. MinCalories
+2000 # Minimum required calories
+5. MinProtein
+16 # Minimum required grams of protein
+
+Decision variable:
+1. NumberOfServings
+Continuous variable, \( x_{i} \) for all \( i \in I \), representing the number of servings of each food type to consume.
+
+Objective:
+Minimize the total cost of the diet.
+min: \( \sum_{i \in I} CostPerServing[i] \cdot x_{i} \)
+
+Constraint:
+1. Calorie constraint
+\( \sum_{i \in I} CaloriesPerServing[i] \cdot x_{i} \geq MinCalories \)
+2. Protein constraint
+\( \sum_{i \in I} ProteinPerServing[i] \cdot x_{i} \geq MinProtein \)
+3. Non-negativity
+\( x_{i} \geq 0 \), for all \( i \in I \)
+
+Type:
+Continuous, linear, linear
+LP

@@ -1,0 +1,41 @@
+Set:
+1. CandidateLocation
+The set of candidate locations, \( L = \{1, 2, \dots, CandidateLocationNum\} \)
+2. Outlet
+The set of outlets, \( O = \{1, 2, \dots, OutletNum\} \)
+
+Parameter:
+1. CandidateLocationNum
+5
+2. OutletNum
+10
+3. Distance
+[[15, 22, 30, 45, 50, 12, 28, 35, 40, 25], [10, 18, 25, 35, 40, 8, 20, 28, 32, 18], [25, 30, 35, 50, 55, 22, 32, 40, 45, 30], [30, 35, 40, 55, 60, 25, 35, 45, 50, 35], [5 ,12 ,20 ,30 ,35 ,5 ,15 ,22 ,28 ,12]]
+4. SeletLocationNum
+2
+
+Decision variable:
+1. SeletLocation
+Binary variable, \( x_{i} \) for all \( i \in L \), representing whether candidate location \( i \) is selected (1 if selected, 0 otherwise)
+2. Auxiliary variable for min-max obj
+Integer variable, \( z \) representing the maximum distance from any outlet to its nearest transfer center.
+3. Auxiliary variables to track relationships between outlets and candidate locations
+Binary variable, \(y_{ij}\) for all \( i \in L, j \in O \), representing whether outlet \( j \) is served by candidate location \( i \) (1 if covered, 0 otherwise).
+
+Objective:
+The minimum possible value of the maximum distance from any outlets to its nearest transfer center.
+min: z
+
+Constraint:
+1. Location selection
+\sum_{i\in L} x_{i} = SeletLocationNum
+2. Outlet assignment 1
+\sum_{i\in L} y_{ij} = 1, \forall j \in O
+3. Outlet assignment 2
+y_{ij} \leq x_{i}, \forall i \in L, j \in O
+4. Max distance
+z \geq Distance_{ij}*y_{ij}, \forall i \in L, j \in O
+
+Type:
+Integer, Linear, Linear
+ILP

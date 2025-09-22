@@ -1,0 +1,8 @@
+A manufacturing plant specializes in producing customized parts, where production is scheduled based on customer orders. The factory has five machines (M1-M5), each with distinct functions: M1 for cutting, M2 for drilling, M3 for welding, M4 for polishing, and M5 for final assembly. Currently, four orders (J1-J4) have been received, each requiring a fixed sequence of processing steps that must be completed on specific machines in a prescribed order. The processing steps, required machines, and execution times for each task are as follows:
+
+J1: (1) Cutting on M1, taking 3 hours; (2) Drilling on M2, taking 2 hours; (3) Assembly on M5, taking 4 hours.  
+J2: (1) Welding on M3, taking 4 hours; (2) Polishing on M4, taking 3 hours; (3) Assembly on M5, taking 2 hours.  
+J3: (1) Drilling on M2, taking 3 hours; (2) Cutting on M1, taking 5 hours; (3) Polishing on M4, taking 2 hours.  
+J4: (1) Cutting on M1, taking 2 hours; (2) Welding on M3, taking 3 hours; (3) Polishing on M4, taking 4 hours.  
+
+Each machine can only handle one task at a time and cannot process multiple tasks simultaneously. Once a step begins processing, it cannot be paused or interrupted midway. How should the order processing be scheduled to minimize the total completion time for all tasks?

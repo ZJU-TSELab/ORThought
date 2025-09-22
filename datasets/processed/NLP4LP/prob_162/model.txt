@@ -1,0 +1,35 @@
+Set:
+1. VehicleType
+The set of vehicle types, \( I = \{0, 1\} \) # 0 for Van, 1 for Minibus
+
+Parameter:
+1. KidsPerVehicle
+[6, 10] # Number of kids each vehicle type can take
+2. PollutionPerVehicle
+[7, 10] # Units of pollution produced by each vehicle type
+3. MinKids
+150 # Minimum number of kids to be transported
+4. MaxMinibuses
+10 # Maximum number of minibuses that can be used
+
+Decision variable:
+1. NumberOfVehicles
+Integer variable, \( x_{i} \) for all \( i \in I \), representing the number of vehicles of each type to use.
+
+Objective:
+Minimize the total amount of pollution produced.
+min: \( \sum_{i \in I} PollutionPerVehicle[i] \cdot x_{i} \)
+
+Constraint:
+1. Kid transport requirement
+\( \sum_{i \in I} KidsPerVehicle[i] \cdot x_{i} \geq MinKids \)
+2. Maximum minibuses constraint
+\( x_{1} \leq MaxMinibuses \)
+3. Vans exceed minibuses constraint
+\( x_{0} \geq x_{1} + 1 \)
+4. Non-negativity
+\( x_{i} \geq 0 \), for all \( i \in I \)
+
+Type:
+Integer, linear, linear
+IP

@@ -1,0 +1,40 @@
+Set:
+1. TreatmentType
+The set of treatment types, \( I = \{0, 1\} \) # 0 for fertilizer, 1 for seeds
+
+Parameter:
+1. EffectivenessTime
+[0.5, 1.5] # Minutes per unit for each treatment type to be effective
+2. MaxTotalUnits
+300 # Maximum total units of fertilizer and seeds
+3. MinFertilizer
+50 # Minimum units of fertilizer to be added
+4. FertilizerToSeedRatio
+2 # Maximum ratio of fertilizer to seeds
+
+Decision variable:
+1. TreatmentUnits
+Integer variable, \( x_{i} \) for all \( i \in I \), representing the number of units of each treatment type.
+2. TotalTime
+Continuous variable, \( T \), representing the total time for the lawn to be ready.
+
+Objective:
+Minimize the total time it takes for the lawn to be ready.
+min: \( T \)
+
+Constraint:
+1. Total units constraint
+\( \sum_{i \in I} x_{i} \leq MaxTotalUnits \)
+2. Minimum fertilizer constraint
+\( x_{0} \geq MinFertilizer \)
+3. Fertilizer to seed ratio constraint
+\( x_{0} \leq FertilizerToSeedRatio \cdot x_{1} \)
+4. Time constraint
+\( T \geq EffectivenessTime[i] \cdot x_{i} \), for all \( i \in I \)
+5. Non-negativity
+\( x_{i} \geq 0 \), for all \( i \in I \)
+\( T \geq 0 \)
+
+Type:
+Mixed-integer, linear, linear
+MIP

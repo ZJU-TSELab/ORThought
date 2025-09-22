@@ -1,0 +1,33 @@
+Set:
+1. StoreType
+The set of store types, \( I = \{0, 1\} \) # 0 for Retail, 1 for Factory Outlet
+
+Parameter:
+1. CustomersPerDay
+[200, 80] # Number of customers per day for each store type
+2. EmployeesPerStore
+[6, 4] # Number of employees required per store for each type
+3. MinCustomers
+1200 # Minimum total customers per day
+4. MaxEmployees
+50 # Maximum number of employees available
+
+Decision variable:
+1. NumberOfStores
+Integer variable, \( x_{i} \) for all \( i \in I \), representing the number of stores of each type to open.
+
+Objective:
+Minimize the total number of stores that must be open.
+min: \( \sum_{i \in I} x_{i} \)
+
+Constraint:
+1. Customer coverage
+\( \sum_{i \in I} CustomersPerDay[i] \cdot x_{i} \geq MinCustomers \)
+2. Staffing limit
+\( \sum_{i \in I} EmployeesPerStore[i] \cdot x_{i} \leq MaxEmployees \)
+3. Non-negativity
+\( x_{i} \geq 0 \), for all \( i \in I \)
+
+Type:
+Integer, linear, linear
+IP

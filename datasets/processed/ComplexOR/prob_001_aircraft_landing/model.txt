@@ -1,0 +1,35 @@
+Set:
+1. Aircraft
+The set of aircraft, \( A = \{1, 2, 3\} \)
+
+Parameter:
+1. Earliest Landing Times
+\( EarliestLanding = [1, 3, 5] \)
+2. Latest Landing Times
+\( LatestLanding = [10, 12, 15] \)
+3. Target Landing Times
+\( TargetLanding = [4, 8, 14] \)
+4. Penalty After Target
+\( PenaltyAfterTarget = [10, 20, 30] \)
+5. Penalty Before Target
+\( PenaltyBeforeTarget = [5, 10, 15] \)
+6. Separation Times
+\( SeparationTime = [[0, 2, 3], [2, 0, 4], [3, 4, 0]] \)
+
+Decision variable:
+1. LandingTimeVariable
+Continuous variable, \( x_i \) for all \( i \in A \), where \( x_i \) is the landing time of aircraft \( i \)
+
+Objective:
+Minimize total penalty
+min: \( \sum_{i \in A} (PenaltyBeforeTarget_i \cdot max(0, TargetLanding_i - x_i) + PenaltyAfterTarget_i \cdot max(0, x_i - TargetLanding_i)) \)
+
+Constraint:
+1. Time Window Constraints
+\( EarliestLanding_i \leq x_i \leq LatestLanding_i, \quad \forall i \in A \)
+2. Separation Constraints
+\( x_j - x_i \geq SeparationTime_{i,j} \) or \( x_i - x_j \geq SeparationTime_{j,i}, \quad \forall i,j \in A, i \neq j \)
+
+Type:
+Continuous, Linear, Linear
+LP

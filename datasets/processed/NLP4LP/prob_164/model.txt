@@ -1,0 +1,37 @@
+Set:
+1. VolunteerType
+The set of volunteer types, \( I = \{0, 1\} \) # 0 for Seasonal, 1 for Full-time
+
+Parameter:
+1. GiftsPerVolunteer
+[5, 8] # Number of gifts each volunteer type can deliver
+2. PointsPerVolunteer
+[2, 5] # Points awarded for each volunteer type
+3. MaxPoints
+200 # Maximum number of points that can be given out
+4. MaxSeasonalRatio
+0.3 # Maximum ratio of seasonal volunteers to the total number of volunteers, which translates to 7*S <= 3*F
+5. MinFullTime
+10 # Minimum number of full-time volunteers required
+
+Decision variable:
+1. NumberOfVolunteers
+Integer variable, \( x_{i} \) for all \( i \in I \), representing the number of volunteers of each type to hire.
+
+Objective:
+Maximize the total number of gifts that can be delivered.
+max: \( \sum_{i \in I} GiftsPerVolunteer[i] \cdot x_{i} \)
+
+Constraint:
+1. Points constraint
+\( \sum_{i \in I} PointsPerVolunteer[i] \cdot x_{i} \leq MaxPoints \)
+2. Seasonal ratio constraint
+\( x_{0} \leq MaxSeasonalRatio \cdot (x_{0} + x_{1}) \)
+3. Minimum full-time volunteers constraint
+\( x_{1} \geq MinFullTime \)
+4. Non-negativity
+\( x_{i} \geq 0 \), for all \( i \in I \)
+
+Type:
+Integer, linear, linear
+IP

@@ -1,0 +1,41 @@
+Set:
+1. KeyboardType
+The set of keyboard types, I = {0, 1} # 0 for Mechanical, 1 for Standard
+
+Parameter:
+1. PlasticUsage
+[5, 2] # Units of plastic per keyboard for each type
+2. SolderUsage
+[2, 1] # Units of solder per keyboard for each type
+3. PlasticAvailable
+1000 # Total units of plastic available
+4. SolderAvailable
+250 # Total units of solder available
+5. MinStandardKeyboards
+30 # Minimum number of standard keyboards to be manufactured
+6. MechanicalToStandardRatio
+5 # The ratio of mechanical keyboards to standard keyboards
+
+Decision variable:
+1. NumberOfKeyboards
+Integer variable, x_{i} for all i in I, representing the number of keyboards of each type to be manufactured.
+
+Objective:
+Maximize the total number of keyboards.
+max: \( \sum_{i \in I} x_{i} \)
+
+Constraint:
+1. Plastic Availability
+\( \sum_{i \in I} PlasticUsage[i] \cdot x_{i} \leq PlasticAvailable \)
+2. Solder Availability
+\( \sum_{i \in I} SolderUsage[i] \cdot x_{i} \leq SolderAvailable \)
+3. Production Ratio
+\( x_{0} = MechanicalToStandardRatio \cdot x_{1} \)
+4. Minimum Standard Keyboards
+\( x_{1} \geq MinStandardKeyboards \)
+5. Non-negativity
+\( x_{i} \geq 0 \), for all \( i \in I \)
+
+Type:
+Integer, linear, linear
+IP

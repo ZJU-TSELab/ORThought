@@ -1,0 +1,40 @@
+Set:
+1. BusTypes
+The set of bus types, \( T = \{\text{LargeBus, Minibus}\} \).
+
+Parameter:
+1. NumStudents
+400 # Total number of students to transport.
+2. Capacity
+[50, 40] # Seating capacity for each bus type.
+3. Availability
+[10, 8] # Number of available vehicles for each bus type.
+4. RentalCost
+[800, 600] # Rental cost in £ for each bus type.
+5. AvailableDrivers
+9 # Total number of available drivers.
+
+Decision variable:
+1. NumVehicles
+Integer variable, \( x_t \) for all \( t \in T \), representing the number of vehicles of type \( t \) to rent.
+
+Objective:
+Minimize the total rental cost.
+min: \sum_{t \in T} \text{RentalCost}[t] * x_t
+
+Constraint:
+1. Student Capacity
+The total seating capacity of the rented vehicles must be sufficient for all students.
+\sum_{t \in T} \text{Capacity}[t] * x_t \geq \text{NumStudents}
+2. Driver Availability
+The total number of rented vehicles cannot exceed the number of available drivers.
+\sum_{t \in T} x_t \leq \text{AvailableDrivers}
+3. Vehicle Availability
+The number of rented vehicles of each type cannot exceed the number available.
+x_t \leq \text{Availability}[t], \forall t \in T
+4. Non-negativity
+x_t \geq 0, \forall t \in T
+
+Type:
+Integer, linear, linear
+ILP

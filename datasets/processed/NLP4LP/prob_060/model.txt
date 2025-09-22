@@ -1,0 +1,41 @@
+Set:
+1. MachineType
+The set of washing machine types, \( I = \{0, 1\} \) # 0 for Top-loading, 1 for Front-loading
+
+Parameter:
+1. WashingCapacity
+[50, 75] # Items washed per day by each machine type
+2. EnergyConsumption
+[85, 100] # kWh consumed per day by each machine type
+3. MinWashingCapacity
+5000 # Minimum total items to be washed per day
+4. MaxEnergyConsumption
+7000 # Maximum total kWh available per day
+5. MaxTopLoadingPercentage
+0.4 # Maximum percentage of top-loading machines
+6. MinFrontLoadingMachines
+10 # Minimum number of front-loading machines
+
+Decision variable:
+1. MachineCount
+Integer variable, \( x_{i} \) for all \( i \in I \), representing the number of machines of type \( i \) to be bought.
+
+Objective:
+Minimize the total number of washing machines.
+min: \( \sum_{i \in I} x_{i} \)
+
+Constraint:
+1. Washing capacity constraint
+\( \sum_{i \in I} WashingCapacity[i] \cdot x_{i} \geq MinWashingCapacity \)
+2. Energy consumption constraint
+\( \sum_{i \in I} EnergyConsumption[i] \cdot x_{i} \leq MaxEnergyConsumption \)
+3. Top-loading proportion constraint
+\( x_{0} \leq MaxTopLoadingPercentage \cdot (x_{0} + x_{1}) \) which simplifies to \( 3 \cdot x_{0} \leq 2 \cdot x_{1} \)
+4. Minimum front-loading machines constraint
+\( x_{1} \geq MinFrontLoadingMachines \)
+5. Non-negativity
+\( x_{i} \geq 0 \), for all \( i \in I \)
+
+Type:
+Integer, linear, linear
+IP

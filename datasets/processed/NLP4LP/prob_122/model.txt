@@ -1,0 +1,37 @@
+Set:
+1. PillType
+The set of pill types, \( I = \{0, 1\} \) # 0 for daytime, 1 for nighttime
+
+Parameter:
+1. PainkillerMedicine
+[6, 5] # Units of painkiller medicine per pill for each pill type
+2. SleepMedicine
+[2, 5] # Units of sleep medicine per pill for each pill type
+3. MaxPainkillerMedicine
+800 # Maximum units of painkiller medicine available
+4. MinNighttimePills
+200 # Minimum number of nighttime pills to be made
+5. MinDaytimePillPercentage
+0.4 # Minimum percentage of daytime pills
+
+Decision variable:
+1. PillCount
+Integer variable, \( x_{i} \) for all \( i \in I \), representing the number of pills of each type to be made.
+
+Objective:
+Minimize the total amount of sleep medicine required.
+min: \( \sum_{i \in I} SleepMedicine[i] \cdot x_{i} \)
+
+Constraint:
+1. Painkiller medicine constraint
+\( \sum_{i \in I} PainkillerMedicine[i] \cdot x_{i} \leq MaxPainkillerMedicine \)
+2. Daytime pill percentage constraint
+\( x_{0} \geq MinDaytimePillPercentage \cdot (x_{0} + x_{1}) \) which simplifies to \( (1 - MinDaytimePillPercentage) \cdot x_{0} \geq MinDaytimePillPercentage \cdot x_{1} \) or \( 0.6 \cdot x_{0} \geq 0.4 \cdot x_{1} \) or \( 3 \cdot x_{0} \geq 2 \cdot x_{1} \)
+3. Minimum nighttime pills constraint
+\( x_{1} \geq MinNighttimePills \)
+4. Non-negativity
+\( x_{i} \geq 0 \), for all \( i \in I \)
+
+Type:
+Integer, linear, linear
+IP

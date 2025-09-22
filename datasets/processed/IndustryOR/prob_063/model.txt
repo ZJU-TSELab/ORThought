@@ -1,0 +1,42 @@
+Set:
+1. Candidates
+The set of candidates, \( C = \{F, G, H, I, J\} \).
+
+Parameter:
+1. Salary
+[12000, 15000, 18000, 5000, 10000] # Salary requirement for each candidate.
+2. SkillLevel
+[2, 3, 4, 1, 2] # Skill level of each candidate.
+3. Experience
+[1, 2, 2, 5, 4] # Project management experience in years for each candidate.
+4. Budget
+40000 # Total budget for salaries.
+5. MaxHires
+4 # Maximum number of new employees to hire.
+6. MinTotalSkill
+8 # Minimum required total skill level of the hired team.
+7. MinTotalExperience
+8 # Minimum required total project management experience of the hired team.
+
+Decision variable:
+1. HireCandidate
+Binary variable, \( y_c \) for \( c \in C \), is 1 if candidate c is hired, and 0 otherwise.
+
+Objective:
+Minimize: \( \sum_{c \in C} \text{Salary}_c \cdot y_c \)
+
+Constraint:
+1. BudgetConstraint
+The total salary of hired candidates cannot exceed the budget: \( \sum_{c \in C} \text{Salary}_c \cdot y_c \le 40000 \)
+2. MaxHiresConstraint
+The total number of hired candidates cannot exceed 4: \( \sum_{c \in C} y_c \le 4 \)
+3. MinSkillConstraint
+The total skill level of the hired team must be at least 8: \( \sum_{c \in C} \text{SkillLevel}_c \cdot y_c \ge 8 \)
+4. MinExperienceConstraint
+The total project management experience of the hired team must be at least 8 years: \( \sum_{c \in C} \text{Experience}_c \cdot y_c \ge 8 \)
+5. MutualExclusion
+At most one of candidates G and J can be hired: \( y_G + y_J \le 1 \)
+
+Type:
+Integer, linear, linear
+ILP

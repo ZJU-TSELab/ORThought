@@ -1,0 +1,41 @@
+Set:
+1. BatchType
+The set of batch types, \( I = \{0, 1\} \) # 0 for regular, 1 for premium
+
+Parameter:
+1. MedicinalIngredients
+[50, 40] # Units of medicinal ingredients required per batch for each batch type
+2. RehydrationProduct
+[40, 60] # Units of rehydration product required per batch for each batch type
+3. PeopleTreated
+[50, 30] # Number of people treated per batch for each batch type
+4. MaxMedicinalIngredients
+3000 # Maximum units of medicinal ingredients available
+5. MaxRehydrationProduct
+3500 # Maximum units of rehydration product available
+6. MinRegularBatches
+10 # Minimum number of regular batches to be made
+
+Decision variable:
+1. BatchCount
+Integer variable, \( x_{i} \) for all \( i \in I \), representing the number of batches of type \( i \) to be made.
+
+Objective:
+Maximize the total number of people that can be treated.
+max: \( \sum_{i \in I} PeopleTreated[i] \cdot x_{i} \)
+
+Constraint:
+1. Medicinal ingredients constraint
+\( \sum_{i \in I} MedicinalIngredients[i] \cdot x_{i} \leq MaxMedicinalIngredients \)
+2. Rehydration product constraint
+\( \sum_{i \in I} RehydrationProduct[i] \cdot x_{i} \leq MaxRehydrationProduct \)
+3. Batch relationship constraint
+\( x_{0} \leq x_{1} - 1 \)
+4. Minimum regular batches constraint
+\( x_{0} \geq MinRegularBatches \)
+5. Non-negativity
+\( x_{i} \geq 0 \), for all \( i \in I \)
+
+Type:
+Integer, linear, linear
+IP

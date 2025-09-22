@@ -1,0 +1,35 @@
+Set:
+1. Origins
+The set of origins, \( O = \{1, 2\} \)
+2. Destinations
+The set of destinations, \( D = \{1, 2\} \)
+
+Parameter:
+1. Supply
+\( supply = [20, 30] \)
+2. Demand
+\( demand = [30, 20] \)
+3. Shipping Rate
+\( rate = [[8, 6], [5, 10]] \)
+4. Shipping Limit
+\( limit = [[15, 25], [25, 20]] \)
+
+Decision variable:
+1. ShipmentVariable
+Continuous variable, \( x_{i,j} \geq 0 \) for all \( i \in O, j \in D \), where \( x_{i,j} \) is the amount shipped from origin \( i \) to destination \( j \)
+
+Objective:
+Minimize total shipping cost
+min: \( \sum_{i \in O} \sum_{j \in D} rate_{i,j} \cdot x_{i,j} \)
+
+Constraint:
+1. Supply Constraint
+\( \sum_{j \in D} x_{i,j} \leq supply_i, \quad \forall i \in O \)
+2. Demand Constraint
+\( \sum_{i \in O} x_{i,j} \geq demand_j, \quad \forall j \in D \)
+3. Shipping Limit Constraint
+\( x_{i,j} \leq limit_{i,j}, \quad \forall i \in O, \forall j \in D \)
+
+Type:
+Continuous, Linear, Linear
+LP

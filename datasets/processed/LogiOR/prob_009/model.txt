@@ -1,0 +1,32 @@
+Set:
+1. DemandNode
+The set of demand nodes, \( D = \{1, 2, \dots, DemandNodeNum\} \)
+2. Stop
+The set of stops, \( S = \{1, 2, \dots, StopNum\} \)
+
+Parameter:
+1. DemandNodeNum
+15
+2. StopNum
+5
+3. CoverageDistance
+300
+4. Distance
+[[389, 515, 170, 143, 617], [562, 678, 265, 640, 629], [206, 594, 180, 564, 683], [574, 105, 311, 99, 550], [616, 490, 99, 473, 682], [571, 258, 494, 749, 61], [573, 234, 207, 635, 318], [70, 53, 399, 740, 494], [229, 190, 550, 654, 394], [50, 56, 459, 143,478], [95,378 ,507 ,647 ,135], [767 ,200 ,569 ,689 ,621], [729 ,333 ,91 ,86 ,386], [633 ,163 ,562 ,184 ,384], [67 ,515 ,224 ,502 ,345]]
+
+Decision variable:
+1. SeletStop
+Binary variable, \( x_{i} \) for all \( i \in S \), representing whether stop \( i \) is selected (1 if selected, 0 otherwise) 
+
+Objective:
+The total stops selected
+min: \sum_{i\in S}x_{i}
+
+Constraint:
+1. DemandNode coverage
+\sum_{i\in S}x_{i}Ifcoverage_{ji} \geq 1, \forall j \in D
+# Ifcoverage is a binary matrix determined based on the CoverageDistance and Distance, where Ifcoverage_{ji} = 1 if demand node \( j \) is covered by stop \( i \), and 0 otherwise.
+
+Type:
+Binary, Linear, Linear
+ILP

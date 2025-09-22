@@ -1,0 +1,35 @@
+Set:
+1. ModelType
+The set of model types, \( T = \{0, 1\} \) # 0 for Trains, 1 for Planes
+
+Parameter:
+1. WoodAvailable
+120 # Total units of wood available
+2. PaintAvailable
+90 # Total units of paint available
+3. Profit
+[8, 10] # Profit per model type
+4. WoodRequired
+[3, 4] # Units of wood required per model type
+5. PaintRequired
+[3, 2] # Units of paint required per model type
+
+Decision variable:
+1. ModelCount
+Integer variable, \( x_{t} \) for all \( t \in T \), representing the number of models of type \( t \) to make.
+
+Objective:
+Maximize the total profit.
+max: \sum_{t \in T} Profit[t] * x_{t}
+
+Constraint:
+1. Wood constraint
+\sum_{t \in T} WoodRequired[t] * x_{t} \leq WoodAvailable
+2. Paint constraint
+\sum_{t \in T} PaintRequired[t] * x_{t} \leq PaintAvailable
+3. Non-negativity
+x_{t} \geq 0, \forall t \in T
+
+Type:
+Integer, linear, linear
+IP

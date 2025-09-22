@@ -1,0 +1,33 @@
+Set:
+1. VehicleType
+The set of vehicle types, I = {0, 1} # 0 for Sedans, 1 for Buses
+
+Parameter:
+1. TouristCapacity
+[50, 250] # Tourists per day for each vehicle type
+2. Pollution
+[10, 40] # Units of pollution per day for each vehicle type
+3. PollutionLimit
+800 # Maximum units of pollution allowed per day
+4. MinTourists
+4600 # Minimum number of tourists to be served per day
+
+Decision variable:
+1. NumberOfVehicles
+Integer variable, x_{i} for all i in I, representing the number of vehicles of each type to purchase.
+
+Objective:
+Minimize the total number of vehicles needed.
+min: \( \sum_{i \in I} x_{i} \)
+
+Constraint:
+1. Tourist Capacity
+\( \sum_{i \in I} TouristCapacity[i] \cdot x_{i} \geq MinTourists \)
+2. Pollution Limit
+\( \sum_{i \in I} Pollution[i] \cdot x_{i} \leq PollutionLimit \)
+3. Non-negativity
+\( x_{i} \geq 0 \), for all \( i \in I \)
+
+Type:
+Integer, linear, linear
+IP

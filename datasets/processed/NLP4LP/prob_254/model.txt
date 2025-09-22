@@ -1,0 +1,31 @@
+Set:
+1. CartType
+The set of cart types, I = {0, 1} # 0 for Golf Cart, 1 for Pull Cart
+
+Parameter:
+1. GuestCapacity
+[4, 1] # Number of guests each cart type can take
+2. MinGuests
+80 # Minimum number of guests to transport
+3. MaxGolfCartRatio
+0.6 # Maximum ratio of golf carts to total carts
+
+Decision variable:
+1. NumberOfCarts
+Integer variable, x_{i} for all i in I, representing the number of carts of each type to use.
+
+Objective:
+Minimize the total number of carts used.
+min: \( \sum_{i \in I} x_{i} \)
+
+Constraint:
+1. Guest Transportation
+\( \sum_{i \in I} \text{GuestCapacity}[i] \cdot x_{i} \geq \text{MinGuests} \)
+2. Cart Ratio
+\( x_{0} \leq \text{MaxGolfCartRatio} \cdot (x_{0} + x_{1}) \)
+3. Non-negativity
+\( x_{i} \geq 0 \), for all \( i \in I \)
+
+Type:
+Integer, linear, linear
+IP

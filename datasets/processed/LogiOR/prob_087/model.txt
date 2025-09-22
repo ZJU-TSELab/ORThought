@@ -1,0 +1,43 @@
+Set:
+1.  Area
+    [cite_start]The set of areas with available taxis, \( A = \{1, 2, 3\} \) # 1: A1, 2: A2, 3: A3 [cite: 12]
+2.  Hotspot
+    [cite_start]The set of passenger demand hotspots, \( H = \{1, 2, 3\} \) # 1: H1, 2: H2, 3: H3 [cite: 12]
+
+Parameter:
+1.  AvailableTaxis
+   [25, 40, 35] # number of available taxis in each area 
+2.  Demand
+    [30, 50, 40] # number of passengers demanding taxis at each hotspot 
+3.  DeadheadingCost
+    [16, 28, 24], [20, 12, 32], [24, 20, 16] # cost to dispatch a taxi from an area to a hotspot
+    # The deadheading costs data in the table is already adjusted to reflect a 20% reduction.
+4.  SurchargeCoefficient
+    0.5 # coefficient relating driver supply to the square of the surcharge 
+5.  BaseFare 
+    15.0 # fixed base fare for each successful dispatch
+
+Decision variable:
+1.  DispatchAmount
+Integer variable, \( DispatchAmount[a][h] \forall a \in A, h \in H \), the number of taxis dispatched from area \( a \) to hotspot \( h \).
+2.  Surcharge
+Continuous variable, \( Surcharge[h] \forall h \in H \), the dynamic surcharge set for hotspot \( h \). 
+
+Objective:
+1.  Maximize the total profit. 
+    max: \( \sum_{h \in H} ((BaseFare + Surcharge[h]) * \sum_{a \in A} DispatchAmount[a][h]) - \sum_{a \in A} \sum_{h \in H} (DeadheadingCost[a][h] * DispatchAmount[a][h]) \)
+
+Constraint:
+1.  Area supply constraint.
+ \sum_{h \in H} DispatchAmount[a][h] \leq AvailableTaxis[a] \forall a \in A \
+2.  Hotspot demand constraint.
+\sum_{a \in A} DispatchAmount[a][h] \leq Demand[h] \forall h \in H \
+3.  Surcharge-supply relationship constraint.
+ \sum_{a \in A} DispatchAmount[a][h] = SurchargeCoefficient * Surcharge[h]^2 \forall h \in H \
+4.  Non-negativity constraint.
+   DispatchAmount[a][h] \geq 0 \forall a \in A, h \in H \
+   Surcharge[h] \geq 0 \forall h \in H \
+
+Type:
+Mixed, Non-linear, Non-linear
+NLP

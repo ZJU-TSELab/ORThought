@@ -1,0 +1,53 @@
+Set:
+1. Mines 
+The set of mines, \( M = \{M1, M2, M3, M4\} \)
+2. Plants
+The set of processing plants, \( P = \{P1, P2, P3\} \)
+
+Parameter:
+1. MineSupply  
+\( s_m \): Available ore at mine m (tons)  
+[M1:6000, M2:9000, M3:7000, M4:5000]  
+2. PlantCapacity  
+\( c_p \): Processing capacity of plant p (tons)  
+[P1:8000, P2:10000, P3:12000]  
+3. RecoveryRate  
+\( r_m \): Metal recovery rate for mine m (%)  
+[M1:0.85, M2:0.92, M3:0.78, M4:0.88]  
+4. ProcessingCost  
+\( pc_m \): Processing cost per ton for mine m ($)  
+[M1:12, M2:18, M3:10, M4:15]  
+5. SulfurContent  
+\( sc_m \): Sulfur content for mine m (%)  
+[M1:1.2, M2:0.8, M3:2.1, M4:1.5]  
+6. TransportCost  
+\( tc_{mp} \): Transportation cost from mine m to plant p ($)  
+(As given in the cost matrix)  
+7. MaxSulfur  
+1.5 (%) Maximum allowed average sulfur content  
+8. Budget  
+500000 ($) Total cost limit  
+
+Decision variable:
+1. Allocation  
+\( x_{mp} \geq 0 \): Continuous variable representing tons of ore shipped from mine m to plant p  
+
+Objective:  
+Maximize total metal recovery  
+max: \( \sum_{m\in M} \sum_{p\in P} r_m \cdot x_{mp} \)
+
+Constraint:
+1. Mine supply limit  
+\( \sum_{p\in P} x_{mp} \leq s_m, \forall m \in M \)
+2. Plant capacity limit  
+\( \sum_{m\in M} x_{mp} \leq c_p, \forall p \in P \)
+3. Total cost limit (processing + transportation)  
+\( \sum_{m\in M} \sum_{p\in P} (pc_m + tc_{mp}) \cdot x_{mp} \leq 500000 \)
+4. Average sulfur content restriction  
+\( \frac{\sum_{m\in M} \sum_{p\in P} sc_m \cdot x_{mp}}{\sum_{m\in M} \sum_{p\in P} x_{mp}} \leq 1.5 \)
+5. Non-negativity  
+\( x_{mp} \geq 0, \forall m \in M, p \in P \)
+
+Type:
+Continuous, Linear, Linear  
+LP

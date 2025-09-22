@@ -1,0 +1,33 @@
+Set:
+1. BetType
+The set of bet types, \( I = \{0, 1, 2\} \) # 0 for Basketball, 1 for Horse Race, 2 for Soccer
+
+Parameter:
+1. LossChance
+[0.5, 0.25, 0.1] # Chance of losing money for each bet type
+2. PayoutPerDollar
+[1.2, 0.5, 0.1] # Payout per dollar for each bet type
+3. TotalBudget
+100000 # Total amount of money to gamble
+4. MaxAverageLossChance
+0.3 # Maximum average chance of losing money
+
+Decision variable:
+1. AmountToBet
+Continuous variable, \( x_{i} \) for all \( i \in I \), representing the amount of money to bet on each sport.
+
+Objective:
+Maximize the average payout.
+max: \( \sum_{i \in I} (PayoutPerDollar[i] - 1) \cdot x_{i} \)
+
+Constraint:
+1. Total budget constraint
+\( \sum_{i \in I} x_{i} \leq TotalBudget \)
+2. Average loss chance constraint
+\( \frac{\sum_{i \in I} LossChance[i] \cdot x_{i}}{\sum_{i \in I} x_{i}} \leq MaxAverageLossChance \)
+3. Non-negativity
+\( x_{i} \geq 0 \), for all \( i \in I \)
+
+Type:
+Continuous, linear, linear
+LP

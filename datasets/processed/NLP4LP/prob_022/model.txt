@@ -1,0 +1,35 @@
+Set:
+1. DeskType
+The set of desk types, \( T = \{0, 1\} \) # 0 for Long Desks, 1 for Short Desks
+
+Parameter:
+1. MaxBudget
+2000 # Maximum budget in dollars
+2. MaxSpace
+200 # Maximum space for desks in square feet
+3. Cost
+[300, 100] # Cost per desk type
+4. Space
+[10, 4] # Space taken up per desk type in square feet
+5. Seating
+[6, 2] # Number of employees seated per desk type
+
+Decision variable:
+1. DeskCount
+Integer variable, \( x_{t} \) for all \( t \in T \), representing the number of desks of type \( t \) to buy.
+
+Objective:
+Maximize the total seating availability.
+max: \sum_{t \in T} Seating[t] * x_{t}
+
+Constraint:
+1. Budget constraint
+\sum_{t \in T} Cost[t] * x_{t} \leq MaxBudget
+2. Space constraint
+\sum_{t \in T} Space[t] * x_{t} \leq MaxSpace
+3. Non-negativity
+x_{t} \geq 0, for all \( t \in T \)
+
+Type:
+Integer, linear, linear
+IP

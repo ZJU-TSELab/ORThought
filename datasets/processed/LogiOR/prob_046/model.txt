@@ -1,0 +1,55 @@
+Set:
+1. MonthsInvest:
+The set of months when investment decisions can be made.
+T_I = \{1, 2, 3, 4\}
+2. MonthsBalance:
+The set of months for which end-of-month uninvested cash balance is tracked.
+T_B = \{1, 2, 3, 4\}
+3. InvestmentDurations:
+The set of possible investment durations in months.
+D = \{1, 2, 3, 4\}  # representing 1-month, 2-month, 3-month, and 4-month investment options respectively.
+
+Parameter:
+1. InitialFunds:
+# The amount of cash available at the start of month 1.
+ 50000
+2. Revenue:
+[20000, 25000, 30000, 35000]  # in dollars for months 1, 2, 3, and 4 respectively.
+3. OperationalExpenses:
+The operational expenses paid at the beginning of month $t$, for $t \in T_I$.
+[15000, 35000, 22000, 28000]  # in dollars for months 1, 2, 3, and 4 respectively.
+4. MonthlyInterestRate:
+[0.002, 0.008, 0.015, 0.030]  # in dollars for months 1, 2, 3, and 4 respectively.
+# The return factor for an investment of duration $d$ is $(1 + d \times \text{MIR}[d])$.
+
+Decision Variable:
+1. InvestAmount:
+Continuous variable, $X_{t,d} \ge 0$, representing the amount of money invested at the beginning of month $t$ for a duration of $d$ months, for all $t \in T_I$ and $d \in D$ such that $t+d \le 5$.
+2. CashOnHand:
+Continuous variable, $C_t \ge 0$, representing the uninvested cash held at the end of month $t$, carried over to the start of month $t+1$.
+Defined for $t \in T_B$. (i.e., $C_1, C_2, C_3, C_4$)
+
+Objective:
+1.  Maximize the total cash on hand at the beginning of month 5.
+This includes cash carried over from the end of month 4 and all investments maturing at the start of month 5.
+max:
+$Z = C_4 + \sum_{\substack{t \in T_I, d \in D \\ t+d=5}} X_{t,d} (1 + d \times \text{MIR}[d])$
+
+Constraint:
+1. Cash Balance Constraint:
+For each month $t \in T_I$:
+The funds available at the beginning of month $t$ (after receiving revenue, paying expenses, and accounting for maturing investments and cash from the previous month) must equal the funds allocated in month $t$ (new investments plus cash carried over).
+    - If $t=1$:
+        $\text{InitialFunds} + \text{Rev}[1] - \text{Exp}[1] = \sum_{\substack{d \in D \\ 1+d \le 5}} X_{1,d} + C_1$
+
+    - If $t \in T_I \text{ and } t > 1$:
+        $C_{t-1} + \sum_{\substack{d' \in D \\ t-d' \ge 1}} X_{t-d', d'} (1 + d' \times \text{MIR}[d']) + \text{Rev}[t] - \text{Exp}[t] = \sum_{\substack{d \in D \\ t+d \le 5}} X_{t,d} + C_t$
+
+2. Non-negativity Constraint:
+All decision variables must be non-negative.
+$X_{t,d} \ge 0$ for all defined $t,d$.
+$C_t \ge 0$ for $t \in T_B$.
+
+Type:
+Continuous, Linear, Linear
+LP

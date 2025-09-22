@@ -1,0 +1,35 @@
+Set:
+1. ApplianceType
+The set of appliance types, \( I = \{0, 1\} \) # 0 for Refrigerator, 1 for Stove
+
+Parameter:
+1. MoverTimePerAppliance
+[60, 45] # Minutes of mover time required for each appliance type
+2. SetupTimePerAppliance
+[20, 25] # Minutes of setup time required for each appliance type
+3. MaxMoverTime
+20000 # Maximum available mover time in minutes
+4. MaxSetupTime
+13000 # Maximum available setup time in minutes
+5. ProfitPerAppliance
+[400, 260] # Profit per appliance for each type
+
+Decision variable:
+1. NumberOfAppliances
+Integer variable, \( x_{i} \) for all \( i \in I \), representing the number of appliances of each type to sell.
+
+Objective:
+Maximize the total profit.
+max: \( \sum_{i \in I} ProfitPerAppliance[i] \cdot x_{i} \)
+
+Constraint:
+1. Mover time constraint
+\( \sum_{i \in I} MoverTimePerAppliance[i] \cdot x_{i} \leq MaxMoverTime \)
+2. Setup time constraint
+\( \sum_{i \in I} SetupTimePerAppliance[i] \cdot x_{i} \leq MaxSetupTime \)
+3. Non-negativity
+\( x_{i} \geq 0 \), for all \( i \in I \)
+
+Type:
+Integer, linear, linear
+IP

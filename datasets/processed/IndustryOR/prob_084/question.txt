@@ -1,0 +1,8 @@
+A company is producing two products (X and Y). The resources required for the production of X and Y are divided into two parts: machine time for automated processing and craftsman time for manual finishing. The table below shows the number of minutes required for each product:
+
+| Item | Machine Time (minutes) | Craftsman Time (minutes) |
+| :---: | :---: | :---: |
+| X | 13 | 20 |
+| Y | 19 | 29 |
+
+The company has 40 hours of machine time available in the next working week, but only 35 hours of craftsman time. The cost of machine time is £10 per hour, and the cost of craftsman time is £2 per hour. Idle time for machines and craftsmen incurs no cost. For each product produced (all products produced will be sold), the revenue for product X is £20, and the revenue for product Y is £30. The company has a specific contract that requires 10 units of product X to be produced for a customer each week. Formulate a model for this problem.

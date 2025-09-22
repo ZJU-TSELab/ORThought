@@ -1,0 +1,37 @@
+Set:
+1. BirdType
+The set of bird types, \( I = \{0, 1\} \) # 0 for Carrier Pigeon, 1 for Owl
+
+Parameter:
+1. LettersPerBird
+[2, 5] # Number of letters each bird type can carry
+2. TreatsPerBird
+[3, 5] # Number of treats required for each bird type
+3. MaxTreats
+1000 # Maximum number of treats available
+4. MinPigeons
+20 # Minimum number of carrier pigeons to be used
+5. MaxOwlRatio
+0.4 # The number of owls cannot exceed 40% of the total birds
+
+Decision variable:
+1. NumberOfBirds
+Integer variable, \( x_{i} \) for all \( i \in I \), representing the number of birds of each type to use.
+
+Objective:
+Maximize the total number of letters that can be sent.
+max: \( \sum_{i \in I} LettersPerBird[i] \cdot x_{i} \)
+
+Constraint:
+1. Treats constraint
+\( \sum_{i \in I} TreatsPerBird[i] \cdot x_{i} \leq MaxTreats \)
+2. Minimum pigeons constraint
+\( x_{0} \geq MinPigeons \)
+3. Owl ratio constraint
+\( x_{1} \leq \frac{MaxOwlRatio}{1 - MaxOwlRatio} \cdot x_{0} \)
+4. Non-negativity
+\( x_{i} \geq 0 \), for all \( i \in I \)
+
+Type:
+Integer, linear, linear
+IP

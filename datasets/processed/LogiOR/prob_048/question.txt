@@ -1,0 +1,20 @@
+The operations manager of QuickShip Logistics is trying to determine the number of warehouse supervisors needed to manage the company's distribution operations throughout the year. The estimated number of operational hours required each month is as follows:  
+
+| Month     | Operational Hours Needed |  
+|-----------|--------------------------|  
+| January   | 600                      |  
+| February  | 450                      |  
+| March     | 350                      |  
+| April     | 800                      |  
+| May       | 1,000                    |  
+| June      | 450                      |  
+| July      | 350                      |  
+| August    | 600                      |  
+| September | 450                      |  
+| October   | 350                      |  
+| November  | 250                      |  
+| December  | 150                      |  
+
+QuickShip Logistics aims to determine the optimal number of full-time warehouse supervisors to employ for the entire year, with the primary goal of minimizing total annual labor costs. These costs are composed of fixed monthly salaries of $5,000 for each supervisor (who are employed for all 12 months) and any overtime expenses incurred to meet fluctuating monthly operational hour demands. The company must ensure all operational tasks for each month are completed within that month, and all annual tasks are finalized by the end of December. 
+
+Each of the N supervisors, when not taking their mandatory one-month annual paid vacation, can provide up to 160 standard operational hours monthly. To cover demands exceeding this standard capacity, these non-vacationing supervisors can work up to an additional 40 hours of overtime each per month, with overtime labor paid at a rate of $45 per hour. How can QuickShip Logistics minimize employment costs?

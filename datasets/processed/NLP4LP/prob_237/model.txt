@@ -1,0 +1,39 @@
+Set:
+1. MealType
+The set of meal types, \( I = \{0, 1\} \) # 0 for Salad, 1 for Fruit Bowl
+
+Parameter:
+1. VitaminPerMeal
+[7, 15] # Units of vitamins per meal for each type
+2. FibrePerMeal
+[12, 3] # Units of fibre per meal for each type
+3. PotassiumPerMeal
+[2, 8] # Units of potassium per meal for each type
+4. MinVitamin
+90 # Minimum units of vitamins required
+5. MinFibre
+110 # Minimum units of fibre required
+6. MaxFruitBowlRatio
+0.3 # Maximum ratio of fruit bowls to total meals
+
+Decision variable:
+1. NumberOfMeals
+Integer variable, \( x_{i} \) for all \( i \in I \), representing the number of meals of each type to prepare.
+
+Objective:
+Maximize the total potassium intake.
+max: \( \sum_{i \in I} PotassiumPerMeal[i] \cdot x_{i} \)
+
+Constraint:
+1. Vitamin requirement
+\( \sum_{i \in I} VitaminPerMeal[i] \cdot x_{i} \geq MinVitamin \)
+2. Fibre requirement
+\( \sum_{i \in I} FibrePerMeal[i] \cdot x_{i} \geq MinFibre \)
+3. Fruit bowl proportion
+\( x_{1} \leq MaxFruitBowlRatio \cdot \sum_{i \in I} x_{i} \)
+4. Non-negativity
+\( x_{i} \geq 0 \), for all \( i \in I \)
+
+Type:
+Integer, linear, linear
+IP

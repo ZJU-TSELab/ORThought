@@ -1,0 +1,11 @@
+You are in charge of a national health agency planning to establish 2 regional emergency blood centers in a province by selecting from 4 candidate cities. These centers will serve the province's 3 main hospitals. The success probability of blood transportation is known to decrease with the square of the distance, following the formula: p = 1 - 0.00005 * (distance)², where p is the success probability. Regulations require that for each hospital, the joint supply failure probability (i.e., the probability that all designated service channels fail) must be less than 10%. The agency's objective is to select the two locations that minimize the total construction cost while satisfying this reliability constraint. The costs for candidate locations, hospital locations, and distance data are shown in Table 1.
+
+How should the agency select the two locations for the centers to minimize the total construction cost, subject to the reliability requirement?
+
+Table 1: Blood Center Location Data
+| Candidate City | Construction Cost (¥M) | Distance to H1 (km) | Distance to H2 (km) | Distance to H3 (km) |
+|:---:|:---:|:---:|:---:|:---:|
+| C1 | 8 | 50 | 80 | 120 |
+| C2 | 7 | 60 | 40 | 90 |
+| C3 | 9 | 110 | 70 | 50 |
+| C4 | 7.5 | 130 | 100 | 60 |

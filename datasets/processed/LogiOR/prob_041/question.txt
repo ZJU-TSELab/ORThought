@@ -1,0 +1,10 @@
+CraftBrew Inc. operates two breweries located in Portland and Asheville. The Portland brewery can produce up to 200,000 gallons of craft beer annually, while the Asheville brewery can produce up to 300,000 gallons. Once brewed, the beer is shipped to two distribution hubs: Seattle and Atlanta. Each distribution hub can handle up to 400,000 gallons per year. Due to differences in shipping and production costs, the profit (in dollars) per thousand gallons shipped depends on the brewery and the destination hub (see Table 1). CraftBrew Inc. is considering expanding the capacity of each brewery. Each thousand gallons of annual production capacity added will cost $1,000 for the Portland brewery and $1,500 for the Asheville brewery. How can CraftBrew Inc. maximize its profits, less expansion costs, over a three-year period?  
+
+Table 1:
+
+| Brewery   | Destination Hub | Profit per Thousand Gallons ($) |  
+|-----------|------------------|----------------------------------|  
+| Portland  | Seattle          | 500                              |  
+| Portland  | Atlanta          | 450                              |  
+| Asheville | Seattle          | 480                              |  
+| Asheville | Atlanta          | 520                              |  

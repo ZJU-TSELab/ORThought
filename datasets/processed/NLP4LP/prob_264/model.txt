@@ -1,0 +1,35 @@
+Set:
+1. ChemicalType
+The set of chemical types, I = {0, 1} # 0 for Chemical A, 1 for Chemical B
+
+Parameter:
+1. EffectiveTime
+[30, 45] # Seconds for each chemical to be effective
+2. MinChemicalA
+300 # Minimum units of Chemical A
+3. MinTotalChemicals
+1500 # Minimum total units of chemicals
+4. ChemicalARatio
+1/3 # Maximum ratio of Chemical A to Chemical B
+
+Decision variable:
+1. NumberOfUnits
+Continuous variable, x_{i} for all i in I, representing the number of units of each chemical to be added.
+
+Objective:
+Minimize the total time it takes for the mixed bread to be ready.
+min: \( \sum_{i \in I} EffectiveTime[i] \cdot x_{i} \)
+
+Constraint:
+1. Chemical Ratio
+\( x_{0} \leq ChemicalARatio \cdot x_{1} \)
+2. Minimum Chemical A
+\( x_{0} \geq MinChemicalA \)
+3. Minimum Total Chemicals
+\( \sum_{i \in I} x_{i} \geq MinTotalChemicals \)
+4. Non-negativity
+\( x_{i} \geq 0 \), for all \( i \in I \)
+
+Type:
+Continuous, linear, linear
+LP

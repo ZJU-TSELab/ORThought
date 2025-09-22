@@ -1,0 +1,31 @@
+Set:
+1. MixType
+The set of candy mixes, \( M = \{0, 1\} \) # 0 for Regular Mix, 1 for Sour Surprise Mix
+2. CandyType
+The set of candy types, \( C = \{0, 1\} \) # 0 for Regular Candy, 1 for Sour Candy
+
+Parameter:
+1. Profit
+[3, 5] # Profit per kilogram of each mix type
+2. CandyAvailability
+[80, 60] # Kilograms available for each candy type
+3. CandyComposition
+[[0.8, 0.1], [0.2, 0.9]] # Kilograms of each candy type required per kilogram of each mix type
+
+Decision variable:
+1. MixAmount
+Continuous variable, \( x_{m} \) for all \( m \in M \), representing the kilograms of mix type \( m \) to produce.
+
+Objective:
+Maximize the total profit.
+max: \sum_{m \in M} Profit[m] * x_{m}
+
+Constraint:
+1. Candy availability constraint
+\sum_{m \in M} CandyComposition[c][m] * x_{m} \leq CandyAvailability[c], for all \( c \in C \)
+2. Non-negativity
+x_{m} \geq 0, for all \( m \in M \)
+
+Type:
+Linear, continuous, linear
+LP

@@ -1,0 +1,2 @@
+python main.py --dataset_name complexor industryor nlp4lp logior --llm_model gpt-4.1-nano --or_thought --temperature 0.0 --debug_max_try 3 --problem prob_001
+python main.py --dataset_name logior --llm_model gpt-4.1-nano --or_thought --temperature 0.0 --debug_max_try 3 --problem prob_001

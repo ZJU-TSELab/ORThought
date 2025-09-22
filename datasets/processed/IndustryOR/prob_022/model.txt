@@ -1,0 +1,39 @@
+Set:
+1. Product
+The set of products, \( P = \{Shirt, Short-sleeve, Casual Cloth\} \)
+
+Parameter:
+1. LaborPerUnit
+[3, 2, 6] # Labor units required per product
+2. MaterialPerUnit
+[4, 3, 6] # Material units required per product
+3. SellingPrice
+[120, 80, 180] # Selling price per product
+4. VariableCost
+[60, 40, 80] # Variable cost per product
+5. LaborAvailable
+1500 # Total available labor units per week
+6. MaterialAvailable
+1600 # Total available material units per week
+7. FixedCosts
+[2000, 1500, 1000] # Weekly fixed costs for each product's equipment
+
+Decision variable:
+1. ProductionQuantity
+Integer variable, \( x_{p} \) for all \( p \in P \), representing the number of units of product \( p \) to produce.
+
+Objective:
+Maximize the total weekly profit.
+max: \sum_{p \in P} (SellingPrice[p] - VariableCost[p]) * x_{p} - \sum_{p \in P} FixedCosts[p]
+
+Constraint:
+1. Labor constraint
+\sum_{p \in P} LaborPerUnit[p] * x_{p} \leq LaborAvailable
+2. Material constraint
+\sum_{p \in P} MaterialPerUnit[p] * x_{p} \leq MaterialAvailable
+3. Non-negativity
+\( x_{p} \geq 0, \forall p \in P \)
+
+Type:
+Integer, linear, linear
+ILP

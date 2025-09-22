@@ -1,0 +1,39 @@
+Set:
+1. Gates
+The set of gates available at the airport, \( G = \{1, 2\} \)
+2. Flights
+The set of flights to be assigned to the gates, \( F = \{1, 2, 3, 4\} \)
+
+Parameter:
+1. ArrangeStartTime
+[600, 630, 645, 675]
+2. Duration
+[60, 60, 75, 60]
+3. CostPerDelyTime
+1
+4. M: A large positive number
+1500
+
+Decision variable:
+1. Assignment
+Binary variable \( x_{fg} \in \{0, 1\} \) for all \( f \in F, g \in G \), where \( x_{fg} = 1 \) if flight \( f \) is assigned to gate \( g \), and \( x_{fg} = 0 \) otherwise.
+2. ActualStartTime
+Integer variable \( s_f \) representing the actual start time of flight \( f \in F\)
+
+Objective:
+The total cost of flight delays
+min: \sum_{f\in F}\sum_{g\in G}CostPerDelyTime\cdot (s_f-ArrangeStartTime_f)\cdot x_{fg}
+
+Constraint:
+1. Actual start time should be greater than or equal to the scheduled start time.
+s_f \geq ArrangeStartTime_f, \forall f \in F
+
+2. Every flight should be assigned to exactly one gate.
+\sum_{g\in G}x_{fg} = 1, \forall f \in F
+
+3. The actual start time should be greater than or equal to the end time of the previous flight at the same gate.
+s_{f2} \geq s_{f1}+Duration_{f1} - M*(2-x[f1, g]-x[f2, g]), \forall f1, f2 \in F, f1 < f2, x_{f1g} = 1, x_{f2g} = 1 \forall g \in G
+
+Type:
+Integer, Linear, Linear
+ILP

@@ -1,0 +1,33 @@
+Set:
+1. TransportType
+The set of transport types, \( I = \{0, 1\} \) # 0 for Hot-air Balloon, 1 for Gondola Lift
+
+Parameter:
+1. VisitorsPerTrip
+[4, 6] # Number of visitors each transport type can carry
+2. PollutionPerTrip
+[10, 15] # Units of pollution produced by each transport type
+3. MaxBalloonRides
+10 # Maximum number of hot-air balloon rides
+4. MinVisitors
+70 # Minimum number of visitors to be transported
+
+Decision variable:
+1. NumberOfTrips
+Integer variable, \( x_{i} \) for all \( i \in I \), representing the number of trips of each type.
+
+Objective:
+Minimize the total pollution produced.
+min: \( \sum_{i \in I} PollutionPerTrip[i] \cdot x_{i} \)
+
+Constraint:
+1. Visitor capacity constraint
+\( \sum_{i \in I} VisitorsPerTrip[i] \cdot x_{i} \geq MinVisitors \)
+2. Maximum balloon rides constraint
+\( x_{0} \leq MaxBalloonRides \)
+3. Non-negativity
+\( x_{i} \geq 0 \), for all \( i \in I \)
+
+Type:
+Integer, linear, linear
+IP

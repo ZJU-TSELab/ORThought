@@ -1,0 +1,35 @@
+Set:
+1. PillType
+The set of pill types, \( I = \{0, 1\} \) # 0 for Pill 1, 1 for Pill 2
+
+Parameter:
+1. PainMedication
+[0.2, 0.6] # Units of pain medication provided by each pill type
+2. AnxietyMedication
+[0.3, 0.2] # Units of anxiety medication provided by each pill type
+3. Discharge
+[0.3, 0.1] # Units of discharge caused by each pill type
+4. MaxPainMedication
+6 # Maximum units of pain medication allowed
+5. MinAnxietyMedication
+3 # Minimum units of anxiety medication required
+
+Decision variable:
+1. PillCount
+Integer variable, \( x_{i} \) for all \( i \in I \), representing the number of pills of type \( i \) to be given.
+
+Objective:
+Minimize the total amount of discharge.
+min: \( \sum_{i \in I} Discharge[i] \cdot x_{i} \)
+
+Constraint:
+1. Pain medication constraint
+\( \sum_{i \in I} PainMedication[i] \cdot x_{i} \leq MaxPainMedication \)
+2. Anxiety medication constraint
+\( \sum_{i \in I} AnxietyMedication[i] \cdot x_{i} \geq MinAnxietyMedication \)
+3. Non-negativity
+\( x_{i} \geq 0 \), for all \( i \in I \)
+
+Type:
+Integer, linear, linear
+IP

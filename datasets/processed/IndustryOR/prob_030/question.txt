@@ -1,0 +1,12 @@
+A factory produces three types of products, I, II, and III. Each product requires two processing stages, A and B. It is assumed that the factory has two types of equipment to complete the A processing stage, denoted as A1 and A2; and two types of equipment to complete the B processing stage, denoted as B1 and B2. Product I can be processed on any type of A equipment, but for the B processing stage, it can only be processed on B1 equipment; Product III can only be processed on A2 and B2 equipment. The processing time per piece, raw material cost, sales price of products, effective machine hours for various equipment, and costs of equipment at full capacity are given in Table 1-18. The requirement is to arrange the optimal production plan so that the factory's profit is maximized.
+
+Table 1-18
+| Equipment   | Product I | Product II | Product III | Effective Machine Hours | Cost of Equipment at Full Capacity (Yuan) |
+|-------------|-----------|------------|-------------|------------------------|-------------------------------------------|
+| A1          | 5         | 10         |             | 10000                 | 321                                       |
+| A2          | 7         | 9          | 12          | 4000                  | 250                                       |
+| B1          | 6         | 8          |             | 7000                  | 783                                       |
+| B2          | 4         |            | 11          | 4000                  | 200                                       |
+| B3          | 7         |            |             |                       |                                           |
+| Raw Material Cost (Yuan/Piece) | 0.25      | 0.35       | 0.50       |                        |                                           |
+| Unit Price (Yuan/Piece)        | 1.25      | 2.00       | 2.80       |                        |                                           |

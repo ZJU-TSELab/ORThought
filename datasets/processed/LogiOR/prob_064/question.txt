@@ -1,0 +1,15 @@
+A logistics company needs to optimize the delivery of three types of drinks (Cola, Juice, and Mineral Water) from two production facilities (P1 and P2) to three retail stores (S1, S2, S3) via a transportation network with 5 intermediate nodes (N1-N5). The directed arcs between nodes have capacity limits (in pallets) and unit transportation costs ($/pallet).
+
+The network connections, capacities, and costs are as follows:
+- P1→N1 (Capacity: 80, Cost: 2)
+- P1→N2 (Capacity: 60, Cost: 3)
+- P2→N3 (Capacity: 90, Cost: 2)
+- N1→N3 (Capacity: 50, Cost: 1)
+- N2→N4 (Capacity: 70, Cost: 2)
+- N3→N5 (Capacity: 100, Cost: 3)
+- N4→S1 (Capacity: ∞, Cost: 1)
+- N4→S2 (Capacity: ∞, Cost: 2)
+- N5→S2 (Capacity: ∞, Cost: 1)
+- N5→S3 (Capacity: ∞, Cost: 2)
+
+The demand requirements are: Cola (S1:30, S2:20, S3:10), Juice (S1:15, S2:25, S3:5), Water (S1:10, S2:15, S3:20). Production capacities are P1 (Cola:40, Juice:30, Water:20) and P2 (Cola:30, Juice:25, Water:40). The goal is to satisfy all demands while minimizing total transportation costs.

@@ -1,0 +1,51 @@
+# Model description for prob_097
+
+Set:
+1. Products
+The set of products, \( P = \{A, B\} \).
+
+Parameter:
+1. GrossProfit
+[5000, 11000] # Gross profit in yuan per unit for each product.
+2. SteelRequired
+[6, 12] # Steel in kg required per unit for each product.
+3. AluminumRequired
+[8, 20] # Aluminum in kg required per unit for each product.
+4. LaborRequired
+[11, 24] # Labor in hours required per unit for each product.
+5. AvailableSteel
+200 # Available steel in kg.
+6. AvailableAluminum
+300 # Available aluminum in kg.
+7. AvailableLabor
+300 # Available regular labor hours.
+8. OvertimeCost
+100 # Cost in yuan per hour of overtime labor.
+
+Decision variable:
+1. ProductionQty
+Integer variable, \( x_p \) for all \( p \in P \), representing the number of units of product \( p \) to produce.
+2. OvertimeHours
+Continuous variable, \( o \), representing the total overtime hours used.
+
+Objective:
+Maximize the total net profit. Net profit is the gross profit from sales minus the cost of overtime labor.
+max: \sum_{p \in P} \text{GrossProfit}[p] * x_p - \text{OvertimeCost} * o
+
+Constraint:
+1. Steel Availability
+The total steel used cannot exceed the available amount.
+\sum_{p \in P} \text{SteelRequired}[p] * x_p \leq \text{AvailableSteel}
+2. Aluminum Availability
+The total aluminum used cannot exceed the available amount.
+\sum_{p \in P} \text{AluminumRequired}[p] * x_p \leq \text{AvailableAluminum}
+3. Labor Availability
+The total labor hours required must be met by regular hours plus any overtime hours.
+\sum_{p \in P} \text{LaborRequired}[p] * x_p \leq \text{AvailableLabor} + o
+4. Non-negativity
+x_p \geq 0, \forall p \in P
+o \geq 0
+
+Type:
+Mixed-Integer, linear, linear
+MILP

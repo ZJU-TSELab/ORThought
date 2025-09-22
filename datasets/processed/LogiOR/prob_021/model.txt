@@ -1,0 +1,53 @@
+Set:
+1. Week
+The set of weeks, \( W = \{1, 2, \dots, WeekNum\} \)
+
+Parameter:
+1. WeekNum
+7
+2. Demand
+[6, 9, 12, 8, 5, 7, 4]
+3. LongTermCost
+240
+4. LongTermWeekNum
+7
+5. ShortTermCost
+390
+6. SharedCost
+220
+7. SharedWeek
+[2, 4, 5]
+8. PromoCost
+190
+9. PromoMaxNum
+2
+10. PromoWeek
+[4, 5, 6, 7]
+
+Decision variable:
+1. LongTermNum
+Integer variable, \( LongTermNum \), where \( LongTermNum \) is the number of long-term forklifts leased.
+2. ShortTermNum
+Integer variable, \( ShortTermNum_{i} \forall i \in W\), where \( ShortTermNum_i \) is the number of short-term forklifts leased in week \( i \).
+3. SharedNum
+Integer variable, \( SharedNum \), where \( SharedNum \) is the number of shared forklifts leased.
+4. PromoNum
+Integer variable, \( PromoNum_{i} \forall i \in W\), where \( PromoNum_i \) is the number of promotional forklifts leased in week \( i \).
+
+Objective:
+1. Minimize the total leasing cost.
+min: LongTermCost * LongTermNum * LongTermWeekNum + ShortTermCost * \sum_{i \in W} ShortTermNum_i + SharedCost * SharedNum * len(SharedWeek) + PromoCost * \sum_{i \in PromoWeek} PromoNum_i
+
+Constraint:
+1. The total number of forklifts leased must meet the demand for each week.
+LongTermNum + ShortTermNum_i + PromoNum_i \geq Demand_i \forall i \in (W / SharedWeek)
+2. The total number of forklifts leased must meet the demand for each week, considering shared forklifts.
+LongTermNum + ShortTermNum_i + SharedNum + PromoNum_i \geq Demand_i \forall i \in SharedWeek
+3. The number of promotional forklifts leased in each week must not exceed the maximum limit.
+PromoNum_i \leq PromoMaxNum \forall i \in PromoWeek
+4. The promotional forklifts can't be leased in weeks other than the promotional weeks.
+PromoNum_i = 0 \forall i \in (W / PromoWeek)
+
+Type:
+Integer, Linear, Linear
+ILP

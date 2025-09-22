@@ -1,0 +1,56 @@
+Set:
+1. Suppliers 
+The set of Suppliers, \( S = \{1, 2, 3\} \)
+2. Warehouses
+The set of Warehouses, \( W = \{1, 2\} \)
+3. Customers
+The set of Customers, \( C = \{1, 2, 3, 4\} \)
+
+Parameter:
+1. SupplierCapacities
+[120, 150, 90] units for S1, S2, S3 respectively
+2. CustomerDemands
+[80, 60, 70, 90] units for C1 to C4 respectively
+3. DirectCost
+Matrix d where d[s,c] is direct shipping cost from supplier s to customer c:
+d = [[8,10,12,14], [9,7,11,13], [11,9,8,10]]
+4. FirstLegCost
+Matrix f where f[s,w] is cost from supplier s to warehouse w:
+f = [[4,5], [6,3], [5,4]]
+5. SecondLegCost
+Matrix l where l[w,c] is cost from warehouse w to customer c:
+l = [[6,5,7,9], [7,6,5,8]]
+6. HandlingCost
+2 per unit at any warehouse
+7. WarehouseCapacity
+[200, 180] units for W1 and W2 respectively
+
+Decision variable:
+1. DirectShip
+Continuous variable \( x_{sc} \geq 0 \) for all \( s \in S, c \in C \), units shipped directly from supplier s to customer c
+2. CrossDockFirst
+Continuous variable \( y_{sw} \geq 0 \) for all \( s \in S, w \in W \), units shipped from supplier s to warehouse w
+3. CrossDockSecond
+Continuous variable \( z_{wc} \geq 0 \) for all \( w \in W, c \in C \), units shipped from warehouse w to customer c
+
+Objective:
+Minimize total logistics cost including transportation and handling:
+min: 
+\( \sum_{s\in S}\sum_{c\in C} d[s][c] \cdot x_{sc} \) (direct shipping) 
+\( + \sum_{s\in S}\sum_{w\in W} f[s][w] \cdot y_{sw} \) (first leg) 
+\( + \sum_{w\in W}\sum_{c\in C} l[w][c] \cdot z_{wc} \) (second leg)
+\( + 2 \cdot \sum_{w\in W}\sum_{c\in C} z_{wc} \) (handling)
+
+Constraint:
+1. Supplier capacity not exceeded
+\( \sum_{c\in C}x_{sc} + \sum_{w\in W}y_{sw} \leq SupplierCapacities_s, \forall s \in S \)
+2. Customer demand satisfied
+\( \sum_{s\in S}x_{sc} + \sum_{w\in W}z_{wc} = CustomerDemands_c, \forall c \in C \)
+3. Warehouse flow balance
+\( \sum_{s\in S}y_{sw} = \sum_{c\in C}z_{wc}, \forall w \in W \)
+4. Warehouse capacity limit
+\( \sum_{s\in S}y_{sw} \leq WarehouseCapacity_w, \forall w \in W \)
+
+Type:
+Continuous, Linear, Linear
+LP

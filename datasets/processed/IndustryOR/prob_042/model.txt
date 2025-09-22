@@ -1,0 +1,32 @@
+Set:
+1. Warehouse
+The set of warehouses, \( W = \{A, B\} \)
+2. Material
+The set of raw materials, \( M = \{A, B, C\} \)
+
+Parameter:
+1. FreightCost
+[200, 160] # Freight cost per truck from each warehouse
+2. MaterialPerTruck
+[[4, 2, 6], [7, 2, 2]] # Amount of each material transported per truck from each warehouse. Inner list corresponds to materials, outer to warehouses.
+3. MinMaterial
+[240, 80, 120] # Minimum required amount for each material
+
+Decision variable:
+1. Trucks
+Integer variable, \( x_{w} \) for \( w \in W \), representing the number of trucks dispatched from warehouse \( w \).
+
+Objective:
+Minimize the total freight cost.
+min: \sum_{w \in W} FreightCost[w] * x_{w}
+
+Constraint:
+1. Material requirement constraints
+For each material, the total amount transported must meet the minimum requirement.
+\sum_{w \in W} MaterialPerTruck[w,m] * x_{w} \geq MinMaterial[m], \forall m \in M
+2. Non-negativity
+\( x_{w} \geq 0, \forall w \in W \)
+
+Type:
+Integer, linear, linear
+ILP

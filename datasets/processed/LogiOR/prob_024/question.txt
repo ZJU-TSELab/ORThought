@@ -1,0 +1,12 @@
+A commodities trader oversees a secure vault facility with a maximum capacity of 500 kilograms, dedicated to storing refined platinum. At the beginning of Quarter 1, the trader holds 150 kilograms of platinum. Each quarter, the trader assesses the current inventory, sells any amount of platinum up to the available stock at the prevailing selling price, then purchase platinum at the current purchase price for the season, while ensuring that the total inventory does not exceed the vault's capacity (requires selling first before buying). The selling and purchase prices for platinum for each quarter are as follows:
+
+| Quarter | Selling Price ($/kg) | Purchase Price ($/kg) |
+|---------|-----------------------|-----------------------|
+| 1       | 30,000               | 32,000               |
+| 2       | 35,000               | 36,000               |
+| 3       | 40,000               | 38,000               |
+| 4       | 36,000               | 33,000               |
+| 5       | 38,000               | 39,000               |
+| 6       | 42,000               | 40,000               |
+
+The trader's objective is to devise an optimal strategy for buying and selling platinum over the six quarters to maximize total profit. What is the maximum achievable profit?

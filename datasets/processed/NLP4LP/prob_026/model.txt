@@ -1,0 +1,41 @@
+Set:
+1. FruitType
+The set of fruit types, \( T = \{0, 1\} \) # 0 for Mangos, 1 for Guavas
+
+Parameter:
+1. MaxBudget
+20000 # Maximum budget in dollars
+2. Cost
+[5, 3] # Cost per fruit type
+3. Profit
+[3, 4] # Profit per fruit type
+4. MinMangos
+100 # Minimum number of mangos sold
+5. MaxMangos
+150 # Maximum number of mangos sold
+6. GuavaToMangoRatio
+1/3 # Maximum ratio of guavas sold to mangos sold
+
+Decision variable:
+1. FruitCount
+Integer variable, \( x_{t} \) for all \( t \in T \), representing the number of fruits of type \( t \) to sell.
+
+Objective:
+Maximize the total profit.
+max: \sum_{t \in T} Profit[t] * x_{t}
+
+Constraint:
+1. Budget constraint
+\sum_{t \in T} Cost[t] * x_{t} \leq MaxBudget
+2. Mango sales constraint (lower bound)
+x_{0} \geq MinMangos
+3. Mango sales constraint (upper bound)
+x_{0} \leq MaxMangos
+4. Guava to mango ratio constraint
+x_{1} \leq GuavaToMangoRatio * x_{0}
+5. Non-negativity
+x_{t} \geq 0, for all \( t \in T \)
+
+Type:
+Integer, linear, linear
+IP

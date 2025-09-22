@@ -1,0 +1,39 @@
+Set:
+1. MealType
+The set of meal types, \( I = \{0, 1\} \) # 0 for crab cakes, 1 for lobster rolls
+
+Parameter:
+1. VitaminA
+[5, 8] # Units of vitamin A per meal for each meal type
+2. VitaminC
+[7, 4] # Units of vitamin C per meal for each meal type
+3. UnsaturatedFat
+[4, 6] # Units of unsaturated fat per meal for each meal type
+4. MinVitaminA
+80 # Minimum units of vitamin A required
+5. MinVitaminC
+100 # Minimum units of vitamin C required
+6. MaxLobsterRollPercentage
+0.4 # Maximum percentage of lobster rolls
+
+Decision variable:
+1. MealCount
+Integer variable, \( x_{i} \) for all \( i \in I \), representing the number of meals of type \( i \) to be eaten.
+
+Objective:
+Minimize the total unsaturated fat intake.
+min: \( \sum_{i \in I} UnsaturatedFat[i] \cdot x_{i} \)
+
+Constraint:
+1. Vitamin A requirement
+\( \sum_{i \in I} VitaminA[i] \cdot x_{i} \geq MinVitaminA \)
+2. Vitamin C requirement
+\( \sum_{i \in I} VitaminC[i] \cdot x_{i} \geq MinVitaminC \)
+3. Lobster roll percentage constraint
+\( x_{1} \leq MaxLobsterRollPercentage \cdot (x_{0} + x_{1}) \) which simplifies to \( (1 - MaxLobsterRollPercentage) \cdot x_{1} \leq MaxLobsterRollPercentage \cdot x_{0} \) or \( 0.6 \cdot x_{1} \leq 0.4 \cdot x_{0} \) or \( 3 \cdot x_{1} \leq 2 \cdot x_{0} \)
+4. Non-negativity
+\( x_{i} \geq 0 \), for all \( i \in I \)
+
+Type:
+Integer, linear, linear
+IP

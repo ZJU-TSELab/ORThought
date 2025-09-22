@@ -1,0 +1,39 @@
+Set:
+1. MealType
+The set of meal types, \( I = \{0, 1\} \) # 0 for fish, 1 for chicken
+
+Parameter:
+1. Protein
+[10, 15] # Units of protein per meal for each meal type
+2. Iron
+[12, 8] # Units of iron per meal for each meal type
+3. Fat
+[7, 10] # Units of fat per meal for each meal type
+4. MinProtein
+130 # Minimum units of protein required
+5. MinIron
+120 # Minimum units of iron required
+6. ChickenToFishRatio
+2 # Minimum ratio of chicken meals to fish meals
+
+Decision variable:
+1. MealCount
+Integer variable, \( x_{i} \) for all \( i \in I \), representing the number of meals of type \( i \) to be eaten.
+
+Objective:
+Minimize the total fat intake.
+min: \( \sum_{i \in I} Fat[i] \cdot x_{i} \)
+
+Constraint:
+1. Protein requirement
+\( \sum_{i \in I} Protein[i] \cdot x_{i} \geq MinProtein \)
+2. Iron requirement
+\( \sum_{i \in I} Iron[i] \cdot x_{i} \geq MinIron \)
+3. Preference constraint
+\( x_{1} \geq ChickenToFishRatio \cdot x_{0} \)
+4. Non-negativity
+\( x_{i} \geq 0 \), for all \( i \in I \)
+
+Type:
+Integer, linear, linear
+IP

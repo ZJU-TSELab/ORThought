@@ -1,0 +1,39 @@
+Set:
+1. FishingMethod
+The set of fishing methods, \( I = \{0, 1\} \) # 0 for Net, 1 for Fishing Line
+
+Parameter:
+1. FishCatch
+[8, 5] # Fish caught per acre by each method
+2. BaitRequirement
+[4, 3] # Units of bait required per acre by each method
+3. PainCaused
+[2, 1] # Units of pain caused per acre by each method
+4. TotalAcres
+250 # Acres of the lake available for fishing
+5. MaxBait
+800 # Units of bait available
+6. MaxPain
+350 # Units of pain the fisherman can tolerate
+
+Decision variable:
+1. AcresToFish
+Continuous variable, \( x_{i} \) for all \( i \in I \), representing the number of acres to be fished by each method.
+
+Objective:
+Maximize the amount of fish he can catch.
+max: \( \sum_{i \in I} FishCatch[i] \cdot x_{i} \)
+
+Constraint:
+1. Lake area constraint
+\( \sum_{i \in I} x_{i} \leq TotalAcres \)
+2. Bait constraint
+\( \sum_{i \in I} BaitRequirement[i] \cdot x_{i} \leq MaxBait \)
+3. Pain constraint
+\( \sum_{i \in I} PainCaused[i] \cdot x_{i} \leq MaxPain \)
+4. Non-negativity
+\( x_{i} \geq 0 \), for all \( i \in I \)
+
+Type:
+Continuous, linear, linear
+LP

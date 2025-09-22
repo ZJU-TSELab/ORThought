@@ -1,0 +1,37 @@
+Set:
+1. Locations
+The set of potential store locations and residential areas to be covered, \( L = \{A, B, ..., L\} \)
+
+Parameter:
+1. Coverage
+A matrix or dictionary indicating which locations can cover which residential areas. For each location \( l \in L \), there is a set of areas \( C_l \subseteq L \) that it covers.
+   - A covers {A, C, E, G, H, I}
+   - B covers {B, H, I}
+   - C covers {A, C, G, H, I}
+   - D covers {D, J}
+   - E covers {A, E, G}
+   - F covers {F, J, K}
+   - G covers {A, C, E, G}
+   - H covers {A, B, C, H, I}
+   - I covers {A, B, C, H, I}
+   - J covers {D, F, J, K, L}
+   - K covers {F, J, K, L}
+   - L covers {J, K, L}
+
+Decision variable:
+1. BuildStore
+Binary variable, \( x_l \), equals 1 if a store is built at location \( l \in L \), and 0 otherwise.
+
+Objective:
+Minimize the total number of stores built.
+min: \(\sum_{l \in L} x_l\)
+
+Constraint:
+1. Coverage Requirement
+Each residential area must be covered by at least one store.
+\(\sum_{l \in L : a \in C_l} x_l \geq 1, \forall a \in L\)
+(For each area \(a\), sum over all locations \(l\) that can cover \(a\)).
+
+Type:
+Integer, linear, linear
+ILP

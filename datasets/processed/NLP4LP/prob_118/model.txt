@@ -1,0 +1,35 @@
+Set:
+1. SwabType
+The set of swab types, \( I = \{0, 1\} \) # 0 for throat, 1 for nasal
+
+Parameter:
+1. TimePerSwab
+[5, 3] # Minutes per swab for each swab type
+2. TotalMinutes
+20000 # Total minutes the clinic is operational
+3. MinNasalSwabs
+30 # Minimum number of nasal swabs to be administered
+4. ThroatToNasalRatio
+4 # Minimum ratio of throat swabs to nasal swabs
+
+Decision variable:
+1. SwabCount
+Integer variable, \( x_{i} \) for all \( i \in I \), representing the number of swabs of each type to be done.
+
+Objective:
+Maximize the total number of patients seen.
+max: \( \sum_{i \in I} x_{i} \)
+
+Constraint:
+1. Time constraint
+\( \sum_{i \in I} TimePerSwab[i] \cdot x_{i} \leq TotalMinutes \)
+2. Minimum nasal swabs constraint
+\( x_{1} \geq MinNasalSwabs \)
+3. Throat to nasal ratio constraint
+\( x_{0} \geq ThroatToNasalRatio \cdot x_{1} \)
+4. Non-negativity
+\( x_{i} \geq 0 \), for all \( i \in I \)
+
+Type:
+Integer, linear, linear
+IP

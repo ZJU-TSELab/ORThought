@@ -1,0 +1,35 @@
+Set:
+1. SyrupType
+The set of syrup types, \( I = \{0, 1\} \) # 0 for Syrup 1, 1 for Syrup 2
+
+Parameter:
+1. ThroatMedicine
+[0.5, 0.2] # Units of medicine delivered to the throat per serving for each syrup type
+2. LungMedicine
+[0.4, 0.5] # Units of medicine delivered to the lungs per serving for each syrup type
+3. Sugar
+[0.5, 0.3] # Units of sugar per serving for each syrup type
+4. MaxThroatMedicine
+5 # Maximum units of medicine for the throat
+5. MinLungMedicine
+4 # Minimum units of medicine for the lungs
+
+Decision variable:
+1. SyrupServings
+Continuous variable, \( x_{i} \) for all \( i \in I \), representing the number of servings of each syrup type to be taken.
+
+Objective:
+Minimize the total sugar intake.
+min: \( \sum_{i \in I} Sugar[i] \cdot x_{i} \)
+
+Constraint:
+1. Throat medicine constraint
+\( \sum_{i \in I} ThroatMedicine[i] \cdot x_{i} \leq MaxThroatMedicine \)
+2. Lung medicine constraint
+\( \sum_{i \in I} LungMedicine[i] \cdot x_{i} \geq MinLungMedicine \)
+3. Non-negativity
+\( x_{i} \geq 0 \), for all \( i \in I \)
+
+Type:
+Continuous, linear, linear
+LP

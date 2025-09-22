@@ -1,0 +1,9 @@
+You are in charge of GreenTech Manufacturing, a company that produces eco-friendly packaging materials from recycled paper. The company produces two types of packaging: Premium and Standard. Premium packaging sells for $15 per ton and must have an average quality score of at least 9. Standard packaging sells for $8 per ton and must have an average quality score of at least 7. The maximum demand is 2,500 tons of Premium packaging and 800 tons of Standard packaging per month. 
+
+Recycled paper can be processed using one of three methods. The yield and cost per ton for each method are shown in the table below. For example, processing one ton of recycled paper using Method 1 costs $4.20 and yields 0.3 tons of quality score 6, 0.4 tons of quality score 8, and 0.3 tons of quality score 10. These costs include the expenses of acquiring the recycled paper. Before being converted into packaging materials, quality scores 6 and 8 can be enhanced through a refinement process. For $1.20 per ton, one ton of quality score 6 can be upgraded to quality score 8. For $1.80 per ton, one ton of quality score 8 can be upgraded to quality score 10. How can GreenTech Manufacturing maximize its monthly profit while meeting quality and demand requirements?
+
+| Processing Method | Cost per Ton ($) | Yield (Quality 6) | Yield (Quality 8) | Yield (Quality 10) |  
+|--------------------|-------------------|--------------------|--------------------|---------------------|  
+| Method 1           | 4.20              | 0.3                | 0.4                | 0.3                 |  
+| Method 2           | 3.80              | 0.5                | 0.3                | 0.2                 |  
+| Method 3           | 4.50              | 0.2                | 0.5                | 0.3                 |  

@@ -1,0 +1,42 @@
+
+Set:
+1. Weeks
+The set of weeks, \( W = \{1, 2, 3, 4\} \).
+
+Parameter:
+1. Demand
+[15, 25, 35, 25] # Demand in 1000s of boxes for each week.
+2. ProductionCapacity
+[30, 40, 45, 20] # Production capacity in 1000s of boxes for each week.
+3. ProductionCost
+[5.0, 5.1, 5.4, 5.5] # Production cost in 1000s of yuan per 1000 boxes for each week.
+4. StorageCost
+0.2 # Storage cost in 1000s of yuan per 1000 boxes per week.
+
+Decision variable:
+1. ProductionQty
+Continuous variable, \( p_t \) for all \( t \in W \), representing the quantity (in 1000s of boxes) to produce in week \( t \).
+2. InventoryQty
+Continuous variable, \( i_t \) for all \( t \in W \), representing the inventory (in 1000s of boxes) at the end of week \( t \).
+
+Objective:
+Minimize the total cost, which is the sum of production costs and storage costs over the four weeks.
+min: \sum_{t \in W} (\text{ProductionCost}[t] * p_t + \text{StorageCost} * i_t)
+
+Constraint:
+1. Inventory Balance
+The inventory at the end of a week is the inventory from the previous week plus production, minus the current week's demand.
+i_t = i_{t-1} + p_t - \text{Demand}[t], \forall t \in W (with \( i_0 = 0 \))
+- Week 1: i_1 = p_1 - 15
+- Week 2: i_2 = i_1 + p_2 - 25
+- Week 3: i_3 = i_2 + p_3 - 35
+- Week 4: i_4 = i_3 + p_4 - 25
+2. Production Capacity
+The production in each week cannot exceed the capacity for that week.
+p_t \leq \text{ProductionCapacity}[t], \forall t \in W
+3. Non-negativity
+p_t \geq 0, i_t \geq 0, \forall t \in W
+
+Type:
+Continuous, linear, linear
+LP

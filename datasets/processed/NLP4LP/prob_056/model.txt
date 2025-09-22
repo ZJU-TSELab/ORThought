@@ -1,0 +1,35 @@
+Set:
+1. GrillType
+The set of grill types, \( I = \{0, 1\} \) # 0 for Gas, 1 for Electric
+
+Parameter:
+1. CookingCapacity
+[20, 30] # Patties cooked per minute by each grill type
+2. OilUsage
+[20, 25] # Units of cooking oil used per minute by each grill type
+3. MinPatties
+150 # Minimum total patties to be cooked per minute
+4. MaxOil
+140 # Maximum total cooking oil to be used per minute
+
+Decision variable:
+1. GrillCount
+Integer variable, \( x_{i} \) for all \( i \in I \), representing the number of grills of type \( i \) to be bought.
+
+Objective:
+Minimize the total number of grills.
+min: \( \sum_{i \in I} x_{i} \)
+
+Constraint:
+1. Cooking capacity constraint
+\( \sum_{i \in I} CookingCapacity[i] \cdot x_{i} \geq MinPatties \)
+2. Oil usage constraint
+\( \sum_{i \in I} OilUsage[i] \cdot x_{i} \leq MaxOil \)
+3. Taste preference constraint
+\( x_{1} \leq x_{0} - 1 \)
+4. Non-negativity
+\( x_{i} \geq 0 \), for all \( i \in I \)
+
+Type:
+Integer, linear, linear
+IP

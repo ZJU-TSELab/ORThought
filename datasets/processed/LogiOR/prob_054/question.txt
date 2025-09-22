@@ -1,0 +1,62 @@
+A large-scale logistics company specializes in transporting a wide variety of perishable goods from a central distribution hub to several supermarket chains. The company uses a fleet of advanced refrigerated trucks, and for a specific delivery route, one truck needs to be loaded. Each truck has strict capacity limits in four dimensions: a maximum weight of 12 tons, a total volume of 35 m³, a refrigeration power output of 40 kW, and a total cool-down time budget of 100 hours (a proxy for the energy and time required to bring goods to their optimal temperature and maintain it).
+
+The goods are classified into 10 distinct categories. For each category, the company can choose from 5 different variants, each sourced from a different supplier and having unique characteristics. The company must select exactly one variant from each of the 10 categories to be included in the shipment with the primary goal to maximize the total profit.
+
+Furthermore, there are two special conditions for this delivery:
+1.  Product Synergy: If Variant B of Fruits (Category 1) and Variant C of Baked Goods (Category 6) are shipped together, a special packaging collaboration creates an additional bonus profit of $150.
+2.  Product Conflict: Due to the high risk of cross-contamination, shipping Variant A of Seafood (Category 5) and Variant A of Dairy (Category 3) together is forbidden.
+
+The complete data for all available goods is as follows:
+
+| Category | Variant | Weight (t) | Volume (m³) | Power (kW) | Cool-Down (hr) | Profit ($) |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| **1: Fruits** | A | 1.1 | 2.8 | 2.0 | 8.0 | 210 |
+| | B | 1.3 | 3.2 | 2.5 | 10.0 | 290 |
+| | C | 0.9 | 2.4 | 1.8 | 7.0 | 190 |
+| | D | 1.4 | 3.5 | 2.8 | 11.0 | 320 |
+| | E | 1.0 | 2.6 | 1.9 | 7.5 | 200 |
+| **2: Vegetables** | A | 0.8 | 2.0 | 1.0 | 5.0 | 160 |
+| | B | 1.0 | 2.5 | 1.5 | 6.0 | 230 |
+| | C | 0.7 | 1.8 | 0.9 | 4.5 | 140 |
+| | D | 1.2 | 2.8 | 1.8 | 7.0 | 260 |
+| | E | 0.9 | 2.2 | 1.2 | 5.5 | 190 |
+| **3: Dairy** | A | 1.5 | 4.5 | 4.2 | 12.0 | 360 |
+| | B | 1.3 | 4.0 | 3.5 | 10.0 | 310 |
+| | C | 1.7 | 5.0 | 4.8 | 14.0 | 420 |
+| | D | 1.4 | 4.2 | 3.8 | 11.0 | 340 |
+| | E | 1.6 | 4.8 | 4.5 | 13.0 | 400 |
+| **4: Meat** | A | 1.9 | 4.0 | 6.5 | 15.0 | 520 |
+| | B | 1.6 | 3.5 | 5.5 | 13.0 | 460 |
+| | C | 2.1 | 4.5 | 7.2 | 17.0 | 580 |
+| | D | 1.8 | 3.8 | 6.0 | 14.0 | 500 |
+| | E | 2.2 | 4.8 | 7.5 | 18.0 | 600 |
+| **5: Seafood** | A | 1.4 | 3.0 | 8.0 | 16.0 | 480 |
+| | B | 1.2 | 2.8 | 7.0 | 14.0 | 430 |
+| | C | 1.6 | 3.5 | 9.0 | 18.0 | 550 |
+| | D | 1.3 | 2.9 | 7.5 | 15.0 | 450 |
+| | E | 1.7 | 3.8 | 9.5 | 19.0 | 590 |
+| **6: Baked Goods**| A | 0.5 | 1.5 | 0.5 | 2.0 | 90 |
+| | B | 0.7 | 2.0 | 0.8 | 3.0 | 140 |
+| | C | 0.6 | 1.8 | 0.6 | 2.5 | 120 |
+| | D | 0.8 | 2.2 | 1.0 | 3.5 | 160 |
+| | E | 0.4 | 1.2 | 0.4 | 1.5 | 80 |
+| **7: Beverages** | A | 1.8 | 3.0 | 1.5 | 4.0 | 250 |
+| | B | 2.0 | 3.5 | 1.8 | 5.0 | 290 |
+| | C | 1.6 | 2.8 | 1.4 | 3.5 | 220 |
+| | D | 2.2 | 3.8 | 2.0 | 6.0 | 330 |
+| | E | 1.7 | 2.9 | 1.6 | 4.5 | 240 |
+| **8: Frozen** | A | 2.0 | 5.0 | 8.0 | 20.0 | 500 |
+| | B | 1.8 | 4.5 | 7.0 | 18.0 | 450 |
+| | C | 2.3 | 5.5 | 9.0 | 22.0 | 580 |
+| | D | 2.1 | 5.2 | 8.5 | 21.0 | 540 |
+| | E | 2.5 | 6.0 | 9.8 | 24.0 | 620 |
+| **9: Deli Meats** | A | 0.9 | 2.0 | 3.0 | 6.0 | 180 |
+| | B | 1.1 | 2.5 | 3.5 | 7.0 | 240 |
+| | C | 0.8 | 1.8 | 2.8 | 5.5 | 160 |
+| | D | 1.2 | 2.8 | 4.0 | 8.0 | 270 |
+| | E | 1.0 | 2.2 | 3.2 | 6.5 | 210 |
+| **10: Prepared** | A | 1.3 | 3.0 | 4.0 | 9.0 | 300 |
+| | B | 1.5 | 3.5 | 4.5 | 10.0 | 350 |
+| | C | 1.2 | 2.8 | 3.8 | 8.0 | 280 |
+| | D | 1.6 | 3.8 | 5.0 | 11.0 | 380 |
+| | E | 1.4 | 3.2 | 4.2 | 9.5 | 330 |

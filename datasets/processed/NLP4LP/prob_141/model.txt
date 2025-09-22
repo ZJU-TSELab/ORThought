@@ -1,0 +1,37 @@
+Set:
+1. TransportType
+The set of transport types, \( I = \{0, 1\} \) # 0 for Boat, 1 for Canoe
+
+Parameter:
+1. DucksPerTrip
+[10, 8] # Number of ducks transported per trip for each transport type
+2. TimePerTrip
+[20, 40] # Minutes per trip for each transport type
+3. MinDucks
+300 # Minimum number of ducks to be transported
+4. MaxBoatTrips
+12 # Maximum number of boat trips allowed
+5. MinCanoeTripProportion
+0.60 # Minimum proportion of total trips that must be by canoe
+
+Decision variable:
+1. NumberOfTrips
+Integer variable, \( x_{i} \) for all \( i \in I \), representing the number of trips for each transport type.
+
+Objective:
+Minimize the total amount of time needed to transport the ducks.
+min: \( \sum_{i \in I} TimePerTrip[i] \cdot x_{i} \)
+
+Constraint:
+1. Duck transport requirement
+\( \sum_{i \in I} DucksPerTrip[i] \cdot x_{i} \geq MinDucks \)
+2. Maximum boat trips
+\( x_{0} \leq MaxBoatTrips \)
+3. Canoe trip proportion
+\( x_{1} \geq MinCanoeTripProportion \cdot \sum_{i \in I} x_{i} \)
+4. Non-negativity
+\( x_{i} \geq 0 \), for all \( i \in I \)
+
+Type:
+Integer, linear, linear
+IP

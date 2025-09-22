@@ -1,0 +1,33 @@
+Set:
+1. TacoType
+The set of taco types, \( I = \{0, 1\} \) # 0 for Regular Taco, 1 for Deluxe Taco
+
+Parameter:
+1. ProfitPerTaco
+[2.50, 3.55] # Profit per taco for each type
+2. MaxDemand
+[50, 40] # Maximum demand for each taco type
+3. MaxTotalTacos
+70 # Maximum total number of tacos that can be sold
+
+Decision variable:
+1. NumberOfTacos
+Continuous variable, \( x_{i} \) for all \( i \in I \), representing the number of tacos of each type to make.
+
+Objective:
+Maximize the total profit.
+max: \( \sum_{i \in I} ProfitPerTaco[i] \cdot x_{i} \)
+
+Constraint:
+1. Maximum demand constraint for Regular Tacos
+\( x_{0} \leq MaxDemand[0] \)
+2. Maximum demand constraint for Deluxe Tacos
+\( x_{1} \leq MaxDemand[1] \)
+3. Total tacos constraint
+\( \sum_{i \in I} x_{i} \leq MaxTotalTacos \)
+4. Non-negativity
+\( x_{i} \geq 0 \), for all \( i \in I \)
+
+Type:
+Continuous, linear, linear
+LP

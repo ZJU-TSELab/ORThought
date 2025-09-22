@@ -1,0 +1,22 @@
+A specialty coffee roasting company has received shipments of two premium green coffee beans: Ethiopia Yirgacheffe (8,000 kg) and Colombia Supremo (12,000 kg). The company needs to allocate these beans to two different product lines to maximize its weekly profit:
+1.  **Single-Origin Bags (SO):** High-end bags of whole beans sold to specialty cafes.
+2.  **House Blend (HB):** A signature blend sold ground to retail partners.
+
+**Economic & Quality Data:**
+The profitability of each product line depends on the cost of the beans and the processing involved. Furthermore, each product line must meet a minimum average quality standard, measured by the coffee's "cupping score" (a 0-100 scale).
+
+| Bean Origin | Available (kg) | Cupping Score |
+|:-----------:|:--------------:|:-------------:|
+| Ethiopia    | 8,000          | 92            |
+| Colombia    | 12,000         | 87            |
+
+| Product Line      | Revenue per kg | Processing Cost per kg | Minimum Avg. Cupping Score |
+|:------------------|:--------------:|:----------------------:|:--------------------------:|
+| Single-Origin (SO)| $40.00         | $5.00                  | 90                         |
+| House Blend (HB)  | $28.00         | $8.50                  | 88                         |
+
+**Operational Constraints:**
+- The company's primary roaster, used for the House Blend, has a maximum weekly processing capacity of 10,000 kg.
+- Due to a contract with a key client, the company must produce at least 2,000 kg of Single-Origin bags per week.
+
+The goal is to determine the optimal quantity (in kg) of each type of green bean to allocate to each product line to maximize total weekly profit, while respecting all inventory, quality, and operational constraints.

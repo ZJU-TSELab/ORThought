@@ -1,0 +1,44 @@
+Set:
+1. Quarters
+The set of quarters in a year, \( T = \{\text{Winter, Spring, Summer, Autumn}\} \).
+
+Parameter:
+1. PurchasePrice
+[410, 430, 460, 450] # Purchase price in 10,000 yuan per 10,000 m³.
+2. SalePrice
+[425, 440, 465, 455] # Sale price in 10,000 yuan per 10,000 m³.
+3. MaxSalesVolume
+[100, 140, 200, 160] # Estimated maximum sales volume in 10,000 m³.
+4. WarehouseCapacity
+20 # Maximum warehouse capacity in 10,000 m³.
+5. StorageCost
+170 # Storage cost in 10,000 yuan per 10,000 m³ per quarter.
+6. InitialInventory
+0 # Initial inventory at the beginning of Winter.
+
+Decision variable:
+1. BuyVolume
+Continuous variable, \( b_t \) for \( t \in T \), represents the volume of timber (in 10,000 m³) purchased at the beginning of quarter t.
+2. SellVolume
+Continuous variable, \( s_t \) for \( t \in T \), represents the volume of timber (in 10,000 m³) sold during quarter t.
+3. InventoryVolume
+Continuous variable, \( i_t \) for \( t \in T \), represents the volume of timber (in 10,000 m³) stored at the end of quarter t.
+
+Objective:
+Maximize: \( \sum_{t \in T} (\text{SalePrice}_t \cdot s_t - \text{PurchasePrice}_t \cdot b_t - \text{StorageCost} \cdot i_t) \)
+
+Constraint:
+1. InventoryBalance
+For each quarter \( t \in T \), the ending inventory is the previous inventory plus purchases minus sales: \( i_t = i_{t-1} + b_t - s_t \), where \( i_0 = 0 \).
+2. WarehouseCapacity
+For each quarter \( t \in T \), the ending inventory cannot exceed the warehouse capacity: \( i_t \le 20 \).
+3. MaxSales
+For each quarter \( t \in T \), the sales volume cannot exceed the estimated maximum: \( s_t \le \text{MaxSalesVolume}_t \).
+4. SalesAvailability
+For each quarter \( t \in T \), the sales volume cannot exceed the timber available (previous inventory + current purchases): \( s_t \le i_{t-1} + b_t \).
+5. FinalInventory
+All inventory must be sold by the end of Autumn: \( i_{\text{Autumn}} = 0 \).
+
+Type:
+Continuous, linear, linear
+LP

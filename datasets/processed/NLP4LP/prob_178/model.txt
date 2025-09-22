@@ -1,0 +1,35 @@
+Set:
+1. TransportMethod
+The set of transport methods, \( I = \{0, 1\} \) # 0 for High-pressure tube trailer, 1 for Liquefied hydrogen tanker
+
+Parameter:
+1. VolumePerTrip
+[50, 30] # Cubic meters of hydrogen each method can transport per trip
+2. CostPerTrip
+[500, 200] # Cost for each trip
+3. MinVolume
+1000 # Minimum volume of hydrogen to be transported
+4. MaxBudget
+3750 # Maximum available budget
+
+Decision variable:
+1. NumberOfTrips
+Integer variable, \( x_{i} \) for all \( i \in I \), representing the number of trips of each method.
+
+Objective:
+Minimize the total number of trips.
+min: \( \sum_{i \in I} x_{i} \)
+
+Constraint:
+1. Minimum volume constraint
+\( \sum_{i \in I} VolumePerTrip[i] \cdot x_{i} \geq MinVolume \)
+2. Budget constraint
+\( \sum_{i \in I} CostPerTrip[i] \cdot x_{i} \leq MaxBudget \)
+3. Trip ratio constraint
+\( x_{0} < x_{1} \)
+4. Non-negativity
+\( x_{i} \geq 0 \), for all \( i \in I \)
+
+Type:
+Integer, linear, linear
+IP

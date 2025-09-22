@@ -1,0 +1,41 @@
+Set:
+1. CandyType
+The set of candy types, \( I = \{0, 1\} \) # 0 for Peach, 1 for Cherry
+
+Parameter:
+1. SyrupUsage
+[5, 4] # Units of special syrup required for each candy type
+2. PeachFlavoringUsage
+3 # Units of peach flavoring required for a pack of peach candy
+3. CherryFlavoringUsage
+5 # Units of cherry flavoring required for a pack of cherry candy
+4. MaxPeachFlavoring
+3000 # Units of peach flavoring available
+5. MaxCherryFlavoring
+4000 # Units of cherry flavoring available
+6. MinCherryPercentage
+0.3 # Minimum percentage of cherry flavored candy packs
+
+Decision variable:
+1. CandyPackCount
+Integer variable, \( x_{i} \) for all \( i \in I \), representing the number of packs of candy of type \( i \) to be made.
+
+Objective:
+Minimize the total amount of special syrup used.
+min: \( \sum_{i \in I} SyrupUsage[i] \cdot x_{i} \)
+
+Constraint:
+1. Peach flavoring constraint
+\( PeachFlavoringUsage \cdot x_{0} \leq MaxPeachFlavoring \)
+2. Cherry flavoring constraint
+\( CherryFlavoringUsage \cdot x_{1} \leq MaxCherryFlavoring \)
+3. Popularity constraint
+\( x_{0} \geq x_{1} + 1 \)
+4. Cherry percentage constraint
+\( x_{1} \geq MinCherryPercentage \cdot (x_{0} + x_{1}) \) which simplifies to \( 7 \cdot x_{1} \geq 3 \cdot x_{0} \)
+5. Non-negativity
+\( x_{i} \geq 0 \), for all \( i \in I \)
+
+Type:
+Integer, linear, linear
+IP

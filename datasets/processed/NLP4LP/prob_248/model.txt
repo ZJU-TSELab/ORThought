@@ -1,0 +1,35 @@
+Set:
+1. InstallationType
+The set of installation types, \( I = \{0, 1\} \) # 0 for escalator, 1 for elevator
+
+Parameter:
+1. TransportCapacity
+[20, 8] # People transported per minute for each type
+2. SpaceUsage
+[5, 2] # Units of space taken per installation for each type
+3. MinTransportCapacity
+400 # Minimum total people to be transported per minute
+4. MinElevators
+2 # Minimum number of elevators to be used
+
+Decision variable:
+1. NumberOfInstallations
+Integer variable, \( x_{i} \) for all \( i \in I \), representing the number of units of each type to install.
+
+Objective:
+Minimize the total units of space taken.
+min: \( \sum_{i \in I} SpaceUsage[i] \cdot x_{i} \)
+
+Constraint:
+1. Transport capacity
+\( \sum_{i \in I} TransportCapacity[i] \cdot x_{i} \geq MinTransportCapacity \)
+2. Escalator-Elevator ratio
+\( x_{0} \geq 3 \cdot x_{1} \)
+3. Minimum elevators
+\( x_{1} \geq MinElevators \)
+4. Non-negativity
+\( x_{i} \geq 0 \), for all \( i \in I \)
+
+Type:
+Integer, linear, linear
+IP

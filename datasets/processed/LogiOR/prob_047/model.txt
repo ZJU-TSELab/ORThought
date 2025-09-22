@@ -1,0 +1,43 @@
+Set:
+1. Shift
+The set of shifts, \( S = \{1, 2, 3, 4\} \)  # 1: Midnight–6 A.M., 2: 6 A.M.–Noon, 3: Noon–6 P.M., 4: 6 P.M.–Midnight
+
+Parameter:
+1. OrdersReceived
+[150, 250, 400, 300]  # number of orders received in each shift
+2. OrdersPerWorkerPerShift
+60  # number of orders each worker can process in a shift
+3. WagePerHour
+12  # wage per hour for each worker in dollars
+4. ShiftDuration
+6  # duration of each shift in hours
+5. PenaltyPerUnprocessedOrder
+1  # penalty for each unprocessed order in dollars
+
+Decision variable:
+1. WorkersScheduled
+Integer variable, \( WorkersScheduled[s] \forall s \in S \), the number of workers scheduled for shift \( s \).
+2. OrdersProcessed
+Integer variable, \( OrdersProcessed[s] \forall s \in S \), the number of orders processed during shift \( s \).
+3. UnprocessedOrders
+Integer variable, \( UnprocessedOrders[s] \forall s \in S \), the number of unprocessed orders at the end of shift \( s \).
+
+Objective:
+1. Minimize the total cost of labor and penalties.
+min: \sum_{s \in S} (WagePerHour * ShiftDuration * WorkersScheduled[s]) + \sum_{s \in S} (PenaltyPerUnprocessedOrder * (OrdersReceived[s]+UnprocessedOrders[s-1] - OrdersProcessed[s])) 
+where \( UnprocessedOrders[1] = OrdersReceived[1] - OrdersProcessed[1] \) for the first shift, and \( UnprocessedOrders[s] = OrdersReceived[s] + UnprocessedOrders[s-1] - OrdersProcessed[s] \) for subsequent shifts.
+
+Constraint:
+1. Order processing constraint.
+OrdersProcessed[s] \leq WorkersScheduled[s] * OrdersPerWorkerPerShift \forall s \in S
+2. Unprocessed orders constraint.
+UnprocessedOrders[s] = OrdersReceived[s] + UnprocessedOrders[s-1] - OrdersProcessed[s] \forall s \in S, s > 1
+UnprocessedOrders[1] = OrdersReceived[1] - OrdersProcessed[1]  # for the first shift, no previous unprocessed orders
+3. Non-negativity constraint.
+WorkersScheduled[s] \geq 0 \forall s \in S
+OrdersProcessed[s] \geq 0 \forall s \in S
+UnprocessedOrders[s] \geq 0 \forall s \in S
+
+Type:
+Integer, Linear, Linear
+ILP

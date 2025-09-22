@@ -1,0 +1,35 @@
+Set:
+1. Boxes
+The set of Boxes, \( B = \{1, 2, ..., 6\} \)
+2. Items
+The set of Items, \( I = \{1, 2, ..., 7\} \)
+
+Parameter:
+1. BoxNum
+6
+2. BoxCapacity
+[5, 9, 8, 7, 7, 8]
+2. ItemNum
+7
+2. Item Loads
+[6, 7, 8, 3, 2, 4, 5]
+
+Decision variable:
+1. BosUsed
+Binary variable \( x_b \in \{0, 1\} \) for all \( b \in B \), where \( x_b = 1 \) if box \( b \) is used, and \( x_b = 0 \) otherwise
+2. ItemInBox
+Binary variable \( y_{ib} \in \{0, 1\} \) for all \( i \in I, b \in B \), where \( y_{ib} = 1 \) if item \( i \) is packed in box \( b \), and \( y_{ib} = 0 \) otherwise
+
+Objective:
+The minimum number of boxes used
+min: \sum_{b\in B}x_b
+
+Constraint:
+1. Each item must be packed in exactly one box
+\sum_{b\in B}y_{ib} = 1, \forall i \in I
+2. The total load of items in each box must not exceed the box capacity
+\sum_{i\in I}y_{ib}\cdot ItemLoads[i] \leq BoxCapacity[b], \forall b \in B
+
+Type:
+Binary, Linear, Linear
+ILP

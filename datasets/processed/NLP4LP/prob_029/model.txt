@@ -1,0 +1,37 @@
+Set:
+1. CropType
+The set of crop types, \( T = \{0, 1\} \) # 0 for Potatoes, 1 for Cucumbers
+
+Parameter:
+1. TotalLand
+50 # Total acres of land available
+2. MinAcres
+[12, 15] # Minimum acres to grow for each crop type
+3. ProfitPerAcre
+[500, 650] # Profit per acre for each crop type
+4. MaxCucumberRatio
+2 # Maximum ratio of cucumber acres to potato acres
+
+Decision variable:
+1. AcresToGrow
+Continuous variable, \( x_{t} \) for all \( t \in T \), representing the acres of crop type \( t \) to grow.
+
+Objective:
+Maximize the total profit.
+max: \sum_{t \in T} ProfitPerAcre[t] * x_{t}
+
+Constraint:
+1. Total land constraint
+\sum_{t \in T} x_{t} \leq TotalLand
+2. Minimum acres constraint
+x_{t} \geq MinAcres[t], for all \( t \in T \)
+3. Cucumber to potato ratio constraint
+x_{1} \leq MaxCucumberRatio * x_{0}
+4. Preference constraint (more cucumbers than potatoes)
+x_{1} \geq x_{0}
+5. Non-negativity
+x_{t} \geq 0, for all \( t \in T \)
+
+Type:
+continuous, linear, linear
+LP

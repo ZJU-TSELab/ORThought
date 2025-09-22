@@ -1,0 +1,39 @@
+Set:
+1. Cities
+The set of cities, \( C = \{"A", "B"\} \)
+2. Products
+The set of products, \( P = \{"Product1"\} \)
+3. Links
+The set of links between cities, \( L = \{("A", "B")\} \)
+
+Parameter:
+1. Supply
+\( Supply = [[10], [0]] \)
+2. Demand
+\( Demand = [[0], [10]] \)
+3. Shipping Cost
+\( ShipmentCost = [[[0], [1]], [[0], [0]]] \)
+4. Individual Capacity
+\( Capacity = [[[0], [10]], [[0], [0]]] \)
+5. Joint Capacity
+\( JointCapacity = [[0, 10], [0, 0]] \)
+
+Decision variable:
+1. ShipmentVariable
+Continuous variable, \( x_{i,j,p} \geq 0 \) for all \( (i,j) \in L, p \in P \), where \( x_{i,j,p} \) is the amount of product \( p \) shipped from city \( i \) to city \( j \)
+
+Objective:
+Minimize total shipping cost
+min: \( \sum_{i \in C} \sum_{j \in C} \sum_{p \in P} ShipmentCost_{i,j,p} \cdot x_{i,j,p} \)
+
+Constraint:
+1. Supply and Demand Balance
+\( \sum_{j \in C} x_{i,j,p} - \sum_{j \in C} x_{j,i,p} = Supply_{i,p} - Demand_{i,p}, \quad \forall i \in C, \forall p \in P \)
+2. Individual Capacity Constraint
+\( x_{i,j,p} \leq Capacity_{i,j,p}, \quad \forall (i,j) \in L, \forall p \in P \)
+3. Joint Capacity Constraint
+\( \sum_{p \in P} x_{i,j,p} \leq JointCapacity_{i,j}, \quad \forall (i,j) \in L \)
+
+Type:
+Continuous, Linear, Linear
+LP

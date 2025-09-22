@@ -1,0 +1,31 @@
+Set:
+1. TransportMethod
+The set of transport methods, I = {0, 1} # 0 for Camel Caravan, 1 for Desert Truck
+
+Parameter:
+1. GoodsCapacity
+[50, 150] # Units of goods each transport method can deliver per trip
+2. TimePerTrip
+[12, 5] # Hours per trip for each transport method
+3. MinGoods
+1500 # Minimum units of goods to be delivered
+
+Decision variable:
+1. NumberOfTrips
+Integer variable, x_{i} for all i in I, representing the number of trips for each transport method.
+
+Objective:
+Minimize the maximum of the total hours required by each transport method.
+min: max(\( TimePerTrip[0] \cdot x_{0} \), \( TimePerTrip[1] \cdot x_{1} \))
+
+Constraint:
+1. Goods Delivery
+\( \sum_{i \in I} GoodsCapacity[i] \cdot x_{i} \geq MinGoods \)
+2. Transport Preference
+\( x_{0} > x_{1} \)
+3. Non-negativity
+\( x_{i} \geq 0 \), for all \( i \in I \)
+
+Type:
+Integer, linear, linear
+IP

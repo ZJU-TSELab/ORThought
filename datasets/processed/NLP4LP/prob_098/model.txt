@@ -1,0 +1,35 @@
+Set:
+1. MachineType
+The set of machine types, \( I = \{0, 1\} \) # 0 for automatic, 1 for manual
+
+Parameter:
+1. TimePerPatient
+[10, 15] # Minutes per patient for each machine type
+2. TotalMinutes
+20000 # Total minutes the clinic is open
+3. MinAutomaticPatients
+20 # Minimum number of patients to be processed by the automatic machine
+4. ManualToAutomaticRatio
+2 # Minimum ratio of manual patients to automatic patients
+
+Decision variable:
+1. PatientCount
+Integer variable, \( x_{i} \) for all \( i \in I \), representing the number of patients processed by each machine type.
+
+Objective:
+Maximize the total number of patients whose blood pressure can be taken.
+max: \( \sum_{i \in I} x_{i} \)
+
+Constraint:
+1. Time constraint
+\( \sum_{i \in I} TimePerPatient[i] \cdot x_{i} \leq TotalMinutes \)
+2. Manual to automatic ratio constraint
+\( x_{1} \geq ManualToAutomaticRatio \cdot x_{0} \)
+3. Minimum automatic patients constraint
+\( x_{0} \geq MinAutomaticPatients \)
+4. Non-negativity
+\( x_{i} \geq 0 \), for all \( i \in I \)
+
+Type:
+Integer, linear, linear
+IP

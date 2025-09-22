@@ -1,0 +1,40 @@
+Set:
+1. SupplyNodes
+The set of supply nodes, \( S = \{S1, S2, S3\} \)
+2. HubNodes
+The set of transshipment hubs, \( H = \{H1, H2\} \)
+3. DemandNodes
+The set of demand nodes, \( D = \{D1, D2, D3, D4\} \)
+
+Parameter:
+1. SupplyCapacity
+\( [200, 150, 180] \) units for \( S1, S2, S3 \) respectively
+2. DemandRequirement
+\( [120, 90, 110, 130] \) units for \( D1, D2, D3, D4 \) respectively
+3. TransportationCost
+Cost matrix \( c_{ij} \) where \( i \in S \cup H, j \in H \cup D \):
+- \( c_{S1,H1}=5 \), \( c_{S1,H2}=7 \)
+-S \( c_{S2,H1}=6 \), \( c_{S2,H2}=8 \)
+- \( c_{S3,H1}=4 \), \( c_{S3,H2}=5 \)
+- \( c_{H1,D1}=3 \), \( c_{H1,D2}=4 \), \( c_{H1,D3}=5 \), \( c_{H1,D4}=6 \)
+- \( c_{H2,D1}=4 \), \( c_{H2,D2}=3 \), \( c_{H2,D3}=6 \), \( c_{H2,D4}=5 \)
+
+Decision variable:
+1. FlowAmount
+continuous variable \( x_{ij} \geq 0 \) representing the flow from node \( i \) to node \( j \), where \( i \in S \cup H, j \in H \cup D \)
+
+Objective:
+Minimize total transportation cost
+min: \( \sum_{i \in S} \sum_{j \in H} c_{ij}x_{ij} + \sum_{i \in H} \sum_{j \in D} c_{ij}x_{ij} \)
+
+Constraint:
+1. Supply constraints: Outflow from each supply node cannot exceed its capacity
+\( \sum_{j \in H} x_{ij} \leq SupplyCapacity_i, \forall i \in S \)
+2. Hub balance: Inflow equals outflow at each hub
+\( \sum_{i \in S} x_{ih} = \sum_{j \in D} x_{hj}, \forall h \in H \)
+3. Demand constraints: Inflow to each demand node must meet its requirement
+\( \sum_{i \in H} x_{ij} = DemandRequirement_j, \forall j \in D \)
+
+Type:
+Continuous, Linear, Linear
+LP

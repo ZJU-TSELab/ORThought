@@ -1,0 +1,37 @@
+Set:
+1. VehicleType
+The set of vehicle types, \( I = \{0, 1\} \) # 0 for Bike, 1 for Scooter
+
+Parameter:
+1. MealsPerVehicle
+[8, 5] # Number of meals each vehicle type can hold
+2. ChargePerVehicle
+[3, 2] # Units of charge required by each vehicle type
+3. MaxCharge
+200 # Maximum units of charge available
+4. MinScooters
+20 # Minimum number of scooters to be used
+5. MaxBikeProportion
+0.30 # Maximum proportion of vehicles that can be bikes
+
+Decision variable:
+1. NumberOfVehicles
+Integer variable, \( x_{i} \) for all \( i \in I \), representing the number of vehicles of each type to use.
+
+Objective:
+Maximize the number of meals that can be delivered.
+max: \( \sum_{i \in I} MealsPerVehicle[i] \cdot x_{i} \)
+
+Constraint:
+1. Charge constraint
+\( \sum_{i \in I} ChargePerVehicle[i] \cdot x_{i} \leq MaxCharge \)
+2. Minimum scooters constraint
+\( x_{1} \geq MinScooters \)
+3. Bike proportion constraint
+\( x_{0} \leq MaxBikeProportion \cdot \sum_{i \in I} x_{i} \)
+4. Non-negativity
+\( x_{i} \geq 0 \), for all \( i \in I \)
+
+Type:
+Integer, linear, linear
+IP

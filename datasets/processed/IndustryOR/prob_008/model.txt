@@ -1,0 +1,51 @@
+Set:
+1. Toys
+The set of toys, \( T = \{\text{Trucks, Airplanes, Boats, Trains}\} \)
+
+Parameter:
+1. Profit
+[5, 10, 8, 7] # Profit for each truck, airplane, boat, and train.
+2. WoodRequired
+[12, 20, 15, 10] # Wood units required for each toy.
+3. SteelRequired
+[6, 3, 5, 4] # Steel units required for each toy.
+4. WoodAvailable
+890 # Total units of wood available.
+5. SteelAvailable
+500 # Total units of steel available.
+
+Decision variable:
+1. NumberOfToys
+Integer variable, \( x_t \), the number of toys of type \( t \) to manufacture.
+2. ManufactureTruck
+Binary variable, \( y_T \), 1 if trucks are manufactured, 0 otherwise.
+3. ManufactureTrain
+Binary variable, \( y_R \), 1 if trains are manufactured, 0 otherwise.
+4. ManufactureBoat
+Binary variable, \( y_B \), 1 if boats are manufactured, 0 otherwise.
+
+Objective:
+Maximize the total profit.
+max: \(\sum_{t \in T} Profit_t \cdot x_t\)
+
+Constraint:
+1. Wood Availability
+\(\sum_{t \in T} WoodRequired_t \cdot x_t \leq WoodAvailable\)
+2. Steel Availability
+\(\sum_{t \in T} SteelRequired_t \cdot x_t \leq SteelAvailable\)
+3. Truck-Train Mutual Exclusivity
+\(y_T + y_R \leq 1\)
+(Requires linking \(x_t\) to \(y_t\) using Big-M, e.g., \(x_{Trucks} \leq M \cdot y_T\))
+4. Boat-Airplane Implication
+If boats are made, airplanes must be made.
+\(x_{Airplanes} \geq y_B\)
+(Requires linking \(x_{Boats}\) to \(y_B\) using Big-M, e.g., \(x_{Boats} \leq M \cdot y_B\))
+5. Boat-Train Quantity Limit
+The number of boats cannot exceed the number of trains.
+\(x_{Boats} \leq x_{Trains}\)
+6. Non-negativity
+All decision variables \(\geq 0\).
+
+Type:
+Integer, linear, linear
+ILP

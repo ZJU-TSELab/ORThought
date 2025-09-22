@@ -1,0 +1,8 @@
+A logistics company needs to arrange forklifts for a newly built warehouse to meet daily operational demands. The forklift requirements for the warehouse over the next 7 weeks are 6, 9, 12, 8, 5, 7 and 4. The logistics company plans to lease forklifts from a rental company, which offers the following leasing options:
+
+1. Long-term forklift rental: The lease term is fixed at 7 weeks, with a rental cost of 240 yuan per week. Forklifts under long-term lease are available for the entire lease period.
+2. Short-term forklift rental: The lease term is flexible, available on a weekly basis, with a rental cost of 390 yuan per week. Short-term leased forklifts are only available during the week they are leased.
+3. Shared forklifts: These are vehicles jointly leased with other warehouses, but they are only available in weeks 2, 4, and 5. The rental cost is 220 yuan per week.
+4. Promotional forklifts: These forklifts can be leased at a discounted rate during the last 4 weeks, with a rental cost of 190 yuan per week. A maximum of 2 promotional forklifts can be leased per week.
+
+Please design a leasing plan that fully meets the warehouse's forklift requirements over the next 7 weeks while minimizing the total leasing cost.

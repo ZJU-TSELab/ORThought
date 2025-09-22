@@ -1,0 +1,33 @@
+Set:
+1. ProductType
+The set of product types, \( T = \{0, 1\} \) # 0 for Bread, 1 for Cookies
+
+Parameter:
+1. MaxMachineHours
+3000 # Maximum hours per year for each machine
+2. Profit
+[5, 3] # Profit per product type
+3. MixerTime
+[1, 0.5] # Mixer time in hours per product type
+4. OvenTime
+[3, 1] # Oven time in hours per product type
+
+Decision variable:
+1. ProductCount
+Continuous variable, \( x_{t} \) for all \( t \in T \), representing the quantity of product of type \( t \) to produce.
+
+Objective:
+Maximize the total profit.
+max: \sum_{t \in T} Profit[t] * x_{t}
+
+Constraint:
+1. Mixer time constraint
+\sum_{t \in T} MixerTime[t] * x_{t} \leq MaxMachineHours
+2. Oven time constraint
+\sum_{t \in T} OvenTime[t] * x_{t} \leq MaxMachineHours
+3. Non-negativity
+x_{t} \geq 0, \forall t \in T
+
+Type:
+Continuous, linear, linear
+LP

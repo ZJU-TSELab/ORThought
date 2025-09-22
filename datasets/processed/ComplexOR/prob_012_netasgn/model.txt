@@ -1,0 +1,35 @@
+Set:
+1. People
+The set of people, \( P = \{1, 2\} \)
+2. Projects
+The set of projects, \( J = \{1, 2\} \)
+
+Parameter:
+1. Available Hours
+\( supply = [8, 7] \)
+2. Required Hours
+\( demand = [5, 10] \)
+3. Hourly Cost
+\( cost = [[10, 20], [15, 25]] \)
+4. Contribution Limit
+\( limit = [[5, 6], [4, 7]] \)
+
+Decision variable:
+1. AssignmentVariable
+Continuous variable, \( x_{i,j} \geq 0 \) for all \( i \in P, j \in J \), where \( x_{i,j} \) is the number of hours assigned from person \( i \) to project \( j \)
+
+Objective:
+Minimize total assignment cost
+min: \( \sum_{i \in P} \sum_{j \in J} cost_{i,j} \cdot x_{i,j} \)
+
+Constraint:
+1. Person Hours Constraint
+\( \sum_{j \in J} x_{i,j} = supply_i, \quad \forall i \in P \)
+2. Project Hours Constraint
+\( \sum_{i \in P} x_{i,j} = demand_j, \quad \forall j \in J \)
+3. Contribution Limit Constraint
+\( x_{i,j} \leq limit_{i,j}, \quad \forall i \in P, \forall j \in J \)
+
+Type:
+Continuous, Linear, Linear
+LP

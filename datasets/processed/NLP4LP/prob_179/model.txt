@@ -1,0 +1,41 @@
+Set:
+1. CrateType
+The set of crate types, \( I = \{0, 1\} \) # 0 for Small Crate, 1 for Large Crate
+
+Parameter:
+1. GrapesPerCrate
+[200, 500] # Number of grapes each crate type can hold
+2. MaxAvailableCrates
+[100, 50] # Maximum number of available crates for each type
+3. SmallToLargeRatio
+3 # The number of small crates must be at least three times the number of large crates
+4. MaxTotalCrates
+60 # Maximum total number of crates that can be transported
+5. MinLargeCrates
+10 # Minimum number of large crates to be used
+
+Decision variable:
+1. NumberOfCrates
+Integer variable, \( x_{i} \) for all \( i \in I \), representing the number of crates of each type to use.
+
+Objective:
+Maximize the total number of grapes that can be transported.
+max: \( \sum_{i \in I} GrapesPerCrate[i] \cdot x_{i} \)
+
+Constraint:
+1. Maximum small crates constraint
+\( x_{0} \leq MaxAvailableCrates[0] \)
+2. Maximum large crates constraint
+\( x_{1} \leq MaxAvailableCrates[1] \)
+3. Crate ratio constraint
+\( x_{0} \geq SmallToLargeRatio \cdot x_{1} \)
+4. Total crates constraint
+\( \sum_{i \in I} x_{i} \leq MaxTotalCrates \)
+5. Minimum large crates constraint
+\( x_{1} \geq MinLargeCrates \)
+6. Non-negativity
+\( x_{i} \geq 0 \), for all \( i \in I \)
+
+Type:
+Integer, linear, linear
+IP

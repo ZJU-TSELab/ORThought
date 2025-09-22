@@ -1,0 +1,40 @@
+Mathematical Model:
+Set:
+1. Products
+The set of products, \( P = \{A, B, C, D, E\} \)
+2. Stores
+The set of stores, \( S = \{Store1, Store2, Store3\} \)
+3. Trucks
+The set of trucks, \( T = \{1, 2, 3, 4\} \)
+
+Parameter:
+1. ProductWeights
+[2, 3, 1, 4, 2] (tons) for products A to E respectively
+2. StoreDemands
+- Store1: [2, 1, 3, 0, 0] (units of A-E)
+- Store2: [1, 0, 0, 2, 1] 
+- Store3: [0, 3, 2, 0, 1]
+3. TruckCapacity
+15 (tons)
+
+Decision variable:
+1. ProductDelivery
+Integer variable \( x_{pst} \geq 0 \) for all \( p \in P, s \in S, t \in T \), representing quantity of product p delivered to store s using truck t
+2. TruckUsed
+Binary variable \( y_t \in \{0, 1\} \) for all \( t \in T \), where \( y_t = 1 \) if truck t is used
+
+Objective:
+Minimize total trucks used
+min: \sum_{t\in T}y_t
+
+Constraint:
+1. Meet all store demands
+\sum_{t\in T}x_{pst} = StoreDemands_{sp}, \forall p \in P, s \in S
+2. Truck capacity limit
+\sum_{p\in P}\sum_{s\in S}ProductWeights_p \cdot x_{pst} \leq TruckCapacity \cdot y_t, \forall t \in T
+3. Logical constraint (if any product is delivered by truck t, it must be marked as used)
+x_{pst} \leq M \cdot y_t, \forall p \in P, s \in S, t \in T (where M is a large enough constant)
+
+Type:
+Integer, Linear, Linear
+ILP

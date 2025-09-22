@@ -1,0 +1,51 @@
+Set:
+1. Hubs
+   The set of potential hubs, \( H = \{1, 2, 3, 4, 5\} \)
+2. Stores
+   The set of retail stores, \( S = \{1, 2, ..., 15\} \)
+
+Parameter:
+1. FixedCost_h
+   The fixed daily operating cost for opening hub \( h \): [100000, 80000, 120000, 90000, 110000]
+2. Capacity_h
+   The maximum daily handling capacity of hub \( h \): [1000, 800, 1500, 1200, 900]
+3. Reliability_h
+   The operational reliability score of hub \( h \): [0.85, 0.9, 0.7, 0.95, 0.8]
+4. Demand_s
+   The daily demand of store \( s \): [151, 188, 174, 161, 111, 187, 199, 104, 116, 88, 121, 173, 100, 187, 199]
+5. Distance_hs
+   The distance matrix between hub \( h \) and store \( s \) as specified in the table.
+6. TransportCost
+   The variable transportation cost per unit per mile: 0.8
+7. MinAvgReliability
+   The minimum required average reliability of opened hubs: 0.9
+8. Days
+   The number of days in the planning horizon: 365
+
+Decision variable:
+1. OpenHub_h
+   Binary variable \( x_h \in \{0, 1\} \) for all \( h \in H \), where \( x_h = 1 \) if hub \( h \) is opened, and 0 otherwise.
+2. AssignStore_hs
+   Binary variable \( y_{hs} \in \{0, 1\} \) for all \( h \in H, s \in S \), where \( y_{hs} = 1 \) if store \( s \) is assigned to hub \( h \), and 0 otherwise.
+
+Objective:
+Minimize the total annual cost, which is the sum of daily fixed and transportation costs multiplied by the number of days.
+min: \( \text{Days} \cdot \left( \sum_{h \in H} \text{FixedCost}_h \cdot x_h + \sum_{h \in H} \sum_{s \in S} \text{TransportCost} \cdot \text{Demand}_s \cdot \text{Distance}_{hs} \cdot y_{hs} \right) \)
+
+Constraint:
+1. Store Assignment
+   Each store must be assigned to exactly one hub.
+   \( \sum_{h \in H} y_{hs} = 1, \quad \forall s \in S \)
+2. Hub Capacity
+   The total demand of all stores assigned to a hub cannot exceed that hub's capacity. This constraint is only active if the hub is open.
+   \( \sum_{s \in S} \text{Demand}_s \cdot y_{hs} \leq \text{Capacity}_h \cdot x_h, \quad \forall h \in H \)
+3. Minimum Average Reliability
+   The sum of reliability scores of all opened hubs must be greater than or equal to the minimum average reliability multiplied by the number of opened hubs.
+   \( \sum_{h \in H} \text{Reliability}_h \cdot x_h \geq \text{MinAvgReliability} \cdot \left( \sum_{h \in H} x_h \right) \)
+4. Logical Consistency
+   A store can only be assigned to a hub if that hub is open.
+   \( y_{hs} \leq x_h, \quad \forall h \in H, s \in S \)
+
+Type:
+Binary, Linear, Linear
+ILP

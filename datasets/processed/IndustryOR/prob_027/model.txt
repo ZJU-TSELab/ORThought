@@ -1,0 +1,43 @@
+Set:
+1. Project
+The set of investment projects, \( P = \{1, 2, 3, 4\} \)
+2. Year
+The set of years for investment decisions, \( Y = \{1, 2, 3\} \)
+
+Parameter:
+1. InitialCapital
+300000 # The initial amount of money to invest
+2. ReturnFactor
+{1: 1.2, 2: 1.5, 3: 1.6, 4: 1.4} # Return factor for each project
+3. InvestmentLimit
+{2: 150000, 3: 200000, 4: 100000} # Investment limit for specific projects
+
+Decision variable:
+1. InvestmentAmount
+Continuous variable, \( x_{p,y} \) for project \( p \) at the start of year \( y \).
+- \( x_{1,1}, x_{1,2}, x_{1,3} \) for Project 1
+- \( x_{2,1} \) for Project 2
+- \( x_{3,2} \) for Project 3
+- \( x_{4,3} \) for Project 4
+
+Objective:
+Maximize the total principal and interest at the end of the third year.
+max: InitialCapital + (ReturnFactor[1]-1)*x_{1,1} + (ReturnFactor[2]-1)*x_{2,1} + (ReturnFactor[1]-1)*x_{1,2} + (ReturnFactor[3]-1)*x_{3,2} + (ReturnFactor[1]-1)*x_{1,3} + (ReturnFactor[4]-1)*x_{4,3}
+
+Constraint:
+1. Cash availability at the start of Year 1
+\( x_{1,1} + x_{2,1} \leq InitialCapital \)
+2. Cash availability at the start of Year 2
+\( x_{1,2} + x_{3,2} \leq (InitialCapital - x_{1,1} - x_{2,1}) + ReturnFactor[1] * x_{1,1} \)
+3. Cash availability at the start of Year 3
+\( x_{1,3} + x_{4,3} \leq (Cash_{SOY2} - x_{1,2} - x_{3,2}) + ReturnFactor[1] * x_{1,2} + ReturnFactor[2] * x_{2,1} \)
+4. Investment limits
+\( x_{2,1} \leq InvestmentLimit[2] \)
+\( x_{3,2} \leq InvestmentLimit[3] \)
+\( x_{4,3} \leq InvestmentLimit[4] \)
+5. Non-negativity
+All investment variables \( x_{p,y} \geq 0 \).
+
+Type:
+Continuous, linear, linear
+LP

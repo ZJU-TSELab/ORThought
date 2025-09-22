@@ -1,0 +1,75 @@
+Set:
+1. Node_o
+The set of pickup nodes, \( N_o = \{1, \dots, OrderNum\} \)
+2. Node_d
+The set of delivery nodes, \( N_d = \{OrderNum+1, \dots, OrderNum*2\} \)
+3. Node
+The set of nodes, \( N = \{0\} \cup N_o \cup N_d \)
+2. Trucks
+The set of trucks, \( K = \{1, 2, \dots, TruckNum\} \)
+
+Parameter:
+1. OrderNum
+10
+2. Coordinate
+[(0, 0), (1.41, 2.64), (6.34, -4.45), (3.04, 7.82), (8.18, -6.27), (3.03, 2.34), (0.07, 9.32), (0.57, -1.09), (8.87, 2.71), (-3.97, -3.81), (-0.08, -8.95), (8.56, 1.11), (3.63, -7.65), (-8.88, 9.6), (-4.31, -5.73), (7.93, 5.0), (-7.54, -3.57), (-5.15, -4.55), (-9.87, 0.49), (-3.91, -2.12), (-6.29, -7.8)]
+3. Demand
+[0, 198, 252, 94, 223, 163, 247, 133, 188, 216, 225, -198, -252, -94, -223, -163, -247, -133, -188, -216, -225]
+4. Timewindow
+[(0, 1440), (570, 600), (720, 750), (630, 660), (720, 750), (750, 780), (510, 540), (480, 510), (840, 870), (600, 630), (570, 600), (580, 640), (730, 760), (650, 680), (720, 750), (780, 810), (540, 570), (490, 520), (870, 900), (630, 660), (580, 610)]
+7. TruckNum
+3
+8. Speed
+30
+9. Maxload
+1000
+10. M
+1e5
+
+Decision variable:
+1. X
+Binary variable, \( x_{ijk} \forall i \in N, j \in N, k \in K\), where \( x_{ijk} = 1 \) if truck \( k \) departs from node \( i \) and arrives at node \( j \), otherwise \( x_{ijk} = 0 \).
+2. T^a
+Integer variable, \( t^a_{i} \forall i \in N\), where \( t^a_{i} \) is the time at which the truck arrives at node \( i \).
+3. T^d
+Integer variable, \( t^d_{i} \forall i \in N\), where \( t^d_{i} \) is the time at which the truck departs from node \( i \).
+4. Load
+Integer variable, \(Load_{ik} \forall i \in N, k \in K\), where \( Load_{ik} \) is the load of truck \( k \) departs node \( i \).
+
+Objective:
+1. Minimize the total distance traveled by the trucks.
+min: \sum_{k \in K}\sum_{i \in N} \sum_{j \in N} Distance[i][j] * x_{ijk}
+# Where \( Distance[i][j] \) is the Euclidean distance between node \( i \) and node \( j \).
+
+Constraint:
+1. Each pickup&delivery point must be visited exactly once by one truck.
+\sum_{k \in K} \sum_{i \in N} x_{ijk} = 1 \forall j \in N/{0}
+2. One order's pickup point and delivery point must be visited by the same truck.
+\sum_{j \in N} x_{ijk} = \sum_{j \in N} x_{i+OrderNum,j,k} \forall i \in N_o, k \in K
+3. Flow conservation for each point.
+\sum_{j \in N} x_{ijk} = \sum_{j \in N} x_{j,i,k} \forall i \in N, k \in K
+4. Each truck must leave the distribution center once.
+\sum_{j \in N} x_{0jk} = 1 \forall k \in K
+5. The order's pickup point must be visited before its delivery point.
+t^a_{i} \leq t^d_{i+OrderNum} \forall i \in N_o
+6. The truck must arrive at each pickup&delivery point within its time window.
+t^a_{i} \geq Timewindow[i][0] \forall i \in N
+t^a_{i} \leq Timewindow[i][1] \forall i \in N
+7. The truck must leave each pickup&delivery point within its time window.
+t^d_{i} \leq Timewindow[i][1] \forall i \in N
+t^d_{i} \geq Timewindow[i][0] \forall i \in N
+8. The truck's arrival time at each node must be more than or equal to the departure time from the previous node plus the travel time between the two nodes.
+t^d_{i} + 60*\frac{Distance[i][j]}{Speed} - M * (1 - x_{ijk}) \leq t^a_{j} \forall i, j \in N, k \in K
+9. The truck's load must not exceed its maximum load at every visited point.
+Load_{ik} \leq Maxload \forall i \in N, k \in K
+10. The truck's load must be updated at every visited point.
+Load_{jk} \geq Load_{ik} + Demand[j] - M * (1 - x_{ijk}) \forall i, j \in N, k \in K
+Load_{jk} \leq Load_{ik} + Demand[j] + M * (1 - x_{ijk}) \forall i, j \in N, k \in K
+11. The truck's load must be initialized at the distribution center.
+Load_{0k} = 0 \forall k \in K
+12. Eliminate sub-tours.
+\sum_{i \in N} \sum_{j \in N} x_{ijk} \leq |S| - 1 \forall S \subseteq N, 1 < |S| < |N|, k \in K
+
+Type:
+Integer, Linear, Linear
+ILP

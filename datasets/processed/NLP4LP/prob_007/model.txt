@@ -1,0 +1,35 @@
+Set:
+1. FeedType
+The set of feed types, \( T = \{0, 1\} \) # 0 for Feed A, 1 for Feed B
+
+Parameter:
+1. Cost
+[100, 80] # Cost per kilogram for each feed type
+2. MinProtein
+30 # Minimum units of protein required
+3. MinFat
+50 # Minimum units of fat required
+4. ProteinContent
+[10, 7] # Units of protein per kilogram for each feed type
+5. FatContent
+[8, 15] # Units of fat per kilogram for each feed type
+
+Decision variable:
+1. FeedAmount
+Continuous variable, \( x_{t} \) for all \( t \in T \), representing the amount of feed of type \( t \) in kilograms.
+
+Objective:
+Minimize the total cost of the feed mixture.
+min: \sum_{t \in T} Cost[t] * x_{t}
+
+Constraint:
+1. Protein requirement
+\sum_{t \in T} ProteinContent[t] * x_{t} \geq MinProtein
+2. Fat requirement
+\sum_{t \in T} FatContent[t] * x_{t} \geq MinFat
+3. Non-negativity
+x_{t} \geq 0, \forall t \in T
+
+Type:
+Continuous, linear, linear
+LP

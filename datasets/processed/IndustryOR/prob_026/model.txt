@@ -1,0 +1,48 @@
+Set:
+1. Product
+The set of products, \( P = \{I, II, III\} \)
+2. Machine
+The set of machines, \( M = \{A1, A2, B1, B2, B3\} \)
+
+Parameter:
+1. ProcessingTime
+A dictionary mapping (product, machine) to processing time per unit.
+2. MachineCapacity
+A dictionary mapping machine to its effective hours.
+3. OperatingCostFull
+A dictionary mapping machine to its operating cost at full capacity.
+4. RawMaterialCost
+A dictionary mapping product to its raw material cost per unit.
+5. SalePrice
+A dictionary mapping product to its sale price per unit.
+
+Decision variable:
+1. ProductionQuantity
+Continuous variable, \( X_{p,m} \) for \( p \in P, m \in M \), representing the quantity of product \( p \) processed on machine \( m \).
+2. TotalProduction
+Continuous variable, \( TotalX_{p} \) for \( p \in P \), representing the total quantity of product \( p \) produced.
+
+Objective:
+Maximize the total profit.
+Profit = Total Revenue - Total Raw Material Cost - Total Variable Operating Cost
+max: \sum_{p \in P} SalePrice[p] * TotalX_{p} - \sum_{p \in P} RawMaterialCost[p] * TotalX_{p} - \sum_{m \in M} \sum_{p \in P} (OperatingCostFull[m] / MachineCapacity[m]) * ProcessingTime[p,m] * X_{p,m}
+
+Constraint:
+1. Machine capacity constraints
+For each machine, the total processing time cannot exceed its capacity.
+\sum_{p \in P} ProcessingTime[p,m] * X_{p,m} \leq MachineCapacity[m], \forall m \in M
+2. Production balance constraints
+For each product, the total quantity produced must equal the sum of quantities processed in each stage (A and B).
+TotalX_{p} = \sum_{m \in \text{Machines for A}} X_{p,m}, \forall p \in P
+TotalX_{p} = \sum_{m \in \text{Machines for B}} X_{p,m}, \forall p \in P
+3. Routing constraints
+- Product I: Can be processed on any A and B machine.
+- Product II: Can be processed on any A machine, but only B1 for process B. \( X_{II,B2} = 0, X_{II,B3} = 0 \)
+- Product III: Can only be processed on A2 and B2. \( X_{III,A1} = 0, X_{III,B1} = 0, X_{III,B3} = 0 \)
+4. Non-negativity
+\( X_{p,m} \geq 0, \forall p \in P, m \in M \)
+\( TotalX_{p} \geq 0, \forall p \in P \)
+
+Type:
+Continuous, linear, linear
+LP

@@ -1,0 +1,37 @@
+Set:
+1. JuiceType
+The set of juice types, \( I = \{0, 1\} \) # 0 for orange, 1 for apple
+
+Parameter:
+1. VitaminD
+[10, 12] # Units of vitamin D per box for each juice type
+2. VitaminC
+[8, 6] # Units of vitamin C per box for each juice type
+3. MaxVitaminC
+300 # Maximum units of vitamin C allowed
+4. MinOrangeBoxes
+3 # Minimum number of orange juice boxes to be consumed
+5. AppleToOrangeRatio
+3 # Minimum ratio of apple juice boxes to orange juice boxes
+
+Decision variable:
+1. JuiceBoxCount
+Integer variable, \( x_{i} \) for all \( i \in I \), representing the number of boxes of juice type \( i \) to be consumed.
+
+Objective:
+Maximize the total vitamin D intake.
+max: \( \sum_{i \in I} VitaminD[i] \cdot x_{i} \)
+
+Constraint:
+1. Vitamin C constraint
+\( \sum_{i \in I} VitaminC[i] \cdot x_{i} \leq MaxVitaminC \)
+2. Preference constraint
+\( x_{1} \geq AppleToOrangeRatio \cdot x_{0} \)
+3. Minimum orange boxes constraint
+\( x_{0} \geq MinOrangeBoxes \)
+4. Non-negativity
+\( x_{i} \geq 0 \), for all \( i \in I \)
+
+Type:
+Integer, linear, linear
+IP

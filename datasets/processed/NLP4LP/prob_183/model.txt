@@ -1,0 +1,41 @@
+Set:
+1. TruckType
+The set of truck types, \( I = \{0, 1\} \) # 0 for Small Truck, 1 for Large Truck
+
+Parameter:
+1. PeoplePerTruck
+[2, 4] # Number of people required for each truck type
+2. SnowPerTruck
+[30, 50] # Units of snow each truck type can carry
+3. MaxPeople
+30 # Maximum number of people available
+4. MinSmallTrucks
+10 # Minimum number of small trucks to be used
+5. MinLargeTrucks
+3 # Minimum number of large trucks to be used
+6. SmallToLargeRatio
+2 # The number of small trucks must be twice the number of large trucks
+
+Decision variable:
+1. NumberOfTrucks
+Integer variable, \( x_{i} \) for all \( i \in I \), representing the number of trucks of each type to use.
+
+Objective:
+Maximize the total amount of snow that can be transported.
+max: \( \sum_{i \in I} SnowPerTruck[i] \cdot x_{i} \)
+
+Constraint:
+1. Labor constraint
+\( \sum_{i \in I} PeoplePerTruck[i] \cdot x_{i} \leq MaxPeople \)
+2. Minimum small trucks constraint
+\( x_{0} \geq MinSmallTrucks \)
+3. Minimum large trucks constraint
+\( x_{1} \geq MinLargeTrucks \)
+4. Truck ratio constraint
+\( x_{0} = SmallToLargeRatio \cdot x_{1} \)
+5. Non-negativity
+\( x_{i} \geq 0 \), for all \( i \in I \)
+
+Type:
+Integer, linear, linear
+IP

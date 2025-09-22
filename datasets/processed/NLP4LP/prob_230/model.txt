@@ -1,0 +1,37 @@
+Set:
+1. DeliveryMethod
+The set of delivery methods, \( I = \{0, 1\} \) # 0 for Cart, 1 for Hand
+
+Parameter:
+1. InteractionsPerHour
+[70, 85] # Number of customer interactions per hour for each delivery method
+2. RefillsPerHour
+[5, 20] # Number of refills per hour for each delivery method
+3. MinInteractions
+4000 # Minimum total customer interactions per hour
+4. MinHandDeliveries
+3 # Minimum number of servers delivering by hand
+5. MinCartRatio
+0.7 # Minimum ratio of cart deliveries to total deliveries
+
+Decision variable:
+1. NumberOfDeliveries
+Integer variable, \( x_{i} \) for all \( i \in I \), representing the number of delivery shifts of each method.
+
+Objective:
+Minimize the total number of refills per hour.
+min: \( \sum_{i \in I} RefillsPerHour[i] \cdot x_{i} \)
+
+Constraint:
+1. Customer interactions requirement
+\( \sum_{i \in I} InteractionsPerHour[i] \cdot x_{i} \geq MinInteractions \)
+2. Minimum hand deliveries
+\( x_{1} \geq MinHandDeliveries \)
+3. Cart delivery proportion
+\( x_{0} \geq MinCartRatio \cdot \sum_{i \in I} x_{i} \)
+4. Non-negativity
+\( x_{i} \geq 0 \), for all \( i \in I \)
+
+Type:
+Integer, linear, linear
+IP

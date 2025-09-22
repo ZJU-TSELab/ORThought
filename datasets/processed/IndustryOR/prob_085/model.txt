@@ -1,0 +1,55 @@
+
+Set:
+1. Products
+The set of dog food products, \( P = \{\text{Meaties, Yummies}\} \).
+
+Parameter:
+1. GrainsPerPack
+[2.0, 3.0] # Pounds of grains required per pack for each product.
+2. MeatPerPack
+[3.0, 1.5] # Pounds of meat required per pack for each product.
+3. MaxGrains
+400000 # Maximum pounds of grains available per month.
+4. MaxMeat
+300000 # Maximum pounds of meat available per month.
+5. MaxMeatiesCapacity
+90000 # Maximum production capacity for Meaties in packs per month.
+6. SellingPrice
+[2.80, 2.00] # Selling price in $ per pack for each product.
+7. GrainCost
+0.20 # Cost in $ per pound of grains.
+8. MeatCost
+0.50 # Cost in $ per pound of meat.
+9. VariableCost
+[0.25, 0.20] # Variable cost in $ per pack for mixing and packaging.
+
+Derived Parameter:
+1. ProfitPerPack
+The profit for each product is calculated as SellingPrice - (GrainsPerPack * GrainCost) - (MeatPerPack * MeatCost) - VariableCost.
+- Profit_Meaties = 2.80 - (2.0 * 0.20) - (3.0 * 0.50) - 0.25 = 2.80 - 0.40 - 1.50 - 0.25 = 0.65
+- Profit_Yummies = 2.00 - (3.0 * 0.20) - (1.5 * 0.50) - 0.20 = 2.00 - 0.60 - 0.75 - 0.20 = 0.45
+
+Decision variable:
+1. ProductionQty
+Continuous variable, \( x_p \) for all \( p \in P \), representing the number of packs of product \( p \) to produce.
+
+Objective:
+Maximize the total monthly profit.
+max: \sum_{p \in P} \text{ProfitPerPack}[p] * x_p
+
+Constraint:
+1. Grain Availability
+The total amount of grains used cannot exceed the available quantity.
+\sum_{p \in P} \text{GrainsPerPack}[p] * x_p \leq \text{MaxGrains}
+2. Meat Availability
+The total amount of meat used cannot exceed the available quantity.
+\sum_{p \in P} \text{MeatPerPack}[p] * x_p \leq \text{MaxMeat}
+3. Meaties Capacity
+The production of Meaties cannot exceed its machine capacity.
+x_{\text{Meaties}} \leq \text{MaxMeatiesCapacity}
+4. Non-negativity
+x_p \geq 0, \forall p \in P
+
+Type:
+Continuous, linear, linear
+LP

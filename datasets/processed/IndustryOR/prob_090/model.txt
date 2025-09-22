@@ -1,0 +1,34 @@
+# Model description for prob_090
+Set:
+1. Products
+The set of products, \( P = \{A, B\} \).
+
+Parameter:
+1. Profit
+[3, 5] # Profit in £ per unit for each product.
+2. AssemblyTime
+[12, 25] # Assembly time in minutes per unit for each product.
+3. MaxAssemblyTime
+1800 # Maximum total assembly time in minutes per week (30 hours * 60 min/hr).
+
+Decision variable:
+1. ProductionQty
+Integer variable, \( x_p \) for all \( p \in P \), representing the number of units of product \( p \) to produce.
+
+Objective:
+Maximize the total weekly profit.
+max: \sum_{p \in P} \text{Profit}[p] * x_p
+
+Constraint:
+1. Assembly Time
+The total assembly time cannot exceed the maximum available time.
+\sum_{p \in P} \text{AssemblyTime}[p] * x_p \leq \text{MaxAssemblyTime}
+2. Technical Ratio
+For every five units of product A, at least two units of product B must be produced. This can be written as \( x_B / x_A \geq 2/5 \), which is equivalent to \( 5x_B \geq 2x_A \).
+2x_A - 5x_B \leq 0
+3. Non-negativity
+x_p \geq 0, \forall p \in P
+
+Type:
+Integer, linear, linear
+ILP

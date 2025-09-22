@@ -1,0 +1,21 @@
+A logistics company needs to optimize the loading of 5 different types of cargo items (A, B, C, D, E) onto a single truck with a maximum weight capacity of 2000 kg. Each item has a base profit value and weight, but certain item combinations generate additional synergy profits when transported together (e.g., perishable items with refrigeration equipment). The item characteristics and synergy matrix are given below:
+
+Item Data:
+| Item | Weight (kg) | Base Profit ($) |
+|------|------------|----------------|
+| A    | 400        | 120            |
+| B    | 600        | 180            |
+| C    | 300        | 90             |
+| D    | 500        | 150            |
+| E    | 700        | 210            |
+
+Synergy Profit Matrix ($):
+|   | A  | B  | C  | D  | E  |
+|---|---|---|---|---|---|
+| A | 0  | 25 | 15 | 0  | -10|
+| B | 25 | 0  | 30 | 20 | 0  |
+| C | 15 | 30 | 0  | 10 | 5  |
+| D | 0  | 20 | 10 | 0  | 15 |
+| E |-10 | 0  | 5  | 15 | 0  |
+
+Negative values indicate incompatibility costs (e.g., item A and E require separate storage space).

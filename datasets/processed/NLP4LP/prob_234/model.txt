@@ -1,0 +1,37 @@
+Set:
+1. ShipSize
+The set of ship sizes, \( I = \{0, 1\} \) # 0 for Large, 1 for Small
+
+Parameter:
+1. CapacityPerTrip
+[2000, 800] # Number of customers each ship size can carry per trip
+2. PollutionPerTrip
+[20, 15] # Units of pollution produced per trip for each ship size
+3. MaxLargeTrips
+7 # Maximum number of large cruise ship trips
+4. MinSmallTripRatio
+0.4 # Minimum ratio of small cruise ship trips to total trips
+5. MinCustomers
+20000 # Minimum number of customers to transport
+
+Decision variable:
+1. NumberOfTrips
+Integer variable, \( x_{i} \) for all \( i \in I \), representing the number of trips for each ship size.
+
+Objective:
+Minimize the total amount of pollution produced.
+min: \( \sum_{i \in I} PollutionPerTrip[i] \cdot x_{i} \)
+
+Constraint:
+1. Maximum large trips
+\( x_{0} \leq MaxLargeTrips \)
+2. Customer capacity
+\( \sum_{i \in I} CapacityPerTrip[i] \cdot x_{i} \geq MinCustomers \)
+3. Small ship proportion
+\( x_{1} \geq MinSmallTripRatio \cdot \sum_{i \in I} x_{i} \)
+4. Non-negativity
+\( x_{i} \geq 0 \), for all \( i \in I \)
+
+Type:
+Integer, linear, linear
+IP

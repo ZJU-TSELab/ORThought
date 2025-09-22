@@ -1,0 +1,41 @@
+Set:
+1. BridgeType
+The set of bridge types, \( I = \{0, 1\} \) # 0 for Beam Bridge, 1 for Truss Bridge
+
+Parameter:
+1. PopsicleSticksPerBridge
+[30, 50] # Number of popsicle sticks required for each bridge type
+2. GluePerBridge
+[5, 8] # Units of glue required for each bridge type
+3. WeightCapacityPerBridge
+[40, 60] # Grams of weight each bridge type can hold
+4. MaxPopsicleSticks
+600 # Maximum number of popsicle sticks available
+5. MaxGlue
+100 # Maximum units of glue available
+6. MaxTrussBridges
+5 # Maximum number of truss bridges that can be built
+
+Decision variable:
+1. NumberOfBridges
+Integer variable, \( x_{i} \) for all \( i \in I \), representing the number of bridges of each type to build.
+
+Objective:
+Maximize the total mass that can be supported.
+max: \( \sum_{i \in I} WeightCapacityPerBridge[i] \cdot x_{i} \)
+
+Constraint:
+1. Popsicle sticks constraint
+\( \sum_{i \in I} PopsicleSticksPerBridge[i] \cdot x_{i} \leq MaxPopsicleSticks \)
+2. Glue constraint
+\( \sum_{i \in I} GluePerBridge[i] \cdot x_{i} \leq MaxGlue \)
+3. Maximum truss bridges constraint
+\( x_{1} \leq MaxTrussBridges \)
+4. Beam bridges greater than truss bridges constraint
+\( x_{0} \geq x_{1} + 1 \)
+5. Non-negativity
+\( x_{i} \geq 0 \), for all \( i \in I \)
+
+Type:
+Integer, linear, linear
+IP

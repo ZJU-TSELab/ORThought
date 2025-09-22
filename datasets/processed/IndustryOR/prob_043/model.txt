@@ -1,0 +1,46 @@
+Set:
+1. ProductionPoints
+The set of production points, \( I = \{1, 2\} \)
+2. DemandPoints
+The set of demand points, \( J = \{1, 2\} \)
+3. MarshalingStations
+The set of intermediate marshaling stations, \( K = \{1, 2\} \)
+
+Parameter:
+1. Supply
+[100, 150] # Supply at each production point \( a_i \)
+2. Demand
+[80, 120] # Demand at each demand point \( b_j \)
+3. FixedCost
+[10, 15] # Fixed cost for using each marshaling station \( f_k \)
+4. StationCapacity
+[100, 100] # Capacity of each marshaling station \( q_k \)
+5. CostIK
+{(1, 1): 2, (1, 2): 3, (2, 1): 4, (2, 2): 1} # Unit transportation cost from production point i to station k, \( c_{ik} \)
+6. CostKJ
+{(1, 1): 3, (1, 2): 2, (2, 1): 1, (2, 2): 4} # Unit transportation cost from station k to demand point j, \( c'_{kj} \)
+
+Decision variable:
+1. ShipmentFromSource
+Continuous variable, \( x_{ik} \) for \( i \in I, k \in K \), represents the amount of material shipped from production point i to marshaling station k.
+2. ShipmentToSink
+Continuous variable, \( y_{kj} \) for \( k \in K, j \in J \), represents the amount of material shipped from marshaling station k to demand point j.
+3. UseStation
+Binary variable, \( u_{k} \) for \( k \in K \), is 1 if marshaling station k is used, and 0 otherwise.
+
+Objective:
+Minimize: \( \sum_{i \in I, k \in K} c_{ik} x_{ik} + \sum_{k \in K, j \in J} c'_{kj} y_{kj} + \sum_{k \in K} f_k u_k \)
+
+Constraint:
+1. SupplyConstraint
+For each production point \( i \in I \), the total amount shipped out cannot exceed its supply: \( \sum_{k \in K} x_{ik} \le a_i \)
+2. DemandConstraint
+For each demand point \( j \in J \), the total amount received must meet its demand: \( \sum_{k \in K} y_{kj} = b_j \)
+3. FlowConservation
+For each marshaling station \( k \in K \), the total amount shipped in must equal the total amount shipped out: \( \sum_{i \in I} x_{ik} = \sum_{j \in J} y_{kj} \)
+4. CapacityConstraint
+For each marshaling station \( k \in K \), the total amount transshipped cannot exceed its capacity, and can only happen if the station is used: \( \sum_{i \in I} x_{ik} \le q_k u_k \)
+
+Type:
+Mixed-Integer, linear, linear
+MILP

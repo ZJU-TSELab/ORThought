@@ -1,0 +1,39 @@
+Set:
+1. ProcessType
+The set of process types, \( I = \{0, 1\} \) # 0 for Process 1, 1 for Process 2
+
+Parameter:
+1. PainKillersPerHour
+[35, 50] # Units of pain killers produced per hour for each process type
+2. SleepingPillsPerHour
+[12, 30] # Units of sleeping pills produced per hour for each process type
+3. MaterialPerHour
+[50, 60] # Units of preliminary material required per hour for each process type
+4. MinPainKillers
+1200 # Minimum units of pain killers to be made
+5. MinSleepingPills
+1200 # Minimum units of sleeping pills to be made
+6. MaxMaterial
+2000 # Maximum units of preliminary material available
+
+Decision variable:
+1. ProcessHours
+Continuous variable, \( x_{i} \) for all \( i \in I \), representing the number of hours each process is run.
+
+Objective:
+Minimize the total time needed.
+min: \( \sum_{i \in I} x_{i} \)
+
+Constraint:
+1. Pain killers production constraint
+\( \sum_{i \in I} PainKillersPerHour[i] \cdot x_{i} \geq MinPainKillers \)
+2. Sleeping pills production constraint
+\( \sum_{i \in I} SleepingPillsPerHour[i] \cdot x_{i} \geq MinSleepingPills \)
+3. Material constraint
+\( \sum_{i \in I} MaterialPerHour[i] \cdot x_{i} \leq MaxMaterial \)
+4. Non-negativity
+\( x_{i} \geq 0 \), for all \( i \in I \)
+
+Type:
+Continuous, linear, linear
+LP

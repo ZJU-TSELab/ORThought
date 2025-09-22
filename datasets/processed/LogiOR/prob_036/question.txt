@@ -1,0 +1,29 @@
+ChemCo produces two types of solvents: Standard and Premium. The solvents are produced by blending five raw materials: Alpha, Beta, Gamma, Delta, and Epsilon. Each raw material has four key properties:
+
+1.  Property 1: Viscosity Index (VI)
+2.  Property 2: Flash Point (°C)
+3.  Property 3: Boiling Point (°C)
+4.  Property 4: Density (g/cm³)
+
+The properties, daily availability (in liters), and cost (in ¢/liter) of each raw material are given in Table 1.
+
+Table 1: Raw Materials' Properties, Daily Availability, and Costs
+
+| Raw Material | Availability (Liters) | Cost (¢/Liter) | VI  | Flash Point (°C) | Boiling Point (°C) | Density (g/cm³) |
+|--------------|-----------------------|----------------|-----|------------------|--------------------|-----------------|
+| Alpha        | 12,000                | 15.0           | 95  | 45               | 150                | 0.85            |
+| Beta         | 10,500                | 12.0           | 88  | 55               | 180                | 0.92            |
+| Gamma        | 8,000                 | 10.0           | 82  | 60               | 200                | 0.89            |
+| Delta        | 5,000                 | 18.0           | 105 | 40               | 130                | 0.87            |
+| Epsilon      | Unlimited             | 16.0           | 100 | 50               | 160                | 0.91            |
+
+The final properties of the blended solvents are determined by the volume-weighted average of the properties of the raw materials used. The requirements for each solvent type are provided in Table 2. The Viscosity Index and Boiling Point requirements are minimums, while the Flash Point and Density requirements must be met exactly.
+
+Table 2: Solvent Requirements and Demand
+
+| Solvent  | Demand (Thousands of Liters) | VI (min) | Flash Point (°C) (exact) | Boiling Point (°C) (min) | Density (g/cm³) (exact) |
+|----------|-------------------------------|----------|--------------------------|--------------------------|------------------------|
+| Standard | 8.5                           | 85       | 50                       | 140                      | 0.88                   |
+| Premium  | 25                            | 92       | 50                       | 140                      | 0.88                   |
+
+The daily demand (in thousands of liters) for each solvent must be met, but additional production beyond the demand is allowed. Standard solvent sells for 25.50¢/liter, while Premium solvent sells for 28.75¢/liter. Additionally, no more than 35% of the volume of each solvent type can consist of raw material Beta. How can ChemCo formulate its solvents using the available raw materials to maximize its total daily profit? Total daily profit is defined as total revenue from sales minus total raw material costs.

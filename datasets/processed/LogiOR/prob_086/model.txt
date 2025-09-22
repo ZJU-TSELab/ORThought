@@ -1,0 +1,37 @@
+Set:
+1.  CandidateCities
+    The set of candidate cities, \( C = \{1, 2, 3, 4\} \)
+2.  Hospitals
+    The set of hospitals to be served, \( H = \{1, 2, 3\} \)
+
+Parameter:
+1.  ConstructionCost
+    [8, 7, 9, 7.5] # Construction cost for each city c ∈ C in ¥M
+2.  Distances
+    [[50, 80, 120], [60, 40, 90], [110, 70, 50], [130, 100, 60]] # Distance from city c ∈ C to hospital h ∈ H in km
+3.  NumToSelect
+    2 # The number of centers to be established
+4.  MaxJointFailureProb
+    0.1 # The maximum allowed joint supply failure probability for each hospital
+5.  ProbCoeff
+    0.00005 # Coefficient for the transportation failure probability calculation
+
+Decision variable:
+1.  SelectCity
+    Binary variable, \( SelectCity[c] \forall c \in C \), equals 1 if a center is built in city \(c\), 0 otherwise.
+
+Objective:
+1.  Minimize the total construction cost.
+    min: \( \sum_{c \in C} ConstructionCost[c] \cdot SelectCity[c] \)
+
+Constraint:
+1.  Total number of centers constraint.
+    \( \sum_{c \in C} SelectCity[c] = NumToSelect \)
+2.  Reliability constraint for each hospital.
+    \( \prod_{c \in C} (1 - (1 - ProbCoeff \cdot Distances[c][h]^2) \cdot SelectCity[c]) < MaxJointFailureProb \forall h \in H \)
+3.  Variable domain constraints.
+    \( SelectCity[c] \in \{0, 1\} \forall c \in C \)
+
+Type:
+Integer, Linear, Non-linear
+NLP

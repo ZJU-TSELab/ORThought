@@ -1,0 +1,6 @@
+There are three different products to be processed on three machine tools. Each product must first be processed on machine 1, then sequentially on machines 2 and 3. The order of processing the three products on each machine should remain the same. Assuming $t_{ij}$ represents the time to process the $i$-th product on the $j$-th machine, how should the schedule be arranged to minimize the total processing cycle for the three products? The timetable is as follows:
+| Product | Machine 1 | Machine 2 | Machine 3 |
+|---------|-----------|-----------|-----------|
+| Product 1 | 2           | 3           | 1           |
+| Product 2 | 4           | 2           | 3           |
+| Product 3 | 3           | 5           | 2           |

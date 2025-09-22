@@ -1,0 +1,39 @@
+Set:
+1. SandwichType
+The set of sandwich types, \( I = \{0, 1\} \) # 0 for Light, 1 for Heavy
+
+Parameter:
+1. BreadRequirement
+[2, 3] # Slices of bread required for each sandwich type
+2. CheeseRequirement
+[3, 5] # Slices of cheese required for each sandwich type
+3. ProductionTime
+[10, 15] # Minutes to make each sandwich type
+4. MaxBread
+300 # Slices of bread available
+5. MaxCheese
+500 # Slices of cheese available
+6. HeavyToLightRatio
+3 # Minimum ratio of heavy to light sandwiches
+
+Decision variable:
+1. SandwichCount
+Integer variable, \( x_{i} \) for all \( i \in I \), representing the number of sandwiches of type \( i \) to be made.
+
+Objective:
+Minimize the total production time.
+min: \( \sum_{i \in I} ProductionTime[i] \cdot x_{i} \)
+
+Constraint:
+1. Bread constraint
+\( \sum_{i \in I} BreadRequirement[i] \cdot x_{i} \leq MaxBread \)
+2. Cheese constraint
+\( \sum_{i \in I} CheeseRequirement[i] \cdot x_{i} \leq MaxCheese \)
+3. Demand ratio constraint
+\( x_{1} \geq HeavyToLightRatio \cdot x_{0} \)
+4. Non-negativity
+\( x_{i} \geq 0 \), for all \( i \in I \)
+
+Type:
+Integer, linear, linear
+IP

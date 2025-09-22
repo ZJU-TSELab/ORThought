@@ -1,0 +1,11 @@
+A retail chain wants to open warehouses in 3 potential locations to serve 5 customer zones. The distances (in km) between each potential warehouse location and customer zone are given in the table below. The goal is to select exactly 2 warehouse locations that minimize the total distance between each customer zone and its nearest warehouse. 
+
+Customer Zones: {C1, C2, C3, C4, C5}
+Potential Warehouse Locations: {W1, W2, W3}
+
+Distance Matrix (km):
+|       | C1 | C2 | C3 | C4 | C5 |
+|-------|----|----|----|----|----|
+|W1     | 10 | 15 | 12 | 8  | 20 |
+|W2     | 8  | 10 | 15 | 12 | 18 |
+|W3     | 12 | 8  | 10 | 15 | 12 |

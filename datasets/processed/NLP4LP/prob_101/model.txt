@@ -1,0 +1,41 @@
+Set:
+1. DemonstrationType
+The set of demonstration types, \( I = \{0, 1\} \) # 0 for Demonstration 1, 1 for Demonstration 2
+
+Parameter:
+1. MintUsage
+[10, 12] # Units of mint used per demonstration for each demonstration type
+2. ActiveIngredientUsage
+[20, 15] # Units of active ingredient used per demonstration for each demonstration type
+3. MintyFoamProduction
+[25, 18] # Units of minty foam produced per demonstration for each demonstration type
+4. BlackTarProduction
+[5, 3] # Units of black tar produced per demonstration for each demonstration type
+5. MaxMint
+120 # Maximum units of mint available
+6. MaxActiveIngredient
+100 # Maximum units of active ingredient available
+7. MaxBlackTar
+50 # Maximum units of black tar allowed
+
+Decision variable:
+1. DemonstrationCount
+Integer variable, \( x_{i} \) for all \( i \in I \), representing the number of times each demonstration is done.
+
+Objective:
+Maximize the total amount of minty foam produced.
+max: \( \sum_{i \in I} MintyFoamProduction[i] \cdot x_{i} \)
+
+Constraint:
+1. Mint constraint
+\( \sum_{i \in I} MintUsage[i] \cdot x_{i} \leq MaxMint \)
+2. Active ingredient constraint
+\( \sum_{i \in I} ActiveIngredientUsage[i] \cdot x_{i} \leq MaxActiveIngredient \)
+3. Black tar constraint
+\( \sum_{i \in I} BlackTarProduction[i] \cdot x_{i} \leq MaxBlackTar \)
+4. Non-negativity
+\( x_{i} \geq 0 \), for all \( i \in I \)
+
+Type:
+Integer, linear, linear
+IP

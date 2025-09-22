@@ -1,0 +1,11 @@
+Given that a certain factory plans to produce three types of products, I, II, and III, each product needs to be processed on equipment $A, B, C$ as shown in Table 2-3:
+
+Table 2-3
+| Equipment Code | I  | II | III | Effective Monthly Equipment Hours |
+|----------------|----|----|-----|----------------------------------|
+| A              | 8  | 2  | 10  | 300                              |
+| B              | 10 | 5  | 8   | 400                              |
+| C              | 2  | 13 | 10  | 420                              |
+| Unit Product Profit (per thousand yuan) | 3  | 2  | 2.9 |           |
+
+How can the equipment capacity be fully utilized to maximize production profit?

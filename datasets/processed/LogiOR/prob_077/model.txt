@@ -1,0 +1,43 @@
+Set:
+1. Stores
+   The set of Stores, \( S = \{S1, S2, S3, S4, S5, S6\} \)
+
+Parameter:
+1. CustomerTraffic_s  
+   [S1:1200, S2:800, S3:1500, S4:900, S5:1100, S6:700]
+2. ShelfSpace_s  
+   [S1:50, S2:30, S3:60, S4:35, S5:45, S6:25]
+3. SimilarityScore_s  
+   [S1:0.8, S2:0.6, S3:0.9, S4:0.7, S5:0.75, S6:0.5]
+4. DisplayCost  
+   Standard:5, Promotional:15
+5. SpaceMultiplier  
+   1.2 (for promotional display)
+6. TotalInventory  
+   300
+7. Budget  
+   120
+
+Decision variable:
+1. AllocateUnits_s  
+   Integer variable \( u_s \geq 0 \) for all \( s \in S \), units allocated to store s
+2. DisplayType_s  
+   Binary variable \( d_s \in \{0,1\} \) for all \( s \in S \), where 1=promotional display
+
+Objective:
+Maximize total expected product exposure
+max: \( \sum_{s\in S} CustomerTraffic_s \times u_s \times SimilarityScore_s \)
+
+Constraint:
+1. Inventory limit  
+   \( \sum_{s\in S} u_s \leq TotalInventory \)
+2. Budget limit  
+   \( \sum_{s\in S} (5(1-d_s) + 15d_s) \leq Budget \)
+3. Shelf space constraints  
+   \( u_s \leq ShelfSpace_s \times (1 + 0.2d_s), \forall s \in S \)
+4. Non-negativity  
+   \( u_s \geq 0, \forall s \in S \)
+
+Type:
+Integer, Linear, Linear  
+ILP

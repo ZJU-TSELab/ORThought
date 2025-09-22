@@ -1,0 +1,50 @@
+Set:
+1. Toy
+The set of toys, \( T = \{robots, cars, blocks, dolls\} \)
+
+Parameter:
+1. Profit
+[15, 8, 12, 5] # Profit for each toy
+2. PlasticUsage
+[30, 10, 20, 15] # Plastic units required for each toy
+3. ElectronicsUsage
+[8, 5, 3, 2] # Electronic components required for each toy
+4. MaxPlastic
+1200 # Maximum units of plastic available
+5. MaxElectronics
+800 # Maximum units of electronic components available
+
+Decision variable:
+1. Quantity
+Integer variable, \( x_{t} \) for all \( t \in T \), representing the number of units of toy \( t \) to produce.
+2. UseToy
+Binary variable, \( y_{t} \) for all \( t \in T \), indicating if toy \( t \) is manufactured.
+
+Objective:
+Maximize the total profit.
+max: \sum_{t \in T} Profit[t] * x_{t}
+
+Constraint:
+1. Plastic limit
+\sum_{t \in T} PlasticUsage[t] * x_{t} \leq MaxPlastic
+2. Electronics limit
+\sum_{t \in T} ElectronicsUsage[t] * x_{t} \leq MaxElectronics
+3. Conditional production: Robots and Dolls
+If robots are manufactured, dolls cannot be.
+\( y_{robots} + y_{dolls} \leq 1 \)
+4. Conditional production: Cars and Blocks
+If model cars are manufactured, building blocks must also be manufactured.
+\( y_{blocks} \geq y_{cars} \)
+5. Quantity relationship: Dolls and Cars
+The number of dolls manufactured cannot exceed the number of model cars.
+\( x_{dolls} \leq x_{cars} \)
+6. Linking quantity and use variables
+These constraints link the binary 'UseToy' variables to the integer 'Quantity' variables.
+\( x_{t} \geq y_{t} \) for all \( t \in T \)
+\( x_{t} \leq BigM * y_{t} \) for all \( t \in T \) (where BigM is a large number)
+7. Non-negativity
+\( x_{t} \geq 0, \forall t \in T \)
+
+Type:
+Integer, linear, linear
+ILP

@@ -1,0 +1,35 @@
+Set:
+1. VaccineDose
+The set of vaccine doses, I = {0, 1} # 0 for First-dose, 1 for Second-dose
+
+Parameter:
+1. AntibioticUsage
+[30, 65] # Units of antibiotics required per vaccine for each dose
+2. GelatineUsage
+[20, 60] # mg of gelatine required per vaccine for each dose
+3. AntibioticAvailable
+35000 # Total units of antibiotics available
+4. MinSecondDose
+40 # Minimum number of second-dose vaccines to be made
+
+Decision variable:
+1. NumberOfVaccines
+Integer variable, x_{i} for all i in I, representing the number of vaccines of each dose to be made.
+
+Objective:
+Minimize the total amount of gelatine used.
+min: \( \sum_{i \in I} GelatineUsage[i] \cdot x_{i} \)
+
+Constraint:
+1. Antibiotic Availability
+\( \sum_{i \in I} AntibioticUsage[i] \cdot x_{i} \leq AntibioticAvailable \)
+2. Production Order
+\( x_{0} > x_{1} \)
+3. Minimum Second Dose
+\( x_{1} \geq MinSecondDose \)
+4. Non-negativity
+\( x_{i} \geq 0 \), for all \( i \in I \)
+
+Type:
+Integer, linear, linear
+IP

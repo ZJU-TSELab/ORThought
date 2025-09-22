@@ -1,0 +1,44 @@
+Set:
+1. Workers
+The set of workers, \( W = \{I, II, III, IV, V\} \)
+2. Tasks
+The set of tasks, \( T = \{A, B, C, D\} \)
+
+Parameter:
+1. TimeRequired
+A 5x4 matrix representing the hours required for each worker to complete each task.
+   - I: [9, 4, 3, 7]
+   - II: [4, 6, 5, 6]
+   - III: [5, 4, 7, 5]
+   - IV: [7, 5, 2, 3]
+   - V: [10, 6, 7, 4]
+2. WorkersToSelect
+4 # The number of workers to be selected for the tasks.
+
+Decision variable:
+1. Assignment
+Binary variable, \( x_{w,t} \), equals 1 if worker \( w \) is assigned to task \( t \), and 0 otherwise.
+2. WorkerSelected
+Binary variable, \( y_w \), equals 1 if worker \( w \) is selected, and 0 otherwise.
+
+Objective:
+Minimize the total working hours.
+min: \(\sum_{w \in W} \sum_{t \in T} TimeRequired_{w,t} \cdot x_{w,t}\)
+
+Constraint:
+1. Task Assignment
+Each task must be assigned to exactly one worker.
+\(\sum_{w \in W} x_{w,t} = 1, \forall t \in T\)
+2. Worker Task Limit
+A worker can be assigned to at most one task.
+\(\sum_{t \in T} x_{w,t} \leq y_w, \forall w \in W\)
+3. Worker Selection
+Exactly 4 workers must be selected.
+\(\sum_{w \in W} y_w = WorkersToSelect\)
+4. Assignment Logic
+A task can only be assigned to a selected worker.
+\(x_{w,t} \leq y_w, \forall w \in W, t \in T\)
+
+Type:
+Integer, linear, linear
+ILP

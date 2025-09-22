@@ -1,0 +1,71 @@
+Sets:
+1. Nodes
+    The set of all locations, \( N = \{0, 1, 2, 3, 4\} \), where node 0 is the Food Bank (Depot) and nodes \( S = \{1, 2, 3, 4\} \) represent the supermarkets.
+2. Items
+    The set of all available donation items, \( I = \{\text{Milk, Bread, Vegetables, Meat, Fruit, Yogurt}\} \).
+
+Parameters:
+1. Item Priority \(p_i\)
+    The priority weight for each item \(i \in I\).
+2. Item Volume \(v_i\)
+    The volume (m³) for each item \(i \in I\).
+3. Item Weight \(w_i\)
+    The weight (kg) for each item \(i \in I\).
+4. Item Location \(L_i\)
+    A mapping indicating which supermarket node \(j \in S\) an item \(i \in I\) belongs to.
+5. Node Coordinates \((cx_j, cy_j)\)
+    The coordinates (km) for each node \(j \in N\).
+6. Travel Time \(t_{jk}\)
+    The pre-calculated travel time (in minutes) between node \(j\) and node \(k\).
+    \(t_{jk} = \frac{\sqrt{(cx_j - cx_k)^2 + (cy_j - cy_k)^2}}{\text{Speed}} \times 60\)
+7. Truck Volume Capacity \(V_{max}\)
+    The maximum volume capacity of the truck (2 m³).
+8. Truck Weight Capacity \(W_{max}\)
+    The maximum weight capacity of the truck (500 kg).
+9. Total Time Available \(T_{max}\)
+    The maximum operational time available (4 hours = 240 minutes).
+10. Loading Time \(T_{load}\)
+    The fixed time required for loading at each supermarket stop (20 minutes).
+
+Decision Variables
+1. Collect Item \(c_i\)
+    Binary variable, \(c_i \in \{0, 1\}\) for each item \(i \in I\). \(c_i = 1\) if item \(i\) is collected, 0 otherwise.
+2. Visit Supermarket \(y_j\)
+    Binary variable, \(y_j \in \{0, 1\}\) for each supermarket \(j \in S\). \(y_j = 1\) if supermarket \(j\) is visited, 0 otherwise.
+3. Travel Arc \(z_{jk}\)
+    Binary variable, \(z_{jk} \in \{0, 1\}\) for each pair of nodes \(j, k \in N\). \(z_{jk} = 1\) if the truck travels directly from node \(j\) to node \(k\), 0 otherwise.
+
+Objective:
+1. Maximize Total Priority
+    Maximize the sum of the priority weights of all collected items.
+    \(\text{max:} \sum_{i \in I} p_i \cdot c_i\)
+
+Constraints:
+1. Volume Capacity Constraint
+    The total volume of collected items must not exceed the truck's volume capacity.
+    \(\sum_{i \in I} v_i \cdot c_i \le V_{max}\)
+2. Weight Capacity Constraint
+    The total weight of collected items must not exceed the truck's weight capacity.
+    \(\sum_{i \in I} w_i \cdot c_i \le W_{max}\)
+3. Time Constraint
+    The total travel time plus total loading time must not exceed the available operational time.
+    \(\sum_{j \in N} \sum_{k \in N, j \ne k} t_{jk} \cdot z_{jk} + \sum_{j \in S} T_{load} \cdot y_j \le T_{max}\)
+4. Item Collection Logic
+    An item can only be collected if its corresponding supermarket is visited.
+    \(c_i \le y_{L_i} \quad \forall i \in I\)
+5. Routing Flow Conservation
+    The truck must leave each supermarket it visits exactly once.
+    \(\sum_{k \in N, k \ne j} z_{jk} = y_j \quad \forall j \in S\)
+    The truck must arrive at each supermarket it visits exactly once.
+    \(\sum_{j \in N, j \ne k} z_{jk} = y_k \quad \forall k \in S\)
+6. Depot Departure and Return
+    The truck must leave the depot once and return to the depot once.
+    \(\sum_{k \in S} z_{0k} = 1\)
+    \(\sum_{j \in S} z_{j0} = 1\)
+7. Subtour Elimination
+    Constraints to prevent disconnected loops (e.g., using the MTZ formulation, which requires additional variables \(u_j\) for tour position). A simplified representation is to state the requirement: Ensure a single continuous tour starting and ending at the depot.
+
+Type:
+# Pre-calculating travel time linearizes the nonlinear components, but the problem itself is inherently nonlinear.
+Integer, Linear, Non-linear
+NLP

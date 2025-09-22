@@ -1,0 +1,31 @@
+Set:
+1. BerryType
+The set of berry types, \( T = \{0, 1\} \) # 0 for Blueberries, 1 for Raspberries
+2. ResourceType
+The set of resource types, \( R = \{0, 1, 2\} \) # 0 for Land, 1 for Watering, 2 for Labor
+
+Parameter:
+1. ProfitPerAcre
+[56, 75] # Profit per acre for each berry type
+2. ResourceAvailability
+[300, 10000, 575] # Available amount for each resource type (acres, dollars, days)
+3. ResourceConsumption
+[[1, 1], [22, 25], [6, 3]] # Resource consumption per acre for each berry type
+
+Decision variable:
+1. AcresToPlant
+Continuous variable, \( x_{t} \) for all \( t \in T \), representing the acres of berry type \( t \) to plant.
+
+Objective:
+Maximize the total profit.
+max: \sum_{t \in T} ProfitPerAcre[t] * x_{t}
+
+Constraint:
+1. Resource availability constraint
+\sum_{t \in T} ResourceConsumption[r][t] * x_{t} \leq ResourceAvailability[r], for all \( r \in R \)
+2. Non-negativity
+x_{t} \geq 0, for all \( t \in T \)
+
+Type:
+Continuous, linear, linear
+LP

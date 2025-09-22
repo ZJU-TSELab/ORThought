@@ -1,0 +1,39 @@
+Set:
+1. CoffeeType
+The set of coffee types, \( I = \{0, 1\} \) # 0 for Mocha, 1 for Regular Coffee
+
+Parameter:
+1. CoffeePowderRequirement
+[3, 6] # Units of coffee powder required for each coffee type
+2. MilkRequirement
+[6, 2] # Units of milk required for each coffee type
+3. ProductionTime
+[5, 3] # Minutes to make each coffee type
+4. MaxCoffeePowder
+400 # Units of coffee powder available
+5. MaxMilk
+500 # Units of milk available
+6. MochaToRegularRatio
+3 # Minimum ratio of mochas to regular coffees
+
+Decision variable:
+1. CoffeeCount
+Integer variable, \( x_{i} \) for all \( i \in I \), representing the number of coffees of type \( i \) to be made.
+
+Objective:
+Minimize the total production time.
+min: \( \sum_{i \in I} ProductionTime[i] \cdot x_{i} \)
+
+Constraint:
+1. Coffee powder constraint
+\( \sum_{i \in I} CoffeePowderRequirement[i] \cdot x_{i} \leq MaxCoffeePowder \)
+2. Milk constraint
+\( \sum_{i \in I} MilkRequirement[i] \cdot x_{i} \leq MaxMilk \)
+3. Mocha to regular ratio constraint
+\( x_{0} \geq MochaToRegularRatio \cdot x_{1} \)
+4. Non-negativity
+\( x_{i} \geq 0 \), for all \( i \in I \)
+
+Type:
+Integer, linear, linear
+IP

@@ -1,0 +1,39 @@
+Set:
+1. DrinkType
+The set of drink types, \( I = \{0, 1\} \) # 0 for alpha, 1 for omega
+
+Parameter:
+1. Protein
+[30, 20] # Grams of protein per bottle for each drink type
+2. Sugar
+[20, 15] # Grams of sugar per bottle for each drink type
+3. Calories
+[350, 300] # Calories per bottle for each drink type
+4. MinProtein
+100 # Minimum grams of protein required
+5. MinCalories
+2000 # Minimum calories required
+6. MaxOmegaPercentage
+0.35 # Maximum percentage of omega brand drinks
+
+Decision variable:
+1. DrinkCount
+Integer variable, \( x_{i} \) for all \( i \in I \), representing the number of bottles of drink type \( i \) to be consumed.
+
+Objective:
+Minimize the total sugar intake.
+min: \( \sum_{i \in I} Sugar[i] \cdot x_{i} \)
+
+Constraint:
+1. Protein requirement
+\( \sum_{i \in I} Protein[i] \cdot x_{i} \geq MinProtein \)
+2. Calorie requirement
+\( \sum_{i \in I} Calories[i] \cdot x_{i} \geq MinCalories \)
+3. Omega percentage constraint
+\( x_{1} \leq MaxOmegaPercentage \cdot (x_{0} + x_{1}) \) which simplifies to \( (1 - MaxOmegaPercentage) \cdot x_{1} \leq MaxOmegaPercentage \cdot x_{0} \) or \( 0.65 \cdot x_{1} \leq 0.35 \cdot x_{0} \)
+4. Non-negativity
+\( x_{i} \geq 0 \), for all \( i \in I \)
+
+Type:
+Integer, linear, linear
+IP

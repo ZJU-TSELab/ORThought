@@ -1,0 +1,32 @@
+Set:
+1. Devices
+The set of available devices, \( D = \{A, B, C, D\} \).
+
+Parameter:
+1. PrepCost
+[1000, 920, 800, 700] # Preparation completion cost for each device.
+2. UnitProdCost
+[20, 24, 16, 28] # Unit production cost on each device.
+3. MaxCapacity
+[900, 1000, 1200, 1600] # Maximum processing capacity of each device.
+4. TotalDemand
+2000 # Total number of units to be produced.
+
+Decision variable:
+1. UseDevice
+Binary variable, \( y_d \) for \( d \in D \), is 1 if device d is used, and 0 otherwise.
+2. ProductionQty
+Integer variable, \( x_d \) for \( d \in D \), represents the number of units produced on device d.
+
+Objective:
+Minimize: \( \sum_{d \in D} (\text{PrepCost}_d \cdot y_d + \text{UnitProdCost}_d \cdot x_d) \)
+
+Constraint:
+1. DemandSatisfaction
+The total number of units produced across all devices must equal the total demand: \( \sum_{d \in D} x_d = 2000 \)
+2. CapacityConstraint
+For each device \( d \in D \), the number of units produced cannot exceed its capacity. This is only possible if the device is used (Big-M formulation): \( x_d \le \text{MaxCapacity}_d \cdot y_d \)
+
+Type:
+Integer, linear, linear
+ILP

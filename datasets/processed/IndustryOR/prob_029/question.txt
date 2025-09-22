@@ -1,0 +1,8 @@
+Suppose a certain animal needs at least $700 \mathrm{~g}$ of protein, $30 \mathrm{~g}$ of minerals, and $100 \mathrm{mg}$ of vitamins daily. There are 5 types of feed available, and the nutritional content and price per gram of each type of feed are shown in Table 1-5:
+Try to formulate a linear programming model that meets the animal's growth needs while minimizing the cost of selecting the feed.
+Table 1-6
+| Feed | Protein (g) | Minerals (g) | Vitamins (mg) | Price (¥/kg) | Feed | Protein (g) | Minerals (g) | Vitamins (mg) | Price (¥/kg) |
+|------|-------------|--------------|---------------|--------------|------|-------------|--------------|---------------|--------------|
+| 1    | 3           | 1            | 0.5           | 0.2          | 4    | 6           | 2            | 2             | 0.3          |
+| 2    | 2           | 0.5          | 1             | 0.7          | 5    | 18          | 0.5          | 0.8           | 0.8          |
+| 3    | 1           | 0.2          | 0.2           | 0.4          |      |             |              |               |              |

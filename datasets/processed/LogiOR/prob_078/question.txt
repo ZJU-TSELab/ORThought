@@ -1,0 +1,34 @@
+A shipping company operates a fleet of cargo ships to transport containers between three ports: PortA, PortB, and PortC. The company aims to allocate its ships across six possible shipping routes in a way that maximizes overall profit while satisfying all container demand and adhering to operational constraints.
+
+Each ship has a capacity of 8000 TEUs (Twenty-foot Equivalent Units) and consumes 200 tons of fuel per 1000 nautical miles traveled. Fuel costs 600 USD per ton. There are 12 ships available in total, but at least 2 must remain in reserve and cannot be assigned to any route. Each ship can only be assigned to one route per day.
+
+The six possible shipping routes, along with their respective distances, are as follows:
+- Route1: PortA → PortB (1200 nautical miles)
+- Route2: PortA → PortC (1800 nautical miles)
+- Route3: PortB → PortC (900 nautical miles)
+- Route4: PortB → PortA (1200 nautical miles)
+- Route5: PortC → PortA (1800 nautical miles)
+- Route6: PortC → PortB (900 nautical miles)
+
+For each route, the container demand in TEUs is:
+- Route1: 6500 TEUs
+- Route2: 7200 TEUs
+- Route3: 4800 TEUs
+- Route4: 5100 TEUs
+- Route5: 6200 TEUs
+- Route6: 3900 TEUs
+
+Revenue generated per TEU varies by route:
+- Route1: $120 per TEU
+- Route2: $150 per TEU
+- Route3: $90 per TEU
+- Route4: $110 per TEU
+- Route5: $140 per TEU
+- Route6: $80 per TEU
+
+Operational constraints include:
+- A ship assigned to a route must carry at least 70% of its capacity, i.e., at least 5600 TEUs.
+- The number of ships assigned to a route cannot exceed the ceiling of the ratio of demand to ship capacity (i.e., ceiling(demand / 8000)).
+- All container demand for each route must be fully satisfied.
+
+The objective is to determine the optimal allocation of ships to routes that maximizes net profit (revenue from transported containers minus fuel costs), while respecting all constraints.

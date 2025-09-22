@@ -1,0 +1,39 @@
+Set:
+1. EquipmentType
+The set of equipment types, I = {0, 1} # 0 for Basketballs, 1 for Footballs
+
+Parameter:
+1. MaterialUsage
+[5, 3] # Units of materials required per equipment for each type
+2. TimeUsage
+[1, 2] # Hours required per equipment for each type
+3. MaterialAvailable
+1500 # Total units of materials available
+4. TimeAvailable
+750 # Total hours available
+5. MinFootballs
+50 # Minimum number of footballs to produce
+
+Decision variable:
+1. NumberOfEquipment
+Integer variable, x_{i} for all i in I, representing the number of units of each equipment type to produce.
+
+Objective:
+Maximize the total number of sports equipment produced.
+max: \( \sum_{i \in I} x_{i} \)
+
+Constraint:
+1. Material Availability
+\( \sum_{i \in I} \text{MaterialUsage}[i] \cdot x_{i} \leq \text{MaterialAvailable} \)
+2. Time Availability
+\( \sum_{i \in I} \text{TimeUsage}[i] \cdot x_{i} \leq \text{TimeAvailable} \)
+3. Production Ratio
+\( x_{0} \geq 3 \cdot x_{1} \)
+4. Minimum Footballs
+\( x_{1} \geq \text{MinFootballs} \)
+5. Non-negativity
+\( x_{i} \geq 0 \), for all \( i \in I \)
+
+Type:
+Integer, linear, linear
+IP

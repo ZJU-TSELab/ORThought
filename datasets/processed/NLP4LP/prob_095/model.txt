@@ -1,0 +1,44 @@
+Set:
+1. FactoryType
+The set of factory types, \( I = \{0, 1\} \) # 0 for Factory 1, 1 for Factory 2
+
+Parameter:
+1. AllergyPillProduction
+[20, 10] # Allergy pills produced per hour by each factory type
+2. FeverPillProduction
+[15, 30] # Fever reducing pills produced per hour by each factory type
+3. CompoundUsage
+[20, 30] # Units of rare compound used per hour by each factory type
+4. MinAllergyPills
+700 # Minimum number of allergy pills to be produced
+5. MinFeverPills
+600 # Minimum number of fever reducing pills to be produced
+6. MaxCompound
+1000 # Maximum units of rare compound available
+
+Decision variable:
+1. FactoryHours
+Continuous variable, \( x_{i} \) for all \( i \in I \), representing the number of hours each factory is run.
+2. MaxHour
+Continuous variable, \( z \), representing the maximum of the factory hours.
+
+Objective:
+Minimize the maximum of the factory hours.
+min: \( z \)
+
+Constraint:
+1. Allergy pill production constraint
+\( \sum_{i \in I} AllergyPillProduction[i] \cdot x_{i} \geq MinAllergyPills \)
+2. Fever pill production constraint
+\( \sum_{i \in I} FeverPillProduction[i] \cdot x_{i} \geq MinFeverPills \)
+3. Rare compound constraint
+\( \sum_{i \in I} CompoundUsage[i] \cdot x_{i} \leq MaxCompound \)
+4. Max hour constraint
+\( z \geq x_{i} \), for all \( i \in I \)
+5. Non-negativity
+\( x_{i} \geq 0 \), for all \( i \in I \)
+\( z \geq 0 \)
+
+Type:
+Continuous, linear, linear
+LP

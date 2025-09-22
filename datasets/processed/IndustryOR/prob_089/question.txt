@@ -1,0 +1,3 @@
+A store wants to clear out 200 shirts and 100 pairs of pants from last season. They decide to introduce two promotional packages, A and B. Package A includes one shirt and two pairs of pants, priced at £30. Package B includes three shirts and one pair of pants, priced at £50. The store does not want to sell fewer than 20 A packages and 10 B packages. How many of each package do they need to sell to maximize the revenue from the promotion?
+
+Try to establish a model for this problem.

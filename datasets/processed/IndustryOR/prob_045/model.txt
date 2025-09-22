@@ -1,0 +1,49 @@
+Set:
+1. Students
+The set of all students, \( S = \{1, 2, 3, 4, 5, 6\} \). This is divided into undergraduates \( S_U = \{1, 2, 3, 4\} \) and graduates \( S_G = \{5, 6\} \).
+2. Days
+The set of weekdays, \( D = \{\text{Mon, Tue, Wed, Thu, Fri}\} \).
+3. Hours
+The set of operating hours for the lab each day, \( H = \{0, 1, ..., 13\} \), representing the 14 hours from 8:00 AM to 10:00 PM.
+
+Parameter:
+1. Wage
+{1: 10.0, 2: 10.0, 3: 9.9, 4: 9.8, 5: 10.8, 6: 11.3} # Hourly wage for each student \( w_s \).
+2. Availability
+A dictionary \( a_{sd} \) specifying the maximum hours student \( s \) can work on day \( d \).
+3. MinWeeklyHoursUndergrad
+8 # Minimum weekly hours for an undergraduate student.
+4. MinWeeklyHoursGrad
+7 # Minimum weekly hours for a graduate student.
+5. MaxShiftsPerWeek
+2 # Maximum number of shifts (days) a student can work per week.
+6. MaxStudentsPerDay
+3 # Maximum number of different students that can be scheduled on any given day.
+
+Decision variable:
+1. Assign
+Binary variable, \( x_{sdh} \) for \( s \in S, d \in D, h \in H \), is 1 if student \( s \) is assigned to work on day \( d \) at hour \( h \), and 0 otherwise.
+2. WorksOnDay
+Binary variable, \( y_{sd} \) for \( s \in S, d \in D \), is 1 if student \( s \) works at all on day \( d \), and 0 otherwise.
+
+Objective:
+Minimize: \( \sum_{s \in S} \sum_{d \in D} \sum_{h \in H} w_s \cdot x_{sdh} \)
+
+Constraint:
+1. DutyCoverage
+For each day \( d \in D \) and hour \( h \in H \), exactly one student must be on duty: \( \sum_{s \in S} x_{sdh} = 1 \)
+2. StudentAvailability
+For each student \( s \in S \) and day \( d \in D \), the total hours worked cannot exceed their availability: \( \sum_{h \in H} x_{sdh} \le a_{sd} \)
+3. MinWeeklyHours
+- For each undergraduate \( s \in S_U \): \( \sum_{d \in D} \sum_{h \in H} x_{sdh} \ge 8 \)
+- For each graduate \( s \in S_G \): \( \sum_{d \in D} \sum_{h \in H} x_{sdh} \ge 7 \)
+4. LinkAssignToWorksOnDay
+For each student \( s \in S \) and day \( d \in D \), if student \( s \) works any hour on day \( d \), the \( y_{sd} \) variable must be 1. This is enforced by \( \sum_{h \in H} x_{sdh} \le |H| \cdot y_{sd} \).
+5. MaxShiftsPerWeek
+For each student \( s \in S \), the number of days they work per week is at most 2: \( \sum_{d \in D} y_{sd} \le 2 \)
+6. MaxStudentsPerDay
+For each day \( d \in D \), no more than 3 students can be scheduled: \( \sum_{s \in S} y_{sd} \le 3 \)
+
+Type:
+Integer, linear, linear
+ILP

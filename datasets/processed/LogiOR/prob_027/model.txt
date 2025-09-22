@@ -1,0 +1,46 @@
+Set:
+1. DistributionCenter
+The set of distribution centers, \( D = \{1, 2, ..., DistributionCenterNum\} \)
+2. FulfillmentHub
+The set of fulfillment hubs, \( H = \{1, 2, ..., FulfillmentHubNum\} \)
+3. ProductType
+The set of product types, \( P = \{1, 2, ..., ProductTypeNum\} \) 
+
+Parameter:
+1. DistributionCenterNum
+3
+2. FulfillmentHubNum
+3
+3. ProductTypeNum
+2
+4. HubInventoryRequirement
+300
+5. StoreStandardProducts
+[150, 250, 300]
+6. StorePremiumProducts
+[30, 100, 70]
+7. ShippingDistance
+[
+    [0, 12, 18],
+    [12, 0, 15],
+    [18, 15, 0]
+]
+
+Decision variable:
+1. ShipAmount
+Integer variable, \( ShipAmount_{d,h,p} \forall d \in D, h \in H, p \in P \), where \( ShipAmount_{d,h,p} \) is the amount of product type \( p \) shipped from distribution center \( d \) to fulfillment hub \( h \).
+
+Objective:
+1. Minimize the total transportation distance required to move the products.
+min: \sum_{d \in D} \sum_{h \in H} \sum_{p \in P} (ShippingDistance[d][h] * ShipAmount[d][h][p])
+
+Constraint:
+1. Fulfillment hub inventory constraint.
+HubInventoryRequirement = \sum_{d \in D} \sum_{p \in P} ShipAmount[d][h][p] \forall h \in H
+2. Product type balance constraint.
+ShipAmount[d][h][1] \leq StoreStandardProducts[d] \forall d \in D, h \in H
+
+
+Type:
+Integer, Linear, Linear
+ILP

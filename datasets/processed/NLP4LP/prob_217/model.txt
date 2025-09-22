@@ -1,0 +1,37 @@
+Set:
+1. LiftType
+The set of ski lift types, \( I = \{0, 1\} \) # 0 for densely-seated, 1 for loosely-seated
+
+Parameter:
+1. Capacity
+[45, 20] # Guest capacity per minute for each lift type
+2. Electricity
+[30, 22] # Electricity units required for each lift type
+3. MinTotalCapacity
+1000 # Minimum total guest capacity per minute required
+4. MaxTotalElectricity
+940 # Maximum total electricity units available
+5. MinLooselySeated
+5 # Minimum number of loosely-seated lifts required
+
+Decision variable:
+1. NumLifts
+Integer variable, \( x_{i} \) for all \( i \in I \), representing the number of lifts of each type to install.
+
+Objective:
+Minimize the total number of ski lifts.
+min: \( \sum_{i \in I} x_{i} \)
+
+Constraint:
+1. Total capacity constraint
+\( \sum_{i \in I} Capacity[i] \cdot x_{i} \geq MinTotalCapacity \)
+2. Total electricity constraint
+\( \sum_{i \in I} Electricity[i] \cdot x_{i} \leq MaxTotalElectricity \)
+3. Loosely-seated minimum constraint
+\( x_{1} \geq MinLooselySeated \)
+4. Non-negativity
+\( x_{0} \geq 0 \)
+
+Type:
+Integer, linear, linear
+IP

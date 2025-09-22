@@ -1,0 +1,31 @@
+Set:
+1. TimePeriod
+The set of time periods, \( T = \{0, 1, 2, 3, 4, 5\} \) corresponding to 2-6, 6-10, 10-14, 14-18, 18-22, 22-2.
+
+Parameter:
+1. Demand
+[10, 15, 25, 20, 18, 12] # Number of salespeople required in each time period.
+
+Decision variable:
+1. StartShift
+Integer variable, \( x_{t} \) for all \( t \in T \), representing the number of salespeople starting their shift at the beginning of period \( t \).
+
+Objective:
+Minimize the total number of salespeople.
+min: \sum_{t \in T} x_{t}
+
+Constraint:
+1. Demand coverage for each period
+Each salesperson works for 8 hours, covering two consecutive 4-hour periods.
+\( x_{5} + x_{0} \geq Demand[0] \)
+\( x_{0} + x_{1} \geq Demand[1] \)
+\( x_{1} + x_{2} \geq Demand[2] \)
+\( x_{2} + x_{3} \geq Demand[3] \)
+\( x_{3} + x_{4} \geq Demand[4] \)
+\( x_{4} + x_{5} \geq Demand[5] \)
+2. Non-negativity
+\( x_{t} \geq 0, \forall t \in T \)
+
+Type:
+Integer, linear, linear
+ILP

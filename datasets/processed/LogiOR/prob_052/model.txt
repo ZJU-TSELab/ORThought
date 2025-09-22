@@ -1,0 +1,25 @@
+Set:
+1. Facilities
+The set of potential facility locations, \( F = \{F1, F2, F3, F4, F5\} \)
+2. Residentials
+The set of residential areas, \( R = \{R1, R2, R3, R4, R5, R6, R7, R8\} \)
+
+Parameter:
+1. Coverage
+Binary parameter \( a_{fr} \in \{0, 1\} \) for all \( f \in F, r \in R \), where \( a_{fr} = 1 \) if facility \( f \) can cover residential \( r \) within 10 minutes, and \( a_{fr} = 0 \) otherwise. This is derived from the travel time table (e.g., \( a_{F1,R1} = 1 \) since 8 ≤ 10, but \( a_{F1,R2} = 0 \) since 12 > 10).
+
+Decision variable:
+1. FacilitySelected
+Binary variable \( x_f \in \{0, 1\} \) for all \( f \in F \), where \( x_f = 1 \) if facility \( f \) is selected, and \( x_f = 0 \) otherwise
+
+Objective:
+The minimum number of facilities to select
+min: \sum_{f\in F}x_f
+
+Constraint:
+1. Each residential area must be covered by at least one selected facility
+\sum_{f\in F}a_{fr} \cdot x_f \geq 1, \forall r \in R
+
+Type:
+Binary, Linear, Linear
+ILP

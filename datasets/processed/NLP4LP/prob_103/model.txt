@@ -1,0 +1,37 @@
+Set:
+1. FoodType
+The set of food types, \( I = \{0, 1\} \) # 0 for apple, 1 for carrot
+
+Parameter:
+1. Fat
+[2, 4] # Units of fat per serving for each food type
+2. Folate
+[5, 3] # Units of folate per serving for each food type
+3. MaxFolate
+100 # Maximum units of folate allowed
+4. MinCarrotServings
+2 # Minimum number of carrot flavored baby food servings
+5. AppleToCarrotRatio
+3 # Ratio of apple flavored baby food to carrot flavored baby food
+
+Decision variable:
+1. FoodServings
+Continuous variable, \( x_{i} \) for all \( i \in I \), representing the number of servings of each food type.
+
+Objective:
+Maximize the total fat intake.
+max: \( \sum_{i \in I} Fat[i] \cdot x_{i} \)
+
+Constraint:
+1. Folate constraint
+\( \sum_{i \in I} Folate[i] \cdot x_{i} \leq MaxFolate \)
+2. Preference constraint
+\( x_{0} = AppleToCarrotRatio \cdot x_{1} \)
+3. Minimum carrot servings constraint
+\( x_{1} \geq MinCarrotServings \)
+4. Non-negativity
+\( x_{i} \geq 0 \), for all \( i \in I \)
+
+Type:
+Continuous, linear, linear
+LP

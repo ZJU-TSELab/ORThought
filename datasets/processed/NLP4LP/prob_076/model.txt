@@ -1,0 +1,35 @@
+Set:
+1. SlicerType
+The set of slicer types, \( I = \{0, 1\} \) # 0 for Manual, 1 for Automatic
+
+Parameter:
+1. SlicingCapacity
+[5, 8] # Slices cut per minute by each slicer type
+2. GreaseConsumption
+[3, 6] # Units of grease consumed per minute by each slicer type
+3. MinSlicingCapacity
+50 # Minimum total slices to be cut per minute
+4. MaxGreaseConsumption
+35 # Maximum total units of grease to be used per minute
+
+Decision variable:
+1. SlicerCount
+Integer variable, \( x_{i} \) for all \( i \in I \), representing the number of slicers of type \( i \) to be bought.
+
+Objective:
+Minimize the total number of slicers.
+min: \( \sum_{i \in I} x_{i} \)
+
+Constraint:
+1. Slicing capacity constraint
+\( \sum_{i \in I} SlicingCapacity[i] \cdot x_{i} \geq MinSlicingCapacity \)
+2. Grease consumption constraint
+\( \sum_{i \in I} GreaseConsumption[i] \cdot x_{i} \leq MaxGreaseConsumption \)
+3. Operational constraint
+\( x_{0} \leq x_{1} - 1 \)
+4. Non-negativity
+\( x_{i} \geq 0 \), for all \( i \in I \)
+
+Type:
+Integer, linear, linear
+IP

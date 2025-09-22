@@ -1,0 +1,41 @@
+Set:
+1. MedicationType
+The set of medication types, I = {0, 1} # 0 for Medication Patches, 1 for Anti-biotic Creams
+
+Parameter:
+1. PreparationTime
+[3, 5] # Minutes to prepare each medication type
+2. MaterialUsage
+[5, 6] # Units of materials for each medication type
+3. PeopleTreated
+[3, 2] # Number of people treated by each medication type
+4. TimeLimit
+400 # Total minutes available for preparation
+5. MaterialLimit
+530 # Total units of materials available
+6. BatchLimit
+100 # Maximum total batches
+
+Decision variable:
+1. NumberOfBatches
+Integer variable, x_{i} for all i in I, representing the number of batches of each medication type.
+
+Objective:
+Maximize the total number of people that can be treated.
+max: \( \sum_{i \in I} \text{PeopleTreated}[i] \cdot x_{i} \)
+
+Constraint:
+1. Time Limit
+\( \sum_{i \in I} \text{PreparationTime}[i] \cdot x_{i} \leq \text{TimeLimit} \)
+2. Material Limit
+\( \sum_{i \in I} \text{MaterialUsage}[i] \cdot x_{i} \leq \text{MaterialLimit} \)
+3. Batch Limit
+\( \sum_{i \in I} x_{i} \leq \text{BatchLimit} \)
+4. Production Ratio
+\( x_{1} \geq 2 \cdot x_{0} \)
+5. Non-negativity
+\( x_{i} \geq 0 \), for all \( i \in I \)
+
+Type:
+Integer, linear, linear
+IP

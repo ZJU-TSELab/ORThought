@@ -1,0 +1,37 @@
+Set:
+1. Orders
+The set of Orders, \( O = \{1, 2, ..., 8\} \)
+2. Trucks
+The set of Trucks, \( T = \{1, 2, 3\} \)
+
+Parameter:
+1. ProcessingTime
+[4, 5, 3, 6, 2, 5, 4, 3] (hours for each order)
+2. ReentrantFactor
+[1, 2, 1, 1, 2, 1, 1, 1] (number of times each order must be processed)
+3. TruckCapacity
+[15, 18, 12] (maximum total processing hours per truck)
+4. OperatingCost
+[30, 25, 35] (cost per hour for each truck)
+
+Decision variable:
+1. Assignment
+Binary variable \( x_{ot} \in \{0, 1\} \) for all \( o \in O, t \in T \), where \( x_{ot} = 1 \) if order \( o \) is assigned to truck \( t \), and \( x_{ot} = 0 \) otherwise
+2. TruckUsed
+Binary variable \( y_t \in \{0, 1\} \) for all \( t \in T \), where \( y_t = 1 \) if truck \( t \) is used, and \( y_t = 0 \) otherwise
+
+Objective:
+Minimize total operating cost
+min: \sum_{t\in T} \left( \sum_{o\in O} ProcessingTime_o \cdot ReentrantFactor_o \cdot x_{ot} \right) \cdot OperatingCost_t
+
+Constraint:
+1. Each order must be assigned to exactly one truck
+\sum_{t\in T}x_{ot} = 1, \forall o \in O
+2. Total processing time on each truck must not exceed its capacity
+\sum_{o\in O} ProcessingTime_o \cdot ReentrantFactor_o \cdot x_{ot} \leq TruckCapacity_t, \forall t \in T
+3. Truck usage indicator
+\sum_{o\in O}x_{ot} \leq M \cdot y_t, \forall t \in T (where M is a large constant)
+
+Type:
+Integer, Linear, Linear
+ILP

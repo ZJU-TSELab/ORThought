@@ -1,0 +1,18 @@
+A fresh food e-commerce platform has one distribution center in the city and needs to use a fleet of refrigerated trucks to deliver fresh products to 12 supermarkets. Each supermarket has a specified time window for receiving goods and a specified unloading time. The distribution center has 5 identical refrigerated trucks, each with a maximum load of 3 tons and a speed of 40 km/h. The coordinates of the distribution center are (0, 0), and the information of the supermarkets is as follows:
+
+| SUPERMARKET ID | (x,y) | DEMAND(kg) | TIME WINDOW | UNLOADING TIME(min) |
+|---------|-----------|------------|--------------|--------------|
+| S1      | (-5, 4)   | 800        | [7:00-9:00]  | 20           |
+| S2      | (3, 6)    | 600        | [8:00-10:00] | 15           |
+| S3      | (-2, -3)  | 900        | [7:30-9:30]  | 25           |
+| S4      | (4, -2)   | 700        | [8:30-10:30] | 20           |
+| S5      | (-4, -5)  | 500        | [9:00-11:00] | 15           |
+| S6      | (6, 3)    | 850        | [7:00-9:00]  | 25           |
+| S7      | (-3, 5)   | 750        | [8:00-10:00] | 20           |
+| S8      | (5, -4)   | 600        | [9:30-11:30] | 15           |
+| S9      | (-6, -2)  | 450        | [8:00-10:00] | 15           |
+| S10     | (2, 7)    | 800        | [7:30-9:30]  | 20           |
+| S11     | (-1, -6)  | 550        | [9:00-11:00] | 15           |
+| S12     | (4, 5)    | 700        | [8:30-10:30] | 20           |
+
+The 5 refrigerated trucks leave the distribution center after 6:30 AM to deliver fresh products to the designated supermarkets and must return to the distribution center before 12:00 PM. What is the shortest total travel distance for the refrigerated trucks? (Distances are calculated as Euclidean distances in kilometers.)

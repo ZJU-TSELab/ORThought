@@ -1,0 +1,35 @@
+Set:
+1. KeyboardType
+The set of keyboard types, \( I = \{0, 1\} \) # 0 for full-weighted, 1 for semi-weighted
+
+Parameter:
+1. Price
+[2800, 2400] # Selling price for each keyboard type
+2. ChipsRequired
+[20, 15] # Number of chips required for each keyboard type
+3. ChipsAvailable
+3500 # Total number of oscillator chips available
+4. ProductionTime
+1.2 # Production time in hours for each keyboard
+5. HoursAvailable
+6 # Total working hours available per day
+
+Decision variable:
+1. NumKeyboards
+Integer variable, \( x_{i} \) for all \( i \in I \), representing the number of each keyboard type to manufacture.
+
+Objective:
+Maximize the total revenue.
+max: \( \sum_{i \in I} Price[i] \cdot x_{i} \)
+
+Constraint:
+1. Chip constraint
+\( \sum_{i \in I} ChipsRequired[i] \cdot x_{i} \leq ChipsAvailable \)
+2. Production time constraint
+\( ProductionTime \cdot \sum_{i \in I} x_{i} \leq HoursAvailable \)
+3. Non-negativity and Integer
+\( x_{i} \geq 0 \) and integer, for all \( i \in I \)
+
+Type:
+Integer, linear, linear
+IP

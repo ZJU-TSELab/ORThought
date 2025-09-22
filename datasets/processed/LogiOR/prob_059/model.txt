@@ -1,0 +1,57 @@
+# Set
+# C: The set of containers to be packed.
+Set:
+1. Containers
+The set of containers, \( C = \{1, 2, 3, 4, 5, 6\} \)
+
+# Parameter
+# TruckWidth: The fixed width of the truck bed in meters.
+# Diameter_c: The diameter of container c.
+# Radius_c: The radius of container c, calculated as Diameter_c / 2.
+Parameter:
+1. TruckWidth
+2.5 (meters)
+2. Diameters
+The diameter of each container \( c \in C \) (meters): [1.2, 1.1, 1.0, 0.9, 0.8, 0.7]
+3. Radii
+The radius of each container \( c \in C \) (meters): [0.6, 0.55, 0.5, 0.45, 0.4, 0.35]
+
+# Decision variable
+# x_c, y_c: The continuous variables representing the center coordinates of container c.
+# L: A continuous variable representing the required length of the truck bed.
+Decision variable:
+1. x_c
+Continuous variable \( x_c \geq 0 \) for all \( c \in C \), representing the x-coordinate (length dimension) of container \( c \)'s center.
+2. y_c
+Continuous variable \( y_c \geq 0 \) for all \( c \in C \), representing the y-coordinate (width dimension) of container \( c \)'s center.
+3. L
+Continuous variable \( L \geq 0 \), representing the required length of the truck bed.
+
+# Objective
+# Minimize the required length of the truck bed.
+Objective:
+Minimize the truck length
+min: \( L \)
+
+# Constraint
+# 1. Containers must fit within the truck width (respecting boundaries).
+# 2. Containers must fit within the required truck length (respecting boundaries).
+# 3. No two containers i and j can overlap. This is enforced by ensuring the distance between
+#    their centers is at least the sum of their radii.
+Constraint:
+1. Width Boundary
+\( y_c + \text{Radius}_c \leq \text{TruckWidth}, \quad \forall c \in C \)
+\( y_c \geq \text{Radius}_c, \quad \forall c \in C \)
+2. Length Boundary
+\( x_c + \text{Radius}_c \leq L, \quad \forall c \in C \)
+\( x_c \geq \text{Radius}_c, \quad \forall c \in C \)
+3. Non-Overlapping
+\( (x_i - x_j)^2 + (y_i - y_j)^2 \geq (\text{Radius}_i + \text{Radius}_j)^2, \quad \forall i, j \in C, i < j \)
+
+# Type
+# The problem has continuous variables. The non-overlapping constraint is a non-convex
+# quadratic constraint, making this a Non-Convex Quadratically Constrained Program (QCQP),
+# a specific type of Nonlinear Program (NLP).
+Type:
+Continuous, Quadratic, Non-linear
+NLP

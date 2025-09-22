@@ -1,0 +1,33 @@
+Set:
+1. TransportType
+The set of transport types, \( I = \{0, 1\} \) # 0 for Car, 1 for Bus
+
+Parameter:
+1. EmployeesPerVehicle
+[4, 20] # Number of employees each vehicle type can transport
+2. PollutionPerVehicle
+[10, 30] # Units of pollution produced by each vehicle type
+3. MinEmployees
+300 # Minimum number of employees to be transported
+4. MaxBuses
+4 # Maximum number of buses that can be used
+
+Decision variable:
+1. NumberOfVehicles
+Integer variable, \( x_{i} \) for all \( i \in I \), representing the number of vehicles of each type to use.
+
+Objective:
+Minimize the total pollution produced.
+min: \( \sum_{i \in I} PollutionPerVehicle[i] \cdot x_{i} \)
+
+Constraint:
+1. Minimum employees constraint
+\( \sum_{i \in I} EmployeesPerVehicle[i] \cdot x_{i} \geq MinEmployees \)
+2. Maximum buses constraint
+\( x_{1} \leq MaxBuses \)
+3. Non-negativity
+\( x_{i} \geq 0 \), for all \( i \in I \)
+
+Type:
+Integer, linear, linear
+IP

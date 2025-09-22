@@ -1,0 +1,35 @@
+Set:
+1. MachineType
+The set of stamping machine types, \( I = \{0, 1\} \) # 0 for Dual, 1 for Single
+
+Parameter:
+1. StampingCapacity
+[50, 30] # Letters stamped per minute by each machine type
+2. GlueConsumption
+[20, 15] # Units of glue consumed per minute by each machine type
+3. MinStampingCapacity
+300 # Minimum total letters to be stamped per minute
+4. MaxGlueConsumption
+135 # Maximum total units of glue to be used per minute
+
+Decision variable:
+1. MachineCount
+Integer variable, \( x_{i} \) for all \( i \in I \), representing the number of machines of type \( i \) to be purchased.
+
+Objective:
+Minimize the total number of stamping machines.
+min: \( \sum_{i \in I} x_{i} \)
+
+Constraint:
+1. Stamping capacity constraint
+\( \sum_{i \in I} StampingCapacity[i] \cdot x_{i} \geq MinStampingCapacity \)
+2. Glue consumption constraint
+\( \sum_{i \in I} GlueConsumption[i] \cdot x_{i} \leq MaxGlueConsumption \)
+3. Preference constraint
+\( x_{1} \geq x_{0} + 1 \)
+4. Non-negativity
+\( x_{i} \geq 0 \), for all \( i \in I \)
+
+Type:
+Integer, linear, linear
+IP

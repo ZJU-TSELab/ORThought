@@ -1,0 +1,28 @@
+Set:
+1. Properties
+The set of commercial real estate properties, \( P = \{1, 2, 3, 4\} \).
+
+Parameter:
+1. AnnualIncome
+[12500, 35000, 23000, 100000] # Annual income from each property.
+2. PurchaseCost
+[1.5, 2.1, 2.3, 4.2] # Purchase cost in millions for each property.
+3. Budget
+7 # Total investment budget in millions.
+
+Decision variable:
+1. PurchaseProperty
+Binary variable, \( y_p \) for \( p \in P \), is 1 if property p is purchased, and 0 otherwise.
+
+Objective:
+Maximize: \( 12500y_1 + 35000y_2 + 23000y_3 + 100000y_4 \)
+
+Constraint:
+1. BudgetConstraint
+The total cost of purchased properties cannot exceed the budget: \( 1.5y_1 + 2.1y_2 + 2.3y_3 + 4.2y_4 \le 7 \)
+2. MutualExclusion
+If Property 4 is purchased, Property 3 cannot be purchased: \( y_3 + y_4 \le 1 \)
+
+Type:
+Integer, linear, linear
+ILP

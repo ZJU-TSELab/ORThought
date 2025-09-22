@@ -1,0 +1,36 @@
+Set:
+1. CustomerLocation 
+The set of customer locations, \( C = \{C1, C2, C3, C4, C5, C6\} \) 
+2. Location
+The set of locations, \( L = \{Depot\} \cup C \)
+
+Parameter:
+1. FlightTime
+[[0, 8, 12, 15, 7, 10, 14], 
+ [8, 0, 5, 11, 6, 9, 13], 
+ [12, 5, 0, 7, 10, 4, 8], 
+ [15, 11, 7, 0, 9, 6, 5], 
+ [7, 6, 10, 9, 0, 3, 11], 
+ [10, 9, 4, 6, 3, 0, 7], 
+ [14, 13, 8, 5, 11, 7, 0]] # flight time in minutes between locations
+
+Decision variable:
+1. Route
+Binary variable, \( Route[i][j] \) for \( i, j \in L \), where \( Route[i][j] = 1 \) if the drone travels directly from location \( i \) to location \( j \), and 0 otherwise.
+
+Objective:
+1. Minimize the total flight time.
+min: \sum_{i \in L, j \in L} (FlightTime[i][j] * Route[i][j])
+
+Constraint:
+1. Each customer location must be visited exactly once. 
+\sum_{i \in L} Route[i][j] = 1 \forall j \in C 
+2. The drone must start from and return to the depot after visiting all customer locations.
+\sum_{j \in C} Route[Depot][j] = 1
+\sum_{i \in C} Route[i][Depot] = 1
+3. Subtour elimination constraints (to prevent subtours).
+\sum_{i \in C} Route[i][j] - \sum_{k \in C} Route[j][k] = 0 \forall j \in C, j \neq Depot
+
+Type:
+Binary, Linear, Linear
+ILP

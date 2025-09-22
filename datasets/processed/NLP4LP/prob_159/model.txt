@@ -1,0 +1,43 @@
+Set:
+1. SuitcaseType
+The set of suitcase types, \( I = \{0, 1\} \) # 0 for Small Suitcase, 1 for Large Suitcase
+
+Parameter:
+1. SnacksPerSuitcase
+[50, 80] # Number of snacks each suitcase type can hold
+2. MaxSmallSuitcases
+70 # Maximum number of small suitcases available
+3. MaxLargeSuitcases
+50 # Maximum number of large suitcases available
+4. MaxTotalSuitcases
+70 # Maximum total number of suitcases that can be sent
+5. MinLargeSuitcases
+15 # Minimum number of large suitcases to be sent
+6. MinSmallToLargeRatio
+2 # Minimum ratio of small suitcases to large suitcases
+
+Decision variable:
+1. NumberOfSuitcases
+Integer variable, \( x_{i} \) for all \( i \in I \), representing the number of suitcases of each type to send.
+
+Objective:
+Maximize the total number of snacks that can be delivered.
+max: \( \sum_{i \in I} SnacksPerSuitcase[i] \cdot x_{i} \)
+
+Constraint:
+1. Maximum small suitcases constraint
+\( x_{0} \leq MaxSmallSuitcases \)
+2. Maximum large suitcases constraint
+\( x_{1} \leq MaxLargeSuitcases \)
+3. Total suitcases constraint
+\( \sum_{i \in I} x_{i} \leq MaxTotalSuitcases \)
+4. Minimum large suitcases constraint
+\( x_{1} \geq MinLargeSuitcases \)
+5. Small to large ratio constraint
+\( x_{0} \geq MinSmallToLargeRatio \cdot x_{1} \)
+6. Non-negativity
+\( x_{i} \geq 0 \), for all \( i \in I \)
+
+Type:
+Integer, linear, linear
+IP

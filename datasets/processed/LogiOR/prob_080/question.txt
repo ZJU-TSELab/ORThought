@@ -1,0 +1,33 @@
+PharmaLogistics Inc. is planning the distribution network for its new temperature-sensitive drug, 'VitaBoost', for the upcoming 6 months (Month 1 to Month 6). The company has two manufacturing plants (P1 located in City A, P2 located in City B) and is considering opening and operating up to three potential distribution centers (DC1 in Region X, DC2 in Region Y, DC3 in Region Z) to serve four key demand regions (R1, R2, R3, R4). The primary objective is to minimize the total operational costs over the 6-month planning horizon. These costs include: the fixed monthly costs of operating any active DCs, transportation costs for shipping VitaBoost from plants to DCs and from DCs to demand regions, inventory holding costs for products stored at DCs, costs associated with product expiry and disposal, and shortage costs incurred for any unmet demand in the regions.
+
+VitaBoost has a strict shelf life of 2 months. This means that any product manufactured in a given month (say, Month `m`) must be used to satisfy demand by the end of the following month (Month `m+1`). Product not used by this deadline expires and must be disposed of.
+
+At the beginning of Month 1, DC1 has an initial stock of VitaBoost, provided it is chosen to be operational in Month 1: 10 units that were produced in the immediately preceding month (referred to as 'Month 0' batch, thus being 1-month old at the start of Month 1) and 5 units that were produced two months prior (referred to as 'Month -1' batch, thus being 2-months old at the start of Month 1). This 'Month -1' batch must be used or discarded during Month 1. No other initial inventory exists at other potential DCs or plants.
+
+The monthly production capacities for the manufacturing plants are as follows (in units, for Months 1 through 6 respectively):
+-   Plant P1: [250, 250, 260, 260, 270, 270]
+-   Plant P2: [200, 200, 210, 210, 220, 220]
+
+The potential distribution centers have associated costs and capacities:
+-   Fixed monthly operating costs if active: DC1: $10,000; DC2: $12,000; DC3: $9,000.
+-   Storage capacities (max units): DC1: 300; DC2: 350; DC3: 280.
+
+Transportation costs per unit of VitaBoost are:
+-   From Plant P1 to DCs: DC1: $5, DC2: $7, DC3: $6.
+-   From Plant P2 to DCs: DC1: $8, DC2: $4, DC3: $7.
+-   From DC1 to Regions: R1: $3, R2: $4, R3: $5, R4: $6.
+-   From DC2 to Regions: R1: $5, R2: $3, R3: $4, R4: $5.
+-   From DC3 to Regions: R1: $4, R2: $5, R3: $3, R4: $4.
+
+Other relevant costs are:
+-   Monthly inventory holding cost per unit at DCs: DC1: $2.0; DC2: $2.5; DC3: $1.8.
+-   Disposal cost for expired product: $1 per unit at any DC.
+-   Shortage cost for unmet demand: $50 per unit, uniform across all regions and months.
+
+The forecasted monthly demand for VitaBoost (in units) for each region over the 6-month horizon is:
+-   Region R1: [100, 110, 120, 130, 140, 150]
+-   Region R2: [80, 85, 90, 95, 100, 105]
+-   Region R3: [120, 125, 130, 135, 140, 145]
+-   Region R4: [60, 65, 70, 75, 80, 85]
+
+PharmaLogistics Inc. needs to determine an optimal plan that specifies: which DCs to operate in each month, the quantity of VitaBoost to produce at each plant monthly, and the detailed shipping and inventory quantities across the network. This plan must ensure that demand is met as effectively as possible while respecting the product's shelf life and minimizing total costs.

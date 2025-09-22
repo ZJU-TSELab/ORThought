@@ -1,0 +1,21 @@
+A community food bank plans to dispatch a refrigerated truck on a Friday afternoon to visit 4 partner supermarkets and collect same-day leftover fresh food donations. The truck has a maximum refrigerated capacity of 2 cubic meters and a payload limit of 500 kilograms. The truck will depart from the food bank at 13:00 and must return by 17:00, for a total operating time of 4 hours. The food bank's geographic coordinates are (0, 0), and the units for all location coordinates are kilometers (km). The truck's travel speed is a constant 40 km/h, and the distance between two points is calculated using straight-line Euclidean distance. Additionally, each stop at a supermarket for loading operations requires a fixed 20 minutes. The objective of the task is to plan an optimal route, deciding which supermarkets to visit and which items to collect, in order to maximize the total sum of priority weights of the collected donations. The detailed locations of each supermarket and the information on available donations are shown in the table below:
+
+| Stop | Location Coordinates (km) | Donation Item | Volume (m³) | Weight (kg) | Priority Weight |
+|:---:|:---:|:---|:---:|:---:|:---:|
+| Supermarket S1 | (5, 10) | Milk | 0.8 | 150 | 80 |
+| Supermarket S1 | (5, 10) | Cheese | 0.3 | 50 | 65 |
+| Supermarket S2 |(15, 5) | Bread | 1.0 | 100 | 50 |
+| Supermarket S2 |(15, 5) | Vegetables | 0.5 | 80 | 40 |
+| Supermarket S3 |(20, 15) | Frozen Meat | 0.6 | 200 | 100 |
+| Supermarket S3 |(20, 15) | Pasta | 0.4 | 60 | 45 |
+| Supermarket S4 |(25, 20) | Fruit | 0.7 | 120 | 60 |
+| Supermarket S4 |(25, 20) |Yogurt | 0.4 | 100 | 70 |
+| Supermarket S4 |(25, 20) | Berries | 0.2 | 30 | 55 |
+| Supermarket S5 |(30, 25) | Eggs | 0.3 | 40 | 75 |
+| Supermarket S5 |(30, 25) | Butter | 0.2 | 50 | 50 |
+| Supermarket S6 |(35, 30) | Sausages | 0.5 | 110 | 90 |
+| Supermarket S6 |(35, 30) | Fish Fillets | 0.4 | 90 | 95 |
+| Supermarket S7 |(40, 35) | Juice | 0.6 | 120 | 30 |
+| Supermarket S7 |(40, 35) | Canned Soup | 0.8 | 150 | 25 |
+| Supermarket S8 |(45, 40) | Salad Mix | 0.9 | 70 | 35 |
+

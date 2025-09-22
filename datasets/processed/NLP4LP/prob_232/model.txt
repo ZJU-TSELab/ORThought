@@ -1,0 +1,35 @@
+Set:
+1. MealType
+The set of meal types, \( I = \{0, 1\} \) # 0 for Original, 1 for Experimental
+
+Parameter:
+1. FoodWastePerMeal
+[20, 25] # Units of food waste generated per meal for each type
+2. WrappingWastePerMeal
+[45, 35] # Units of wrapping waste generated per meal for each type
+3. CookTimePerMeal
+[10, 15] # Minutes to cook per meal for each type
+4. MaxFoodWaste
+800 # Maximum allowable units of food waste
+5. MaxWrappingWaste
+900 # Maximum allowable units of wrapping waste
+
+Decision variable:
+1. NumberOfMeals
+Integer variable, \( x_{i} \) for all \( i \in I \), representing the number of meals of each type to be pushed for.
+
+Objective:
+Minimize the total cooking time.
+min: \( \sum_{i \in I} CookTimePerMeal[i] \cdot x_{i} \)
+
+Constraint:
+1. Food waste limit
+\( \sum_{i \in I} FoodWastePerMeal[i] \cdot x_{i} \leq MaxFoodWaste \)
+2. Wrapping waste limit
+\( \sum_{i \in I} WrappingWastePerMeal[i] \cdot x_{i} \leq MaxWrappingWaste \)
+3. Non-negativity
+\( x_{i} \geq 0 \), for all \( i \in I \)
+
+Type:
+Integer, linear, linear
+IP

@@ -1,0 +1,37 @@
+Set:
+1. BoatType
+The set of boat types, \( I = \{0, 1\} \) # 0 for Regular Boat, 1 for Speed Boat
+
+Parameter:
+1. MailPerTrip
+[20, 30] # Pieces of mail each boat type can carry
+2. GasPerTrip
+[10, 20] # Liters of gas used per trip for each boat type
+3. MinMail
+1000 # Minimum pieces of mail to be delivered
+4. MaxRegularTrips
+20 # Maximum number of regular boat trips
+5. MinSpeedBoatTripProportion
+0.50 # Minimum proportion of total trips that must be by speed boats
+
+Decision variable:
+1. NumberOfTrips
+Integer variable, \( x_{i} \) for all \( i \in I \), representing the number of trips for each boat type.
+
+Objective:
+Minimize the total amount of gas consumed.
+min: \( \sum_{i \in I} GasPerTrip[i] \cdot x_{i} \)
+
+Constraint:
+1. Mail delivery requirement
+\( \sum_{i \in I} MailPerTrip[i] \cdot x_{i} \geq MinMail \)
+2. Maximum regular boat trips
+\( x_{0} \leq MaxRegularTrips \)
+3. Speed boat trip proportion
+\( x_{1} \geq MinSpeedBoatTripProportion \cdot \sum_{i \in I} x_{i} \)
+4. Non-negativity
+\( x_{i} \geq 0 \), for all \( i \in I \)
+
+Type:
+Integer, linear, linear
+IP

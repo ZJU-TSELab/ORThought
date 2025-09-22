@@ -1,0 +1,48 @@
+Set:
+1. Quarter
+The set of quarters, \( Q = \{1, 2, ..., QuarterNum\} \)
+
+Parameter:
+1. QuarterNum
+6
+2. VaultCapacity
+500
+3. InitialInventory
+150
+4. SellingPrice
+[30000, 35000, 40000, 36000, 38000, 42000]
+5. PurchasePrice
+[32000, 36000, 38000, 33000, 39000, 40000]
+
+Decision variable:
+1. SellingAmount
+Continuous variable, \( SellingAmount_q \forall q \in Q \), where \( SellingAmount_q \) is the amount of platinum sold in quarter \( q \).
+2. PurchaseAmount
+Continuous variable, \( PurchaseAmount_q \forall q \in Q \), where \( PurchaseAmount_q \) is the amount of platinum purchased in quarter \( q \).
+3. Inventory
+Continuous variable, \( Inventory_q \forall q \in Q \), where \( Inventory_q \) is the amount of platinum in the vault at the end of quarter \( q \).
+
+Objective:
+1. Maximize the total profit from selling platinum. 
+max: \sum_{q \in Q} (SellingPrice[q] * SellingAmount[q] - PurchasePrice[q] * PurchaseAmount[q])
+
+Constraint:
+1. Initial inventory constraint.
+Inventory[1] = InitialInventory + PurchaseAmount[1] - SellingAmount[1]
+2. Inventory balance constraint.
+Inventory[q] = Inventory[q-1] + PurchaseAmount[q] - SellingAmount[q] \forall q \in Q, q > 1
+3. Inventory capacity constraint.
+Inventory[q] \leq VaultCapacity \forall q \in Q
+4. Selling amount constraint.
+SellingAmount[q] \leq Inventory[q-1] \forall q \in Q, q > 1
+5. Initial selling amount constraint.
+SellingAmount[1] \leq InitialInventory
+6. Non-negativity constraint.
+PurchaseAmount[q] \geq 0 \forall q \in Q
+SellingAmount[q] \geq 0 \forall q \in Q
+7. Inventory non-negativity constraint.
+Inventory[q] \geq 0 \forall q \in Q
+
+Type:
+Continuous, Linear, Linear
+LP

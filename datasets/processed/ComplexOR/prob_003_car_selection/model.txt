@@ -1,0 +1,29 @@
+Set:
+1. Participants
+The set of participants, \( P = \{"P1", "P2", "P3"\} \)
+2. Cars
+The set of cars, \( C = \{"C1", "C2", "C3"\} \)
+
+Parameter:
+1. Possible Assignments
+\( possible\_assignments = [[1, 0, 1], [0, 1, 0], [1, 1, 1]] \)
+
+Decision variable:
+1. AssignmentVariable
+Binary variable, \( x_{p,c} \in \{0, 1\} \) for all \( p \in P, c \in C \), where \( x_{p,c} = 1 \) if participant \( p \) is assigned to car \( c \), and 0 otherwise
+
+Objective:
+Maximize total assignments
+max: \( \sum_{p \in P} \sum_{c \in C} x_{p,c} \)
+
+Constraint:
+1. Assignment Possibility Constraint
+\( x_{p,c} \leq possible\_assignments_{p,c}, \quad \forall p \in P, c \in C \)
+2. One Car Per Participant Constraint
+\( \sum_{c \in C} x_{p,c} \leq 1, \quad \forall p \in P \)
+3. One Participant Per Car Constraint
+\( \sum_{p \in P} x_{p,c} \leq 1, \quad \forall c \in C \)
+
+Type:
+Binary, Linear, Linear
+ILP

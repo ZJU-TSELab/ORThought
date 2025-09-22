@@ -1,0 +1,47 @@
+# Model description for prob_096
+# TODO: Add model description
+
+Set:
+1. RawMaterials
+The set of raw materials, \( R = \{A, B, C, D\} \).
+2. Products
+The set of products, \( P = \{A, B\} \).
+
+Parameter:
+1. SulfurContent
+[0.03, 0.01, 0.02, 0.01] # Sulfur content for each raw material.
+2. PurchasePrice
+[6, 16, 10, 15] # Purchase price in thousand yuan/ton for each raw material.
+3. SellingPrice
+[9.15, 9.15] # Selling price in thousand yuan/ton for each product.
+4. MaxSulfur
+[0.025, 0.015] # Maximum allowed sulfur content for each product.
+5. MaxSupplyD
+50 # Maximum supply in tons for raw material D.
+6. MaxDemand
+[100, 200] # Maximum market demand in tons for each product.
+
+Decision variable:
+1. BlendQty
+Continuous variable, \( x_{ij} \), the tons of raw material \( i \in R \) used to produce product \( j \in P \).
+
+Objective:
+Maximize the total profit. Profit is the total revenue from selling products minus the total cost of purchasing raw materials.
+max: \sum_{j \in P} \text{SellingPrice}[j] * (\sum_{i \in R} x_{ij}) - \sum_{i \in R} \sum_{j \in P} \text{PurchasePrice}[i] * x_{ij}
+
+Constraint:
+1. Sulfur Content
+The total sulfur from the raw materials in a product cannot exceed the maximum allowed percentage of the final product's weight.
+\sum_{i \in R} \text{SulfurContent}[i] * x_{ij} \leq \text{MaxSulfur}[j] * (\sum_{i \in R} x_{ij}), \forall j \in P
+2. Supply Limit
+The total amount of raw material D used cannot exceed its supply limit.
+\sum_{j \in P} x_{D,j} \leq \text{MaxSupplyD}
+3. Demand Limit
+The total amount of each product produced cannot exceed its market demand.
+\sum_{i \in R} x_{ij} \leq \text{MaxDemand}[j], \forall j \in P
+4. Non-negativity
+x_{ij} \geq 0, \forall i \in R, j \in P
+
+Type:
+Continuous, linear, linear
+LP

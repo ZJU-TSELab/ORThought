@@ -1,0 +1,37 @@
+Set:
+1. RawMaterials
+The set of raw materials, \( R = \{"cotton", "jute", "linen"\} \)
+2. Products
+The set of products, \( P = \{"cotton_fabric", "jute_fabric", "linen_fabric"\} \)
+3. ProducedFrom
+The set of products and their corresponding raw materials, \( PF = \{"cotton_fabric": ("cotton", "jute"), "linen_fabric": ("linen", "jute", "cotton"), "jute_fabric": ("jute", "linen")\} \)
+
+Parameter:
+1. ReducedFiberRatio
+The ratio of fiber remaining after processing, \( RFR = \{ "cotton_fabric": 0.7, "jute_fabric": 0.75, "linen_fabric": 0.8 \} \)
+2. PurchasingCost 
+The cost of purchasing each raw material, \( PC = \{ "cotton": 350, "jute": 400, "linen": 300 \} \) # ($/ton)
+3. ProcessingCost
+The cost of processing each raw material, \( PrC = \{ "cotton": 100, "jute": 80, "linen": 150 \} \) # ($/ton)
+4. Availability
+The availability of each raw material, \( A = \{ "cotton": 1000, "jute": 800, "linen": 600 \} \) # (tons)
+5. Demand
+The demand for each product, \( D = \{ "cotton_fabric": 300, "jute_fabric": 400, "linen_fabric": 200 \} \) # (tons)
+
+Decision variable:
+1. X
+Continuous variable, \( X_{r,p} \forall r \in PF[p], p \in P \), where \( X_{r,p} \) is the amount of raw material \( r \) used to produce product \( p \).
+
+Objective:
+1. Minimize the total cost of purchasing and processing raw materials.
+min: \sum_{p \in P} \sum_{r \in PF[p]} (PC[r] + PrC[r]) * X_{r,p}
+
+Constraint:
+1. Demand constraint.
+\sum_{r \in PF[p]} RFR[p] * X_{r,p} \geq D[p] \forall p \in P
+2. Availability constraint.
+\sum_{p \in P, r \in PF[p]} X_{r,p} \leq A[r] \forall r \in R
+
+Type:
+Continuous, Linear, Linear
+LP

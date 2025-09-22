@@ -1,0 +1,35 @@
+Set:
+1. BottleType
+The set of bottle types, \( I = \{0, 1\} \) # 0 for Vintage, 1 for Regular
+
+Parameter:
+1. BottleVolume
+[500, 750] # ml of vine in each bottle type
+2. MaxVine
+100000 # ml of vine available
+3. MinVintageBottles
+10 # Minimum number of vintage bottles to be made
+4. RegularToVintageRatio
+4 # Minimum ratio of regular bottles to vintage bottles
+
+Decision variable:
+1. BottleCount
+Integer variable, \( x_{i} \) for all \( i \in I \), representing the number of bottles of type \( i \) to be made.
+
+Objective:
+Maximize the total number of bottles produced.
+max: \( \sum_{i \in I} x_{i} \)
+
+Constraint:
+1. Vine volume constraint
+\( \sum_{i \in I} BottleVolume[i] \cdot x_{i} \leq MaxVine \)
+2. Minimum vintage bottles constraint
+\( x_{0} \geq MinVintageBottles \)
+3. Regular to vintage ratio constraint
+\( x_{1} \geq RegularToVintageRatio \cdot x_{0} \)
+4. Non-negativity
+\( x_{i} \geq 0 \), for all \( i \in I \)
+
+Type:
+Integer, linear, linear
+IP

@@ -1,0 +1,46 @@
+Set:
+1. Commodity
+The set of commodities, \( C = \{steel, engines, electronics, plastic\} \)
+
+Parameter:
+1. UnitPrice
+{'steel': 500, 'engines': 1500, 'electronics': 300, 'plastic': 1200}
+2. InputRequirements
+{'steel': {'engines': 0.02, 'plastic': 0.01}, 'engines': {'steel': 0.8, 'electronics': 0.15, 'plastic': 0.11}, 'electronics': {'steel': 0.01, 'engines': 0.01, 'plastic': 0.05}, 'plastic': {'steel': 0.2, 'engines': 0.03, 'electronics': 0.05}}
+3. ImportedGoodsCost
+{'steel': 250, 'engines': 300, 'electronics': 50, 'plastic': 300}
+4. LaborRequirements
+{'steel': 6, 'engines': 12, 'electronics': 6, 'plastic': 24}
+5. ProductionLimits
+{'engines': 650000, 'plastic': 60000}
+6. TotalLabor
+830000
+
+Decision variable:
+1. ProductionQuantity
+Continuous variable, \( x_{c} \) for \( c \in C \), representing the total quantity of commodity \( c \) to produce.
+2. NetExport
+Continuous variable, \( e_{c} \) for \( c \in C \), representing the net export quantity of commodity \( c \).
+
+Objective:
+Maximize the domestic GDP. GDP is defined as the value of net exports minus the cost of other imported goods.
+max: \sum_{c \in C} UnitPrice[c] * e_{c} - \sum_{c \in C} ImportedGoodsCost[c] * x_{c}
+
+Constraint:
+1. Commodity balance
+Net export of a commodity is its production minus the amount consumed domestically by other production processes.
+\( e_{c} = x_{c} - \sum_{i \in C} InputRequirements[i,c] * x_{i}, \forall c \in C \)
+2. Production limits
+Production of certain commodities cannot exceed their limits.
+\( x_{engines} \leq ProductionLimits[engines] \)
+\( x_{plastic} \leq ProductionLimits[plastic] \)
+3. Labor constraint
+The total labor used in production cannot exceed the available labor force.
+\sum_{c \in C} LaborRequirements[c] * x_{c} \leq TotalLabor
+4. Non-negativity
+\( x_{c} \geq 0, \forall c \in C \)
+\( e_{c} \) can be positive (export) or negative (import).
+
+Type:
+Continuous, linear, linear
+LP

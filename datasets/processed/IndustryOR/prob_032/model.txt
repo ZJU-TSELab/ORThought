@@ -1,0 +1,37 @@
+Set:
+1. Item
+The set of items to be inherited, \( I \).
+
+Parameter:
+1. Value
+A dictionary mapping each item to its monetary value.
+2. TotalValue
+The sum of the values of all items.
+
+Decision variable:
+1. Assignment
+Binary variable, \( y_{i} \) for each item \( i \in I \). \( y_{i} = 1 \) if the item is assigned to the first son, \( 0 \) if assigned to the second son.
+2. Difference
+Continuous variable, \( d \), representing the absolute difference in value between the two shares.
+
+Objective:
+Minimize the difference in value between the two shares.
+min: d
+
+Constraint:
+1. Absolute difference linearization
+Let \( V_1 \) be the total value assigned to the first son and \( V_2 \) to the second.
+\( V_1 = \sum_{i \in I} Value[i] * y_{i} \)
+\( V_2 = TotalValue - V_1 \)
+The difference is \( |V_1 - V_2| = |V_1 - (TotalValue - V_1)| = |2V_1 - TotalValue| \).
+We want to minimize \( d = |2 \sum_{i \in I} Value[i] * y_{i} - TotalValue| \).
+This is linearized as:
+\( 2 \sum_{i \in I} Value[i] * y_{i} - TotalValue \leq d \)
+\( -(2 \sum_{i \in I} Value[i] * y_{i} - TotalValue) \leq d \)
+2. Dogs must stay together
+The two dogs must be assigned to the same son.
+\( y_{dog1} = y_{dog2} \)
+
+Type:
+Integer, linear, linear
+ILP

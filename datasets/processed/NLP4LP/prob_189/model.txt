@@ -1,0 +1,33 @@
+Set:
+1. ProductType
+The set of product types, \( I = \{0, 1\} \) # 0 for Hams, 1 for Pork Ribs
+
+Parameter:
+1. SlicerHoursPerBatch
+[4, 2] # Hours on the meat slicer required for each product type
+2. PackerHoursPerBatch
+[2.5, 3.5] # Hours on the meat packer required for each product type
+3. MaxHours
+[4000, 4000] # Maximum available hours for the meat slicer and meat packer
+4. ProfitPerBatch
+[150, 300] # Profit per batch for each product type
+
+Decision variable:
+1. NumberOfBatches
+Continuous variable, \( x_{i} \) for all \( i \in I \), representing the number of batches of each product type to produce.
+
+Objective:
+Maximize the total profit.
+max: \( \sum_{i \in I} ProfitPerBatch[i] \cdot x_{i} \)
+
+Constraint:
+1. Meat slicer time constraint
+\( \sum_{i \in I} SlicerHoursPerBatch[i] \cdot x_{i} \leq MaxHours[0] \)
+2. Meat packer time constraint
+\( \sum_{i \in I} PackerHoursPerBatch[i] \cdot x_{i} \leq MaxHours[1] \)
+3. Non-negativity
+\( x_{i} \geq 0 \), for all \( i \in I \)
+
+Type:
+Continuous, linear, linear
+LP

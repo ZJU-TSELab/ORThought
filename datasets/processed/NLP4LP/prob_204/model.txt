@@ -1,0 +1,35 @@
+Set:
+1. ApplianceType
+The set of appliance types, \( I = \{0, 1\} \) # 0 for Washing Machine, 1 for Freezer
+
+Parameter:
+1. InspectionTimePerAppliance
+[30, 20] # Minutes of inspection time required for each appliance type
+2. FixingTimePerAppliance
+[90, 125] # Minutes of fixing time required for each appliance type
+3. MaxInspectionTime
+5000 # Maximum available inspection time in minutes
+4. MaxFixingTime
+20000 # Maximum available fixing time in minutes
+5. ProfitPerAppliance
+[250, 375] # Profit per appliance for each type
+
+Decision variable:
+1. NumberOfAppliances
+Integer variable, \( x_{i} \) for all \( i \in I \), representing the number of appliances of each type to fix.
+
+Objective:
+Maximize the total earnings.
+max: \( \sum_{i \in I} ProfitPerAppliance[i] \cdot x_{i} \)
+
+Constraint:
+1. Inspection time constraint
+\( \sum_{i \in I} InspectionTimePerAppliance[i] \cdot x_{i} \leq MaxInspectionTime \)
+2. Fixing time constraint
+\( \sum_{i \in I} FixingTimePerAppliance[i] \cdot x_{i} \leq MaxFixingTime \)
+3. Non-negativity
+\( x_{i} \geq 0 \), for all \( i \in I \)
+
+Type:
+Integer, linear, linear
+IP

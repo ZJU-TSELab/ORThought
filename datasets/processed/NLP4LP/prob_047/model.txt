@@ -1,0 +1,35 @@
+Set:
+1. JarType
+The set of jar types, \( T = \{0, 1\} \) # 0 for Glass, 1 for Plastic
+
+Parameter:
+1. HoneyCapacity
+[250, 300] # ml of honey each jar type can hold
+2. TotalHoney
+20000 # ml of honey available
+3. MinGlassJars
+20 # Minimum number of glass jars to be filled
+4. MinPlasticToGlassRatio
+2 # Minimum ratio of plastic jars to glass jars
+
+Decision variable:
+1. JarCount
+Integer variable, \( x_{t} \) for all \( t \in T \), representing the number of jars of type \( t \) to fill.
+
+Objective:
+Maximize the total number of jars filled.
+max: \sum_{t \in T} x_{t}
+
+Constraint:
+1. Honey volume constraint
+\sum_{t \in T} HoneyCapacity[t] * x_{t} \leq TotalHoney
+2. Minimum glass jars constraint
+x_{0} \geq MinGlassJars
+3. Plastic to glass ratio constraint
+x_{1} \geq MinPlasticToGlassRatio * x_{0}
+4. Non-negativity
+x_{t} \geq 0, for all \( t \in T \)
+
+Type:
+Integer, linear, linear
+IP

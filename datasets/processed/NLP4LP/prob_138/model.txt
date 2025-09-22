@@ -1,0 +1,35 @@
+Set:
+1. TransportType
+The set of transport types, \( I = \{0, 1\} \) # 0 for Van, 1 for Truck
+
+Parameter:
+1. BoxesPerTrip
+[50, 80] # Number of boxes transported per trip for each transport type
+2. CostPerTrip
+[30, 50] # Cost per trip for each transport type
+3. MinBoxes
+1500 # Minimum number of boxes to be transported
+4. MaxCost
+1000 # Maximum budget available for transportation
+
+Decision variable:
+1. NumberOfTrips
+Integer variable, \( x_{i} \) for all \( i \in I \), representing the number of trips for each transport type.
+
+Objective:
+Minimize the total number of trips.
+min: \( \sum_{i \in I} x_{i} \)
+
+Constraint:
+1. Boxes transported constraint
+\( \sum_{i \in I} BoxesPerTrip[i] \cdot x_{i} \geq MinBoxes \)
+2. Budget constraint
+\( \sum_{i \in I} CostPerTrip[i] \cdot x_{i} \leq MaxCost \)
+3. Van trips greater than truck trips constraint
+\( x_{0} \geq x_{1} + 1 \)
+4. Non-negativity
+\( x_{i} \geq 0 \), for all \( i \in I \)
+
+Type:
+Integer, linear, linear
+IP

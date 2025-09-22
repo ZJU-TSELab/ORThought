@@ -1,0 +1,33 @@
+Set:
+1. CookieType
+The set of cookie types, \( I = \{0, 1\} \) # 0 for strawberry, 1 for sugar
+
+Parameter:
+1. Profit
+[5.5, 12] # Profit for each cookie type
+2. MaxDemand
+[100, 80] # Maximum daily demand for each cookie type
+3. MaxTotalProduction
+100 # Maximum total number of cookies that can be made
+
+Decision variable:
+1. NumCookies
+Continuous variable, \( x_{i} \) for all \( i \in I \), representing the number of each cookie type to make.
+
+Objective:
+Maximize the total profit.
+max: \( \sum_{i \in I} Profit[i] \cdot x_{i} \)
+
+Constraint:
+1. Demand constraint for strawberry cookies
+\( x_{0} \leq MaxDemand[0] \)
+2. Demand constraint for sugar cookies
+\( x_{1} \leq MaxDemand[1] \)
+3. Total production constraint
+\( \sum_{i \in I} x_{i} \leq MaxTotalProduction \)
+4. Non-negativity
+\( x_{i} \geq 0 \), for all \( i \in I \)
+
+Type:
+Continuous, linear, linear
+LP

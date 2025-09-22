@@ -1,0 +1,50 @@
+Set:
+1. Node
+The set of nodes, \( N = \{0, 1, \dots, CommunityNum\} \)
+# where node 0 is the starting point (Central City Hospital) and nodes 1 to n are the communities to be served.
+
+Parameter:
+1. CommunityNum
+10
+2. Coordinate
+[(0, 0), (-5.87, -3.3), (-4.1, 4.6), (-2.27, -7.45), (4.36, 3.38), (9.05, 5.02), (-7.46, 6.97), (7.75, 7.38), (0.06, -4.25), (-6.13, -9.78), (3.25, 9.86)]
+3. Timewindow
+[(8, 16), (8, 12), (9, 13), (10, 15), (11, 15), (9, 16), (9, 17), (10, 18), (13, 19), (8, 16), (8, 16)]
+4. StartTime
+8
+5. Speed
+15
+6. M
+10000
+
+Decision variable:
+1. X
+Binary variable, \( x_{ij} \forall i \in N, j \in N\), where \( x_{ij} = 1 \) if the vehicle departs from node \( i \) and arrives at node \( j \), otherwise \( x_{ij} = 0 \).
+2. T^a
+Continous variable, \( t^a_i \forall i \in N\), where \( t^a_i \) is the time at which the vehicle arrives at node \( i \).
+3. T^d
+Continous variable, \( t^d_i \forall i \in N\), where \( t^d_i \) is the time at which the vehicle departs from node \( i \).
+
+Objective:
+1. Minimize the total distance traveled by the vehicle.
+min: \sum_{i \in N}\sum_{j \in N} Distance[i][j] * x_{ij}
+# Where \( Distance[i][j] \) is the Euclidean distance between node \( i \) and node \( j \).
+
+Constraint:
+1. Each community must be visited exactly once.
+\sum_{i \in N} x_{ij} = 1 \forall j \in N
+2. Each community must be exited exactly once.
+\sum_{j \in N} x_{ij} = 1 \forall i \in N
+3. Eliminate sub-tours.
+\sum_{i \in N} \sum_{j \in N} x_{ij} \leq |S| - 1 \forall S \subseteq N, 1 < |S| < |N|
+4. The vehicle must arrive at each community within its time window.
+t^a_i \geq Timewindow[i][0] \forall i \in N
+5. The vehicle must depart from each community within its time window.
+t^d_i \leq Timewindow[i][1] \forall i \in N
+6. The vehicle's arriveal time at each node must be equal to the departure time from the previous node plus the travel time between the two nodes. 
+t^d_i + \frac{Distance[i][j]}{Speed} - M * (1 - x_{ij}) \leq t^a_j \forall i, j \in N
+t^d_i + \frac{Distance[i][j]}{Speed} + M * (1 - x_{ij}) \geq t^a_j \forall i, j \in N
+
+Type:
+Mixed, Linear, Linear
+MILP

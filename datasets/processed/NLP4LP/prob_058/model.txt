@@ -1,0 +1,41 @@
+Set:
+1. BakeryItem
+The set of bakery items, \( I = \{0, 1\} \) # 0 for Brownies, 1 for Lemon Squares
+
+Parameter:
+1. FiberUsage
+[4, 6] # Units of fiber required for each bakery item
+2. ChocolateMixUsage
+5 # Units of chocolate mix required for a brownie
+3. LemonMixUsage
+7 # Units of lemon mix required for a lemon square
+4. MaxChocolateMix
+2500 # Units of chocolate mix available
+5. MaxLemonMix
+3300 # Units of lemon mix available
+6. MinBrowniePercentage
+0.4 # Minimum percentage of brownies among all items
+
+Decision variable:
+1. ItemCount
+Integer variable, \( x_{i} \) for all \( i \in I \), representing the number of items of type \( i \) to be made.
+
+Objective:
+Minimize the total amount of fiber needed.
+min: \( \sum_{i \in I} FiberUsage[i] \cdot x_{i} \)
+
+Constraint:
+1. Chocolate mix constraint
+\( ChocolateMixUsage \cdot x_{0} \leq MaxChocolateMix \)
+2. Lemon mix constraint
+\( LemonMixUsage \cdot x_{1} \leq MaxLemonMix \)
+3. Sales preference constraint
+\( x_{1} \geq x_{0} + 1 \)
+4. Brownie percentage constraint
+\( x_{0} \geq MinBrowniePercentage \cdot (x_{0} + x_{1}) \) which simplifies to \( 3 \cdot x_{0} \geq 2 \cdot x_{1} \)
+5. Non-negativity
+\( x_{i} \geq 0 \), for all \( i \in I \)
+
+Type:
+Integer, linear, linear
+IP

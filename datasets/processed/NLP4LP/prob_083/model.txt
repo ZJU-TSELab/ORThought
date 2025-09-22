@@ -1,0 +1,35 @@
+Set:
+1. ReactionType
+The set of chemical reaction types, \( I = \{0, 1\} \) # 0 for Reaction A, 1 for Reaction B
+
+Parameter:
+1. InertGasRequirement
+[5, 7] # Units of rare inert gas required for each reaction type
+2. WaterRequirement
+[6, 3] # Units of treated water required for each reaction type
+3. CompoundProduction
+[10, 8] # Units of rare compound produced by each reaction type
+4. MaxInertGas
+1000 # Units of rare inert gas available
+5. MaxWater
+800 # Units of treated water available
+
+Decision variable:
+1. ReactionCount
+Continuous variable, \( x_{i} \) for all \( i \in I \), representing the number of times each reaction is done.
+
+Objective:
+Maximize the amount of rare compound produced.
+max: \( \sum_{i \in I} CompoundProduction[i] \cdot x_{i} \)
+
+Constraint:
+1. Inert gas constraint
+\( \sum_{i \in I} InertGasRequirement[i] \cdot x_{i} \leq MaxInertGas \)
+2. Treated water constraint
+\( \sum_{i \in I} WaterRequirement[i] \cdot x_{i} \leq MaxWater \)
+3. Non-negativity
+\( x_{i} \geq 0 \), for all \( i \in I \)
+
+Type:
+Continuous, linear, linear
+LP

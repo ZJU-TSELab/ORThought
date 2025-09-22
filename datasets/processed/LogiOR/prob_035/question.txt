@@ -1,0 +1,23 @@
+FreshFoods operates three farms (Farm A, Farm B, and Farm C) to grow and supply fresh produce to four grocery stores (Store 1, Store 2, Store 3, and Store 4). The production cost, yield capacity, water usage (per ton), and fertilizer usage (per ton) for each farm are given in the table below:
+
+| Farm | Production Cost ($/ton) | Yield Capacity (tons) | Water Usage (m³/ton) | Fertilizer Usage (kg/ton) |
+| ---- | ----------------------- | --------------------- | -------------------- | ------------------------- |
+| A    | 100                     | 500                   | 6                    | 5                         |
+| B    | 120                     | 400                   | 8                    | 4                         |
+| C    | 150                     | 600                   | 6                    | 3                         |
+
+The demand (in tons) for each grocery store is as follows:
+
+| Store 1 | Store 2 | Store 3 | Store 4 |
+| ------- | ------- | ------- | ------- |
+| 200     | 300     | 400     | 500     |
+
+The transportation cost (in $/ton) from each farm to each grocery store is given in the table below:
+
+| Farm | Store 1 | Store 2 | Store 3 | Store 4 |
+| ---- | ------- | ------- | ------- | ------- |
+| A    | 20      | 25      | 30      | 15      |
+| B    | 22      | 26      | 32      | 18      |
+| C    | 18      | 24      | 28      | 14      |
+
+To meet sustainability goals, the total produce shipped must use no more than 7 m³ of water per ton and no more than 4 kg of fertilizer per ton. How to minimize the total cost while satisfying the demand and sustainability constraints?

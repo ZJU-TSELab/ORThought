@@ -1,0 +1,37 @@
+Set:
+1. TripType
+The set of trip types, \( I = \{0, 1\} \) # 0 for Helicopter, 1 for Bus
+
+Parameter:
+1. PatientsPerTrip
+[5, 8] # Number of patients each vehicle type can transport per trip
+2. TimePerTrip
+[1, 3] # Hours taken for each trip type
+3. MinPatients
+120 # Minimum number of patients to be transported
+4. MinHelicopterRatio
+0.3 # The number of helicopter trips must be at least 30% of the total trips
+5. MaxBusTrips
+10 # Maximum number of bus trips
+
+Decision variable:
+1. NumberOfTrips
+Integer variable, \( x_{i} \) for all \( i \in I \), representing the number of trips of each type.
+
+Objective:
+Minimize the total time to transport the patients.
+min: \( \sum_{i \in I} TimePerTrip[i] \cdot x_{i} \)
+
+Constraint:
+1. Minimum patients constraint
+\( \sum_{i \in I} PatientsPerTrip[i] \cdot x_{i} \geq MinPatients \)
+2. Trip ratio constraint
+\( x_{0} \geq \frac{MinHelicopterRatio}{1 - MinHelicopterRatio} \cdot x_{1} \)
+3. Maximum bus trips constraint
+\( x_{1} \leq MaxBusTrips \)
+4. Non-negativity
+\( x_{i} \geq 0 \), for all \( i \in I \)
+
+Type:
+Integer, linear, linear
+IP

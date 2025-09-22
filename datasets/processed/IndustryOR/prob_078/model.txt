@@ -1,0 +1,40 @@
+# Model description for prob_078
+
+Set:
+1. Items
+The set of items to produce, \( I = \{\text{Tables, Chairs, Bookshelves}\} \)
+
+Parameter:
+1. Profit
+[80, 30, 60] # Profit for each item type
+2. WarehouseSpace
+[5, 2, 3] # Warehouse space per item
+3. MaxWarehouseSpace
+500 # Maximum warehouse space
+4. MinProduction
+[10, 0, 20] # Minimum production for each item type
+5. MaxTotalProduction
+200 # Maximum total number of items
+
+Decision variable:
+1. ProductionCount
+Integer variable, \( x_{i} \) for all \( i \in I \), representing the number of items of type \( i \) to produce.
+
+Objective:
+Maximize the total profit.
+max: \sum_{i \in I} \text{Profit}[i] * x_{i}
+
+Constraint:
+1. Warehouse space constraint
+\sum_{i \in I} \text{WarehouseSpace}[i] * x_{i} \leq \text{MaxWarehouseSpace}
+2. Total production limit
+\sum_{i \in I} x_{i} \leq \text{MaxTotalProduction}
+3. Minimum production requirements
+x_{\text{Tables}} \geq 10
+x_{\text{Bookshelves}} \geq 20
+4. Non-negativity
+x_{i} \geq 0, \forall i \in I
+
+Type:
+Integer, linear, linear
+ILP

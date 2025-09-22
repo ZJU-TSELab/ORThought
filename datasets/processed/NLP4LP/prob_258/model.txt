@@ -1,0 +1,37 @@
+Set:
+1. DeliveryMethod
+The set of delivery methods, I = {0, 1} # 0 for Runners, 1 for Canoers
+
+Parameter:
+1. MailCapacity
+[3, 10] # Bags of mail each delivery method can carry
+2. TimePerDelivery
+[4, 2] # Hours required per delivery for each method
+3. TimeAvailable
+200 # Total hours available for deliveries
+4. MinRunners
+4 # Minimum number of runners to be used
+5. MaxCanoeRatio
+0.33 # Maximum ratio of canoe deliveries to total deliveries
+
+Decision variable:
+1. NumberOfDeliveries
+Integer variable, x_{i} for all i in I, representing the number of deliveries for each method.
+
+Objective:
+Maximize the total amount of mail delivered.
+max: \( \sum_{i \in I} \text{MailCapacity}[i] \cdot x_{i} \)
+
+Constraint:
+1. Time Availability
+\( \sum_{i \in I} \text{TimePerDelivery}[i] \cdot x_{i} \leq \text{TimeAvailable} \)
+2. Minimum Runners
+\( x_{0} \geq \text{MinRunners} \)
+3. Canoe Ratio
+\( x_{1} \leq \text{MaxCanoeRatio} \cdot (x_{0} + x_{1}) \)
+4. Non-negativity
+\( x_{i} \geq 0 \), for all \( i \in I \)
+
+Type:
+Integer, linear, linear
+IP

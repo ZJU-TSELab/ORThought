@@ -1,0 +1,39 @@
+Set:
+1. ProductType
+The set of product types, \( I = \{0, 1\} \) # 0 for Laminate Planks, 1 for Carpets
+
+Parameter:
+1. MinDemand
+[15000, 5000] # Minimum weekly demand in square feet for each product type
+2. MaxProduction
+[40000, 20000] # Maximum weekly production in square feet for each product type
+3. MinTotalProduction
+50000 # Minimum total weekly production in square feet
+4. ProfitPerSqFt
+[2.1, 3.3] # Profit per square foot for each product type
+
+Decision variable:
+1. ProductionAmount
+Continuous variable, \( x_{i} \) for all \( i \in I \), representing the square feet of each product type to produce.
+
+Objective:
+Maximize the total weekly profit.
+max: \( \sum_{i \in I} ProfitPerSqFt[i] \cdot x_{i} \)
+
+Constraint:
+1. Minimum demand constraint for Laminate Planks
+\( x_{0} \geq MinDemand[0] \)
+2. Minimum demand constraint for Carpets
+\( x_{1} \geq MinDemand[1] \)
+3. Maximum production constraint for Laminate Planks
+\( x_{0} \leq MaxProduction[0] \)
+4. Maximum production constraint for Carpets
+\( x_{1} \leq MaxProduction[1] \)
+5. Minimum total production constraint
+\( \sum_{i \in I} x_{i} \geq MinTotalProduction \)
+6. Non-negativity
+\( x_{i} \geq 0 \), for all \( i \in I \)
+
+Type:
+Continuous, linear, linear
+LP

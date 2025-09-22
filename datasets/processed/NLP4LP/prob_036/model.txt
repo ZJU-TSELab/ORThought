@@ -1,0 +1,31 @@
+Set:
+1. ProductType
+The set of product types, \( T = \{0, 1\} \) # 0 for Bagels, 1 for Croissants
+2. ResourceType
+The set of resource types, \( R = \{0, 1\} \) # 0 for Oven Time, 1 for Pastry Chef Time
+
+Parameter:
+1. ProfitPerBatch
+[20, 40] # Profit per batch for each product type
+2. HoursAvailable
+[70, 32] # Hours available per day for each resource type
+3. HoursRequired
+[[2, 1], [0.25, 2]] # Hours of each resource required per batch of each product type
+
+Decision variable:
+1. BatchesToMake
+Continuous variable, \( x_{t} \) for all \( t \in T \), representing the number of batches of product type \( t \) to make.
+
+Objective:
+Maximize the total profit.
+max: \sum_{t \in T} ProfitPerBatch[t] * x_{t}
+
+Constraint:
+1. Resource hours constraint
+\sum_{t \in T} HoursRequired[r][t] * x_{t} \leq HoursAvailable[r], for all \( r \in R \)
+2. Non-negativity
+x_{t} \geq 0, for all \( t \in T \)
+
+Type:
+Continuous, linear, linear
+LP

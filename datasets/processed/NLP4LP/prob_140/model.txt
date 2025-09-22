@@ -1,0 +1,37 @@
+Set:
+1. TransportType
+The set of transport types, \( I = \{0, 1\} \) # 0 for Ship, 1 for Plane
+
+Parameter:
+1. ContainersPerTrip
+[40, 20] # Number of containers transported per trip for each transport type
+2. FuelPerTrip
+[500, 300] # Liters of fuel consumed per trip for each transport type
+3. MinContainers
+500 # Minimum number of containers to be transported
+4. MaxPlaneTrips
+10 # Maximum number of plane trips allowed
+5. MinShipTripProportion
+0.50 # Minimum proportion of total trips that must be by ship
+
+Decision variable:
+1. NumberOfTrips
+Integer variable, \( x_{i} \) for all \( i \in I \), representing the number of trips for each transport type.
+
+Objective:
+Minimize the total amount of fuel consumed.
+min: \( \sum_{i \in I} FuelPerTrip[i] \cdot x_{i} \)
+
+Constraint:
+1. Container requirement
+\( \sum_{i \in I} ContainersPerTrip[i] \cdot x_{i} \geq MinContainers \)
+2. Maximum plane trips
+\( x_{1} \leq MaxPlaneTrips \)
+3. Ship trip proportion
+\( x_{0} \geq MinShipTripProportion \cdot \sum_{i \in I} x_{i} \)
+4. Non-negativity
+\( x_{i} \geq 0 \), for all \( i \in I \)
+
+Type:
+Integer, linear, linear
+IP

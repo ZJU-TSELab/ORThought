@@ -1,0 +1,41 @@
+Set:
+1. TableType
+The set of table types, \( I = \{0, 1\} \) # 0 for Table 1, 1 for Table 2
+
+Parameter:
+1. PowderUsage
+[3, 8] # Units of powder used per table for each table type
+2. GlueUsage
+[5, 6] # Units of glue used per table for each table type
+3. SlimeProduction
+[4, 5] # Units of slime produced per table for each table type
+4. MessProduction
+[2, 4] # Units of mess produced per table for each table type
+5. MaxPowder
+100 # Maximum units of powder available
+6. MaxGlue
+90 # Maximum units of glue available
+7. MaxMess
+30 # Maximum units of mess allowed
+
+Decision variable:
+1. TableCount
+Continuous variable, \( x_{i} \) for all \( i \in I \), representing the number of tables of each type to be set up.
+
+Objective:
+Maximize the total amount of slime produced.
+max: \( \sum_{i \in I} SlimeProduction[i] \cdot x_{i} \)
+
+Constraint:
+1. Powder constraint
+\( \sum_{i \in I} PowderUsage[i] \cdot x_{i} \leq MaxPowder \)
+2. Glue constraint
+\( \sum_{i \in I} GlueUsage[i] \cdot x_{i} \leq MaxGlue \)
+3. Mess constraint
+\( \sum_{i \in I} MessProduction[i] \cdot x_{i} \leq MaxMess \)
+4. Non-negativity
+\( x_{i} \geq 0 \), for all \( i \in I \)
+
+Type:
+Continuous, linear, linear
+LP

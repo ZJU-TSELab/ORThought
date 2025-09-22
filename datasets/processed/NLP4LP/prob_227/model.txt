@@ -1,0 +1,43 @@
+Set:
+1. PizzaSize
+The set of pizza sizes, \( I = \{0, 1\} \) # 0 for Large, 1 for Medium
+
+Parameter:
+1. DoughPerPizza
+[12, 8] # Units of dough required per pizza for each size
+2. ToppingsPerPizza
+[5, 4] # Units of toppings required per pizza for each size
+3. BakeTimePerPizza
+[12, 8] # Minutes to bake per pizza for each size
+4. MinDough
+10000 # Minimum units of dough to be used
+5. MinToppings
+4400 # Minimum units of toppings to be used
+6. MinMediumPizzas
+200 # Minimum number of medium pizzas to be made
+7. LargeToMediumRatio
+2 # The number of large pizzas must be at least twice the number of medium pizzas
+
+Decision variable:
+1. NumberOfPizzas
+Integer variable, \( x_{i} \) for all \( i \in I \), representing the number of pizzas of each size to be made.
+
+Objective:
+Minimize the total time spent baking.
+min: \( \sum_{i \in I} BakeTimePerPizza[i] \cdot x_{i} \)
+
+Constraint:
+1. Dough requirement
+\( \sum_{i \in I} DoughPerPizza[i] \cdot x_{i} \geq MinDough \)
+2. Toppings requirement
+\( \sum_{i \in I} ToppingsPerPizza[i] \cdot x_{i} \geq MinToppings \)
+3. Minimum medium pizzas
+\( x_{1} \geq MinMediumPizzas \)
+4. Large to medium ratio
+\( x_{0} \geq LargeToMediumRatio \cdot x_{1} \)
+5. Non-negativity
+\( x_{i} \geq 0 \), for all \( i \in I \)
+
+Type:
+Integer, linear, linear
+IP

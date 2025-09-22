@@ -1,0 +1,51 @@
+Set:
+1. Parts
+The set of key target parts, \( P = \{1, 2, 3, 4\} \)
+2. BombTypes
+The set of bomb types, \( B = \{Heavy, Light\} \)
+
+Parameter:
+1. Distance
+[450, 480, 540, 600] # Distance in km from the airport to each part.
+2. ProbDestroyHeavy
+[0.10, 0.20, 0.15, 0.25] # Destruction probability for each part by a heavy bomb.
+3. ProbDestroyLight
+[0.08, 0.16, 0.12, 0.20] # Destruction probability for each part by a light bomb.
+4. MaxFuel
+48000 # Maximum fuel available in liters.
+5. MaxHeavyBombs
+48 # Maximum number of heavy bombs available.
+6. MaxLightBombs
+32 # Maximum number of light bombs available.
+7. EffLoadedHeavy
+2.0 # Fuel efficiency for heavy bombs (km/liter).
+8. EffLoadedLight
+3.0 # Fuel efficiency for light bombs (km/liter).
+9. EffEmpty
+4.0 # Fuel efficiency for empty return trip (km/liter).
+10. FuelTakeoffLanding
+100 # Fuel for takeoff and landing per trip (liters).
+
+Decision variable:
+1. BombsAssigned
+Integer variable, \( x_{p,b} \), the number of bombs of type \( b \) assigned to part \( p \).
+
+Objective:
+Maximize the probability of destroying at least one part. This is equivalent to minimizing the sum of the logarithms of the probabilities of *not* destroying each part.
+min: \(\sum_{p \in P} \sum_{b \in B} x_{p,b} \cdot \ln(1 - ProbDestroy_{p,b})\)
+
+Constraint:
+1. Fuel Limit
+Total fuel consumed cannot exceed the maximum available.
+\(\sum_{p \in P} \sum_{b \in B} FuelPerTrip_{p,b} \cdot x_{p,b} \leq MaxFuel\)
+   where FuelPerTrip is calculated as: \( (Distance_p / EffLoaded_b) + (Distance_p / EffEmpty) + FuelTakeoffLanding \)
+2. Heavy Bomb Limit
+\(\sum_{p \in P} x_{p, Heavy} \leq MaxHeavyBombs\)
+3. Light Bomb Limit
+\(\sum_{p \in P} x_{p, Light} \leq MaxLightBombs\)
+4. Non-negativity
+\(x_{p,b} \geq 0, \forall p \in P, b \in B\)
+
+Type:
+Integer, non-linear, linear
+NLP

@@ -1,0 +1,41 @@
+Set:
+1. FoodType
+The set of food types, \( I = \{0, 1\} \) # 0 for Hamburger, 1 for Chicken Wrap
+
+Parameter:
+1. CostPerFood
+[6.5, 4] # Cost of each food type
+2. CaloriesPerFood
+[800, 450] # Calories in each food type
+3. ProteinPerFood
+[19, 12] # Grams of protein in each food type
+4. CarbsPerFood
+[20, 10] # Grams of carbs in each food type
+5. MinCalories
+2200 # Minimum required calories
+6. MinProtein
+50 # Minimum required grams of protein
+7. MinCarbs
+70 # Minimum required grams of carbs
+
+Decision variable:
+1. NumberOfFood
+Continuous variable, \( x_{i} \) for all \( i \in I \), representing the quantity of each food type to purchase.
+
+Objective:
+Minimize the total cost of the diet.
+min: \( \sum_{i \in I} CostPerFood[i] \cdot x_{i} \)
+
+Constraint:
+1. Calorie constraint
+\( \sum_{i \in I} CaloriesPerFood[i] \cdot x_{i} \geq MinCalories \)
+2. Protein constraint
+\( \sum_{i \in I} ProteinPerFood[i] \cdot x_{i} \geq MinProtein \)
+3. Carbs constraint
+\( \sum_{i \in I} CarbsPerFood[i] \cdot x_{i} \geq MinCarbs \)
+4. Non-negativity
+\( x_{i} \geq 0 \), for all \( i \in I \)
+
+Type:
+Continuous, linear, linear
+LP

@@ -1,0 +1,35 @@
+Set:
+1. ProcessType
+The set of process types, \( I = \{0, 1\} \) # 0 for process J, 1 for process P
+
+Parameter:
+1. MetalExtracted
+[5, 9] # Units of metal extracted per process for each type
+2. WaterUsed
+[8, 6] # Units of water used per process for each type
+3. PollutionProduced
+[3, 5] # Units of pollution produced per process for each type
+4. WaterAvailable
+1500 # Total units of water available
+5. PollutionLimit
+1350 # Maximum units of pollution allowed
+
+Decision variable:
+1. NumberOfProcesses
+Integer variable, \( x_{i} \) for all \( i \in I \), representing the number of times each process is performed.
+
+Objective:
+Maximize the total amount of metal extracted.
+max: \( \sum_{i \in I} MetalExtracted[i] \cdot x_{i} \)
+
+Constraint:
+1. Water availability
+\( \sum_{i \in I} WaterUsed[i] \cdot x_{i} \leq WaterAvailable \)
+2. Pollution limit
+\( \sum_{i \in I} PollutionProduced[i] \cdot x_{i} \leq PollutionLimit \)
+3. Non-negativity
+\( x_{i} \geq 0 \), for all \( i \in I \)
+
+Type:
+Integer, linear, linear
+IP

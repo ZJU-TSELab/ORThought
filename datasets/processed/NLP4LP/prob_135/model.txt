@@ -1,0 +1,39 @@
+Set:
+1. FruitType
+The set of fruit types, \( I = \{0, 1\} \) # 0 for Blueberries, 1 for Strawberries
+
+Parameter:
+1. AntioxidantsPerPack
+[3, 1] # Units of anti-oxidants per pack for each fruit type
+2. MineralsPerPack
+[5, 7] # Units of minerals per pack for each fruit type
+3. SugarPerPack
+[5, 7] # Grams of sugar per pack for each fruit type
+4. MinAntioxidants
+90 # Minimum units of anti-oxidants required
+5. MinMinerals
+100 # Minimum units of minerals required
+6. MinStrawberryToBlueberryRatio
+3 # Minimum ratio of strawberry packs to blueberry packs
+
+Decision variable:
+1. NumberOfPacks
+Integer variable, \( x_{i} \) for all \( i \in I \), representing the number of packs of each fruit to consume.
+
+Objective:
+Minimize total sugar intake.
+min: \( \sum_{i \in I} SugarPerPack[i] \cdot x_{i} \)
+
+Constraint:
+1. Anti-oxidant requirement
+\( \sum_{i \in I} AntioxidantsPerPack[i] \cdot x_{i} \geq MinAntioxidants \)
+2. Mineral requirement
+\( \sum_{i \in I} MineralsPerPack[i] \cdot x_{i} \geq MinMinerals \)
+3. Strawberry to blueberry ratio
+\( x_{1} \geq MinStrawberryToBlueberryRatio \cdot x_{0} \)
+4. Non-negativity
+\( x_{i} \geq 0 \), for all \( i \in I \)
+
+Type:
+Integer, linear, linear
+IP

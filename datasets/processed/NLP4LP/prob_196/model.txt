@@ -1,0 +1,33 @@
+Set:
+1. PaperType
+The set of paper types, \( I = \{0, 1\} \) # 0 for Graph Paper, 1 for Music Paper
+
+Parameter:
+1. PrintingTimePerReam
+[3, 1.5] # Minutes on the printing machine required for each paper type
+2. ScanningTimePerReam
+[5.5, 3] # Minutes on the scanning machine required for each paper type
+3. MaxMachineTime
+[350, 350] # Maximum available time in minutes for the printing and scanning machines
+4. ProfitPerReam
+[4, 2.5] # Profit per ream for each paper type
+
+Decision variable:
+1. NumberOfReams
+Integer variable, \( x_{i} \) for all \( i \in I \), representing the number of reams of each paper type to produce.
+
+Objective:
+Maximize the total profit.
+max: \( \sum_{i \in I} ProfitPerReam[i] \cdot x_{i} \)
+
+Constraint:
+1. Printing machine time constraint
+\( \sum_{i \in I} PrintingTimePerReam[i] \cdot x_{i} \leq MaxMachineTime[0] \)
+2. Scanning machine time constraint
+\( \sum_{i \in I} ScanningTimePerReam[i] \cdot x_{i} \leq MaxMachineTime[1] \)
+3. Non-negativity
+\( x_{i} \geq 0 \), for all \( i \in I \)
+
+Type:
+Integer, linear, linear
+IP

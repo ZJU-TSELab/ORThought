@@ -1,0 +1,33 @@
+Set:
+1. VehicleType
+The set of vehicle types, \( I = \{0, 1\} \) # 0 for Helicopter, 1 for Truck
+
+Parameter:
+1. CowsPerVehicle
+[3, 7] # Number of cows each vehicle type can transport
+2. PollutionPerTrip
+[5, 10] # Units of pollution created per trip for each vehicle type
+3. MinCows
+80 # Minimum number of cows to be transported
+4. MaxTruckTrips
+8 # Maximum number of truck trips allowed
+
+Decision variable:
+1. NumberOfTrips
+Integer variable, \( x_{i} \) for all \( i \in I \), representing the number of trips for each vehicle type.
+
+Objective:
+Minimize the total amount of pollution produced.
+min: \( \sum_{i \in I} PollutionPerTrip[i] \cdot x_{i} \)
+
+Constraint:
+1. Cow transport requirement
+\( \sum_{i \in I} CowsPerVehicle[i] \cdot x_{i} \geq MinCows \)
+2. Maximum truck trips
+\( x_{1} \leq MaxTruckTrips \)
+3. Non-negativity
+\( x_{i} \geq 0 \), for all \( i \in I \)
+
+Type:
+Integer, linear, linear
+IP

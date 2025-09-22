@@ -1,0 +1,35 @@
+Set:
+1. Products
+The set of products, \( P = \{I, II, III\} \).
+2. Equipment
+The set of equipment, \( E = \{A, B, C\} \).
+
+Parameter:
+1. ProcessingTime
+The time (in hours) required to process one unit of each product on each piece of equipment.
+- A: [8, 2, 10]
+- B: [10, 5, 8]
+- C: [2, 13, 10]
+2. EquipmentCapacity
+[300, 400, 420] # The effective monthly hours available for each piece of equipment.
+3. UnitProfit
+[3, 2, 2.9] # The profit (in thousand yuan) per unit of each product.
+
+Decision variable:
+1. ProductionQuantity
+Continuous variable, \( x_p \) for \( p \in P \), represents the quantity of product p to produce.
+
+Objective:
+Maximize: \( 3x_I + 2x_{II} + 2.9x_{III} \)
+
+Constraint:
+1. EquipmentA
+\( 8x_I + 2x_{II} + 10x_{III} \le 300 \)
+2. EquipmentB
+\( 10x_I + 5x_{II} + 8x_{III} \le 400 \)
+3. EquipmentC
+\( 2x_I + 13x_{II} + 10x_{III} \le 420 \)
+
+Type:
+Continuous, linear, linear
+LP

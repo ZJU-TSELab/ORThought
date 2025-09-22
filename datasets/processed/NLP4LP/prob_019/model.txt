@@ -1,0 +1,39 @@
+Set:
+1. ProductType
+The set of product types, \( P = \{0, 1\} \) # 0 for Phones, 1 for Laptops
+
+Parameter:
+1. TotalSpace
+100 # Total available space in sq. feet
+2. MaxCost
+5000 # Maximum budget in dollars
+3. MaxLabor
+2000 # Maximum labor hours available
+4. RevenuePerSqFoot
+[50, 70] # Net revenue per sq. foot for each product type
+5. LaborPerHour
+[2, 3] # Labor hours required per sq. foot for each product type
+6. CostPerSqFoot
+[12, 15] # Cost per sq. foot for each product type
+
+Decision variable:
+1. SpaceAllocated
+Continuous variable, \( x_{p} \) for all \( p \in P \), representing the sq. feet of space allocated to product type \( p \).
+
+Objective:
+Maximize the total revenue.
+max: \sum_{p \in P} RevenuePerSqFoot[p] * x_{p}
+
+Constraint:
+1. Space constraint
+\sum_{p \in P} x_{p} \leq TotalSpace
+2. Cost constraint
+\sum_{p \in P} CostPerSqFoot[p] * x_{p} \leq MaxCost
+3. Labor constraint
+\sum_{p \in P} LaborPerHour[p] * x_{p} \leq MaxLabor
+4. Non-negativity
+x_{p} \geq 0, for all \( p \in P \)
+
+Type:
+Linear, continuous, linear
+LP

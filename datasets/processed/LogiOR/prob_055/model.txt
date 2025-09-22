@@ -1,0 +1,31 @@
+Set:
+1. Items
+The set of cargo items, \( I = \{A, B, C, D, E\} \)
+
+Parameter:
+1. Weight
+The weight of each item \( w_i \) where \( i \in I \):
+\( w = \{A:400, B:600, C:300, D:500, E:700\} \)
+2. BaseProfit
+The base profit of each item \( c_i \) where \( i \in I \):
+\( c = \{A:120, B:180, C:90, D:150, E:210\} \)
+3. Synergy
+The synergy profit matrix \( Q_{ij} \) for all \( i,j \in I \) (as shown in the table)
+4. Capacity
+The truck's maximum weight capacity \( W = 2000 \)
+
+Decision variable:
+1. Selection
+Binary variable \( x_i \in \{0, 1\} \) for all \( i \in I \), where \( x_i = 1 \) if item \( i \) is selected, and \( x_i = 0 \) otherwise
+
+Objective:
+Maximize total profit including base and synergy values
+max: \( \sum_{i \in I} \sum_{j \in I} Q_{ij} x_i x_j + \sum_{i \in I} c_i x_i \)
+
+Constraint:
+1. Weight capacity limit
+\( \sum_{i \in I} w_i x_i \leq W \)
+
+Type:
+Binary, Quadratic, Linear
+NLP

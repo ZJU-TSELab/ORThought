@@ -1,0 +1,10 @@
+The contract reservations for the next year for products I, II, and III of a certain factory in each quarter are shown in Table 1-10.
+
+Table 1-10
+| Product | 1    | 2    | 3    | 4    |
+|---------|------|------|------|------|
+| I       | 1500 | 1000 | 2000 | 1200 |
+| II      | 1500 | 1500 | 1200 | 1500 |
+| III     | 1000 | 2000 | 1500 | 2500 |
+
+At the beginning of the first quarter, there is no inventory for these three products, and it is required to have 150 units in stock for each product by the end of the fourth quarter. It is known that the factory has 15,000 production hours per quarter, and each unit of products I, II, and III requires 2, 4, and 3 hours respectively. Due to a change in equipment, product I cannot be produced in the second quarter. It is stipulated that if the products cannot be delivered on time, a compensation of 20 yuan per unit per quarter delay is required for products I and II, while for product III, the compensation is 10 yuan. Additionally, for products produced but not delivered in the current quarter, the inventory cost is 5 yuan per unit per quarter. How should the factory schedule production to minimize the total cost of compensation and inventory?

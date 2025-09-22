@@ -1,0 +1,9 @@
+The famous Traveling Salesman Problem (TSP) in operations research can be described as follows: A traveling salesman departs from a certain city, visits two other cities to sell merchandise, and must visit each city exactly once before returning to the original starting city. The distances between the cities are provided in the table below.
+| City |    1    |    2    |    3    |    4    |
+| ---- | ------ | ------ | ------ | ------ |
+| 1    | 0    | 10   | 20   | 12   |
+| 2    | 10   | 0    | 5    | 10   |
+| 3    | 20   | 5    | 0    | 8    |
+| 4    | 15   | 12   | 8    | 0    |
+
+What route should the salesman choose to travel in order to minimize the total distance? Try to formulate an integer programming model for this problem.

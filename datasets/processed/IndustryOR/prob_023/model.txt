@@ -1,0 +1,42 @@
+Set:
+1. Vehicle
+The set of transportation options, \( V = \{Truck, Van, Motorcycle, EV\} \)
+
+Parameter:
+1. Pollution
+[100, 50, 10, 0] # Pollution units per trip for each vehicle
+2. Capacity
+[100, 80, 40, 60] # Units of product transported per trip for each vehicle
+3. TotalDemand
+1800 # Minimum total units of product to transport
+4. MaxPollution
+2000 # Maximum total pollution units allowed
+5. MinTruckTrips
+10 # Minimum number of trips for a truck
+
+Decision variable:
+1. Trips
+Integer variable, \( x_{v} \) for all \( v \in V \), representing the number of trips for each vehicle.
+2. UseVehicle
+Binary variable, \( y_{v} \) for \( v \in \{Van, EV\} \), indicating if the vehicle is used.
+
+Objective:
+Minimize the total pollution.
+min: 100 * x_{Truck} + 50 * x_{Van} * y_{Van} + 10 * x_{Motorcycle}
+
+Constraint:
+1. Demand satisfaction
+100 * x_{Truck} + 80 * x_{Van} * y_{Van} + 40 * x_{Motorcycle} + 60 * x_{EV} * y_{EV} \geq TotalDemand
+2. Pollution limit
+100 * x_{Truck} + 50 * x_{Van} * y_{Van} + 10 * x_{Motorcycle} \leq MaxPollution
+3. Minimum truck trips
+\( x_{Truck} \geq MinTruckTrips \)
+4. Exclusive vehicle choice
+Only one of Van or Electric Vehicle can be used.
+\( y_{Van} + y_{EV} \leq 1 \)
+5. Non-negativity
+\( x_{v} \geq 0, \forall v \in V \)
+
+Type:
+Integer, non-linear, non-linear
+NLP

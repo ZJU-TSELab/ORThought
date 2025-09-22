@@ -1,0 +1,35 @@
+Set:
+1. SupplementType
+The set of supplement types, \( I = \{0, 1\} \) # 0 for Supplement A, 1 for Supplement B
+
+Parameter:
+1. CostPerPill
+[2, 3] # Cost per pill for each supplement type
+2. IronPerPill
+[5, 4] # Units of iron in each supplement type
+3. CalciumPerPill
+[10, 15] # Units of calcium in each supplement type
+4. MinIron
+40 # Minimum required units of iron
+5. MinCalcium
+50 # Minimum required units of calcium
+
+Decision variable:
+1. NumberOfPills
+Integer variable, \( x_{i} \) for all \( i \in I \), representing the number of pills of each supplement type to take.
+
+Objective:
+Minimize the total cost.
+min: \( \sum_{i \in I} CostPerPill[i] \cdot x_{i} \)
+
+Constraint:
+1. Iron constraint
+\( \sum_{i \in I} IronPerPill[i] \cdot x_{i} \geq MinIron \)
+2. Calcium constraint
+\( \sum_{i \in I} CalciumPerPill[i] \cdot x_{i} \geq MinCalcium \)
+3. Non-negativity
+\( x_{i} \geq 0 \), for all \( i \in I \)
+
+Type:
+Integer, linear, linear
+IP

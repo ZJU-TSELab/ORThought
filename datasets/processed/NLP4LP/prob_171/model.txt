@@ -1,0 +1,37 @@
+Set:
+1. TripType
+The set of trip types, \( I = \{0, 1\} \) # 0 for Helicopter, 1 for Car
+
+Parameter:
+1. FishPerTrip
+[30, 20] # Number of fish each vehicle type can transport per trip
+2. TimePerTrip
+[40, 30] # Minutes taken for each trip type
+3. MaxHelicopterTrips
+5 # Maximum number of helicopter trips
+4. MinCarRatio
+0.6 # The number of car trips must be at least 60% of the total trips
+5. MinTotalFish
+300 # Minimum total number of fish to be transported
+
+Decision variable:
+1. NumberOfTrips
+Integer variable, \( x_{i} \) for all \( i \in I \), representing the number of trips of each type.
+
+Objective:
+Minimize the total time needed.
+min: \( \sum_{i \in I} TimePerTrip[i] \cdot x_{i} \)
+
+Constraint:
+1. Maximum helicopter trips constraint
+\( x_{0} \leq MaxHelicopterTrips \)
+2. Minimum fish constraint
+\( \sum_{i \in I} FishPerTrip[i] \cdot x_{i} \geq MinTotalFish \)
+3. Trip ratio constraint
+\( x_{1} \geq \frac{MinCarRatio}{1 - MinCarRatio} \cdot x_{0} \)
+4. Non-negativity
+\( x_{i} \geq 0 \), for all \( i \in I \)
+
+Type:
+Integer, linear, linear
+IP

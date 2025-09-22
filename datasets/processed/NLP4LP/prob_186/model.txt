@@ -1,0 +1,31 @@
+Set:
+1. BoatType
+The set of boat types, \( I = \{0, 1\} \) # 0 for Canoe, 1 for Diesel Boat
+
+Parameter:
+1. FishPerBoat
+[10, 15] # Number of fish each boat type can carry
+2. MinFish
+1000 # Minimum number of fish to be transported
+3. CanoeToDieselRatio
+3 # The number of canoes must be at least three times the number of diesel boats
+
+Decision variable:
+1. NumberOfBoats
+Integer variable, \( x_{i} \) for all \( i \in I \), representing the number of boats of each type to use.
+
+Objective:
+Minimize the total number of boats needed.
+min: \( \sum_{i \in I} x_{i} \)
+
+Constraint:
+1. Minimum fish constraint
+\( \sum_{i \in I} FishPerBoat[i] \cdot x_{i} \geq MinFish \)
+2. Boat ratio constraint
+\( x_{0} \geq CanoeToDieselRatio \cdot x_{1} \)
+3. Non-negativity
+\( x_{i} \geq 0 \), for all \( i \in I \)
+
+Type:
+Integer, linear, linear
+IP

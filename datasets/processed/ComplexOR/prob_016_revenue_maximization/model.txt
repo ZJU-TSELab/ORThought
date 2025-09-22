@@ -1,0 +1,33 @@
+Set:
+1. FlightLegs
+The set of flight legs (one-way non-stop flight), \( F = \{1, 2, 3\} \)
+2. Packages
+The set of packages, \( P = \{1, 2\} \)
+
+Parameter:
+1. Available Seats
+\( AvailableSeats = [50, 60, 70] \)
+2. Estimated Demand
+\( Demand = [30, 40] \)
+3. Package Revenue
+\( Revenue = [100, 150] \)
+4. Usage Matrix
+\( Delta = [[1, 1, 0], [0, 1, 1]] \)
+
+Decision variable:
+1. PackageSalesVariable
+Integer variable, \( Sell_p \geq 0 \) for all \( p \in P \), where \( Sell_p \) is the number of package \( p \) to sell
+
+Objective:
+Maximize total revenue
+max: \( \sum_{p \in P} Revenue_p \cdot Sell_p \)
+
+Constraint:
+1. Demand Constraint
+\( Sell_p \leq Demand_p, \quad \forall p \in P \)
+2. Capacity Constraint
+\( \sum_{p \in P} Delta_{p,r} \cdot Sell_p \leq AvailableSeats_r, \quad \forall r \in F \)
+
+Type:
+Integer, Linear, Linear
+ILP

@@ -1,0 +1,16 @@
+An assembly line needs to produce a product with 10 tasks. The cycle time is 66 time units. The tasks, their durations, and precedence relationships are given in the following table:
+
+Task | Duration | Predecessors
+-----|----------|-------------
+1    | 36       | -
+2    | 36       | 1
+3    | 30       | -
+4    | 30       | 3
+5    | 24       | 1,4
+6    | 30       | 5
+7    | 24       | 2
+8    | 12       | 6,7
+9    | 54       | 8
+10   | 12       | 9
+
+The problem requires assigning these tasks to workstations while respecting the precedence relationships and cycle time constraint, with the objective of minimizing the number of workstations needed. Each task must be assigned to exactly one workstation, and the total duration of tasks assigned to any workstation cannot exceed the cycle time of 66 units.

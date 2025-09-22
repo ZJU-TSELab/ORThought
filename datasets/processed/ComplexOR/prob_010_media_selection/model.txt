@@ -1,0 +1,27 @@
+Set:
+1. Audiences
+The set of target audiences, \( A = \{0, 1, 2\} \)
+2. Media
+The set of advertising media, \( M = \{0, 1, 2\} \)
+
+Parameter:
+1. Incidence Matrix
+\( incidence\_matrix = [[1, 0, 1], [1, 1, 0], [0, 1, 1]] \)
+2. Media Costs
+\( media\_costs = [10, 15, 20] \)
+
+Decision variable:
+1. MediaSelectionVariable
+Binary variable, \( x_m \in \{0, 1\} \) for all \( m \in M \), where \( x_m = 1 \) if media \( m \) is selected, and 0 otherwise
+
+Objective:
+Minimize total media cost
+min: \( \sum_{m \in M} media\_costs_m \cdot x_m \)
+
+Constraint:
+1. Audience Coverage Constraint
+\( \sum_{m \in M} incidence\_matrix_{a,m} \cdot x_m \geq 1, \quad \forall a \in A \)
+
+Type:
+Binary, Linear, Linear
+ILP

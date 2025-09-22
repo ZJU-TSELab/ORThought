@@ -1,0 +1,52 @@
+Set:
+1.  InboundShipments
+    The set of arriving shipments, \( S = \{1, 2, 3, 4\} \)
+2.  OutboundShipments
+    The set of departing shipments, \( R = \{1, 2, 3\} \)
+3.  InboundDocks
+    The set of inbound docks, \( I = \{1, 2, 3, 4\} \)
+4.  OutboundDocks
+    The set of outbound docks, \( O = \{1, 2, 3\} \)
+5.  Zones
+    The set of operational zones, \( Z = \{1, 2\} \) # 1: Zone A, 2: Zone B
+
+Parameter:
+1.  NumItemsInbound
+    [200, 150, 180, 220] # Number of items in each arriving shipment s ∈ S
+2.  NumItemsOutbound
+    [250, 300, 200] # Number of items in each departing shipment r ∈ R
+3.  InboundDockInZone
+    [[1, 1, 0, 0], [0, 0, 1, 1]] # Binary matrix indicating if inbound dock i ∈ I is in zone z ∈ Z
+4.  OutboundDockInZone
+    [[1, 0, 0], [0, 1, 1]] # Binary matrix indicating if outbound dock o ∈ O is in zone z ∈ Z
+5.  CongestionCoefficient
+    [0.00005, 0.00004] # Congestion cost coefficient for each zone z ∈ Z
+6.  BaseHandlingCost
+    0.1 # Base handling cost per item in ¥
+
+Decision variable:
+1.  AssignInbound
+    Binary variable, \( AssignInbound[s][i] \forall s \in S, i \in I \), equals 1 if arriving shipment \(s\) is assigned to inbound dock \(i\), 0 otherwise.
+2.  AssignOutbound
+    Binary variable, \( AssignOutbound[r][o] \forall r \in R, o \in O \), equals 1 if departing shipment \(r\) is assigned to outbound dock \(o\), 0 otherwise.
+
+Objective:
+1.  Minimize the total internal handling cost.
+    min: \( \sum_{z \in Z} CongestionCoefficient[z] \cdot (\sum_{s \in S}\sum_{i \in I} AssignInbound[s][i] \cdot NumItemsInbound[s] \cdot InboundDockInZone[z][i] + \sum_{r \in R}\sum_{o \in O} AssignOutbound[r][o] \cdot NumItemsOutbound[r] \cdot OutboundDockInZone[z][o])^2 + BaseHandlingCost \cdot (\sum_{s \in S} NumItemsInbound[s] + \sum_{r \in R} NumItemsOutbound[r]) \)
+
+Constraint:
+1.  Each arriving shipment must be assigned to exactly one inbound dock.
+    \( \sum_{i \in I} AssignInbound[s][i] = 1 \forall s \in S \)
+2.  Each inbound dock must be assigned to exactly one arriving shipment.
+    \( \sum_{s \in S} AssignInbound[s][i] = 1 \forall i \in I \)
+3.  Each departing shipment must be assigned to exactly one outbound dock.
+    \( \sum_{o \in O} AssignOutbound[r][o] = 1 \forall r \in R \)
+4.  Each outbound dock must be assigned to exactly one departing shipment.
+    \( \sum_{r \in R} AssignOutbound[r][o] = 1 \forall o \in O \)
+5.  Variable domain constraints.
+    \( AssignInbound[s][i] \in \{0, 1\} \forall s \in S, i \in I \)
+    \( AssignOutbound[r][o] \in \{0, 1\} \forall r \in R, o \in O \)
+
+Type:
+Integer, Non-linear, Linear
+NLP

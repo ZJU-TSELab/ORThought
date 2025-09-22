@@ -1,0 +1,52 @@
+Set:
+1. Month
+The set of months, \( M = \{1, 2, ..., MonthNum\} \)
+
+Parameter:
+1. MonthNum
+6
+2. RegularTimeProductionLimit
+6000
+3. OvertimeProductionLimit
+2000
+4. RegularTimeCost
+2
+5. OvertimeCost
+3
+6. InventoryHoldingCost
+0.5
+7. Demand
+[5000, 6000, 5500, 7000, 4500, 4000]
+
+Decision variable:
+1. RegularTimeProduction
+Integer variable, \( RegularTimeProduction_m \forall m \in M \), where \( RegularTimeProduction_m \) is the amount of books produced in month \( m \) during regular time.
+2. OvertimeProduction
+Integer variable, \( OvertimeProduction_m \forall m \in M \), where \( OvertimeProduction_m \) is the amount of books produced in month \( m \) during overtime.
+3. Inventory
+Integer variable, \( Inventory_m \forall m \in M \), where \( Inventory_m \) is the amount of books in inventory at the end of month \( m \).
+
+Objective:
+1. Minimize the total cost of production and inventory holding.
+min: \sum_{m \in M} (RegularTimeCost * RegularTimeProduction[m] + OvertimeCost * OvertimeProduction[m] + InventoryHoldingCost * Inventory[m])
+
+Constraint:
+1. Initial inventory constraint.
+Inventory[1] = 0 + RegularTimeProduction[1] + OvertimeProduction[1] - Demand[1]
+2. Inventory balance constraint.
+Inventory[m] = Inventory[m-1] + RegularTimeProduction[m] + OvertimeProduction[m] - Demand[m] \forall m \in M, m > 1
+3. Demand constraint.
+RegularTimeProduction[1] + OvertimeProduction[1] \geq Demand[1] 
+Inventory[m-1]+ RegularTimeProduction[m] + OvertimeProduction[m] \geq Demand[m] \forall m \in M, m > 1
+4. Regular time production limit constraint.
+RegularTimeProduction[m] \leq RegularTimeProductionLimit \forall m \in M
+5. Overtime production limit constraint.
+OvertimeProduction[m] \leq OvertimeProductionLimit \forall m \in M
+6. Non-negativity constraint.
+RegularTimeProduction[m] \geq 0 \forall m \in M
+OvertimeProduction[m] \geq 0 \forall m \in M
+Inventory[m] \geq 0 \forall m \in M
+
+Type:
+Integer, Linear, Linear
+ILP

@@ -1,0 +1,39 @@
+Set:
+1. ToyTypes
+The set of toy types, \( T = \{\text{High-end, Mid-range, Low-end}\} \).
+
+Parameter:
+1. LaborHours
+[17, 10, 2] # Manufacturing labor hours required per unit for each toy type.
+2. InspectionHours
+[8, 4, 2] # Inspection hours required per unit for each toy type.
+3. UnitProfit
+[300, 200, 100] # Profit per unit for each toy type.
+4. AvailableLabor
+1000 # Total available manufacturing labor hours.
+5. AvailableInspection
+500 # Total available inspection hours.
+6. MaxDemand
+[50, 80, 150] # Maximum market demand for each toy type.
+
+Decision variable:
+1. ProductionQuantity
+Integer variable, \( x_t \) for \( t \in T \), represents the number of units of toy type t to produce.
+
+Objective:
+Maximize: \( 300x_{\text{High-end}} + 200x_{\text{Mid-range}} + 100x_{\text{Low-end}} \)
+
+Constraint:
+1. LaborConstraint
+The total labor hours used cannot exceed the available hours: \( 17x_{\text{High-end}} + 10x_{\text{Mid-range}} + 2x_{\text{Low-end}} \le 1000 \)
+2. InspectionConstraint
+The total inspection hours used cannot exceed the available hours: \( 8x_{\text{High-end}} + 4x_{\text{Mid-range}} + 2x_{\text{Low-end}} \le 500 \)
+3. DemandConstraint
+The production quantity for each toy type cannot exceed its market demand:
+- \( x_{\text{High-end}} \le 50 \)
+- \( x_{\text{Mid-range}} \le 80 \)
+- \( x_{\text{Low-end}} \le 150 \)
+
+Type:
+Integer, linear, linear
+ILP

@@ -1,0 +1,39 @@
+Set:
+1. MiningTechnique
+The set of mining techniques, \( I = \{0, 1\} \) # 0 for Heap Leaching, 1 for Vat Leaching
+
+Parameter:
+1. REOProduction
+[3, 5] # Tons of rare earth oxide produced per square mile by each technique
+2. WastewaterProduction
+[8, 17] # Tons of polluted wastewater created per square mile by each technique
+3. MachineRequirement
+[10, 20] # Extraction machines required per square mile by each technique
+4. TotalLand
+100 # Square miles of mining sites available
+5. MaxWastewater
+90 # Tons of polluted wastewater allowed daily
+6. MaxMachines
+100 # Extraction machines available
+
+Decision variable:
+1. LandToMine
+Continuous variable, \( x_{i} \) for all \( i \in I \), representing the square miles of land to be mined by each technique.
+
+Objective:
+Maximize the daily production of rare earth oxide.
+max: \( \sum_{i \in I} REOProduction[i] \cdot x_{i} \)
+
+Constraint:
+1. Land constraint
+\( \sum_{i \in I} x_{i} \leq TotalLand \)
+2. Wastewater constraint
+\( \sum_{i \in I} WastewaterProduction[i] \cdot x_{i} \leq MaxWastewater \)
+3. Machine constraint
+\( \sum_{i \in I} MachineRequirement[i] \cdot x_{i} \leq MaxMachines \)
+4. Non-negativity
+\( x_{i} \geq 0 \), for all \( i \in I \)
+
+Type:
+Continuous, linear, linear
+LP

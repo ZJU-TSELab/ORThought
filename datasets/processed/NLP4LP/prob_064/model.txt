@@ -1,0 +1,39 @@
+Set:
+1. MachineType
+The set of machine types, \( I = \{0, 1\} \) # 0 for Traditional, 1 for Modern
+
+Parameter:
+1. TeaYield
+[30, 40] # kg of tea leaves picked per acre by each machine type
+2. WasteProduction
+[10, 15] # kg of waste created per acre by each machine type
+3. FuelConsumption
+[20, 15] # liters of fuel required per acre by each machine type
+4. TotalAcres
+500 # acres of land available
+5. MaxFuel
+9000 # liters of fuel available
+6. MaxWaste
+6000 # kg of waste that can be handled
+
+Decision variable:
+1. AcresToHarvest
+Continuous variable, \( x_{i} \) for all \( i \in I \), representing the number of acres to be harvested by each machine type.
+
+Objective:
+Maximize the amount of tea leaves that can be picked.
+max: \( \sum_{i \in I} TeaYield[i] \cdot x_{i} \)
+
+Constraint:
+1. Land constraint
+\( \sum_{i \in I} x_{i} \leq TotalAcres \)
+2. Fuel constraint
+\( \sum_{i \in I} FuelConsumption[i] \cdot x_{i} \leq MaxFuel \)
+3. Waste constraint
+\( \sum_{i \in I} WasteProduction[i] \cdot x_{i} \leq MaxWaste \)
+4. Non-negativity
+\( x_{i} \geq 0 \), for all \( i \in I \)
+
+Type:
+Continuous, linear, linear
+LP

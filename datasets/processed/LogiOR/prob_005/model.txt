@@ -1,0 +1,37 @@
+Set:
+1. Industries
+The set of industries, \( I = \{1, 2, \dots, IndustryNum\} \)
+2. Shops
+The set of shops, \( S = \{1, 2, \dots, ShopNum\} \)
+
+Parameter:
+1. IndustryNum
+3
+2. ShopNum
+5
+3. IndustryStorage
+[60, 30, 45]
+4. ShopDemand
+[15, 35, 20, 5, 40]
+5. TransportationCost(row: industry, column: shop)
+[[4, 9, 2, 6, 5], 
+ [2, 6, 1, 7, 9], 
+ [2, 4, 9, 8, 3]]
+
+Decision variable:
+1. Transportation
+Integer variable, \( t_{ij} \geq 0 \) for all \( i \in I, j \in S \), representing the amount of goods transported from industry \( i \) to shop \( j \)
+
+Objective:
+The total transportation cost
+min: \sum_{i\in I}\sum_{j\in S}TransportationCost_{ij}\cdot t_{ij}
+
+Constraint:
+1. Industry storage capacity
+\sum_{j\in S}t_{ij} \leq IndustryStorage_i, \forall i \in I
+2. Shop demand
+\sum_{i\in I}t_{ij} = ShopDemand_j, \forall j \in S
+
+Type:
+Integer, linear, Linear
+ILP

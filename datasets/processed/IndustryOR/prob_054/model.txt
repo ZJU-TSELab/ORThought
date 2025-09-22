@@ -1,0 +1,38 @@
+Set:
+1. Courses
+The set of available courses, \( C = \{\text{Calc, OR, DS, MS, Sim, Prog, Fcst}\} \).
+2. Categories
+The set of subject categories, \( K = \{\text{Math, OpRes, CompSci}\} \).
+
+Parameter:
+1. CategoryRequirements
+{'Math': 2, 'OpRes': 2, 'CompSci': 2} # The number of courses required from each category.
+2. CourseCategoryMap
+A binary mapping \( a_{ck} \) which is 1 if course \( c \in C \) belongs to category \( k \in K \), and 0 otherwise.
+3. Prerequisites
+A set of prerequisite pairs \( (c_1, c_2) \), meaning course \( c_1 \) must be taken before or at the same time as course \( c_2 \).
+- (Prog, Sim)
+- (Prog, DS)
+- (Calc, MS)
+- (MS, Fcst)
+
+Decision variable:
+1. SelectCourse
+Binary variable, \( x_c \) for \( c \in C \), is 1 if course c is selected, and 0 otherwise.
+
+Objective:
+Minimize: \( \sum_{c \in C} x_c \)
+
+Constraint:
+1. CategoryRequirements
+For each category \( k \in K \), the number of selected courses belonging to that category must meet the requirement: \( \sum_{c \in C} a_{ck} \cdot x_c \ge \text{Requirement}_k \)
+2. PrerequisiteConstraints
+For each prerequisite pair \( (c_1, c_2) \), if course \( c_2 \) is selected, then course \( c_1 \) must also be selected: \( x_{c_2} \le x_{c_1} \).
+- \( x_{\text{Sim}} \le x_{\text{Prog}} \)
+- \( x_{\text{DS}} \le x_{\text{Prog}} \)
+- \( x_{\text{MS}} \le x_{\text{Calc}} \)
+- \( x_{\text{Fcst}} \le x_{\text{MS}} \)
+
+Type:
+Integer, linear, linear
+ILP

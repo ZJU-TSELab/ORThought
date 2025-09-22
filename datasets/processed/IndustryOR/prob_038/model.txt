@@ -1,0 +1,48 @@
+Set:
+1. Method
+The set of transportation methods, \( M = \{Motorcycle, SmallTruck, LargeTruck\} \)
+
+Parameter:
+1. Pollution
+{'Motorcycle': 40, 'SmallTruck': 70, 'LargeTruck': 100} # Units of pollution per trip
+2. Capacity
+{'Motorcycle': 10, 'SmallTruck': 20, 'LargeTruck': 50} # Units of product transported per trip
+3. MinDemand
+300 # Minimum total units of product to transport
+4. MaxMotorcycleTrips
+8 # Maximum number of motorcycle trips
+5. MaxTotalTrips
+20 # Maximum total number of trips
+
+Decision variable:
+1. Trips
+Integer variable, \( x_{m} \) for \( m \in M \), representing the number of trips for each method.
+2. UseMethod
+Binary variable, \( y_{m} \) for \( m \in M \), indicating if method \( m \) is used.
+
+Objective:
+Minimize the total pollution.
+min: \sum_{m \in M} Pollution[m] * x_{m}
+
+Constraint:
+1. Method selection
+Exactly two transportation methods must be chosen.
+\sum_{m \in M} y_{m} = 2
+2. Demand satisfaction
+The total amount of transported product must meet the minimum requirement.
+\sum_{m \in M} Capacity[m] * x_{m} \geq MinDemand
+3. Motorcycle trip limit
+The number of motorcycle trips cannot exceed the limit.
+\( x_{Motorcycle} \leq MaxMotorcycleTrips \)
+4. Total trips limit
+The total number of trips must not exceed the limit.
+\sum_{m \in M} x_{m} \leq MaxTotalTrips
+5. Linking trips and use variables
+A method can only have trips if it is selected.
+\( x_{m} \leq BigM * y_{m}, \forall m \in M \) (where BigM is a large number)
+6. Non-negativity
+\( x_{m} \geq 0, \forall m \in M \)
+
+Type:
+Integer, linear, linear
+ILP

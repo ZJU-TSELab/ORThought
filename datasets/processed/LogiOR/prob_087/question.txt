@@ -1,0 +1,12 @@
+You are in charge of a taxi company, managing its fleet during the evening peak hours. The company needs to dispatch its idle taxis from 3 areas to 3 passenger demand hotspots. To improve profitability, in addition to setting a dynamic surcharge for each hotspot to incentivize drivers, the company has also established a fixed base fare of ¥15 for every successful dispatch. The supply of drivers willing to go to a certain hotspot is proportional to the square of the surcharge, with a coefficient of 0.5. The company's objective is to set the surcharges and plan the vehicle dispatch to maximize total profit. Total profit is calculated as (total base fare revenue + total surcharge revenue - total deadheading costs). Through operational optimization, the company has reduced its deadheading costs by 20%. The number of available taxis in each area, the passenger demand at each hotspot, and the adjusted deadheading costs from each area to each hotspot are shown in the table below.
+
+Table 1: Adjusted Taxi Dispatch Data 
+
+| Attribute | H1 | H2 | H3 | Available Taxis |
+|:---:|:---:|:---:|:---:|:---:|
+| Demand | 30  | 50  | 40  | - |
+| Deadheading Cost from A1 | 16 | 28 | 24 | 25  |
+| Deadheading Cost from A2 | 20 | 12 | 32 | 40  |
+| Deadheading Cost from A3 | 24 | 20 | 16 | 35  |
+
+How can the taxi company set its dynamic surcharges and dispatch plan to maximize its total profit while satisfying all supply and demand constraints?

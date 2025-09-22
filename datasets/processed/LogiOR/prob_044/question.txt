@@ -1,0 +1,7 @@
+CargoLink Logistics operates two types of delivery vehicles: Type X and Type Y. New environmental regulations require that the average carbon emissions of all vehicles deployed over the next three years cannot exceed 40 grams per kilometer annually. Each Type X vehicle generates $25,000 in revenue, costs $18,000 to operate, and emits 70 grams of carbon per kilometer. Each Type Y vehicle generates $20,000 in revenue, costs $16,000 to operate, and emits 30 grams of carbon per kilometer. Due to fleet capacity constraints, CargoLink can deploy a maximum of 400 vehicles each year. The maximum number of each vehicle type that can be deployed annually is shown in the table below. For example, at most, 350 Type X vehicles can be deployed in year 3. How can CargoLink Logistics maximize its total profit over the next three years while complying with environmental regulations?
+
+| Year | Maximum Type X Vehicles | Maximum Type Y Vehicles |  
+|------|--------------------------|--------------------------|  
+| 1    | 300                      | 250                      |  
+| 2    | 320                      | 280                      |  
+| 3    | 350                      | 300                      |  

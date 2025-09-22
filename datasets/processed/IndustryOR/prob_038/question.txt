@@ -1,0 +1,9 @@
+A company plans to transport goods between the city and the suburb and needs to choose the most environmentally friendly transportation method. The company can choose from the following three methods: motorcycle, small truck, and large truck. Each motorcycle trip produces 40 units of pollution, each small truck trip produces 70 units of pollution, and each large truck trip produces 100 units of pollution. The company's goal is to minimize total pollution.
+
+The company can only choose two out of these three transportation methods.
+
+Due to certain road restrictions, the number of motorcycle trips cannot exceed 8.
+
+Each motorcycle trip can transport 10 units of products, each small truck trip can transport 20 units of products, and each large truck trip can transport 50 units of products. The company needs to transport at least 300 units of products.
+
+The total number of trips must be less than or equal to 20.

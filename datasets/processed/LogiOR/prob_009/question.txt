@@ -1,0 +1,19 @@
+In a city planning scenario, it is necessary to select locations for public transport stations to serve a set of 15 passenger demand points, with 5 potential station locations available. The distance from each demand point to each potential station is known, and a demand point is considered ""covered"" by a station only if the distance between them is no more than 300 meters. What is the minimum number of stations that need to be selected to ensure all demand points are covered?
+The distance matrix between each demand point and each potential station is as follows:
+| demand node\stop | 1    | 2    | 3    | 4    | 5    |
+|-----------|------|------|------|------|------|
+| 1         | 389  | 515  | 170  | 143  | 617  |
+| 2         | 562  | 678  | 265  | 640  | 629  |
+| 3         | 206  | 594  | 180  | 564  | 683  |
+| 4         | 574  | 105  | 311  | 99   | 550  |
+| 5         | 616  | 490  | 99   | 473  | 682  |
+| 6         | 571  | 258  | 494  | 749  | 61   |
+| 7         | 573  | 234  | 207  | 635  | 318  |
+| 8         | 70   | 53   | 399  | 740  | 494  |
+| 9         | 229  | 190  | 550  | 654  | 394  |
+| 10        | 50   | 56   | 459  | 143  | 478  |
+| 11        | 95   | 378  | 507  | 647  | 135  |
+| 12        | 767  | 200  | 569  | 689  | 621  |
+| 13        | 729  | 333  | 91   | 86   | 386  |
+| 14        | 633  | 163  | 562  | 184  | 384  |
+| 15        | 67   | 515  | 224  | 502  | 345  |

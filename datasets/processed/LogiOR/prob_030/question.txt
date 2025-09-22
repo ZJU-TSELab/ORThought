@@ -1,0 +1,9 @@
+LogiTrans operates two distribution centers to manage the shipment of three types of goods to various regional hubs. Each distribution center can be staffed by up to seven logistics coordinators at a time. Coordinators are paid $500 per week at distribution center 1 and $900 per week at distribution center 2. Activating a distribution center for a week incurs a fixed cost of $1,000 for center 1 and $2,000 for center 2. During a week at a distribution center, each coordinator can process the number of shipments of each type of goods as shown in Table as follows:
+
+| Goods Type \ Distribution Center | Center 1 | Center 2 |
+|----------------------------------|----------|----------|
+| Type 1                           | 20       | 25       |
+| Type 2                           | 18       | 22       |
+| Type 3                           | 15       | 20       |
+
+Each week, LogiTrans must ensure that at least 120 shipments of goods type 1, at least 150 shipments of goods type 2, and at least 200 shipments of goods type 3 are processed. How to minimize the total cost of meeting weekly shipment demands?

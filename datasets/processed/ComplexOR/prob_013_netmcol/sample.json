@@ -1,0 +1,32 @@
+[
+    {
+        "input": {
+            "Cities": ["A", "B"],
+            "Links": [["A", "B"]],
+            "Products": ["Product1"],
+            "Supply": [
+                [10],
+                [0]
+            ],
+            "Demand": [
+                [0],
+                [10]
+            ],
+            "ShipmentCost": [
+                [[0],[1]],
+                [[0],[0]]
+            ],
+            "Capacity": [
+                [[0],[10]],
+                [[0],[0]]
+            ],
+            "JointCapacity": [
+                [0,10],
+                [0,0]
+            ]
+        },
+        "output": [
+            10
+        ]
+    }
+]

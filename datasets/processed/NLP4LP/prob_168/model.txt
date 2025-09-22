@@ -1,0 +1,35 @@
+Set:
+1. TripType
+The set of trip types, \( I = \{0, 1\} \) # 0 for Cargo Plane, 1 for Ultrawide Truck
+
+Parameter:
+1. TiresPerTrip
+[10, 6] # Number of tires each vehicle type can transport per trip
+2. CostPerTrip
+[1000, 700] # Cost for each trip type
+3. MinTires
+200 # Minimum number of tires to be transported
+4. MaxCost
+22000 # Maximum available budget
+
+Decision variable:
+1. NumberOfTrips
+Integer variable, \( x_{i} \) for all \( i \in I \), representing the number of trips of each type.
+
+Objective:
+Minimize the total number of trips.
+min: \( \sum_{i \in I} x_{i} \)
+
+Constraint:
+1. Tire transport constraint
+\( \sum_{i \in I} TiresPerTrip[i] \cdot x_{i} \geq MinTires \)
+2. Budget constraint
+\( \sum_{i \in I} CostPerTrip[i] \cdot x_{i} \leq MaxCost \)
+3. Trip ratio constraint
+\( x_{0} \leq x_{1} \)
+4. Non-negativity
+\( x_{i} \geq 0 \), for all \( i \in I \)
+
+Type:
+Integer, linear, linear
+IP

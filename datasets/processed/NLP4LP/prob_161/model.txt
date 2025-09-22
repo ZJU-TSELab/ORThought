@@ -1,0 +1,37 @@
+Set:
+1. VehicleType
+The set of vehicle types, \( I = \{0, 1\} \) # 0 for Bus, 1 for Car
+
+Parameter:
+1. ChickenPerVehicle
+[100, 40] # Number of chicken each vehicle type can transport
+2. TimePerTrip
+[2, 1.5] # Hours per trip for each vehicle type
+3. MinChicken
+1200 # Minimum number of chicken to be transported
+4. MaxBusTrips
+10 # Maximum number of bus trips allowed
+5. MinCarTripProportion
+0.60 # Minimum proportion of total trips that must be by car
+
+Decision variable:
+1. NumberOfTrips
+Integer variable, \( x_{i} \) for all \( i \in I \), representing the number of trips for each vehicle type.
+
+Objective:
+Minimize the total time needed to transport the chicken.
+min: \( \sum_{i \in I} TimePerTrip[i] \cdot x_{i} \)
+
+Constraint:
+1. Chicken transport requirement
+\( \sum_{i \in I} ChickenPerVehicle[i] \cdot x_{i} \geq MinChicken \)
+2. Maximum bus trips
+\( x_{0} \leq MaxBusTrips \)
+3. Car trip proportion
+\( x_{1} \geq MinCarTripProportion \cdot \sum_{i \in I} x_{i} \)
+4. Non-negativity
+\( x_{i} \geq 0 \), for all \( i \in I \)
+
+Type:
+Integer, linear, linear
+IP

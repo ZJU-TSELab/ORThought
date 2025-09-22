@@ -1,0 +1,43 @@
+Set:
+1. CandyBrands
+The set of candy brands, \( J = \{A, B, C\} \).
+2. RawMaterials
+The set of raw materials, \( I = \{A, B, C\} \).
+
+Parameter:
+1. SellingPrice
+[3.40, 2.85, 2.25] # Selling price per kg for each candy brand \( s_j \).
+2. ProcessingFee
+[0.50, 0.40, 0.30] # Processing fee per kg for each candy brand \( p_j \).
+3. RawMaterialCost
+[2.00, 1.50, 1.00] # Cost per kg for each raw material \( c_i \).
+4. MonthlyLimit
+[2000, 2500, 1200] # Monthly availability limit in kg for each raw material \( L_i \).
+
+Decision variable:
+1. ProductionQuantity
+Continuous variable, \( x_j \) for \( j \in J \), represents the total kilograms of candy brand j produced.
+2. RawMaterialUsage
+Continuous variable, \( r_{ij} \) for \( i \in I, j \in J \), represents the kilograms of raw material i used in candy brand j.
+
+Objective:
+Maximize: \( \sum_{j \in J} (s_j - p_j)x_j - \sum_{i \in I} \sum_{j \in J} c_i r_{ij} \)
+
+Constraint:
+1. MassBalance
+For each candy brand \( j \in J \), the sum of raw materials equals the total quantity produced: \( \sum_{i \in I} r_{ij} = x_j \)
+2. RawMaterialLimit
+For each raw material \( i \in I \), the total amount used across all candies cannot exceed its monthly limit: \( \sum_{j \in J} r_{ij} \le L_i \)
+3. ContentRequirements
+- Candy A:
+  - Raw A content \( \ge 60\% \): \( r_{A,A} \ge 0.60 x_A \)
+  - Raw C content \( \le 20\% \): \( r_{C,A} \le 0.20 x_A \)
+- Candy B:
+  - Raw A content \( \ge 15\% \): \( r_{A,B} \ge 0.15 x_B \)
+  - Raw C content \( \le 60\% \): \( r_{C,B} \le 0.60 x_B \)
+- Candy C:
+  - Raw C content \( \le 50\% \): \( r_{C,C} \le 0.50 x_C \)
+
+Type:
+Continuous, linear, linear
+LP

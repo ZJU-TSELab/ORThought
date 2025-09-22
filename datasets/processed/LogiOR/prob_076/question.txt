@@ -1,0 +1,17 @@
+A mining company operates three ore processing plants (P1, P2, P3) with monthly processing capacities of 8000, 10000, and 12000 tons respectively. The company sources ore from four different mines (M1, M2, M3, M4) with available quantities of 6000, 9000, 7000, and 5000 tons per month. 
+
+Each ore type has different characteristics:
+- Metal recovery rates: M1=85%, M2=92%, M3=78%, M4=88%
+- Processing costs per ton: M1=$12, M2=$18, M3=$10, M4=$15
+- Sulfur content (impurity): M1=1.2%, M2=0.8%, M3=2.1%, M4=1.5%
+- Maximum allowed average sulfur content across all plants: 1.5%
+
+Transportation costs per ton from mines to plants:
+|       | P1  | P2  | P3  |
+|-------|-----|-----|-----|
+|   M1  | $4  | $6  | $5  |
+|   M2  | $7  | $5  | $8  |
+|   M3  | $3  | $4  | $6  |
+|   M4  | $8  | $6  | $7  |
+
+The company needs to determine the optimal ore allocation from mines to plants to maximize total metal recovery while keeping total costs under $500,000 and meeting all operational constraints.

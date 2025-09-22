@@ -1,0 +1,35 @@
+Set:
+1. InvestmentType
+The set of investment types, \( T = \{0, 1\} \) # 0 for Apartments, 1 for Townhouses
+
+Parameter:
+1. TotalBudget
+600000 # Total amount to invest
+2. MaxApartmentInvestment
+200000 # Maximum investment in apartments
+3. ReturnRate
+[0.10, 0.15] # Return rate for each investment type
+4. ApartmentToTownhouseRatio
+0.5 # Investment in apartments must be at least half of the investment in townhouses
+
+Decision variable:
+1. InvestmentAmount
+Continuous variable, \( x_{t} \) for all \( t \in T \), representing the amount of money invested in type \( t \).
+
+Objective:
+Maximize the total profit from investments.
+max: \sum_{t \in T} ReturnRate[t] * x_{t}
+
+Constraint:
+1. Total budget constraint
+\sum_{t \in T} x_{t} \leq TotalBudget
+2. Apartment investment limit
+x_{0} \leq MaxApartmentInvestment
+3. Investment ratio constraint
+x_{0} \geq ApartmentToTownhouseRatio * x_{1}
+4. Non-negativity
+x_{t} \geq 0, \forall t \in T
+
+Type:
+Continuous, linear, linear
+LP

@@ -1,0 +1,35 @@
+Set:
+1. PrinterType
+The set of printer types, \( I = \{0, 1\} \) # 0 for Premium, 1 for Regular
+
+Parameter:
+1. PrintingSpeed
+[30, 20] # Pages printed per minute by each printer type
+2. InkConsumption
+[4, 3] # Units of ink consumed per minute by each printer type
+3. MinPrintingSpeed
+200 # Minimum total pages to be printed per minute
+4. MaxInkConsumption
+35 # Maximum total units of ink to be used per minute
+
+Decision variable:
+1. PrinterCount
+Integer variable, \( x_{i} \) for all \( i \in I \), representing the number of printers of type \( i \) to be bought.
+
+Objective:
+Minimize the total number of printers.
+min: \( \sum_{i \in I} x_{i} \)
+
+Constraint:
+1. Printing speed constraint
+\( \sum_{i \in I} PrintingSpeed[i] \cdot x_{i} \geq MinPrintingSpeed \)
+2. Ink consumption constraint
+\( \sum_{i \in I} InkConsumption[i] \cdot x_{i} \leq MaxInkConsumption \)
+3. Preference constraint
+\( x_{1} \leq x_{0} - 1 \)
+4. Non-negativity
+\( x_{i} \geq 0 \), for all \( i \in I \)
+
+Type:
+Integer, linear, linear
+IP

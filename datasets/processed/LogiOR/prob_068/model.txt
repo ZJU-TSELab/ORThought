@@ -1,0 +1,43 @@
+Set:
+1. Components
+The set of components, \( C = \{1, 2, 3, 4, 5\} \) representing C1-C5
+2. Suppliers
+The set of suppliers, \( S = \{1, 2, 3\} \) representing S1-S3
+
+Parameter:
+1. Demand
+[1200, 800, 1500, 900, 600] units for each \( c \in C \)
+2. Price
+\( p_{scsc} \): Price from supplier \( s \) for component \( c \),
+S1: [12,15,18,20,22], S2: [14,16,17,19,21], S3: [13,14,19,18,20]
+3. Reliability
+\( r_s \): [0.85, 0.75, 0.90] for S1-S3
+4. Capacity
+\( cap_s \): [2000, 1800, 2500] units for S1-S3
+5. MinReliableFraction
+0
+.6 (minimum fraction from reliable suppliers)
+6. MaxSupplierSpendFraction
+0.4 (maximum spend share per supplier)
+
+Decision variable:
+1. ProcurementQuantity
+\( q_{sc} \geq 0 \) for all \( s \in S, c \in C \), quantity purchased from supplier \( s \) for component \( c \)
+
+Objective:
+Minimize total procurement cost
+min: \( \sum_{s\in S}\sum_{c\in C} p_{sc} \cdot q_{sc} \)
+
+Constraint:
+1. Demand satisfaction
+\( \sum_{s\in S} q_{sc} = Demand_c, \forall c \in C \)
+2. Supplier capacity
+\( \sum_{c\in C} q_{sc} \leq cap_s, \forall s \in S \)
+3. Reliable sourcing requirement
+\( \sum_{s\in S | r_s \geq 0.8} q_{sc} \geq 0.6 \cdot Demand_c, \forall c \in C \)
+4. Spend concentration limit
+\( \sum_{c\in C} p_{sc} \cdot q_{sc} \leq 0.4 \cdot \sum_{s'\in S}\sum_{c\in C} p_{s'c} \cdot q_{s'c}, \forall s \in S \)
+
+Type:
+Continuous, Linear, Linear
+LP

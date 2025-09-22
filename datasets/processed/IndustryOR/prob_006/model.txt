@@ -1,0 +1,41 @@
+Set:
+1. Warehouses
+The set of warehouses, \( W = \{Verona, Perugia, Rome, Pescara, Taranto, Lamezia\} \)
+2. Ports
+The set of ports, \( P = \{Genoa, Venice, Ancona, Naples, Bari\} \)
+
+Parameter:
+1. Supply
+[10, 12, 20, 24, 18, 40] # Empty containers available at each warehouse.
+2. Demand
+[20, 15, 25, 33, 21] # Container demand at each port.
+3. Distances
+A 6x5 matrix of distances (km) from each warehouse to each port.
+4. CostPerKm
+30 # Cost in euros per kilometer.
+5. TruckCapacity
+2 # Containers per truck.
+
+Decision variable:
+1. ContainersShipped
+Integer variable, \( x_{w,p} \), number of containers shipped from warehouse \( w \) to port \( p \).
+2. TrucksUsed
+Integer variable, \( y_{w,p} \), number of trucks used on the route from warehouse \( w \) to port \( p \).
+
+Objective:
+Minimize the total transportation cost.
+min: \(\sum_{w \in W} \sum_{p \in P} CostPerKm \cdot Distances_{w,p} \cdot x_{w,p}\)
+
+Constraint:
+1. Supply Constraint
+\(\sum_{p \in P} x_{w,p} \leq Supply_w, \forall w \in W\)
+2. Demand Fulfillment
+\(\sum_{w \in W} x_{w,p} \geq Demand_p, \forall p \in P\)
+3. Truck Capacity
+\(x_{w,p} \leq TruckCapacity \cdot y_{w,p}, \forall w \in W, p \in P\)
+4. Non-negativity
+All decision variables \(\geq 0\).
+
+Type:
+Integer, linear, linear
+ILP

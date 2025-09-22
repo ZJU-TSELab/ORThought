@@ -1,0 +1,39 @@
+
+
+Set:
+1. TruckTypes
+The set of truck types, \( T = \{A, B\} \).
+
+Parameter:
+1. RefrigeratedCapacity
+[20, 30] # Refrigerated capacity in cubic meters for each truck type.
+2. NonRefrigeratedCapacity
+[40, 30] # Non-refrigerated capacity in cubic meters for each truck type.
+3. RequiredRefrigerated
+3000 # Total required refrigerated cargo in cubic meters.
+4. RequiredNonRefrigerated
+4000 # Total required non-refrigerated cargo in cubic meters.
+5. RentalCost
+[30, 40] # Rental cost in £ per kilometer for each truck type.
+
+Decision variable:
+1. NumTrucks
+Integer variable, \( n_t \) for all \( t \in T \), representing the number of trucks of type \( t \) to rent.
+
+Objective:
+Minimize the total rental cost.
+min: \sum_{t \in T} \text{RentalCost}[t] * n_t
+
+Constraint:
+1. Refrigerated Cargo
+The total refrigerated capacity of the rented trucks must meet the requirement.
+\sum_{t \in T} \text{RefrigeratedCapacity}[t] * n_t \geq \text{RequiredRefrigerated}
+2. Non-Refrigerated Cargo
+The total non-refrigerated capacity of the rented trucks must meet the requirement.
+\sum_{t \in T} \text{NonRefrigeratedCapacity}[t] * n_t \geq \text{RequiredNonRefrigerated}
+3. Non-negativity
+n_t \geq 0, \forall t \in T
+
+Type:
+Integer, linear, linear
+ILP

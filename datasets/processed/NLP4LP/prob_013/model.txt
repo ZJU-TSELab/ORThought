@@ -1,0 +1,45 @@
+Set:
+1. ArtPieceType
+The set of art piece types, \( T = \{0, 1\} \) # 0 for Large, 1 for Small
+
+Parameter:
+1. PaintAvailable
+100 # Total units of paint available
+2. GlitterAvailable
+50 # Total units of glitter available
+3. GlueAvailable
+70 # Total units of glue available
+4. MinArtPieces
+[5, 5] # Minimum units of each art piece type required
+5. Profit
+[30, 15] # Profit per art piece type
+6. PaintRequired
+[4, 2] # Units of paint required per art piece type
+7. GlitterRequired
+[3, 1] # Units of glitter required per art piece type
+8. GlueRequired
+[5, 2] # Units of glue required per art piece type
+
+Decision variable:
+1. ArtPieceCount
+Integer variable, \( x_{t} \) for all \( t \in T \), representing the number of art pieces of type \( t \) to make.
+
+Objective:
+Maximize the total profit.
+max: \sum_{t \in T} Profit[t] * x_{t}
+
+Constraint:
+1. Paint constraint
+\sum_{t \in T} PaintRequired[t] * x_{t} \leq PaintAvailable
+2. Glitter constraint
+\sum_{t \in T} GlitterRequired[t] * x_{t} \leq GlitterAvailable
+3. Glue constraint
+\sum_{t \in T} GlueRequired[t] * x_{t} \leq GlueAvailable
+4. Minimum large art pieces
+x_{t} \geq MinArtPieces[t], \forall t \in T
+5. Non-negativity
+x_{t} \geq 0, \forall t \in T
+
+Type:
+Integer, linear, linear
+IP

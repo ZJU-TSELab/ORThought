@@ -1,0 +1,44 @@
+Set:
+1. MachineType
+The set of machine types, \( I = \{0, 1\} \) # 0 for Machine 1, 1 for Machine 2
+
+Parameter:
+1. EyeCreamProduction
+[30, 45] # ml of eye cream produced per hour by each machine type
+2. FootCreamProduction
+[60, 30] # ml of foot cream produced per hour by each machine type
+3. WaterUsage
+[20, 15] # ml of distilled water used per hour by each machine type
+4. MinEyeCream
+1300 # Minimum ml of eye cream to be produced
+5. MinFootCream
+1500 # Minimum ml of foot cream to be produced
+6. MaxWater
+1200 # Maximum ml of distilled water available
+
+Decision variable:
+1. MachineHours
+Continuous variable, \( x_{i} \) for all \( i \in I \), representing the number of hours each machine is used.
+2. MaxHour
+Continuous variable, \( z \), representing the maximum of the machine hours.
+
+Objective:
+Minimize the maximum of the machine hours.
+min: \( z \)
+
+Constraint:
+1. Eye cream production constraint
+\( \sum_{i \in I} EyeCreamProduction[i] \cdot x_{i} \geq MinEyeCream \)
+2. Foot cream production constraint
+\( \sum_{i \in I} FootCreamProduction[i] \cdot x_{i} \geq MinFootCream \)
+3. Water constraint
+\( \sum_{i \in I} WaterUsage[i] \cdot x_{i} \leq MaxWater \)
+4. Max hour constraint
+\( z \geq x_{i} \), for all \( i \in I \)
+5. Non-negativity
+\( x_{i} \geq 0 \), for all \( i \in I \)
+\( z \geq 0 \)
+
+Type:
+Continuous, linear, linear
+LP

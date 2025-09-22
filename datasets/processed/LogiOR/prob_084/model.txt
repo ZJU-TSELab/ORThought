@@ -1,0 +1,42 @@
+Set:
+1.  OldTrucks
+    The set of old diesel trucks, \( D = \{1, 2, 3, 4, 5\} \)
+
+Parameter:
+1.  AnnualOperatingCostOld
+    [80000, 85000, 78000, 92000, 88000] # Annual operating cost for each old diesel truck in ¥
+2.  AnnualCarbonEmissionsOld
+    [15, 16, 14, 18, 17] # Annual carbon emissions for each old diesel truck in tons
+3.  AnnualOperatingCostNew
+    30000 # Annual operating cost per new electric truck in ¥
+4.  AnnualizedInvestmentNew
+    120000 # Annualized investment cost per new electric truck in ¥
+5.  CarbonTaxCoefficient
+    80 # Coefficient for the carbon tax calculation
+6.  MinFleetSize
+    4 # Minimum number of trucks required in the fleet
+7.  MaxNewTrucks
+    3 # Maximum number of new electric trucks that can be purchased
+
+Decision variable:
+1.  KeepOldTruck
+    Binary variable, \( KeepOldTruck[d] \forall d \in D \), equals 1 if old truck \( d \) is kept, 0 otherwise.
+2.  BuyNewTrucks
+    Integer variable, \( BuyNewTrucks \), the number of new electric trucks to purchase.
+
+Objective:
+1.  Minimize the total annual cost.
+    min: \( \sum_{d \in D} (AnnualOperatingCostOld[d] \cdot KeepOldTruck[d]) + (AnnualOperatingCostNew + AnnualizedInvestmentNew) \cdot BuyNewTrucks + CarbonTaxCoefficient \cdot (\sum_{d \in D} (AnnualCarbonEmissionsOld[d] \cdot KeepOldTruck[d]))^2 \)
+
+Constraint:
+1.  Minimum fleet size constraint.
+    \( \sum_{d \in D} KeepOldTruck[d] + BuyNewTrucks \geq MinFleetSize \)
+2.  New truck purchase limit.
+    \( BuyNewTrucks \leq MaxNewTrucks \)
+3.  Variable domain constraints.
+    \( KeepOldTruck[d] \in \{0, 1\} \forall d \in D \)
+    \( BuyNewTrucks \geq 0 \), and integer
+
+Type:
+Integer, Non-linear, Linear
+NLP

@@ -1,0 +1,8 @@
+A factory produces two types of food, I and II, and currently has 50 skilled workers. It is known that one skilled worker can produce $10 \ \mathrm{kg} / \ \mathrm{h}$ of food I or $6 \ \mathrm{kg} / \ \mathrm{h}$ of food II. According to contract bookings, the weekly demand for these two foods will rise sharply, as shown in Table 1-11. Therefore, the factory has decided to train 50 new workers by the end of the 8th week. It is known that a worker works $40 \ \mathrm{h}$ per week, and a skilled worker can train up to three new workers in two weeks (during the training period, both the skilled worker and the trainees do not participate in production). The weekly wage of a skilled worker is 360 yuan, the weekly wage of a trainee during the training period is 120 yuan, and after training, the wage is 240 yuan per week, with the same production efficiency as skilled workers. During the transition period of training, many skilled workers are willing to work overtime, and the factory has decided to arrange some workers to work $60 \ \mathrm{h}$ per week, with a weekly wage of 540 yuan. If the booked food cannot be delivered on time, the compensation fee for each week of delay per $ \ \mathrm{kg}$ is 0.5 yuan for food I and 0.6 yuan for food II. Under these conditions, how should the factory make comprehensive arrangements to minimize the total cost?
+
+Table 1-11
+
+| Week | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 |
+|------|---|---|---|---|---|---|---|---|
+| I    | 10000 | 10000  | 12000  | 12000  | 16000  | 16000  | 20000  | 20000  |
+| II   | 6000 | 7200 | 8400 | 10800 | 10800 | 12000  | 12000  | 12000  |

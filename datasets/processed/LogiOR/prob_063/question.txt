@@ -1,0 +1,7 @@
+A logistics company needs to schedule deliveries for 8 customer orders using 3 available trucks. Each order has a specific processing time (hours) and must be assigned to exactly one truck. Some orders require multiple visits to the same truck (reentrant processing) due to intermediate handling requirements. The trucks have different capacities (maximum total processing time they can handle) and operating costs per hour. The objective is to minimize the total operating cost while ensuring no truck exceeds its capacity and all orders are completed. 
+
+Order details:
+- Order processing times: [4, 5, 3, 6, 2, 5, 4, 3]
+- Reentrant requirements: Orders 2 and 5 must be processed twice by their assigned truck
+- Truck capacities: [15, 18, 12] hours
+- Truck operating costs: [30, 25, 35] per hour

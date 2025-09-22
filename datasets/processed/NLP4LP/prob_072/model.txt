@@ -1,0 +1,33 @@
+Set:
+1. VehicleType
+The set of vehicle types, \( I = \{0, 1\} \) # 0 for 4-wheeler, 1 for 3-wheeler
+
+Parameter:
+1. LuggageCapacity
+[60, 40] # Luggage moved per day by each vehicle type
+2. PollutantProduction
+[30, 15] # Units of pollutant produced per day by each vehicle type
+3. MinLuggage
+1000 # Minimum total luggage to be moved per day
+4. MaxPollution
+430 # Maximum total units of pollutant allowed per day
+
+Decision variable:
+1. VehicleCount
+Integer variable, \( x_{i} \) for all \( i \in I \), representing the number of vehicles of type \( i \) to be bought.
+
+Objective:
+Minimize the total number of vehicles.
+min: \( \sum_{i \in I} x_{i} \)
+
+Constraint:
+1. Luggage capacity constraint
+\( \sum_{i \in I} LuggageCapacity[i] \cdot x_{i} \geq MinLuggage \)
+2. Pollution constraint
+\( \sum_{i \in I} PollutantProduction[i] \cdot x_{i} \leq MaxPollution \)
+3. Non-negativity
+\( x_{i} \geq 0 \), for all \( i \in I \)
+
+Type:
+Integer, linear, linear
+IP

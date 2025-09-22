@@ -1,0 +1,48 @@
+Set:
+1. Customer
+The set of customers, \( C = \{1, 2, \dots, CustomerNum\} \)
+2. Node
+The set of nodes, \( N = C \cup \{0\} \)
+# 0 is the logistics center
+3. Truck
+The set of trucks, \( K = \{1, 2, \dots, TruckNum\} \)
+
+Parameter:
+1. CustomerNum
+12
+2. NodeCoordinates
+# Coordinates of the center(0) and customers
+[(0, 0), (4.36, -2.75), (-7.29, -3.22), (-8.74, -2.47), (-0.68, -5.15), (-0.39, -3.49), (-6.06, -5.52), (-2.67, 9.32), (9.91, 7.87), (2.03, -2.98), (2.33, -1.47), (5.1, -2.08), (-8.04, -9.78)]
+3. CustomerDemand
+[6, 7, 1, 10, 8, 7, 3, 6, 5, 2, 4, 4]
+4. TruckNum
+5
+5. TruckCapacity
+15
+
+Decision variable:
+1. X
+Binary variable, \( x_{ijk} \forall i, j \in N, i \neq j \forall k \in K\), where \( x_{ijk} = 1 \) if truck \( k \) travels from node \( i \) to node \( j \), otherwise \( x_{ijk} = 0 \).
+
+Objective:
+The minimum total distance of the truck routes.
+min: \sum_{k \in K}\sum_{i \in N} \sum_{j \in N} Distance[i][j] * x_{ijk}
+# Where \( Distance[i][j] \) is the Euclidean distance between node \( i \) and node \( j \).
+
+Constraint:
+1. Each customer must be visited exactly once.
+\sum_{i \in N}\sum_{k \in K} x_{ijk} = 1 \forall j \in C
+2. Truck leaves customer that it enters.
+\sum_{j \in N} x_{ijk} - \sum_{j \in N} x_{jik} = 0 \forall i \in C \forall k \in K
+3. Each truck leaves the logistics center less than or equal to once.
+\sum_{j \in N} x_{0jk} <= 1 \forall k \in K
+4. The truck that leaves the logistics center must return to the logistics center.
+\sum_{i \in N} x_{i0k} = \sum_{j \in N} x_{0jk} \forall k \in K
+4. Capacity constraint for each truck.
+\sum_{i \in C}\sum_{j \in C} CustomerDemand[i] * x_{ijk} <= TruckCapacity \forall k \in K
+5. Eliminate sub-tours.
+\sum_{i \in S} \sum_{j \in S} x_{ijk} <= |S| - 1 \forall k \in K, \forall S \subseteq N, 1 < |S| < |N|
+
+Type:
+Binary, Linear, Linear
+ILP

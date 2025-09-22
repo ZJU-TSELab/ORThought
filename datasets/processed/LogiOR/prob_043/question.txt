@@ -1,0 +1,9 @@
+TransitLogix Co. offers two competing shipping services: Priority and Economy. The company aims to sell these services to two distinct customer segments: small businesses and large enterprises. The perceived value of each service by the customer segments is shown in the table below: 
+
+| Customer Segment | Value of Priority Service ($) | Value of Economy Service ($) |  
+|-------------------|--------------------------------|-------------------------------|  
+| Small Businesses  | 120                            | 80                            |  
+| Large Enterprises | 90                             | 110                           |  
+
+Each customer will choose either Priority or Economy, but not both. If customers believe that the value of priority service exceeding its price is greater than or equal to the value of economic service exceeding its price, they will choose priority service. Similarly, If customers believe that the value of economic service exceeding its price is greater than or equal to the value of priority service exceeding its price, they will choose economic service. The small business segment has 1,000 potential customers, and the large enterprise segment has 1,500 potential customers. TransitLogix wants to set prices for each service to ensure that small businesses choose Priority and large enterprises choose Economy. And to maintain a clear differentiation and brand image, TransitLogix has decided that the price of the Priority service must be at least $15 higher than the price of the Economy service. How can TransitLogix maximize its total revenue from these two customer segments?
+

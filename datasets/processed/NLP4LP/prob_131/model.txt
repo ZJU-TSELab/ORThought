@@ -1,0 +1,41 @@
+Set:
+1. ExperimentType
+The set of experiment types, \( I = \{0, 1\} \) # 0 for Experiment 1, 1 for Experiment 2
+
+Parameter:
+1. RedLiquidPerExperiment
+[3, 5] # Units of red liquid required for each experiment type
+2. BlueLiquidPerExperiment
+[4, 3] # Units of blue liquid required for each experiment type
+3. GreenGasPerExperiment
+[5, 6] # Units of green gas produced by each experiment type
+4. SmellyGasPerExperiment
+[1, 2] # Units of smelly gas produced by each experiment type
+5. MaxRedLiquid
+80 # Maximum units of red liquid available
+6. MaxBlueLiquid
+70 # Maximum units of blue liquid available
+7. MaxSmellyGas
+10 # Maximum units of smelly gas that can be produced
+
+Decision variable:
+1. NumberOfExperiments
+Integer variable, \( x_{i} \) for all \( i \in I \), representing the number of times each experiment is performed.
+
+Objective:
+Maximize the total amount of green gas produced.
+max: \( \sum_{i \in I} GreenGasPerExperiment[i] \cdot x_{i} \)
+
+Constraint:
+1. Red liquid constraint
+\( \sum_{i \in I} RedLiquidPerExperiment[i] \cdot x_{i} \leq MaxRedLiquid \)
+2. Blue liquid constraint
+\( \sum_{i \in I} BlueLiquidPerExperiment[i] \cdot x_{i} \leq MaxBlueLiquid \)
+3. Smelly gas constraint
+\( \sum_{i \in I} SmellyGasPerExperiment[i] \cdot x_{i} \leq MaxSmellyGas \)
+4. Non-negativity
+\( x_{i} \geq 0 \), for all \( i \in I \)
+
+Type:
+Integer, linear, linear
+IP

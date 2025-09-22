@@ -1,0 +1,35 @@
+Set:
+1. CakeType
+The set of cake types, \( I = \{0, 1, 2\} \) # 0 for Crepe Cake, 1 for Sponge Cake, 2 for Birthday Cake
+
+Parameter:
+1. BatterPerCake
+[400, 500, 450] # Grams of batter required for each cake type
+2. MilkPerCake
+[200, 300, 350] # Grams of milk required for each cake type
+3. MaxBatter
+20000 # Maximum available batter in grams
+4. MaxMilk
+14000 # Maximum available milk in grams
+5. ProfitPerCake
+[12, 10, 15] # Profit per cake for each type
+
+Decision variable:
+1. NumberOfCakes
+Integer variable, \( x_{i} \) for all \( i \in I \), representing the number of cakes of each type to make.
+
+Objective:
+Maximize the total profit.
+max: \( \sum_{i \in I} ProfitPerCake[i] \cdot x_{i} \)
+
+Constraint:
+1. Batter constraint
+\( \sum_{i \in I} BatterPerCake[i] \cdot x_{i} \leq MaxBatter \)
+2. Milk constraint
+\( \sum_{i \in I} MilkPerCake[i] \cdot x_{i} \leq MaxMilk \)
+3. Non-negativity
+\( x_{i} \geq 0 \), for all \( i \in I \)
+
+Type:
+Integer, linear, linear
+IP

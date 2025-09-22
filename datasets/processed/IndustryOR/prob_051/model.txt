@@ -1,0 +1,28 @@
+Set:
+1. TimePeriods
+The set of 6 four-hour time periods in a 24-hour day, \( T = \{0, 1, 2, 3, 4, 5\} \), where period 0 is 2:00-6:00, period 1 is 6:00-10:00, and so on.
+
+Parameter:
+1. RequiredStaff
+{0: 30, 1: 60, 2: 70, 3: 60, 4: 50, 5: 20} # The number of drivers and crew members required for each time period \( d_t \).
+
+Decision variable:
+1. StaffStarting
+Integer variable, \( x_t \) for \( t \in T \), represents the number of staff members starting their 8-hour shift at the beginning of period t.
+
+Objective:
+Minimize: \( \sum_{t \in T} x_t \)
+
+Constraint:
+1. StaffingRequirement
+For each time period \( t \in T \), the number of staff on duty must meet or exceed the requirement. Staff work for 8 hours, covering two consecutive 4-hour periods. The staff on duty in period \( t \) are those who started in period \( t \) and those who started in the previous period \( t-1 \) (with wraparound for period 0).
+- For t=0 (2:00-6:00): \( x_5 + x_0 \ge 30 \)
+- For t=1 (6:00-10:00): \( x_0 + x_1 \ge 60 \)
+- For t=2 (10:00-14:00): \( x_1 + x_2 \ge 70 \)
+- For t=3 (14:00-18:00): \( x_2 + x_3 \ge 60 \)
+- For t=4 (18:00-22:00): \( x_3 + x_4 \ge 50 \)
+- For t=5 (22:00-2:00): \( x_4 + x_5 \ge 20 \)
+
+Type:
+Integer, linear, linear
+ILP

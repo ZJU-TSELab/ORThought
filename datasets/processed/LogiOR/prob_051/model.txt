@@ -1,0 +1,40 @@
+Set:
+1. Tasks
+The set of all tasks, \( T = \{1, 2, ..., 10\} \)
+2. Workstations
+The set of potential workstations, \( W = \{1, 2, ..., 7\} \) (upper bound estimated)
+
+Parameter:
+1. TaskDuration
+Duration of each task \( t \), \( d_t \): [36, 36, 30, 30, 24, 30, 24, 12, 54, 12]
+2. CycleTime
+Maximum allowed time per workstation, \( C = 66 \)
+3. Precedence
+Set of direct precedence pairs \( (i,j) \) where task \( i \) must precede task \( j \): 
+{(1,2), (1,5), (2,7), (3,4), (4,5), (5,6), (6,8), (7,8), (8,9), (9,10)}
+4. StationInterval
+For each task \( t \), the range of possible workstations \( I_t \) it can be assigned to, calculated based on earliest and latest possible stations considering precedence and cycle time
+
+Decision variable:
+1. TaskAssignment
+Binary variable \( x_{tw} \in \{0, 1\} \) for all \( t \in T, w \in W \), where \( x_{tw} = 1 \) if task \( t \) is assigned to workstation \( w \), and 0 otherwise
+2. StationUsed
+Binary variable \( y_w \in \{0, 1\} \) for all \( w \in W \), where \( y_w = 1 \) if workstation \( w \) is used, and 0 otherwise
+
+Objective:
+Minimize the number of workstations used
+min: \(\sum_{w \in W} y_w\)
+
+Constraint:
+1. Each task must be assigned to exactly one workstation within its feasible interval
+\(\sum_{w \in I_t} x_{tw} = 1, \forall t \in T\)
+2. The total duration of tasks assigned to each workstation cannot exceed cycle time
+\(\sum_{t \in T} d_t \cdot x_{tw} \leq C \cdot y_w, \forall w \in W\)
+3. Workstations must be used in sequence (if station w+1 is used, station w must be used)
+\(y_{w+1} \leq y_w, \forall w \in \{1,...,6\}\)
+4. Precedence relationships must be maintained
+\(\sum_{w \in W} w \cdot x_{iw} \leq \sum_{w \in W} w \cdot x_{jw}, \forall (i,j) \in Precedence\)
+
+Type:
+Binary, Linear, Linear
+ILP

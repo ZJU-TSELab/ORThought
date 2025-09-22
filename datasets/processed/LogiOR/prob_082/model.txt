@@ -1,0 +1,52 @@
+Set:
+1.  Vessel 
+The set of available vessels, \( S = \{1, 2, 3\} \) # 1: Ship A, 2: Ship B, 3: Ship C
+
+Parameter:
+1.  Distance
+The total sailing distance.  
+    6000 # in nautical miles
+2.  MaxTime
+The maximum allowed time for the voyage.  
+    288 # in hours
+3.  FuelPrice
+The cost of fuel.  
+    4000 # in ¥ per ton
+4.  CarbonTax
+The tax on CO2 emissions.  
+    300 # in ¥ per ton of CO2
+5.  FuelCoeffs
+The coefficients \([a, b, c]\) for the fuel consumption formula \(a \times v^2 + b \times v + c\).  
+    [[0.005, 0.1, 1.2], [0.004, 0.08, 1.5], [0.006, 0.12, 1.0]]
+6.  CO2Factor
+The CO2 emission factor for each vessel.  
+    [3.2, 3.15, 3.25] # in tons of CO2 per ton of fuel
+7.  FixedCost
+The fixed cost for selecting each vessel.  
+    [500000, 600000, 450000] # in ¥
+
+Decision variable:
+1.  SelectVessel
+Binary variable, \( y[s] \forall s \in S \), which is 1 if vessel \(s\) is selected, and 0 otherwise.
+2.  SailingSpeed
+Continuous variable, \( v \), representing the sailing speed in knots.
+
+Objective:
+1.  Minimize the total cost.
+The objective is to minimize the sum of the selected vessel's fixed cost, fuel cost, and carbon cost. The fuel and carbon costs are functions of the sailing speed \( v \).  
+    min: \( \sum_{s \in S} y[s] \times \bigg( FixedCost[s] + (FuelPrice + CarbonTax \times CO2Factor[s]) \times Distance \times (FuelCoeffs[s][0] \times v + FuelCoeffs[s][1] + \frac{FuelCoeffs[s][2]}{v}) \bigg) \)
+
+Constraint:
+1. Vessel Selection Constraint
+Exactly one vessel must be selected for the mission.  
+    \( \sum_{s \in S} y[s] = 1 \)
+2. Time Constraint
+The total voyage time must not exceed the maximum allowed time. This imposes a minimum required speed.  
+    \( v \geq \frac{Distance}{MaxTime} \)
+3. Variable Type Constraints
+\( y[s] \in \{0, 1\} \forall s \in S \)  
+    \( v > 0 \)
+
+Type:
+Mixed, Non-linear, Linear  
+NLP

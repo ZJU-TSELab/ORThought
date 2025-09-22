@@ -1,0 +1,35 @@
+Set:
+1. CustomerZones
+The set of customer zones, \( C = \{C1, C2, C3, C4, C5\} \)
+2. WarehouseLocations
+The set of potential warehouse locations, \( W = \{W1, W2, W3\} \)
+
+Parameter:
+1. DistanceMatrix
+The distance between warehouse location \( w \in W \) and customer zone \( c \in C \), denoted as \( d_{wc} \)
+Values: 
+d(W1,C1)=10, d(W1,C2)=15, ..., d(W3,C5)=12 (from the distance matrix above)
+2. p
+The number of warehouses to be opened, p=2
+
+Decision variable:
+1. WarehouseOpen
+Binary variable \( y_w \in \{0, 1\} \) for all \( w \in W \), where \( y_w = 1 \) if warehouse \( w \) is opened, and \( y_w = 0 \) otherwise
+2. Assignment
+Binary variable \( x_{wc} \in \{0, 1\} \) for all \( w \in W, c \in C \), where \( x_{wc} = 1 \) if customer zone \( c \) is assigned to warehouse \( w \), and \( x_{wc} = 0 \) otherwise
+
+Objective:
+Minimize the total distance between each customer zone and its assigned warehouse
+min: \( \sum_{w \in W} \sum_{c \in C} d_{wc} \cdot x_{wc} \)
+
+Constraint:
+1. Exactly p warehouses must be opened
+\( \sum_{w \in W} y_w = p \)
+2. Each customer zone must be assigned to exactly one warehouse
+\( \sum_{w \in W} x_{wc} = 1, \forall c \in C \)
+3. A customer zone can only be assigned to an opened warehouse
+\( x_{wc} \leq y_w, \forall w \in W, \forall c \in C \)
+
+Type:
+Binary, Linear, Linear
+ILP

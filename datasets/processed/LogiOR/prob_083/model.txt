@@ -1,0 +1,59 @@
+Set:
+This problem does not involve discrete sets.
+
+Parameter:
+1.  TotalOrdersAvailable
+    The total number of orders that need to be delivered by crowdsourced riders during the peak period.
+    1500
+2.  OrdersPerRider
+    The average number of orders a single crowdsourced rider can complete.
+    12
+3.  RevenuePerOrder
+    The average revenue the platform earns for each completed order.
+    15 # in dollars
+4.  MinOrdersRequired
+    The minimum number of orders that must be completed.
+    1000
+5.  MinBaseFee
+    The minimum allowed base delivery fee for riders.
+    3 # in dollars
+6.  RiderModelCoeff_BaseFee
+    The coefficient for the base delivery fee in the rider availability model.
+    0.8
+7.  RiderModelCoeff_Bonus
+    The coefficient for the additional bonus in the rider availability model.
+    17.0
+
+Decision variable:
+1.  BaseFee
+    Continuous variable, \( b \), representing the base delivery fee offered per order.
+2.  Bonus
+    Continuous variable, \( p \), representing the additional bonus offered per order.
+3.  OrdersCompleted
+    Integer variable, \( c \), representing the total number of orders successfully completed.
+
+Objective:
+1.  Maximize the total profit.
+    The objective is to maximize the total revenue from completed orders minus the total compensation paid to riders.
+    max: \( c \times \text{RevenuePerOrder} - c \times (b + p) \)
+
+Constraint:
+1.  Rider Capacity Constraint
+    The number of orders completed cannot exceed the total capacity of the available riders. The number of riders is determined by the compensation plan.
+    \( c \leq \text{OrdersPerRider} \times (\text{RiderModelCoeff\_BaseFee} \times b^2 + \text{RiderModelCoeff\_Bonus} \times p) \)
+2.  Order Availability Constraint
+    The number of orders completed cannot be more than the total orders available.
+    \( c \leq \text{TotalOrdersAvailable} \)
+3.  Minimum Completion Constraint
+    The number of completed orders must meet the platform's minimum target.
+    \( c \geq \text{MinOrdersRequired} \)
+4.  Minimum Fee Constraint
+    The base delivery fee must meet the minimum requirement.
+    \( b \geq \text{MinBaseFee} \)
+5.  Non-negativity Constraint
+    The additional bonus cannot be negative.
+    \( p \geq 0 \)
+
+Type:
+Mixed, Non-linear, Non-linear
+NLP

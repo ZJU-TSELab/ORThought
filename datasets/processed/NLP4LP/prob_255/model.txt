@@ -1,0 +1,41 @@
+Set:
+1. SmoothieType
+The set of smoothie types, I = {0, 1} # 0 for Acai Berry, 1 for Banana Chocolate
+
+Parameter:
+1. WaterUsage
+[3, 4] # Units of water used per smoothie for each type
+2. AcaiBerriesPerSmoothie
+7 # Units of acai berries used per acai berry smoothie
+3. BananaChocolatePerSmoothie
+6 # Units of banana chocolate used per banana chocolate smoothie
+4. AcaiBerriesAvailable
+3500 # Total units of acai berries available
+5. BananaChocolateAvailable
+3200 # Total units of banana chocolate available
+6. MinAcaiRatio
+0.35 # Minimum ratio of acai berry smoothies to total smoothies
+
+Decision variable:
+1. NumberOfSmoothies
+Integer variable, x_{i} for all i in I, representing the number of smoothies of each type to be made.
+
+Objective:
+Minimize the total amount of water used.
+min: \( \sum_{i \in I} \text{WaterUsage}[i] \cdot x_{i} \)
+
+Constraint:
+1. Acai Berries Availability
+\( \text{AcaiBerriesPerSmoothie} \cdot x_{0} \leq \text{AcaiBerriesAvailable} \)
+2. Banana Chocolate Availability
+\( \text{BananaChocolatePerSmoothie} \cdot x_{1} \leq \text{BananaChocolateAvailable} \)
+3. Popularity
+\( x_{1} > x_{0} \)
+4. Loyalty
+\( x_{0} \geq \text{MinAcaiRatio} \cdot (x_{0} + x_{1}) \)
+5. Non-negativity
+\( x_{i} \geq 0 \), for all \( i \in I \)
+
+Type:
+Integer, linear, linear
+IP

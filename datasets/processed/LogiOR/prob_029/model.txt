@@ -1,0 +1,43 @@
+Set:
+1. Containers
+The set of container types, \( C = \{1, 2, ..., 7\} \)
+
+Parameter:
+1. Volume
+The volume of each container type (in liters):
+[17, 19, 21, 23, 25, 29, 33]
+
+2. Demand
+The demand for each container type (in units):
+[500, 400, 300, 250, 200, 150, 100]
+
+3. VariableCost
+The variable cost of producing each container type (equals its volume in dollars):
+[17, 19, 21, 23, 25, 29, 33]
+
+4. FixedCost
+The fixed cost of producing any container type:
+1000
+
+Decision variable:
+1. Produce
+Binary variable, \( Produce_j \forall j \in C \), where \( Produce_j = 1 \) if container type j is produced, 0 otherwise.
+
+2. Assign
+Integer variable, \( Assign_{i,j} \forall i,j \in C, i \leq j \), where \( Assign_{i,j} \) is the number of demand for container type i satisfied by container type j.
+
+Objective:
+1. Minimize the total cost of production.
+min: \sum_{j \in C} (FixedCost * Produce_j + VariableCost[j] * \sum_{i \in C, i \leq j} Assign_{i,j})
+
+Constraint:
+1. Demand satisfaction constraint.
+\sum_{j \in C, j \geq i} Assign_{i,j} = Demand[i] \forall i \in C
+
+2. Production activation constraint.
+\sum_{i \in C, i \leq j} Assign_{i,j} \leq M * Produce_j \forall j \in C
+(where M is a sufficiently large number, such as the sum of all demands)
+
+Type:
+Mixed-integer, Linear, Linear
+MIP

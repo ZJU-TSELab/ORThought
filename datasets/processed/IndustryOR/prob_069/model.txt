@@ -1,0 +1,34 @@
+Set:
+1. Cities
+The set of cities to visit, \( N = \{1, 2, 3, 4\} \).
+
+Parameter:
+1. DistanceMatrix
+A matrix \( d_{ij} \) representing the distance from city i to city j.
+[
+  [0, 10, 20, 12],
+  [10, 0, 5, 10],
+  [20, 5, 0, 8],
+  [15, 12, 8, 0]
+]
+
+Decision variable:
+1. TravelArc
+Binary variable, \( x_{ij} \) for \( i, j \in N, i \ne j \), is 1 if the salesman travels directly from city i to city j, and 0 otherwise.
+2. SubtourElimination
+Continuous variable, \( u_i \) for \( i \in N \), used for the Miller-Tucker-Zemlin (MTZ) subtour elimination formulation, representing the position of city i in the tour.
+
+Objective:
+Minimize: \( \sum_{i \in N} \sum_{j \in N, i \ne j} d_{ij} x_{ij} \)
+
+Constraint:
+1. LeaveEachCity
+For each city \( i \in N \), exactly one arc must leave: \( \sum_{j \in N, j \ne i} x_{ij} = 1 \)
+2. EnterEachCity
+For each city \( j \in N \), exactly one arc must enter: \( \sum_{i \in N, i \ne j} x_{ij} = 1 \)
+3. SubtourElimination (MTZ)
+For every pair of cities \( i, j \in N \setminus \{1\}, i \ne j \): \( u_i - u_j + |N| \cdot x_{ij} \le |N| - 1 \). This prevents the formation of subtours that do not include the starting city (city 1).
+
+Type:
+Mixed-Integer, linear, linear
+MILP

@@ -1,0 +1,20 @@
+A factory produces two types of microcomputers, A and B. Each type of microcomputer requires the same two production processes. The processing time, profit from sales, and the maximum weekly processing capacity for each type are shown in Table 3.1.
+
+Table 3.1
+
+| Process | Model |  | Maximum Weekly Processing Capacity |
+| :---: | :---: | :---: | :---: |
+|  | $\\mathrm{A}$ | $\\mathrm{B}$ |  |
+| I (hours / unit) | 4 | 6 | 150 |
+| II (hours / unit) | 3 | 2 | 70 |
+| Profit ($ per unit) | 300 | 450 |  |
+
+The expected values for the factory's operational goals are as follows:
+
+$p_{1}$: The total weekly profit must not be less than $10,000.
+
+$p_{2}$: Due to contractual requirements, at least 10 units of Model A and at least 15 units of Model B must be produced per week.
+
+$p_{3}$: The weekly production time for Process I should be exactly 150 hours, and the production time for Process II should be fully utilized, with potential overtime if necessary.
+
+Try to establish the mathematical programming model for this problem.

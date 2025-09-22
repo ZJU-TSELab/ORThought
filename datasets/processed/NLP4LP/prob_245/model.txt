@@ -1,0 +1,31 @@
+Set:
+1. TransportType
+The set of transport types, \( I = \{0, 1\} \) # 0 for Trains, 1 for Trams
+
+Parameter:
+1. Capacity
+[120, 30] # People transported per hour for each type
+2. MinTotalCapacity
+600 # Minimum people to transport per hour
+3. TramTrainRatio
+2 # The number of trams must be at least this many times the number of trains
+
+Decision variable:
+1. NumberOfUnits
+Integer variable, \( x_{i} \) for all \( i \in I \), representing the number of units for each transport type.
+
+Objective:
+Minimize the total number of transportation units.
+min: \( \sum_{i \in I} x_{i} \)
+
+Constraint:
+1. Total capacity
+\( \sum_{i \in I} Capacity[i] \cdot x_{i} \geq MinTotalCapacity \)
+2. Tram-train relationship
+\( x_{1} \geq TramTrainRatio \cdot x_{0} \)
+3. Non-negativity
+\( x_{i} \geq 0 \), for all \( i \in I \)
+
+Type:
+Integer, linear, linear
+IP

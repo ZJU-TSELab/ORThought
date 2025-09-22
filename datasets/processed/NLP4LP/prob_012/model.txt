@@ -1,0 +1,35 @@
+Set:
+1. SouvenirType
+The set of souvenir types, \( T = \{0, 1\} \) # 0 for Elephant, 1 for Tiger
+
+Parameter:
+1. WoodAvailable
+5000 # Total grams of wood available
+2. PlasticAvailable
+4000 # Total grams of plastic available
+3. Profit
+[5, 4] # Profit per souvenir type
+4. WoodRequired
+[50, 40] # Grams of wood required per souvenir type
+5. PlasticRequired
+[20, 30] # Grams of plastic required per souvenir type
+
+Decision variable:
+1. SouvenirCount
+Integer variable, \( x_{t} \) for all \( t \in T \), representing the number of souvenirs of type \( t \) to make.
+
+Objective:
+Maximize the total profit.
+max: \sum_{t \in T} Profit[t] * x_{t}
+
+Constraint:
+1. Wood constraint
+\sum_{t \in T} WoodRequired[t] * x_{t} \leq WoodAvailable
+2. Plastic constraint
+\sum_{t \in T} PlasticRequired[t] * x_{t} \leq PlasticAvailable
+3. Non-negativity
+x_{t} \geq 0, \forall t \in T
+
+Type:
+Integer, linear, linear
+IP

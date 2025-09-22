@@ -1,0 +1,43 @@
+Set:
+1. Product
+The set of microcomputer models, \( P = \{A, B\} \)
+2. Process
+The set of production processes, \( M = \{I, II\} \)
+
+Parameter:
+1. ProcessingTime
+{('A', 'I'): 4, ('A', 'II'): 3, ('B', 'I'): 6, ('B', 'II'): 2} # Hours per unit for each model on each process
+2. Profit
+{'A': 300, 'B': 450} # Profit per unit for each model
+3. ProcessCapacity
+{'I': 150, 'II': 70} # Weekly hours for each process
+4. MinProfit
+10000 # Minimum required total weekly profit
+5. MinProduction
+{'A': 10, 'B': 15} # Minimum required weekly production for each model
+
+Decision variable:
+1. ProductionQuantity
+Integer variable, \( x_{p} \) for \( p \in P \), representing the number of units of model \( p \) to produce.
+
+Objective:
+Maximize the total weekly profit.
+max: \sum_{p \in P} Profit[p] * x_{p}
+
+Constraint:
+1. Process I time constraint
+\sum_{p \in P} ProcessingTime[p, 'I'] * x_{p} = ProcessCapacity['I']
+2. Process II time constraint
+\sum_{p \in P} ProcessingTime[p, 'II'] * x_{p} = ProcessCapacity['II']
+3. Minimum profit constraint
+\sum_{p \in P} Profit[p] * x_{p} \geq MinProfit
+4. Minimum production constraint for Model A
+\( x_{A} \geq MinProduction['A'] \)
+5. Minimum production constraint for Model B
+\( x_{B} \geq MinProduction['B'] \)
+6. Non-negativity
+\( x_{p} \geq 0, \forall p \in P \)
+
+Type:
+Integer, linear, linear
+ILP

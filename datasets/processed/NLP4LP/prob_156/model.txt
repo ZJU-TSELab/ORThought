@@ -1,0 +1,35 @@
+Set:
+1. WagonType
+The set of wagon types, \( I = \{0, 1\} \) # 0 for Small Wagon, 1 for Large Wagon
+
+Parameter:
+1. OrePerWagon
+[20, 50] # Units of ore each wagon type can hold
+2. MinOre
+2000 # Minimum units of ore to be taken to the surface
+3. MinLargeWagons
+10 # Minimum number of large wagons to be used
+4. MinSmallToLargeRatio
+2 # Minimum ratio of small wagons to large wagons
+
+Decision variable:
+1. NumberOfWagons
+Integer variable, \( x_{i} \) for all \( i \in I \), representing the number of wagons of each type to use.
+
+Objective:
+Minimize the total number of wagons needed.
+min: \( \sum_{i \in I} x_{i} \)
+
+Constraint:
+1. Ore transportation requirement
+\( \sum_{i \in I} OrePerWagon[i] \cdot x_{i} \geq MinOre \)
+2. Minimum large wagons constraint
+\( x_{1} \geq MinLargeWagons \)
+3. Small to large wagon ratio constraint
+\( x_{0} \geq MinSmallToLargeRatio \cdot x_{1} \)
+4. Non-negativity
+\( x_{i} \geq 0 \), for all \( i \in I \)
+
+Type:
+Integer, linear, linear
+IP

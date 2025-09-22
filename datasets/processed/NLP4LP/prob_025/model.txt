@@ -1,0 +1,31 @@
+Set:
+1. OilType
+The set of oil types, \( T = \{0, 1\} \) # 0 for Oil Max, 1 for Oil Max Pro
+2. SubstanceType
+The set of substance types, \( S = \{0, 1, 2\} \) # 0 for A, 1 for B, 2 for C
+
+Parameter:
+1. Profit
+[10, 15] # Profit per container for each oil type
+2. SubstanceAvailability
+[1345, 346, 1643] # Grams available for each substance type
+3. SubstanceContent
+[[46, 13], [43, 4], [56, 45]] # Grams of each substance required per container of each oil type
+
+Decision variable:
+1. ContainerCount
+Integer variable, \( x_{t} \) for all \( t \in T \), representing the number of containers of oil type \( t \) to make.
+
+Objective:
+Maximize the total profit.
+max: \sum_{t \in T} Profit[t] * x_{t}
+
+Constraint:
+1. Substance availability constraint
+\sum_{t \in T} SubstanceContent[s][t] * x_{t} \leq SubstanceAvailability[s], for all \( s \in S \)
+2. Non-negativity
+x_{t} \geq 0, for all \( t \in T \)
+
+Type:
+Integer, linear, linear
+IP

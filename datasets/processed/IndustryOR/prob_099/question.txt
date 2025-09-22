@@ -1,0 +1,20 @@
+In network communication services, bandwidth plays an important role. Below is a bandwidth communication table between several communication nodes, showing the bandwidth between any two nodes. If two nodes cannot be directly connected, the corresponding bandwidth is $0$. It is required to establish a link between node $A$ and node $E$ that must pass through service node $C$ (without loops). The bandwidth of this link is defined as the minimum bandwidth value on the link. Please propose a reasonable link arrangement to maximize the bandwidth of this link and find out the maximum bandwidth.
+
+\begin{table}[h]
+    \centering
+    \begin{tabular}{|c|c|c|c|c|c|}
+        \hline
+        & A & B & C & D & E \\
+        \hline
+        A & 0 & 90 & 85 & 0 & 65 \\
+        \hline
+        B & 95 & 0 & 70 & 65 & 34 \\
+        \hline
+        C & 60 & 0 & 0 & 88 & 80 \\
+        \hline
+        D & 67 & 30 & 25 & 0 & 84 \\
+        \hline
+        E & 0 & 51 & 0 & 56 & 0 \\
+        \hline
+    \end{tabular}
+\end{table}

@@ -1,0 +1,37 @@
+A distribution company is planning its logistics network for the upcoming year to serve 15 retail stores from 5 potential hub locations. The company aims to minimize its total annual operational cost, which consists of fixed daily costs for opening hubs and variable transportation costs for delivering goods.
+
+The core decisions are which of the 5 potential hubs to open and which open hub should be assigned to serve each of the 15 retail stores.
+
+Each potential hub has a specific daily operating cost, a maximum daily capacity, and an operational reliability score. The company has a strategic requirement that the average reliability of all opened hubs must be at least 90%. The transportation cost is fixed at $0.80 per unit per mile, and the planning horizon is a full year (365 days).
+
+The plan must assign each store to exactly one hub, ensure that no hub's daily capacity is exceeded, meet the minimum average reliability standard, and minimize the total annual cost.
+
+Hub Data:  
+
+| Hub ID | Daily Setup Cost | Daily Capacity (units) | Reliability |
+|:------:|:----------------:|:----------------------:|:-----------:|
+| 1      | $100,000         | 1000                   | 0.85        |
+| 2      | $80,000          | 800                    | 0.90        |
+| 3      | $120,000         | 1500                   | 0.70        |
+| 4      | $90,000          | 1200                   | 0.95        |
+| 5      | $110,000         | 900                    | 0.80        |
+
+Store Demand Data (units per day):  
+
+| Store | Demand | | Store | Demand | | Store | Demand |
+|:-----:|:------:| |:-----:|:------:| |:-----:|:------:|
+| 1     | 151    | | 6     | 187    | | 11    | 121    |
+| 2     | 188    | | 7     | 199    | | 12    | 173    |
+| 3     | 174    | | 8     | 104    | | 13    | 100    |
+| 4     | 161    | | 9     | 116    | | 14    | 187    |
+| 5     | 111    | | 10    | 88     | | 15    | 199    |
+
+Distance Matrix (Hub to Store, in miles):  
+
+| Hub | S1 | S2 | S3 | S4 | S5 | S6 | S7 | S8 | S9 | S10 | S11 | S12 | S13 | S14 | S15 |
+|:---:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:---:|:---:|:---:|:---:|:---:|:---:|
+|  1  | 18 | 45 | 42 | 38 | 18 | 44 | 47 | 12 | 20 | 10  | 23  | 41  | 10  | 44  | 47  |
+|  2  | 30 | 27 | 21 | 16 | 17 | 12 | 29 | 21 | 38 | 48  | 23  | 15  | 12  | 20  | 26  |
+|  3  | 16 | 13 | 21 | 31 | 30 | 39 | 44 | 44 | 18 | 12  | 13  | 16  | 42  | 49  | 11  |
+|  4  | 34 | 25 | 30 | 20 | 24 | 28 | 42 | 39 | 31 | 44  | 34  | 11  | 36  | 16  | 23  |
+|  5  | 49 | 41 | 17 | 34 | 16 | 49 | 49 | 28 | 42 | 18  | 46  | 23  | 29  | 21  | 49  |

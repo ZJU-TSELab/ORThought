@@ -1,0 +1,15 @@
+There are 10 different parts, and they can all be processed on machine \( A \), machine \( B \), or machine \( C \). The unit processing costs are shown in Table 5-6. Additionally, as long as any part is processed on the aforementioned machines, a one-time setup cost will be incurred regardless of whether one or multiple types of parts are processed, with the respective costs being \( d_A = 100 \), \( d_B = 135 \), and \( d_C = 200 \) yuan. If the requirements are:
+
+1. One piece of each of the aforementioned 10 types of parts needs to be processed;
+2. If the 1st part is processed on machine \( A \), then the 2nd part must be processed on machine \( B \) or \( C \); conversely, if the 1st part is processed on machine \( B \) or \( C \), then the 2nd part must be processed on machine \( A \);
+3. Parts 3, 4, and 5 must be processed on machines A, B, and C respectively;
+4. The number of parts processed on machine \( C \) should not exceed 3 types.
+
+Try to establish an integer programming mathematical model for this problem with the objective of minimizing the total cost.
+
+Table 5-6
+| Machine/Part | 1   | 2   | 3   | 4   | 5   | 6   | 7   | 8   | 9   | 10  |
+|--------------|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|
+| A            | $10$ | $20$ | $30$ | $40$ | $50$ | $60$ | $70$ | $80$ | $90$ | $100$ |
+| B            | $15$ | $25$ | $35$ | $45$ | $55$ | $65$ | $75$ | $85$ | $95$ | $105$ |
+| C            | $20$ | $30$ | $40$ | $50$ | $60$ | $70$ | $80$ | $90$ | $100$ | $110$ |

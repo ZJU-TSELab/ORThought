@@ -1,0 +1,9 @@
+Global Freight Solutions (GFS), a logistics company, needs to transport goods across three regions using services from three shipping providers. Each provider offers different cost structures and service mixes for large, medium, and small shipments, as detailed in Table as follows:
+
+| Supplier | Cost Per Shipment ($) | Percent Large | Percent Medium | Percent Small |
+|----------|-----------------------|---------------|----------------|---------------|
+| 1        | 5.2                   | 45            | 35             | 20            |
+| 2        | 4.7                   | 30            | 45             | 25            |
+| 3        | 3.5                   | 15            | 20             | 65            |
+
+GFS must fulfill a minimum monthly demand of at least 500 large shipments, 300 medium shipments, and 300 small shipments while minimizing total costs. Additionally, due to capacity constraints, no more than 700 shipments can be contracted from any single provider each month. Determine what the lowest possible cost is.

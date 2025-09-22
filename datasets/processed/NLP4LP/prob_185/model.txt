@@ -1,0 +1,29 @@
+Set:
+1. ShipType
+The set of ship types, \( I = \{0, 1\} \) # 0 for Large Ship, 1 for Small Ship
+
+Parameter:
+1. ContainersPerShip
+[500, 200] # Number of containers each ship type can carry
+2. MinContainers
+3000 # Minimum number of containers to be transported
+
+Decision variable:
+1. NumberOfShips
+Integer variable, \( x_{i} \) for all \( i \in I \), representing the number of ships of each type to use.
+
+Objective:
+Minimize the total number of ships used.
+min: \( \sum_{i \in I} x_{i} \)
+
+Constraint:
+1. Minimum containers constraint
+\( \sum_{i \in I} ContainersPerShip[i] \cdot x_{i} \geq MinContainers \)
+2. Ship ratio constraint
+\( x_{0} \leq x_{1} \)
+3. Non-negativity
+\( x_{i} \geq 0 \), for all \( i \in I \)
+
+Type:
+Integer, linear, linear
+IP

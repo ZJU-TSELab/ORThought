@@ -1,0 +1,106 @@
+Set:
+1. Products
+The set of products, \( P = \{I, IISet:
+1. Products
+The set of products, \( P = \{I, II, III\} \)
+2. Quarters
+The set of quarters, \( Q = \{1, 2, 3, 4\} \)
+
+Parameter:
+1. Demand
+A 3x4 matrix representing the demand for each product in each quarter.
+   - I: [1500, 1000, 2000, 1200]
+   - II: [1500, 1500, 1200, 1500]
+   - III: [1000, 2000, 1500, 2500]
+2. FinalInventoryTarget
+150 # Required inventory for each product at the end of Q4.
+3. ProductionHoursAvailable
+15000 # Production hours available per quarter.
+4. HoursPerUnit
+[2, 4, 3] # Hours required to produce one unit of product I, II, and III.
+5. BacklogCost
+[20, 20, 10] # Cost per unit per quarter delay for products I, II, and III.
+6. InventoryCost
+5 # Cost per unit per quarter for holding inventory.
+
+Decision variable:
+1. Production
+Integer variable, \( Prod_{p,q} \), quantity of product \( p \) to produce in quarter \( q \).
+2. Inventory
+Integer variable, \( Inv_{p,q} \), inventory of product \( p \) at the end of quarter \( q \).
+3. Backlog
+Integer variable, \( Back_{p,q} \), backlog of product \( p \) at the end of quarter \( q \).
+
+Objective:
+Minimize the total cost of compensation and inventory.
+min: \(\sum_{p \in P} \sum_{q \in Q} (BacklogCost_p \cdot Back_{p,q} + InventoryCost \cdot Inv_{p,q})\)
+
+Constraint:
+1. Production Capacity
+\(\sum_{p \in P} HoursPerUnit_p \cdot Prod_{p,q} \leq ProductionHoursAvailable, \forall q \in Q\)
+2. Inventory Balance
+\(Inv_{p,q-1} + Prod_{p,q} + Back_{p,q} = Demand_{p,q} + Inv_{p,q} + Back_{p,q-1}, \forall p \in P, q \in Q\)
+(Initial inventory and backlog are zero)
+3. Production Restriction
+\(Prod_{I,2} = 0\)
+4. Final Inventory
+\(Inv_{p,4} \geq FinalInventoryTarget, \forall p \in P\)
+5. No Final Backlog
+\(Back_{p,4} = 0, \forall p \in P\)
+6. Non-negativity
+All decision variables \(\geq 0\).
+
+Type:
+Integer, linear, linear
+ILPIII\} \)
+2. Quarters
+The set of quarters, \( Q = \{1, 2, 3, 4\} \)
+
+Parameter:
+1. Demand
+A 3x4 matrix representing the demand for each product in each quarter.
+   - I: [1500, 1000, 2000, 1200]
+   - II: [1500, 1500, 1200, 1500]
+   - III: [1000, 2000, 1500, 2500]
+2. FinalInventoryTarget
+150 # Required inventory for each product at the end of Q4.
+3. ProductionHoursAvailable
+15000 # Production hours available per quarter.
+4. HoursPerUnit
+[2, 4, 3] # Hours required to produce one unit of product I, II, and III.
+5. BacklogCost
+[20, 20, 10] # Cost per unit per quarter delay for products I, II, and III.
+6. InventoryCost
+5 # Cost per unit per quarter for holding inventory.
+
+Decision variable:
+1. Production
+Integer variable, \( Prod_{p,q} \), quantity of product \( p \) to produce in quarter \( q \).
+2. Inventory
+Integer variable, \( Inv_{p,q} \), inventory of product \( p \) at the end of quarter \( q \).
+3. Backlog
+Integer variable, \( Back_{p,q} \), backlog of product \( p \) at the end of quarter \( q \).
+
+Objective:
+Minimize the total cost of compensation and inventory.
+min: \(\sum_{p \in P} \sum_{q \in Q} (BacklogCost_p \cdot Back_{p,q} + InventoryCost \cdot Inv_{p,q})\)
+
+Constraint:
+1. Production Capacity
+\(\sum_{p \in P} HoursPerUnit_p \cdot Prod_{p,q} \leq ProductionHoursAvailable, \forall q \in Q\)
+2. Inventory Balance
+\(Inv_{p,q-1} + Prod_{p,q} + Back_{p,q} = Demand_{p,q} + Inv_{p,q} + Back_{p,q-1}, \forall p \in P, q \in Q\)
+(Initial inventory and backlog are zero)
+3. Production Restriction
+\(Prod_{I,2} = 0\)
+4. Final Inventory
+\(Inv_{p,4} \geq FinalInventoryTarget, \forall p \in P\)
+5. No Final Backlog
+\(Back_{p,4} = 0, \forall p \in P\)
+6. Non-negativity
+All decision variables \(\geq 0\).
+
+Type:
+Integer, linear, linear
+ILPModel description for prob_005
+# TODO: Add model description

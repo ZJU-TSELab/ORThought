@@ -1,0 +1,39 @@
+Set:
+1. CartType
+The set of cart types, \( I = \{0, 1\} \) # 0 for Medium, 1 for Large
+
+Parameter:
+1. HorsesPerCart
+[2, 4] # Number of horses required for each cart type
+2. RicePerCart
+[30, 70] # Kilograms of rice each cart type can carry
+3. MaxHorses
+60 # Maximum number of horses available
+4. MediumToLargeRatio
+3 # The number of medium carts must be three times the number of large carts
+5. MinCarts
+[5, 5] # Minimum number of medium and large carts to be used
+
+Decision variable:
+1. NumberOfCarts
+Integer variable, \( x_{i} \) for all \( i \in I \), representing the number of carts of each type to use.
+
+Objective:
+Maximize the total amount of rice that can be transported.
+max: \( \sum_{i \in I} RicePerCart[i] \cdot x_{i} \)
+
+Constraint:
+1. Horse constraint
+\( \sum_{i \in I} HorsesPerCart[i] \cdot x_{i} \leq MaxHorses \)
+2. Cart ratio constraint
+\( x_{0} = MediumToLargeRatio \cdot x_{1} \)
+3. Minimum medium carts constraint
+\( x_{0} \geq MinCarts[0] \)
+4. Minimum large carts constraint
+\( x_{1} \geq MinCarts[1] \)
+5. Non-negativity
+\( x_{i} \geq 0 \), for all \( i \in I \)
+
+Type:
+Integer, linear, linear
+IP

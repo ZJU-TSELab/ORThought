@@ -1,0 +1,31 @@
+Set
+N: The set of all locations (nodes), where 0 is the warehouse.
+E: The set of all possible connections (edges) between nodes.
+
+Parameter
+d_ij: The distance of the edge between node i and j.
+C: The capacity of a truck (max number of stores in a subtree).
+q_i: The demand at each node (1 for each store, 0 for the warehouse).
+
+Decision variable
+x_ij: Binary, 1 if the edge (i,j) is selected for the tree.
+f_ij: Continuous, represents the amount of "flow" on the edge from i to j.
+
+Objective
+# Minimize the total distance of the selected edges.
+min: ( \sum_{(i,j) \in E} d_{ij} \cdot x_{ij} )
+
+Constraint
+1. Spanning Tree Structure: Exactly |N|-1 edges must be selected.
+   \sum_{(i,j) \in E} x_{ij} = |N| - 1
+2. Flow Balance: For each node, the flow coming in must equal the flow going out plus that node's own demand. This ensures connectivity and prevents cycles.
+   \sum_{j:(j,i) \in E} f_{ji} - \sum_{j:(i,j) \in E} f_{ij} = q_i,  \forall i \in N
+3. Flow-Edge Link: Flow can only pass through an edge if that edge is selected. The flow represents the number of nodes being served, so its maximum value is |N|-1.
+   f_{ij} <= (|N| - 1) \cdot x_{ij},  \forall (i,j) \in E
+   f_{ji} <= (|N| - 1) \cdot x_{ji},  \forall (i,j) \in E
+4. Capacity Constraint: The flow on any edge cannot exceed the truck's capacity. This effectively limits the size of the subtree.
+   f_{ij} + f_{ji} \leq C \cdot x_{ij},  \forall (i,j) \in E, i,j \neq 0
+
+Type:
+Mixed, Linear, Linear
+MILP

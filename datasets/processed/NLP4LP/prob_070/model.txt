@@ -1,0 +1,41 @@
+Set:
+1. MachineType
+The set of hand sanitizer machine types, \( I = \{0, 1\} \) # 0 for Motion-activated, 1 for Manual
+
+Parameter:
+1. DeliveryRate
+[50, 75] # Drops per minute for each machine type
+2. PowerConsumption
+[30, 20] # kWh consumed per minute by each machine type
+3. MinDeliveryRate
+1000 # Minimum total drops per minute
+4. MaxPowerConsumption
+500 # Maximum total kWh per minute
+5. MaxManualPercentage
+0.4 # Maximum percentage of manual machines
+6. MinMotionActivatedMachines
+3 # Minimum number of motion-activated machines
+
+Decision variable:
+1. MachineCount
+Integer variable, \( x_{i} \) for all \( i \in I \), representing the number of machines of type \( i \) to be bought.
+
+Objective:
+Minimize the total number of machines.
+min: \( \sum_{i \in I} x_{i} \)
+
+Constraint:
+1. Delivery rate constraint
+\( \sum_{i \in I} DeliveryRate[i] \cdot x_{i} \geq MinDeliveryRate \)
+2. Power consumption constraint
+\( \sum_{i \in I} PowerConsumption[i] \cdot x_{i} \leq MaxPowerConsumption \)
+3. Manual proportion constraint
+\( x_{1} \leq MaxManualPercentage \cdot (x_{0} + x_{1}) \) which simplifies to \( 3 \cdot x_{1} \leq 2 \cdot x_{0} \)
+4. Minimum motion-activated machines constraint
+\( x_{0} \geq MinMotionActivatedMachines \)
+5. Non-negativity
+\( x_{i} \geq 0 \), for all \( i \in I \)
+
+Type:
+Integer, linear, linear
+IP

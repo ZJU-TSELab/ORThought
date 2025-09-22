@@ -1,0 +1,35 @@
+Set:
+1. ExperimentType
+The set of experiment types, \( I = \{0, 1\} \) # 0 for Alpha, 1 for Beta
+
+Parameter:
+1. MetalRequirement
+[3, 5] # Units of metal required for each experiment type
+2. AcidRequirement
+[5, 4] # Units of acid required for each experiment type
+3. ElectricityProduction
+[8, 10] # Units of electricity produced by each experiment type
+4. MaxMetal
+800 # Units of metal available
+5. MaxAcid
+750 # Units of acid available
+
+Decision variable:
+1. ExperimentCount
+Continuous variable, \( x_{i} \) for all \( i \in I \), representing the number of times each experiment is conducted.
+
+Objective:
+Maximize the total amount of electricity produced.
+max: \( \sum_{i \in I} ElectricityProduction[i] \cdot x_{i} \)
+
+Constraint:
+1. Metal constraint
+\( \sum_{i \in I} MetalRequirement[i] \cdot x_{i} \leq MaxMetal \)
+2. Acid constraint
+\( \sum_{i \in I} AcidRequirement[i] \cdot x_{i} \leq MaxAcid \)
+3. Non-negativity
+\( x_{i} \geq 0 \), for all \( i \in I \)
+
+Type:
+Continuous, linear, linear
+LP

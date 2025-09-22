@@ -1,0 +1,44 @@
+Set:
+1. Products
+The set of products, \( P = \{I, II\} \).
+2. Months
+The set of months in the planning horizon, \( T = \{\text{Jul, Aug, Sep, Oct, Nov, Dec}\} \).
+
+Parameter:
+1. Demand
+[[30000, 30000, 30000, 100000, 100000, 100000], [15000, 15000, 15000, 50000, 50000, 50000]] # Monthly demand for each product.
+2. ProductionCost
+[[4.50, 4.50, 4.50, 4.50, 4.50, 4.50], [7.00, 7.00, 7.00, 7.00, 7.00, 7.00]] # Monthly production cost per unit for each product.
+3. ProductVolume
+[0.2, 0.4] # Volume in cubic meters per unit for each product.
+4. MaxProductionCapacity
+120000 # Maximum combined production capacity per month.
+5. FactoryWarehouseCapacity
+15000 # Capacity of the factory's own warehouse in cubic meters.
+6. WarehouseCost
+[1.0, 1.5] # Cost per cubic meter per month for factory and external warehouses.
+7. InitialInventory
+[0, 0] # Initial inventory for each product at the start of July.
+
+Decision variable:
+1. ProductionQty
+Integer variable, \( x_{pt} \) for \( p \in P, t \in T \), represents the units of product p produced in month t.
+2. FactoryInventory
+Integer variable, \( i_{pt} \) for \( p \in P, t \in T \), represents the units of product p stored in the factory warehouse at the end of month t.
+3. ExternalInventory
+Integer variable, \( e_{pt} \) for \( p \in P, t \in T \), represents the units of product p stored in the external warehouse at the end of month t.
+
+Objective:
+Minimize: \( \sum_{p \in P, t \in T} (\text{ProdCost}_{pt} \cdot x_{pt}) + \sum_{p \in P, t \in T} (1.0 \cdot \text{Volume}_p \cdot i_{pt} + 1.5 \cdot \text{Volume}_p \cdot e_{pt}) \)
+
+Constraint:
+1. InventoryBalance
+For each product \( p \) and month \( t \), the inventory level is balanced: \( i_{p,t-1} + e_{p,t-1} + x_{pt} - \text{Demand}_{pt} = i_{pt} + e_{pt} \).
+2. ProductionCapacity
+For each month \( t \), the total production cannot exceed the monthly capacity: \( \sum_{p \in P} x_{pt} \le 120000 \).
+3. FactoryWarehouseCapacity
+For each month \( t \), the total volume of products in the factory warehouse cannot exceed its capacity: \( \sum_{p \in P} \text{Volume}_p \cdot i_{pt} \le 15000 \).
+
+Type:
+Integer, linear, linear
+ILP

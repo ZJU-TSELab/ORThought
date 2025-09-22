@@ -1,0 +1,35 @@
+Set:
+1. PillType
+The set of pill types, \( T = \{0, 1\} \) # 0 for Zodiac, 1 for Sunny
+
+Parameter:
+1. MinZ1
+5 # Minimum grams of Z1 required
+2. MinD3
+10 # Minimum grams of D3 required
+3. Cost
+[1, 3] # Cost per pill
+4. Z1Content
+[1.3, 1.2] # Grams of Z1 per pill
+5. D3Content
+[1.5, 5] # Grams of D3 per pill
+
+Decision variable:
+1. PillCount
+Integer variable, \( x_{t} \) for all \( t \in T \), representing the number of pills of type \( t \) to take.
+
+Objective:
+Minimize the total cost of the pills.
+min: \sum_{t \in T} Cost[t] * x_{t}
+
+Constraint:
+1. Z1 requirement
+\sum_{t \in T} Z1Content[t] * x_{t} \geq MinZ1
+2. D3 requirement
+\sum_{t \in T} D3Content[t] * x_{t} \geq MinD3
+3. Non-negativity
+x_{t} \geq 0, \forall t \in T
+
+Type:
+Integer, linear, linear
+IP

@@ -1,0 +1,33 @@
+Set:
+1. WorkerType
+The set of worker types, \( T = \{0, 1\} \) # 0 for Seasonal, 1 for Permanent
+
+Parameter:
+1. HoursPerShift
+[6, 10] # Hours worked per shift by each worker type
+2. PayPerShift
+[120, 250] # Pay per shift for each worker type
+3. MinLaborHours
+300 # Minimum total labor hours needed
+4. MaxBudget
+6500 # Maximum budget available
+
+Decision variable:
+1. WorkerCount
+Integer variable, \( x_{t} \) for all \( t \in T \), representing the number of workers of type \( t \) to hire.
+
+Objective:
+Minimize the total number of snow removers.
+min: \sum_{t \in T} x_{t}
+
+Constraint:
+1. Labor hours constraint
+\sum_{t \in T} HoursPerShift[t] * x_{t} \geq MinLaborHours
+2. Budget constraint
+\sum_{t \in T} PayPerShift[t] * x_{t} \leq MaxBudget
+3. Non-negativity
+x_{t} \geq 0, for all \( t \in T \)
+
+Type:
+Integer, linear, linear
+IP

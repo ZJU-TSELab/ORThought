@@ -1,0 +1,41 @@
+Set:
+1. ToyType
+The set of toy types, \( I = \{0, 1\} \) # 0 for Plush Toy, 1 for Doll
+
+Parameter:
+1. CostPerToy
+[3, 2] # Cost to the store for each toy type
+2. ProfitPerToy
+[4, 2] # Profit from selling each toy type
+3. MaxBudget
+700 # Maximum amount the owner can spend on inventory
+4. MinPlushToys
+90 # Minimum number of plush toys to be sold
+5. MaxPlushToys
+190 # Maximum number of plush toys to be sold
+6. DollToPlushRatio
+2 # The number of dolls sold is at most twice the number of plush toys sold
+
+Decision variable:
+1. NumberOfToys
+Integer variable, \( x_{i} \) for all \( i \in I \), representing the number of toys of each type to buy and sell.
+
+Objective:
+Maximize the total profit.
+max: \( \sum_{i \in I} ProfitPerToy[i] \cdot x_{i} \)
+
+Constraint:
+1. Budget constraint
+\( \sum_{i \in I} CostPerToy[i] \cdot x_{i} \leq MaxBudget \)
+2. Minimum plush toys constraint
+\( x_{0} \geq MinPlushToys \)
+3. Maximum plush toys constraint
+\( x_{0} \leq MaxPlushToys \)
+4. Doll to plush toy ratio constraint
+\( x_{1} \leq DollToPlushRatio \cdot x_{0} \)
+5. Non-negativity
+\( x_{i} \geq 0 \), for all \( i \in I \)
+
+Type:
+Integer, linear, linear
+IP

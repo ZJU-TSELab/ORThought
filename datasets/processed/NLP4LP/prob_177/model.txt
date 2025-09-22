@@ -1,0 +1,35 @@
+Set:
+1. RideType
+The set of ride types, \( I = \{0, 1\} \) # 0 for Taxi, 1 for Company Car
+
+Parameter:
+1. EmployeesPerRide
+[2, 3] # Number of employees each ride type can take
+2. MinEmployees
+500 # Minimum number of employees to be transported
+3. MaxCarRatio
+0.6 # The number of company car rides cannot exceed 60% of the total rides
+4. MinCarRides
+30 # Minimum number of company car rides
+
+Decision variable:
+1. NumberOfRides
+Integer variable, \( x_{i} \) for all \( i \in I \), representing the number of rides of each type.
+
+Objective:
+Minimize the total number of taxi rides.
+min: \( x_{0} \)
+
+Constraint:
+1. Minimum employees constraint
+\( \sum_{i \in I} EmployeesPerRide[i] \cdot x_{i} \geq MinEmployees \)
+2. Ride ratio constraint
+\( x_{1} \leq \frac{MaxCarRatio}{1 - MaxCarRatio} \cdot x_{0} \)
+3. Minimum car rides constraint
+\( x_{1} \geq MinCarRides \)
+4. Non-negativity
+\( x_{i} \geq 0 \), for all \( i \in I \)
+
+Type:
+Integer, linear, linear
+IP

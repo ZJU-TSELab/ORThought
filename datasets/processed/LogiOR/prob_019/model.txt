@@ -1,0 +1,60 @@
+Set:
+1. Node
+The set of nodes, \( N = \{0, 1, \dots, SupermarketNum\} \)
+# where node 0 is the starting point (Distribution Center) and nodes 1 to n are the supermarkets to be served.
+2. Trucks
+The set of trucks, \( K = \{1, 2, \dots, TruckNum\} \)
+
+Parameter:
+1. SupermarketNum
+12
+2. Coordinate
+[(0, 0), (-5, 4), (3, 6), (-2, -3), (4, -2), (-4, -5), (6, 3), (-3, 5), (5, -4), (-6, -2), (2, 7), (-1, -6), (4, 5)]
+3. Demand
+[0, 800, 600, 900, 700, 500, 850, 750, 600, 450, 800, 550, 700]
+4. Timewindow
+[(6.5, 12), (7, 9), (8, 10), (7.5, 9.5), (8.5, 10.5), (9, 11), (7, 9), (8, 10), (9.5, 11.5), (8, 10), (7.5, 9.5), (9, 11), (8.5, 10.5)]
+5. UnloadingTime
+[0, 20, 15, 25, 20, 15, 25, 20, 15, 15, 20, 15, 20]
+6. TruckNum
+5
+7. Speed
+40
+8. M
+50000
+
+Decision variable:
+1. X
+Binary variable, \( x_{ijk} \forall i \in N, j \in N, k \in K\), where \( x_{ijk} = 1 \) if truck \( k \) departs from node \( i \) and arrives at node \( j \), otherwise \( x_{ijk} = 0 \).
+2. T^a
+Continous variable, \( t^a_i \forall i \in N\), where \( t^a_i \) is the time at which the truck arrives at node \( i \).
+3. T^d
+Continous variable, \( t^d_i \forall i \in N\), where \( t^d_i \) is the time at which the truck departs from node \( i \).
+
+Objective:
+1. Minimize the total distance traveled by the trucks.
+min: \sum_{k \in K}\sum_{i \in N} \sum_{j \in N} Distance[i][j] * x_{ijk}
+# Where \( Distance[i][j] \) is the Euclidean distance between node \( i \) and node \( j \).
+
+Constraint:
+1. Each supermarket must be visited exactly once by one truck.
+\sum_{k \in K} \sum_{i \in N} x_{ijk} = 1 \forall j \in N/{0}
+2. Each supermarket must be exited exactly once by one truck.
+\sum_{k \in K} \sum_{j \in N} x_{ijk} = 1 \forall i \in N/{0}
+3. Each truck must leave the distribution center once.
+\sum_{j \in N} x_{0jk} = 1 \forall k \in K
+4. Each truck must return to the distribution center once.
+\sum_{i \in N} x_{i0k} = 1 \forall k \in K
+5. Eliminate sub-tours.
+\sum_{i \in N} \sum_{j \in N} x_{ijk} \leq |S| - 1 \forall S \subseteq N, 1 < |S| < |N|, k \in K
+6. The truck must arrive at each supermarket within its time window.
+t^a_i \geq Timewindow[i][0] \forall i \in N/{0}
+7. The truck must depart from each supermarket within its time window.
+t^d_i \leq Timewindow[i][1] \forall i \in N/{0}
+8. The truck's arrival time at each node must be more than or equal to the departure time from the previous node plus the travel time between the two nodes.
+t^d_i + \frac{Distance[i][j]}{Speed} - M * (1 - x_{ijk}) \leq t^a_j \forall i, j \in N, k \in K
+t^d_i + \frac{Distance[i][j]}{Speed} + M * (1 - x_{ijk}) \geq t^a_j \forall i, j \in N, k \in K
+
+Type:
+Mixed, Linear, Linear
+MILP

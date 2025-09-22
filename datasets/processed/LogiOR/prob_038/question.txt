@@ -1,0 +1,17 @@
+AutoParts Ltd. manufactures three types of automotive components: Engine Block, Transmission, and Brake System. The company sources raw materials at a cost of $60 per unit. Each unit of raw material can be processed into 7 units of Engine Block and 3 units of Transmission. Processing one unit of raw material requires $8 in energy costs and 7 hours of machine time.  
+
+Engine Block can be used in three ways:  
+- Sold directly for $25 per unit.  
+- Processed into 1 unit of Transmission, requiring 4 hours of machine time and $5 in additional costs.  
+- Processed into 1 unit of Brake System, requiring 6 hours of machine time and $10 in additional costs.  
+
+Transmission can be used in two ways:  
+- Sold directly for $35 per unit.  
+- Processed into 1 unit of Brake System, requiring 5 hours of machine time and $12 in additional costs.  
+
+Brake System is sold for $45 per unit. The company has a maximum machine time capacity of 60,000 hours per year. Additionally, there is a contractual obligation to produce at least 4,000 units of Brake System annually. The maximum market demand for each component is as follows:  
+- Engine Block: 20,000 units  
+- Transmission: 15,000 units  
+- Brake System: 12,000 units  
+
+Determine how AutoParts Ltd. can maximize its annual profit while meeting all constraints.

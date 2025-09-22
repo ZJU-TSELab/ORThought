@@ -1,0 +1,41 @@
+# Model description for prob_017
+
+Set:
+1. ApplianceType
+The set of appliance types, \( T = \{0, 1\} \) # 0 for Phones, 1 for Laptops
+
+Parameter:
+1. MaxFloorSpace
+400 # Total floor space available in sq ft
+2. MaxBudget
+6000 # Maximum budget available in dollars
+3. Profit
+[120, 40] # Profit per appliance type
+4. SpaceRequired
+[1, 4] # Floor space required per appliance type in sq ft
+5. Cost
+[400, 100] # Cost per appliance type in dollars
+6. MinLaptopRatio
+0.8 # Minimum ratio of laptops in stock
+
+Decision variable:
+1. ApplianceCount
+Integer variable, \( x_{t} \) for all \( t \in T \), representing the number of appliances of type \( t \) to stock.
+
+Objective:
+Maximize the total profit.
+max: \sum_{t \in T} Profit[t] * x_{t}
+
+Constraint:
+1. Floor space constraint
+\sum_{t \in T} SpaceRequired[t] * x_{t} \leq MaxFloorSpace
+2. Budget constraint
+\sum_{t \in T} Cost[t] * x_{t} \leq MaxBudget
+3. Laptop ratio constraint
+x_{1} \geq MinLaptopRatio * \sum_{t \in T} x_{t}
+4. Non-negativity
+x_{t} \geq 0, \forall t \in T
+
+Type:
+Integer, linear, linear
+IP

@@ -1,0 +1,39 @@
+Set:
+1. ChocolateType
+The set of chocolate types, \( I = \{0, 1\} \) # 0 for Milk Chocolate, 1 for Dark Chocolate
+
+Parameter:
+1. CocoaRequirement
+[4, 6] # Units of cocoa required for each chocolate type
+2. MilkRequirement
+[7, 3] # Units of milk required for each chocolate type
+3. ProductionTime
+[15, 12] # Minutes to make each chocolate type
+4. MaxCocoa
+2000 # Units of cocoa available
+5. MaxMilk
+1750 # Units of milk available
+6. MilkToDarkRatio
+2 # Minimum ratio of milk chocolate bars to dark chocolate bars
+
+Decision variable:
+1. ChocolateBarCount
+Integer variable, \( x_{i} \) for all \( i \in I \), representing the number of chocolate bars of type \( i \) to be made.
+
+Objective:
+Minimize the total production time.
+min: \( \sum_{i \in I} ProductionTime[i] \cdot x_{i} \)
+
+Constraint:
+1. Cocoa constraint
+\( \sum_{i \in I} CocoaRequirement[i] \cdot x_{i} \leq MaxCocoa \)
+2. Milk constraint
+\( \sum_{i \in I} MilkRequirement[i] \cdot x_{i} \leq MaxMilk \)
+3. Milk to dark ratio constraint
+\( x_{0} \geq MilkToDarkRatio \cdot x_{1} \)
+4. Non-negativity
+\( x_{i} \geq 0 \), for all \( i \in I \)
+
+Type:
+Integer, linear, linear
+IP

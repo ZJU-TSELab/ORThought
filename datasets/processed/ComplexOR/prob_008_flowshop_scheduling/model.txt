@@ -1,0 +1,34 @@
+Set:
+1. Jobs
+The set of jobs, \( J = \{1, 2, 3\} \)
+2. Machines
+The set of machines, \( M = \{1, 2\} \)
+
+Parameter:
+1. Processing Times
+\( proces\_time = [[1, 3], [2, 2], [3, 1]] \)
+
+Decision variable:
+1. JobOrderVariable
+Binary variable, \( x_{i,j} \in \{0, 1\} \) for all \( i,j \in J, i \neq j \), where \( x_{i,j} = 1 \) if job \( i \) precedes job \( j \), and 0 otherwise
+2. StartTimeVariable
+Continuous variable, \( start_{j,m} \geq 0 \) for all \( j \in J, m \in M \), where \( start_{j,m} \) is the start time of job \( j \) on machine \( m \)
+3. CompletionTimeVariable
+Continuous variable, \( C_{max} \geq 0 \), representing the makespan
+
+Objective:
+Minimize makespan
+min: \( C_{max} \)
+
+Constraint:
+1. Precedence Constraints
+\( start_{j,m} \geq start_{i,m} + proces\_time_{i,m} - V \cdot (1 - x_{i,j}), \quad \forall i,j \in J, i \neq j, \forall m \in M \)
+\( start_{j,m} \geq start_{i,m} + proces\_time_{i,m} - V \cdot x_{i,j}, \quad \forall i,j \in J, i \neq j, \forall m \in M \)
+2. Machine Order Constraints
+\( start_{j,m+1} \geq start_{j,m} + proces\_time_{j,m}, \quad \forall j \in J, \forall m \in M \setminus \{|M|\} \)
+3. Makespan Definition
+\( C_{max} \geq start_{j,|M|} + proces\_time_{j,|M|}, \quad \forall j \in J \)
+
+Type:
+Mixed Integer, Linear, Linear
+MILP

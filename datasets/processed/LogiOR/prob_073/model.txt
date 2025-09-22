@@ -1,0 +1,41 @@
+Set:
+1. Trucks
+The set of available trucks, \( T = \{1, 2, 3\} \)
+2. Stores
+The set of stores to be served, \( S = \{1, 2, 3, 4, 5\} \)
+
+Parameter:
+1. TruckCapacities
+[8, 10, 12]  # Capacity of each truck in tons
+2. StoreDemands
+[3, 4, 5, 2, 6]  # Demand of each store in tons
+3. Distances
+[15, 20, 25, 30, 35]  # Distance from DC to each store in km
+4. BigM
+1000  # A large constant for linearization
+
+Decision variable:
+1. TruckUsed
+Binary variable \( u_t \in \{0, 1\} \) for all \( t \in T \), where \( u_t = 1 \) if truck \( t \) is used, and \( u_t = 0 \) otherwise
+2. StoreAssignment
+Binary variable \( x_{st} \in \{0, 1\} \) for all \( s \in S, t \in T \), where \( x_{st} = 1 \) if store \( s \) is assigned to truck \( t \), and \( x_{st} = 0 \) otherwise
+3. RouteDistance
+Continuous variable \( d_t \geq 0 \) for all \( t \in T \), representing the total distance traveled by truck \( t \)
+
+Objective:
+Minimize the total distance traveled by all trucks
+min: \sum_{t\in T}d_t
+
+Constraint:
+1. Each store must be assigned to exactly one truck
+\sum_{t\in T}x_{st} = 1, \forall s \in S
+2. Truck capacity cannot be exceeded
+\sum_{s\in S}StoreDemands_s \cdot x_{st} \leq TruckCapacities_t, \forall t \in T
+3. Distance calculation for each truck (using farthest store visited)
+d_t \geq Distances_s \cdot x_{st}, \forall s \in S, t \in T
+4. Truck usage constraint (if any store is assigned)
+\sum_{s\in S}x_{st} \leq |S| \cdot u_t, \forall t \in T
+
+Type:
+Mixed, Linear, Linear
+MILP

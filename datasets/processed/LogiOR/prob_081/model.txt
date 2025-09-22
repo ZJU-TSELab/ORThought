@@ -1,0 +1,35 @@
+Set:
+1. Route 
+The set of available transportation routes, \( R = \{1, 2, 3\} \)
+
+Parameter:
+1. TotalTonnage
+# The total amount of goods to be shipped
+100 
+2. LinearCostPerTon 
+# The base transportation cost per ton for each route, excluding congestion fees. This is calculated by summing the costs of all segments for a given route (`distance * base_fee`).  
+[700, 1085, 670] # in dollars per ton for Route 1, 2, and 3 respectively.
+3. CongestionCoeff 
+# The coefficient for calculating the congestion fee on applicable routes.  
+[5e-7, 8e-7, 0] # Route 3 has no congestion fee.
+4. BackgroundTraffic 
+# The existing traffic volume on congested routes.  
+[2000, 1500, 0] # in tons. Route 3 has no congested segment.
+
+Decision variable:
+1. TonnageOnRoute 
+Continuous variable, \( TonnageOnRoute[r] \forall r \in R \), representing the amount of goods in tons transported via route \( r \).
+
+Objective:
+1. Minimize the total transportation cost. The objective is to minimize the sum of the linear transportation costs and the non-linear congestion fees for all routes.  
+min: \( \sum_{r \in R} (LinearCostPerTon[r] \times TonnageOnRoute[r] + CongestionCoeff[r] \times (BackgroundTraffic[r] + TonnageOnRoute[r])^2) \)
+
+Constraint:
+1. Total Shipment Constraint. The sum of goods transported on all routes must equal the total tonnage required to be shipped.  
+\( \sum_{r \in R} TonnageOnRoute[r] = TotalTonnage \)
+2. Non-negativity constraint. The amount of goods transported on any route cannot be negative.  
+\( TonnageOnRoute[r] \geq 0 \forall r \in R \)
+
+Type:
+Continuous, Non-linear, Linear  
+NLP

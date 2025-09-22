@@ -1,0 +1,35 @@
+Set:
+1. TransportType
+The set of transport types, \( I = \{0, 1\} \) # 0 for Container, 1 for Truck
+
+Parameter:
+1. OilPerUnit
+[30, 40] # Units of oil each transport type can hold
+2. MinOil
+2000 # Minimum units of oil to be sent
+3. MinContainers
+15 # Minimum number of containers to be used
+4. MaxTruckToContainerRatio
+0.5 # Maximum ratio of trucks to containers
+
+Decision variable:
+1. NumberOfUnits
+Integer variable, \( x_{i} \) for all \( i \in I \), representing the number of units of each transport type.
+
+Objective:
+Minimize the total number of containers and trucks needed.
+min: \( \sum_{i \in I} x_{i} \)
+
+Constraint:
+1. Oil transport requirement
+\( \sum_{i \in I} OilPerUnit[i] \cdot x_{i} \geq MinOil \)
+2. Minimum containers constraint
+\( x_{0} \geq MinContainers \)
+3. Truck to container ratio constraint
+\( x_{1} \leq MaxTruckToContainerRatio \cdot x_{0} \)
+4. Non-negativity
+\( x_{i} \geq 0 \), for all \( i \in I \)
+
+Type:
+Integer, linear, linear
+IP

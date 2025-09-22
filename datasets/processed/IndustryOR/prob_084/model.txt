@@ -1,0 +1,53 @@
+# Model description for prob_084
+Set:
+1. Products
+The set of products, \( P = \{X, Y\} \).
+
+Parameter:
+1. MachineTime
+[13, 19] # Machine time in minutes required per unit for each product.
+2. CraftsmanTime
+[20, 29] # Craftsman time in minutes required per unit for each product.
+3. AvailableMachineTime
+2400 # Total available machine time in minutes (40 hours * 60 min/hr).
+4. AvailableCraftsmanTime
+2100 # Total available craftsman time in minutes (35 hours * 60 min/hr).
+5. Revenue
+[20, 30] # Revenue in £ per unit for each product.
+6. MachineCostPerHour
+10 # Cost in £ per hour for machine time.
+7. CraftsmanCostPerHour
+2 # Cost in £ per hour for craftsman time.
+8. MinProductionX
+10 # Minimum number of units of product X to be produced.
+
+Derived Parameter:
+1. ProfitPerUnit
+The profit for each product is calculated as Revenue - (MachineTime * MachineCost) - (CraftsmanTime * CraftsmanCost).
+- Profit_X = 20 - (13/60 * 10) - (20/60 * 2) = 20 - 2.167 - 0.667 = 17.166
+- Profit_Y = 30 - (19/60 * 10) - (29/60 * 2) = 30 - 3.167 - 0.967 = 25.866
+
+Decision variable:
+1. ProductionQty
+Integer variable, \( n_p \) for all \( p \in P \), representing the number of units of product \( p \) to produce.
+
+Objective:
+Maximize the total weekly profit.
+max: \sum_{p \in P} \text{ProfitPerUnit}[p] * n_p
+
+Constraint:
+1. Machine Time Limit
+The total machine time used cannot exceed the available time.
+\sum_{p \in P} \text{MachineTime}[p] * n_p \leq \text{AvailableMachineTime}
+2. Craftsman Time Limit
+The total craftsman time used cannot exceed the available time.
+\sum_{p \in P} \text{CraftsmanTime}[p] * n_p \leq \text{AvailableCraftsmanTime}
+3. Contract Requirement
+The production of product X must meet the contract.
+n_X \geq \text{MinProductionX}
+4. Non-negativity
+n_p \geq 0, \forall p \in P
+
+Type:
+Integer, linear, linear
+ILP

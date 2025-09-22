@@ -1,0 +1,41 @@
+Set:
+1. FurnaceType
+The set of furnace types, \( T = \{0, 1\} \) # 0 for New Model, 1 for Old Model
+
+Parameter:
+1. ApartmentsHeated
+[10, 15] # Number of apartments heated by each furnace type
+2. KwhConsumedPerDay
+[200, 250] # kWh consumed per day by each furnace type
+3. MinApartmentsToHeat
+200 # Minimum apartments to heat
+4. MaxKwhAvailable
+3500 # Maximum kWh of electricity available per day
+5. MaxOldModelRatio
+0.35 # Maximum ratio of old model furnaces
+6. MinNewModelFurnaces
+5 # Minimum number of new model furnaces
+
+Decision variable:
+1. FurnaceCount
+Integer variable, \( x_{t} \) for all \( t \in T \), representing the number of furnaces of type \( t \) to purchase.
+
+Objective:
+Minimize the total number of furnaces.
+min: \sum_{t \in T} x_{t}
+
+Constraint:
+1. Heating capacity constraint
+\sum_{t \in T} ApartmentsHeated[t] * x_{t} \geq MinApartmentsToHeat
+2. Electricity consumption constraint
+\sum_{t \in T} KwhConsumedPerDay[t] * x_{t} \leq MaxKwhAvailable
+3. Old model proportion constraint
+x_{1} \leq MaxOldModelRatio * \sum_{t \in T} x_{t}
+4. Minimum new model furnaces constraint
+x_{0} \geq MinNewModelFurnaces
+5. Non-negativity
+x_{t} \geq 0, for all \( t \in T \)
+
+Type:
+Integer, linear, linear
+IP

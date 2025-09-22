@@ -1,0 +1,46 @@
+Set:
+1. Products
+The set of main products, \( P = \{A, B\} \).
+2. Processes
+The set of chemical processes, \( C = \{1, 2\} \).
+
+Parameter:
+1. ProcessTime
+[[2, 3], [3, 4]] # Hours required for products A and B in processes 1 and 2.
+2. AvailableTime
+[16, 24] # Available hours for process 1 and 2.
+3. ProductProfit
+[4, 10] # Profit per unit for products A and B.
+4. ByproductProfit
+3 # Profit per unit for by-product C.
+5. DisposalCost
+2 # Disposal cost per unit for by-product C.
+6. MaxByproductSale
+5 # Maximum units of by-product C that can be sold.
+
+Decision variable:
+1. ProductionQtyA
+Continuous variable, \( x_A \), represents the units of product A to produce.
+2. ProductionQtyB
+Continuous variable, \( x_B \), represents the units of product B to produce.
+3. ByproductSold
+Continuous variable, \( s_C \), represents the units of by-product C sold.
+4. ByproductDisposed
+Continuous variable, \( d_C \), represents the units of by-product C disposed of.
+
+Objective:
+Maximize: \( 4x_A + 10x_B + 3s_C - 2d_C \)
+
+Constraint:
+1. Process1_Time
+The total time used in process 1 cannot exceed the available time: \( 2x_A + 3x_B \le 16 \)
+2. Process2_Time
+The total time used in process 2 cannot exceed the available time: \( 3x_A + 4x_B \le 24 \)
+3. ByproductBalance
+The total by-product C generated from producing B must equal the amount sold plus the amount disposed of: \( 2x_B = s_C + d_C \)
+4. MaxSaleOfC
+The amount of by-product C sold cannot exceed 5 units: \( s_C \le 5 \)
+
+Type:
+Continuous, linear, linear
+LP

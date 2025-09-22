@@ -1,0 +1,35 @@
+Set:
+1. VaccineType
+The set of vaccine types, \( I = \{0, 1\} \) # 0 for Pill, 1 for Shot
+
+Parameter:
+1. TimePerVaccine
+[10, 20] # Minutes required to administer each vaccine type
+2. MaxTime
+10000 # Maximum total minutes the clinic operates
+3. MinPills
+30 # Minimum number of pill vaccines to be administered
+4. MinShotToPillRatio
+3 # Minimum ratio of shots to pills
+
+Decision variable:
+1. NumberOfVaccines
+Integer variable, \( x_{i} \) for all \( i \in I \), representing the number of vaccines of each type to administer.
+
+Objective:
+Maximize the total number of patients that can be vaccinated.
+max: \( \sum_{i \in I} x_{i} \)
+
+Constraint:
+1. Time constraint
+\( \sum_{i \in I} TimePerVaccine[i] \cdot x_{i} \leq MaxTime \)
+2. Minimum pills constraint
+\( x_{0} \geq MinPills \)
+3. Shot to pill ratio constraint
+\( x_{1} \geq MinShotToPillRatio \cdot x_{0} \)
+4. Non-negativity
+\( x_{i} \geq 0 \), for all \( i \in I \)
+
+Type:
+Integer, linear, linear
+IP

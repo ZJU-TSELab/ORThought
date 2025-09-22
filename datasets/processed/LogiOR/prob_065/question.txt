@@ -1,0 +1,24 @@
+A logistics company needs to deliver goods to 15 customers over a 5-day workweek (Monday to Friday). Each customer has specific delivery frequency requirements: 3 customers require daily deliveries, 5 require deliveries every other day, and 7 require weekly deliveries. The company has 3 available vehicles, each with a capacity of 200 units. The distances between customers and the depot are given in the following matrix (in km):
+
+Distance Table (depot = 0, customers = 1-15):
+
+| From\To | 0   | 1   | 2   | 3   | 4   | 5   | 6   | 7   | 8   | 9   | 10  | 11  | 12  | 13  | 14  | 15  |
+|---------|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|
+|   0     | 0   | 12  | 18  | 9   | 15  | 22  | 7   | 14  | 20  | 11  | 16  | 8   | 13  | 19  | 10  | 17  |
+|   1     | 12  | 0   | 6   | 15  | 21  | 8   | 17  | 23  | 10  | 19  | 4   | 16  | 5   | 11  | 18  | 7   |
+|   2     | 18  | 6   | 0   | 21  | 3   | 14  | 9   | 15  | 12  | 5   | 10  | 7   | 13  | 8   | 4   | 11  |
+|   3     | 9   | 15  | 21  | 0   | 18  | 11  | 16  | 22  | 7   | 14  | 20  | 3   | 19  | 10  | 17  | 6   |
+|   4     | 15  | 21  | 3   | 18  | 0   | 17  | 12  | 8   | 15  | 10  | 7   | 13  | 4   | 9   | 14  | 11  |
+|   5     | 22  | 8   | 14  | 11  | 17  | 0   | 19  | 5   | 12  | 7   | 14  | 10  | 17  | 6   | 13  | 8   |
+|   6     | 7   | 17  | 9   | 16  | 12  | 19  | 0   | 14  | 21  | 8   | 15  | 11  | 18  | 5   | 12  | 9   |
+|   7     | 14  | 23  | 15  | 22  | 8   | 5   | 14  | 0   | 17  | 12  | 9   | 15  | 6   | 11  | 16  | 13  |
+|   8     | 20  | 10  | 12  | 7   | 15  | 12  | 21  | 17  | 0   | 13  | 18  | 4   | 19  | 14  | 9   | 16  |
+|   9     | 11  | 19  | 5   | 14  | 10  | 7   | 8   | 12  | 13  | 0   | 15  | 11  | 6   | 17  | 12  | 9   |
+|   10    | 16  | 4   | 10  | 20  | 7   | 14  | 15  | 9   | 18  | 15  | 0   | 17  | 8   | 13  | 18  | 5   |
+|   11    | 8   | 16  | 7   | 3   | 13  | 10  | 11  | 15  | 4   | 11  | 17  | 0   | 14  | 9   | 16  | 7   |
+|   12    | 13  | 5   | 13  | 19  | 4   | 17  | 18  | 6   | 19  | 6   | 8   | 14  | 0   | 15  | 10  | 17  |
+|   13    | 19  | 11  | 8   | 10  | 9   | 6   | 5   | 11  | 14  | 17  | 13  | 9   | 15  | 0   | 7   | 12  |
+|   14    | 10  | 18  | 4   | 17  | 14  | 13  | 12  | 16  | 9   | 12  | 18  | 16  | 10  | 7   | 0   | 11  |
+|   15    | 17  | 7   | 11  | 6   | 11  | 8   | 9   | 13  | 16  | 9   | 5   | 7   | 17  | 12  | 11  | 0   |
+
+Each customer's daily demand (in units) is: [25, 30, 20, 15, 35, 40, 18, 22, 28, 32, 19, 21, 26, 24, 23]. The objective is to plan vehicle routes for each day of the week to satisfy all delivery requirements while minimizing total distance traveled.

@@ -1,0 +1,35 @@
+Set:
+1. ProcessType
+The set of process types, \( I = \{0, 1\} \) # 0 for with catalyst, 1 for without a catalyst
+
+Parameter:
+1. WoodRequirement
+[10, 15] # Units of wood required for each process type
+2. OxygenRequirement
+[20, 12] # Units of oxygen required for each process type
+3. CO2Production
+[15, 18] # Units of carbon dioxide produced by each process type
+4. MaxWood
+300 # Units of wood available
+5. MaxOxygen
+300 # Units of oxygen available
+
+Decision variable:
+1. ProcessCount
+Continuous variable, \( x_{i} \) for all \( i \in I \), representing the number of times each process is used.
+
+Objective:
+Maximize the amount of carbon dioxide produced.
+max: \( \sum_{i \in I} CO2Production[i] \cdot x_{i} \)
+
+Constraint:
+1. Wood constraint
+\( \sum_{i \in I} WoodRequirement[i] \cdot x_{i} \leq MaxWood \)
+2. Oxygen constraint
+\( \sum_{i \in I} OxygenRequirement[i] \cdot x_{i} \leq MaxOxygen \)
+3. Non-negativity
+\( x_{i} \geq 0 \), for all \( i \in I \)
+
+Type:
+Continuous, linear, linear
+LP

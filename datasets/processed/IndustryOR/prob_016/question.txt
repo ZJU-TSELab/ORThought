@@ -1,0 +1,12 @@
+Certain strategic bomber groups are tasked with destroying enemy military targets. It is known that the target has four key parts, and destroying any one of them will suffice. The fuel consumption limit for completing this task is 48,000 liters, with a maximum of 48 heavy bombs and 32 light bombs. When carrying heavy bombs, each liter of fuel allows a distance of 2 km, whereas with light bombs, each liter allows 3 km. Additionally, each aircraft can only carry one bomb per trip, and each bombing run requires fuel not only for the round trip (each liter of fuel allows 4 km when the aircraft is empty) but also 100 liters for both takeoff and landing per trip. Relevant data is shown in Table 1-17.
+
+Table 1-17
+| Key Part | Distance from Airport (km) | Probability of Destruction per Heavy Bomb | Probability of Destruction per Light Bomb |
+|----------|----------------------------|-----------------------------------------|------------------------------------------|
+|          |                            |                                         |                                          |
+| 1        | 450                        | 0.10                                    | 0.08                                     |
+| 2        | 480                        | 0.20                                    | 0.16                                     |
+| 3        | 540                        | 0.15                                    | 0.12                                     |
+| 4        | 600                        | 0.25                                    | 0.20                                     |
+
+To maximize the probability of destroying the enemy military target, how should the bombing plan be determined? Establish a linear programming model for this problem.

@@ -1,0 +1,11 @@
+A logistics company needs to construct a logistics transfer center in a certain area. The company has identified 5 candidate locations for the transfer centers, which will need to deliver goods to 10 subordinate outlets. The distance matrix between the 5 candidate locations and the 10 outlets is as follows:
+
+| Candidate Location \ Outlet | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 |
+|------------------------------|----------|----------|----------|----------|----------|----------|----------|----------|----------|-----------|
+| 1                            | 15       | 22       | 30       | 45       | 50       | 12       | 28       | 35       | 40       | 25        |
+| 2                            | 10       | 18       | 25       | 35       | 40       | 8        | 20       | 28       | 32       | 18        |
+| 3                            | 25       | 30       | 35       | 50       | 55       | 22       | 32       | 40       | 45       | 30        |
+| 4                            | 30       | 35       | 40       | 55       | 60       | 25       | 35       | 45       | 50       | 35        |
+| 5                            | 5        | 12       | 20       | 30       | 35       | 5        | 15       | 22       | 28       | 12        |
+
+If 2 out of the 5 candidate locations are to be selected to build transfer centers, what is the minimum possible value of the maximum distance from all outlets to their nearest transfer center?

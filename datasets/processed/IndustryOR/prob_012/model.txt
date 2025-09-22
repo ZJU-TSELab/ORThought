@@ -1,0 +1,37 @@
+Set:
+1. Crops
+The set of crops to plant, \( C = \{\text{Corn, Wheat, Soybeans, Sorghum}\} \)
+
+Parameter:
+1. ProfitPerAcre
+[1500, 1200, 1800, 1600] # Profit per acre for each crop.
+2. TotalLand
+100 # Total acres of land available.
+
+Decision variable:
+1. AcresToPlant
+Continuous variable, \( x_c \), the number of acres to allocate to each crop \( c \in C \).
+
+Objective:
+Maximize the total profit.
+max: \(\sum_{c \in C} ProfitPerAcre_c \cdot x_c\)
+
+Constraint:
+1. Total Land Usage
+The total acres planted cannot exceed the available land.
+\(\sum_{c \in C} x_c \leq TotalLand\)
+2. Corn-Wheat Ratio
+The land for corn must be at least twice the land for wheat.
+\(x_{Corn} \geq 2 \cdot x_{Wheat}\)
+3. Soybean-Sorghum Ratio
+The land for soybeans must be at least half the land for sorghum.
+\(x_{Soybeans} \geq 0.5 \cdot x_{Sorghum}\)
+4. Wheat-Sorghum Ratio
+The land for wheat must be three times the land for sorghum.
+\(x_{Wheat} = 3 \cdot x_{Sorghum}\)
+5. Non-negativity
+\(x_c \geq 0, \forall c \in C\)
+
+Type:
+Continuous, linear, linear
+LP

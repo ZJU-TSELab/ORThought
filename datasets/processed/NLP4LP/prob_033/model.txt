@@ -1,0 +1,31 @@
+Set:
+1. ProductType
+The set of product types, \( T = \{0, 1\} \) # 0 for Scooters, 1 for Bikes
+2. TeamType
+The set of team types, \( E = \{0, 1\} \) # 0 for Design Team, 1 for Engineering Team
+
+Parameter:
+1. Profit
+[200, 300] # Profit per product for each product type
+2. HoursAvailable
+[5000, 6000] # Hours available per month for each team type
+3. HoursRequired
+[[2, 4], [3, 5]] # Hours required from each team for each product type
+
+Decision variable:
+1. ProductCount
+Continuous variable, \( x_{t} \) for all \( t \in T \), representing the number of products of type \( t \) to make per month.
+
+Objective:
+Maximize the total profit.
+max: \sum_{t \in T} Profit[t] * x_{t}
+
+Constraint:
+1. Team hours constraint
+\sum_{t \in T} HoursRequired[e][t] * x_{t} \leq HoursAvailable[e], for all \( e \in E \)
+2. Non-negativity
+x_{t} \geq 0, for all \( t \in T \)
+
+Type:
+continuous, linear, linear
+LP

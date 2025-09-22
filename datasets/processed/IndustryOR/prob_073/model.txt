@@ -1,0 +1,43 @@
+Set:
+1. Activities
+The set of project activities, \( A = \{A, B, C, D, E, F, G\} \).
+
+Parameter:
+1. Duration
+[4, 3, 5, 2, 10, 10, 1] # Duration in days for each activity.
+2. CostWorkPerDay
+1000 # Cost of work per day in Euros.
+3. CostMachinePerDay
+5000 # Rental cost of the special machine per day.
+
+Decision variable:
+1. StartTime
+Integer variable, \( S_a \) for \( a \in A \), represents the start time of each activity.
+2. Makespan
+Integer variable, \( M \), represents the total project duration.
+3. MachineRentalDuration
+Integer variable, \( R \), represents the total duration for which the machine is rented.
+
+Objective:
+Minimize: \( 1000 \cdot M + 5000 \cdot R \)
+
+Constraint:
+1. PrecedenceConstraints
+The start time of a successor activity must be greater than or equal to the completion time of its predecessor(s).
+- \( S_G \ge S_A + 4 \)
+- \( S_D \ge S_A + 4 \)
+- \( S_F \ge S_E + 10 \)
+- \( S_F \ge S_G + 1 \)
+- \( S_C \ge S_D + 2 \)
+- \( S_C \ge S_F + 10 \)
+- \( S_B \ge S_F + 10 \)
+2. MakespanDefinition
+The makespan must be greater than or equal to the completion time of all activities.
+- \( M \ge S_a + \text{Duration}_a \) for all \( a \in A \).
+3. MachineRentalDurationDefinition
+The machine rental duration is the time from the start of activity A to the end of activity B.
+- \( R \ge (S_B + 3) - S_A \)
+
+Type:
+Integer, linear, linear
+ILP

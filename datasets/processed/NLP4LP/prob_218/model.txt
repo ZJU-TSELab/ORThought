@@ -1,0 +1,41 @@
+Set:
+1. ACType
+The set of air conditioner types, \( I = \{0, 1\} \) # 0 for low-power, 1 for high-power
+
+Parameter:
+1. CoolingCapacity
+[12, 17] # Housing units cooled by each AC type
+2. ElectricityConsumption
+[150, 250] # Electricity units consumed per day by each AC type
+3. MinTotalCooling
+250 # Minimum total housing units to be cooled
+4. MaxTotalElectricity
+3400 # Maximum total electricity units available
+5. MaxLowPowerRatio
+0.3 # Maximum proportion of low-power ACs relative to the total number of ACs
+6. MinHighPower
+7 # Minimum number of high-power ACs that must be used
+
+Decision variable:
+1. NumACs
+Integer variable, \( x_{i} \) for all \( i \in I \), representing the number of ACs of each type to buy.
+
+Objective:
+Minimize the total number of air conditioners.
+min: \( \sum_{i \in I} x_{i} \)
+
+Constraint:
+1. Total cooling capacity constraint
+\( \sum_{i \in I} CoolingCapacity[i] \cdot x_{i} \geq MinTotalCooling \)
+2. Total electricity consumption constraint
+\( \sum_{i \in I} ElectricityConsumption[i] \cdot x_{i} \leq MaxTotalElectricity \)
+3. Low-power AC ratio constraint
+\( x_{0} \leq MaxLowPowerRatio \cdot \sum_{i \in I} x_{i} \)
+4. High-power minimum constraint
+\( x_{1} \geq MinHighPower \)
+5. Non-negativity and Integer
+\( x_{i} \geq 0 \) and integer, for all \( i \in I \)
+
+Type:
+Integer, linear, linear
+IP

@@ -1,0 +1,39 @@
+Set:
+1. Foods
+The set of foods, \( F = \{1, 2, 3\} \)
+2. Nutrients
+The set of nutrients, \( N = \{1, 2\} \)
+
+Parameter:
+1. Food Cost
+\( cost = [2, 3, 1.5] \)
+2. Minimum Food Amount
+\( f\_min = [0, 0, 0] \)
+3. Maximum Food Amount
+\( f\_max = [100, 100, 100] \)
+4. Minimum Nutrient Requirement
+\( n\_min = [50, 60] \)
+5. Maximum Nutrient Limit
+\( n\_max = [200, 250] \)
+6. Nutrient Amount in Foods
+\( amt = [[2, 1, 3], [3, 4, 2]] \)
+
+Decision variable:
+1. FoodAmountVariable
+Continuous variable, \( x_f \geq 0 \) for all \( f \in F \), where \( x_f \) is the amount of food \( f \) to buy
+
+Objective:
+Minimize total cost
+min: \( \sum_{f \in F} cost_f \cdot x_f \)
+
+Constraint:
+1. Food Amount Limits
+\( f\_min_f \leq x_f \leq f\_max_f, \quad \forall f \in F \)
+2. Minimum Nutrient Requirement
+\( \sum_{f \in F} amt_{n,f} \cdot x_f \geq n\_min_n, \quad \forall n \in N \)
+3. Maximum Nutrient Limit
+\( \sum_{f \in F} amt_{n,f} \cdot x_f \leq n\_max_n, \quad \forall n \in N \)
+
+Type:
+Continuous, Linear, Linear
+LP

@@ -1,0 +1,37 @@
+Set
+1.  Station
+    The set of maintenance stations, \( I = \{1, 2\} \) # 1: Van 1, 2: Van 2
+2.  Zone
+    The set of zones, \( J = \{1, 2, 3\} \) # 1: Zone A, 2: Zone B, 3: Zone C
+
+Parameter
+1.  DispatchCost
+    [300, 320] # Fixed cost for using van 1 and 2
+2.  VanCapacity
+    [150, 180] # Max battery capacity for van 1 and 2
+3.  OperationalCostCoefficient
+    [0.08, 0.07] # Operational cost coefficient for van 1 and 2
+4.  BatteryDemand
+    [120, 120, 90] # Number of batteries needed in Zone A, B, and C
+
+Decision variable
+1.  BatteriesReplaced
+    Integer variable, \( x_{ij} \), \( \forall i \in I, j \in J \), the number of batteries replaced by station \(i\) in zone \(j\).
+2.  StationUsed
+    Binary variable, \( y_i \), \( \forall i \in I \), 1 if station \(i\) is used, 0 otherwise.
+
+Objective
+1.  Minimize the total operational cost.
+    min: \( \sum_{i \in I} (\text{DispatchCost}[i] \cdot y_i) + \sum_{i \in I} \sum_{j \in J} (\text{OperationalCostCoefficient}[i] \cdot x_{ij}^2) \)
+
+Constraint
+1.  Demand Fulfillment constraint.
+    \( \sum_{i \in I} x_{ij} = \text{BatteryDemand}[j], \forall j \in J \)
+2.  Van Capacity constraint.
+    \( \sum_{j \in J} x_{ij} \le \text{VanCapacity}[i] \cdot y_i, \forall i \in I \)
+3.  Non-negativity constraint.
+    \( x_{ij} \ge 0, \forall i \in I, j \in J \)
+
+Type
+Mixed, Non-linear, Linear
+NLP

@@ -1,0 +1,38 @@
+Set:
+1. Fruits
+The set of fruit types, \( F = \{\text{Apples, Pears, Oranges, Lemons}\} \).
+
+Parameter:
+1. Profit
+{'Apples': 2000, 'Pears': 1800, 'Oranges': 2200, 'Lemons': 3000} # Profit per acre for each fruit type.
+2. TotalArea
+120 # Total available farm area in acres.
+3. BigM
+120 # A large number, equal to the total area, used for linking continuous and binary variables.
+
+Decision variable:
+1. Acres
+Continuous variable, \( x_f \) for \( f \in F \), represents the acres of land used to grow each fruit type.
+2. GrowFruit
+Binary variable, \( y_f \) for \( f \in F \), is 1 if fruit f is grown, and 0 otherwise.
+
+Objective:
+Maximize: \( 2000x_{\text{Apples}} + 1800x_{\text{Pears}} + 2200x_{\text{Oranges}} + 3000x_{\text{Lemons}} \)
+
+Constraint:
+1. TotalArea
+The total land used for all fruits cannot exceed the available area: \( \sum_{f \in F} x_f \le 120 \)
+2. ApplesVsPears
+The land for apples must be at least twice the land for pears: \( x_{\text{Apples}} \ge 2x_{\text{Pears}} \)
+3. ApplesVsLemons
+The land for apples must be at least three times the land for lemons: \( x_{\text{Apples}} \ge 3x_{\text{Lemons}} \)
+4. OrangesVsLemons
+The land for oranges must be exactly twice the land for lemons: \( x_{\text{Oranges}} = 2x_{\text{Lemons}} \)
+5. MaxFruitTypes
+At most two types of fruit can be grown: \( \sum_{f \in F} y_f \le 2 \)
+6. LinkAcresToGrow
+For each fruit \( f \in F \), if any amount of land is used for it, the corresponding binary variable must be 1. This is enforced using a Big-M constraint: \( x_f \le 120 \cdot y_f \).
+
+Type:
+Mixed-Integer, linear, linear
+MILP

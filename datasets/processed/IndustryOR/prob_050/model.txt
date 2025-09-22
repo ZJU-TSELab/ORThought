@@ -1,0 +1,32 @@
+Set:
+1. TimePeriods
+The set of 4-hour time periods over a 24-hour day, \( T = \{0, 1, 2, 3, 4, 5\} \), where 0 corresponds to 2:00-6:00, 1 to 6:00-10:00, and so on.
+2. NurseTypes
+The set of nurse types, \( N = \{\text{Regular, Contract}\} \).
+
+Parameter:
+1. Demand
+{0: 10, 1: 15, 2: 25, 3: 20, 4: 18, 5: 12} # Number of nurses required in each time period \( d_t \).
+2. Cost
+{'Regular': 80, 'Contract': 120} # Cost per 8-hour shift for each nurse type \( c_n \). An 8-hour shift costs 10*8=80 for regular and 15*8=120 for contract nurses.
+
+Decision variable:
+1. NumNurses
+Integer variable, \( x_{nt} \) for \( n \in N, t \in T \), represents the number of nurses of type n starting their 8-hour shift at the beginning of period t.
+
+Objective:
+Minimize: \( \sum_{t \in T} (80 \cdot x_{\text{Regular}, t} + 120 \cdot x_{\text{Contract}, t}) \)
+
+Constraint:
+1. StaffingRequirement
+For each time period \( t \in T \), the number of nurses on duty must meet or exceed the demand. Nurses work for 8 hours, covering two consecutive 4-hour periods. The nurses on duty in period \( t \) are those who started in period \( t \) and those who started in the previous period \( t-1 \) (with wraparound for period 0).
+- For t=0 (2:00-6:00): \( x_{\text{Regular}, 5} + x_{\text{Contract}, 5} + x_{\text{Regular}, 0} + x_{\text{Contract}, 0} \ge 10 \)
+- For t=1 (6:00-10:00): \( x_{\text{Regular}, 0} + x_{\text{Contract}, 0} + x_{\text{Regular}, 1} + x_{\text{Contract}, 1} \ge 15 \)
+- For t=2 (10:00-14:00): \( x_{\text{Regular}, 1} + x_{\text{Contract}, 1} + x_{\text{Regular}, 2} + x_{\text{Contract}, 2} \ge 25 \)
+- For t=3 (14:00-18:00): \( x_{\text{Regular}, 2} + x_{\text{Contract}, 2} + x_{\text{Regular}, 3} + x_{\text{Contract}, 3} \ge 20 \)
+- For t=4 (18:00-22:00): \( x_{\text{Regular}, 3} + x_{\text{Contract}, 3} + x_{\text{Regular}, 4} + x_{\text{Contract}, 4} \ge 18 \)
+- For t=5 (22:00-2:00): \( x_{\text{Regular}, 4} + x_{\text{Contract}, 4} + x_{\text{Regular}, 5} + x_{\text{Contract}, 5} \ge 12 \)
+
+Type:
+Integer, linear, linear
+ILP

@@ -1,0 +1,41 @@
+Set:
+1. CrepeType
+The set of crepe types, \( I = \{0, 1\} \) # 0 for Chocolate, 1 for Peanut Butter
+
+Parameter:
+1. CrepeMixUsage
+[6, 7] # Units of crepe mix required for each crepe type
+2. ChocolateSpreadUsage
+3 # Units of chocolate spread required for a chocolate crepe
+3. PeanutButterSpreadUsage
+4 # Units of peanut butter spread required for a peanut butter crepe
+4. MaxChocolateSpread
+400 # Units of chocolate spread available
+5. MaxPeanutButterSpread
+450 # Units of peanut butter spread available
+6. MinChocolatePercentage
+0.25 # Minimum percentage of chocolate crepes
+
+Decision variable:
+1. CrepeCount
+Integer variable, \( x_{i} \) for all \( i \in I \), representing the number of crepes of type \( i \) to be made.
+
+Objective:
+Minimize the total amount of crepe mix needed.
+min: \( \sum_{i \in I} CrepeMixUsage[i] \cdot x_{i} \)
+
+Constraint:
+1. Chocolate spread constraint
+\( ChocolateSpreadUsage \cdot x_{0} \leq MaxChocolateSpread \)
+2. Peanut butter spread constraint
+\( PeanutButterSpreadUsage \cdot x_{1} \leq MaxPeanutButterSpread \)
+3. Popularity constraint
+\( x_{1} \geq x_{0} + 1 \)
+4. Chocolate percentage constraint
+\( x_{0} \geq MinChocolatePercentage \cdot (x_{0} + x_{1}) \) which simplifies to \( 3 \cdot x_{0} \geq x_{1} \)
+5. Non-negativity
+\( x_{i} \geq 0 \), for all \( i \in I \)
+
+Type:
+Integer, linear, linear
+IP

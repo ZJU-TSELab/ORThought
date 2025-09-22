@@ -1,0 +1,13 @@
+A company produces seven types of food containers, ranging in volume from 17 to 33 liters. The demand and size of each container are given in Table as follows: 
+
+| Container Type | Volume (liters) | Demand (units) |
+|----------------|-----------------|----------------|
+| 1              | 17              | 500            |
+| 2              | 19              | 400            |
+| 3              | 21              | 300            |
+| 4              | 23              | 250            |
+| 5              | 25              | 200            |
+| 6              | 29              | 150            |
+| 7              | 33              | 100            |
+
+The variable cost (in dollars) of producing each container is equal to its volume. A fixed cost of $1,000 is incurred to produce any of a particular container type. If the company desires, demand for a container may be satisfied by a container of larger size. Formulate and solve a shortest-path problem whose solution will minimize the cost of meeting the demand for food containers.

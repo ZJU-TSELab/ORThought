@@ -1,0 +1,33 @@
+Set:
+1. VanType
+The set of van types, \( I = \{0, 1\} \) # 0 for Regular, 1 for Hybrid
+
+Parameter:
+1. DeliveryCapacity
+[500, 300] # Packages delivered per day by each van type
+2. PollutantProduction
+[200, 100] # Units of pollutants produced per day by each van type
+3. MinDelivery
+20000 # Minimum total packages to be delivered per day
+4. MaxPollution
+7000 # Maximum total units of pollutants allowed per day
+
+Decision variable:
+1. VanCount
+Integer variable, \( x_{i} \) for all \( i \in I \), representing the number of vans of type \( i \) to be bought.
+
+Objective:
+Minimize the total number of vans.
+min: \( \sum_{i \in I} x_{i} \)
+
+Constraint:
+1. Delivery requirement constraint
+\( \sum_{i \in I} DeliveryCapacity[i] \cdot x_{i} \geq MinDelivery \)
+2. Pollution limit constraint
+\( \sum_{i \in I} PollutantProduction[i] \cdot x_{i} \leq MaxPollution \)
+3. Non-negativity
+\( x_{i} \geq 0 \), for all \( i \in I \)
+
+Type:
+Integer, linear, linear
+IP

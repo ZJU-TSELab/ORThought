@@ -1,0 +1,10 @@
+Problem description:
+A logistics company manages shipments between 3 suppliers (S1, S2, S3), 2 cross-docking warehouses (W1, W2), and 4 customers (C1, C2, C3, C4). The suppliers have weekly capacities of [120, 150, 90] units respectively. Customers demand [80, 60, 70, 90] units weekly. 
+
+Transport costs per unit:
+- Direct shipping: S1→[C1,C2,C3,C4] costs [8,10,12,14], S2→[C1,C2,C3,C4] costs [9,7,11,13], S3→[C1,C2,C3,C4] costs [11,9,8,10]
+- Cross-docking first leg: S1→[W1,W2] costs [4,5], S2→[W1,W2] costs [6,3], S3→[W1,W2] costs [5,4]
+- Cross-docking second leg: W1→[C1,C2,C3,C4] costs [6,5,7,9], W2→[C1,C2,C3,C4] costs [7,6,5,8]
+Cross-docking handling cost is $2/unit at each warehouse. Maximum throughput at W1 is 200 units, W2 is 180 units. 
+
+The company wants to minimize total logistics costs while meeting all customer demands without exceeding supplier capacities and warehouse throughput limits.

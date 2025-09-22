@@ -1,0 +1,16 @@
+To strengthen grassroots medical services, the Health Bureau of a city has equipped a mobile medical vehicle to regularly provide basic medical check-ups and medicines to various communities in the suburbs. To improve service efficiency, it is necessary to optimize the route of the mobile medical vehicle. The starting point of the medical vehicle is the Central City Hospital, located at coordinates (0, 0). The information for the 10 communities to be served is as follows:
+
+|  COMMUNITY ID |        (x, y)       | TIME WINDOW |
+|---------------|---------------------|-------------|
+| C1            | (-5.87, -3.3)       | [8, 12]     |
+| C2            | (-4.1, 4.6)         | [9, 13]     |
+| C3            | (-2.27, -7.45)      | [10, 15]    |
+| C4            | (4.36, 3.38)        | [11, 15]    |
+| C5            | (9.05, 5.02)        | [9, 16]     |
+| C6            | (-7.46, 6.97)       | [9, 17]     |
+| C7            | (7.75, 7.38)        | [10, 18]    |
+| C8            | (0.06, -4.25)       | [13, 19]    |
+| C9            | (-6.13, -9.78)      | [8, 16]     |
+| C10           | (3.25, 9.86)        | [8, 16]     |
+
+Each community has a time window during which the medical vehicle must arrive. The medical vehicle departs from the Central City Hospital at 8:00 AM and travels at a speed of 15 km/h. After visiting all communities, the vehicle must return to the Central City Hospital. What is the shortest travel distance? (Distances are calculated as Euclidean distances in kilometers.)

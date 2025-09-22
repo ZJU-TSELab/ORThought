@@ -1,0 +1,47 @@
+Set:
+1. Supplier
+The set of suppliers, \( S = \{A, B, C\} \)
+
+Parameter:
+1. CostPerTable
+[120, 110, 100] # Cost per table for each supplier [A, B, C]
+2. TablesPerOrder
+[20, 15, 15] # Number of tables per order for each supplier [A, B, C]
+3. MinTotalTables
+150 # Minimum total number of tables to order
+4. MaxTotalTables
+600 # Maximum total number of tables to order
+5. MinTablesFromBIfA
+30 # Minimum tables to order from B if ordering from A
+
+Decision variable:
+1. Orders
+Integer variable, \( x_{s} \) for all \( s \in S \), representing the number of orders from supplier \( s \).
+2. UseSupplier
+Binary variable, \( y_{s} \) for \( s \in \{A, B\} \), indicating if any tables are ordered from supplier \( s \).
+
+Objective:
+Minimize the total cost of the orders.
+min: \sum_{s \in S} CostPerTable[s] * TablesPerOrder[s] * x_{s}
+
+Constraint:
+1. Minimum total tables constraint
+\sum_{s \in S} TablesPerOrder[s] * x_{s} \geq MinTotalTables
+2. Maximum total tables constraint
+\sum_{s \in S} TablesPerOrder[s] * x_{s} \leq MaxTotalTables
+3. Conditional order from A to B
+If tables are ordered from A, then at least 30 tables must be ordered from B.
+\( y_{A} = 1 \implies TablesPerOrder[B] * x_{B} \geq MinTablesFromBIfA \)
+4. Conditional order from B to C
+If tables are ordered from B, then at least one order must be placed with C.
+\( y_{B} = 1 \implies x_{C} \geq 1 \)
+5. Linking orders and use variables
+These constraints link the binary 'Use' variables to the integer 'Orders' variables.
+\( x_{s} \geq y_{s} \) for \( s \in \{A, B\} \)
+\( x_{s} \leq BigM * y_{s} \) for \( s \in \{A, B\} \) (where BigM is a large number)
+6. Non-negativity
+\( x_{s} \geq 0, \forall s \in S \)
+
+Type:
+Integer, linear, linear
+ILP

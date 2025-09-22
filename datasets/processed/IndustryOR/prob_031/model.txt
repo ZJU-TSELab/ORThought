@@ -1,0 +1,36 @@
+Set:
+1. Workshop
+The set of workshops, \( W = \{A, B, C, D\} \)
+2. Component
+The set of components, \( C = \{1, 2, 3\} \)
+
+Parameter:
+1. ProductionCapacity
+A dictionary mapping workshop to its production capacity in hours.
+2. ProductionRate
+A dictionary mapping (workshop, component) to the production rate (units/hour).
+
+Decision variable:
+1. AllocatedHours
+Continuous variable, \( x_{w,c} \) for \( w \in W, c \in C \), representing the hours allocated by workshop \( w \) to produce component \( c \).
+2. CompletedProducts
+Integer variable, \( z \), representing the total number of completed products.
+
+Objective:
+Maximize the number of completed products.
+max: z
+
+Constraint:
+1. Component production constraint
+For each component, the total number of units produced must be at least the number of completed products.
+\sum_{w \in W} ProductionRate[w,c] * x_{w,c} \geq z, \forall c \in C
+2. Workshop capacity constraint
+For each workshop, the total hours allocated cannot exceed its capacity.
+\sum_{c \in C} x_{w,c} \leq ProductionCapacity[w], \forall w \in W
+3. Non-negativity
+\( x_{w,c} \geq 0, \forall w \in W, c \in C \)
+\( z \geq 0 \)
+
+Type:
+Mixed-Integer, linear, linear
+MILP

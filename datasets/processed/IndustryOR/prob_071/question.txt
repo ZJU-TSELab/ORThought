@@ -1,0 +1,5 @@
+The Li family plans to invest their retirement fund in commercial real estate. The annual income from Property 1 is $12,500, Property 2 is $35,000, Property 3 is $23,000, and Property 4 is $100,000. The decision to be made is whether to buy each property or not, rather than how many to buy, as there is only one of each property available. Help them decide which properties to purchase to maximize their annual income.
+
+The cost of Property 1 is $1.5 million, Property 2 is $2.1 million, Property 3 is $2.3 million, and Property 4 is $4.2 million. The Li family's budget is $7 million.
+
+If they purchase Property 4, they cannot purchase Property 3.

@@ -1,0 +1,33 @@
+Set:
+1. CompanyType
+The set of company types, \( I = \{0, 1\} \) # 0 for specialized, 1 for common
+
+Parameter:
+1. AnnotationRate
+[60, 40] # Images annotated per hour for each company type
+2. HourlyCost
+[100, 72] # Cost per hour for each company type
+3. TotalImages
+10000 # Minimum number of images to be annotated
+4. SpecializedWorkRatio
+1/3 # Minimum ratio of work to be allocated to the specialized company
+
+Decision variable:
+1. NumberOfImages
+Continuous variable, \( x_{i} \) for all \( i \in I \), representing the number of images assigned to each company.
+
+Objective:
+Minimize the total cost of annotating the dataset.
+min: \( \sum_{i \in I} (HourlyCost[i] / AnnotationRate[i]) \cdot x_{i} \)
+
+Constraint:
+1. Total images
+\( \sum_{i \in I} x_{i} \geq TotalImages \)
+2. Specialized company work
+\( x_{0} \geq SpecializedWorkRatio \cdot \sum_{i \in I} x_{i} \)
+3. Non-negativity
+\( x_{i} \geq 0 \), for all \( i \in I \)
+
+Type:
+Continuous, linear, linear
+LP

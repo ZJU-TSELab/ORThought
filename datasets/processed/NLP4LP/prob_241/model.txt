@@ -1,0 +1,37 @@
+Set:
+1. UnitType
+The set of mobile production unit types, \( I = \{0, 1\} \) # 0 for Large, 1 for Small
+
+Parameter:
+1. PeopleCapacityPerUnit
+[6, 2] # Number of people each unit type can hold
+2. ParkingSpotsPerUnit
+[2, 1] # Number of parking spots each unit type takes up
+3. MinTotalPeople
+80 # Minimum number of people to transport
+4. MinSmallUnits
+5 # Minimum number of small mobile units required
+5. MinLargeUnitRatio
+0.75 # Minimum ratio of large units to the total number of units
+
+Decision variable:
+1. NumberOfUnits
+Integer variable, \( x_{i} \) for all \( i \in I \), representing the number of units for each type.
+
+Objective:
+Minimize the total number of parking spots.
+min: \( \sum_{i \in I} ParkingSpotsPerUnit[i] \cdot x_{i} \)
+
+Constraint:
+1. Total people capacity
+\( \sum_{i \in I} PeopleCapacityPerUnit[i] \cdot x_{i} \geq MinTotalPeople \)
+2. Minimum small units
+\( x_{1} \geq MinSmallUnits \)
+3. Large unit proportion
+\( x_{0} \geq MinLargeUnitRatio \cdot \sum_{i \in I} x_{i} \)
+4. Non-negativity
+\( x_{i} \geq 0 \), for all \( i \in I \)
+
+Type:
+Integer, linear, linear
+IP

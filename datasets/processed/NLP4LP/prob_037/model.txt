@@ -1,0 +1,31 @@
+Set:
+1. FactoryType
+The set of factory types, \( F = \{0, 1\} \) # 0 for Factory 1, 1 for Factory 2
+2. BearColor
+The set of bear colors, \( C = \{0, 1, 2\} \) # 0 for Black, 1 for White, 2 for Brown
+
+Parameter:
+1. CostPerHour
+[300, 600] # Cost per hour to run each factory
+2. ProductionRate
+[[5, 10], [6, 10], [3, 0]] # Bears of each color produced per hour by each factory
+3. MinDemand
+[20, 5, 15] # Minimum daily demand for each bear color
+
+Decision variable:
+1. HoursToRun
+Continuous variable, \( x_{f} \) for all \( f \in F \), representing the hours to run factory \( f \).
+
+Objective:
+Minimize the total production cost.
+min: \sum_{f \in F} CostPerHour[f] * x_{f}
+
+Constraint:
+1. Demand satisfaction constraint
+\sum_{f \in F} ProductionRate[c][f] * x_{f} \geq MinDemand[c], for all \( c \in C \)
+2. Non-negativity
+x_{f} \geq 0, for all \( f \in F \)
+
+Type:
+Continuous, linear, linear
+LP

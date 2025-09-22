@@ -1,0 +1,39 @@
+Set:
+1. FoodType
+The set of food types, \( I = \{0, 1\} \) # 0 for burgers, 1 for pizza slices
+
+Parameter:
+1. Fat
+[10, 8] # Units of fat per serving for each food type
+2. Calories
+[300, 250] # Calories per serving for each food type
+3. Cholesterol
+[12, 10] # Units of cholesterol per serving for each food type
+4. MinFat
+130 # Minimum units of fat required
+5. MinCalories
+3000 # Minimum calories required
+6. PizzaToBurgerRatio
+2 # Minimum ratio of pizza slices to burgers
+
+Decision variable:
+1. FoodCount
+Integer variable, \( x_{i} \) for all \( i \in I \), representing the number of servings of each food type.
+
+Objective:
+Minimize the total cholesterol intake.
+min: \( \sum_{i \in I} Cholesterol[i] \cdot x_{i} \)
+
+Constraint:
+1. Fat requirement
+\( \sum_{i \in I} Fat[i] \cdot x_{i} \geq MinFat \)
+2. Calorie requirement
+\( \sum_{i \in I} Calories[i] \cdot x_{i} \geq MinCalories \)
+3. Pizza to burger ratio constraint
+\( x_{1} \geq PizzaToBurgerRatio \cdot x_{0} \)
+4. Non-negativity
+\( x_{i} \geq 0 \), for all \( i \in I \)
+
+Type:
+Integer, linear, linear
+IP

@@ -1,0 +1,31 @@
+Set:
+1. Node
+The set of nodes, \( N = \{0, 1, \dots, CommunityNum\} \)
+# where node 0 is the starting point (Central City Hospital) and nodes 1 to n are the communities to be served.
+
+Parameter:
+1. CommunityNum
+10
+2. Coordinate
+[(0, 0), (3.5, 4.2), (-2.1, 5.6), (4.8, -3.2), (-3.6, -2.8), (5.2, 2.4), (-4.1, 3.7), (2.8, -4.5), (6.3, -2.1), (-5.2, -1.8), (3.9, 5.8)]
+
+Decision variable:
+1. X
+Binary variable, \( x_{ij} \forall i \in N, j \in N\), where \( x_{ij} = 1 \) if the vehicle departs from node \( i \) and arrives at node \( j \), otherwise \( x_{ij} = 0 \).
+
+Objective:
+1. Minimize the total distance traveled by the vehicle.
+min: \sum_{i \in N}\sum_{j \in N} Distance[i][j] * x_{ij}
+# Where \( Distance[i][j] \) is the Euclidean distance between node \( i \) and node \( j \).
+
+Constraint:
+1. Each community must be visited exactly once.
+\sum_{i \in N} x_{ij} = 1 \forall j \in N
+2. Each community must be exited exactly once.
+\sum_{j \in N} x_{ij} = 1 \forall i \in N
+3. Eliminate sub-tours.
+\sum_{i \in N} \sum_{j \in N} x_{ij} \leq |S| - 1 \forall S \subseteq N, 1 < |S| < |N|
+
+Type:
+Binary, Linear, Linear
+ILP

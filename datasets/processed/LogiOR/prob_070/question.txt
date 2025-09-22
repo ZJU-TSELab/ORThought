@@ -1,0 +1,15 @@
+A regional distribution center needs to create a delivery schedule for 4 customer orders using 3 available trucks. Each customer order is a "job" that consists of 3 separate "packages" or "operations," one for each truck. The time required to process each package on its designated truck is known.
+
+The center wants to determine the start time for every single package to minimize the **makespan**, which is the total time elapsed until the very last package across all trucks is delivered.
+
+The scheduling must adhere to two critical constraints:
+1.  **Truck Constraint:** Each truck can only process one package at a time.
+2.  **Customer Constraint:** For a single customer, their different packages (on different trucks) cannot be processed simultaneously.
+
+The processing times (in hours) are as follows:
+| Customer / Job | Package for T1 | Package for T2 | Package for T3 |
+|:--------------:|:--------------:|:--------------:|:--------------:|
+| C1             | 2              | 3              | 1              |
+| C2             | 4              | 2              | 3              |
+| C3             | 1              | 5              | 2              |
+| C4             | 3              | 2              | 4              |

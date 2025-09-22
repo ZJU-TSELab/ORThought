@@ -1,0 +1,43 @@
+Set:
+1. Product
+The set of products, \( P = \{1, 2\} \)  # 1: packaged fresh apples, 2: bottled apple juice
+2. Grade
+The set of apple grades the company has, \( G = \{7, 4\} \)
+
+Parameter:
+1. Inventory
+[90000, 110000]
+2. Revenue
+[0.35, 1.10]
+3. VariableCost
+[0.12, 0.80]
+4. AverageGrade
+[5, 6]
+5. MaxProcessingCapacity
+150000
+6. MinPackagePercentage
+0.20
+
+Decision variable:
+1. ProcessedAmount
+Continuous variable, \( ProcessedAmount[p][g] \forall p \in P, g \in G \), where \( ProcessedAmount[p][g] \) is the amount of apples of grade \( g \) used for product \( p \).
+
+Objective:
+1. Maximize the profit from selling apples.
+max: \sum_{p \in P} \sum_{g \in G} (Revenue[p] - VariableCost[p]) * ProcessedAmount[p][g]
+
+Constraint:
+1. Inventory constraint.
+\sum_{p \in P} ProcessedAmount[p][g] \leq Inventory[g] \forall g \in G
+2. Average grade constraint.
+AverageGrade[p] * \sum_{g \in G} ProcessedAmount[p][g] \leq \sum_{g \in G} g * ProcessedAmount[p][g] \forall p \in P
+3. Processing capacity constraint.
+\sum_{p \in P} \sum_{g \in G} ProcessedAmount[p][g] \leq MaxProcessingCapacity
+4. Marketing constraint.
+\sum_{g \in G} ProcessedAmount[1][g] \geq MinPackagePercentage * \sum_{p \in P} \sum_{g \in G} ProcessedAmount[p][g]
+5. Non-negativity constraint.
+ProcessedAmount[p][g] \geq 0 \forall p \in P, g \in G
+
+Type:
+Continuous, Linear, Linear
+LP

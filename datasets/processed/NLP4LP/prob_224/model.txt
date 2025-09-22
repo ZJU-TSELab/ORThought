@@ -1,0 +1,37 @@
+Set:
+1. ToothType
+The set of tooth types, \( I = \{0, 1\} \) # 0 for Molars, 1 for Canines
+
+Parameter:
+1. ResinPerTooth
+[20, 15] # Units of resin required for each tooth type
+2. PainKillerPerTooth
+[3, 2.3] # Units of pain killer required for each tooth type
+3. TotalResin
+3000 # Total units of resin available
+4. MinMolars
+45 # Minimum number of molars to be filled
+5. CanineProportionRatio
+1.5 # The number of canines filled must be at least 1.5 times the number of molars
+
+Decision variable:
+1. NumberOfTeeth
+Integer variable, \( x_{i} \) for all \( i \in I \), representing the number of teeth of each type to be filled.
+
+Objective:
+Minimize the total amount of pain killer needed.
+min: \( \sum_{i \in I} PainKillerPerTooth[i] \cdot x_{i} \)
+
+Constraint:
+1. Resin limit
+\( \sum_{i \in I} ResinPerTooth[i] \cdot x_{i} \leq TotalResin \)
+2. Canine proportion
+\( x_{1} \geq CanineProportionRatio \cdot x_{0} \)
+3. Minimum molars
+\( x_{0} \geq MinMolars \)
+4. Non-negativity
+\( x_{i} \geq 0 \), for all \( i \in I \)
+
+Type:
+Integer, linear, linear
+IP

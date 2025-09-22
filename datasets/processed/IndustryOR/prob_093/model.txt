@@ -1,0 +1,56 @@
+# Model description for prob_093
+# TODO: Add model description
+
+Set:
+1. CrudeOils
+The set of crude oils, \( C = \{A, B\} \).
+2. Gasolines
+The set of gasoline types, \( G = \{I, II\} \).
+3. PurchaseTiers
+The set of purchase tiers for crude oil A, \( T = \{1, 2, 3\} \).
+
+Parameter:
+1. GasolinePrice
+[4800, 5600] # Selling price in yuan/t for gasoline I and II.
+2. MinAProportion
+[0.5, 0.6] # Minimum proportion of crude oil A in gasoline I and II.
+3. InitialInventory
+[500, 1000] # Initial inventory in tons for crude oil A and B.
+4. PurchaseCostA
+[10000, 8000, 6000] # Purchase cost in yuan/t for crude oil A in each tier.
+5. PurchaseLimitA
+[500, 500, 500] # Maximum purchase quantity in tons for crude oil A in each tier.
+
+Decision variable:
+1. GasolineProduction
+Continuous variable, \( g_i \), the tons of gasoline type \( i \) produced.
+2. CrudeUsage
+Continuous variable, \( u_{ij} \), the tons of crude oil \( i \) used to produce gasoline \( j \).
+3. PurchaseA
+Continuous variable, \( p_k \), the tons of crude oil A purchased in tier \( k \).
+
+Objective:
+Maximize the total profit, which is the revenue from selling gasoline minus the cost of purchasing crude oil A.
+max: \sum_{j \in G} \text{GasolinePrice}[j] * g_j - \sum_{k \in T} \text{PurchaseCostA}[k] * p_k
+
+Constraint:
+1. Gasoline Composition
+The amount of gasoline produced is the sum of the crude oils used.
+g_j = \sum_{i \in C} u_{ij}, \forall j \in G
+2. Crude A Proportion
+The amount of crude A used in each gasoline type must meet the minimum proportion.
+u_{A,j} \geq \text{MinAProportion}[j] * g_j, \forall j \in G
+3. Crude A Availability
+The total crude A used cannot exceed the initial inventory plus the purchased amount.
+\sum_{j \in G} u_{A,j} \leq \text{InitialInventory}[A] + \sum_{k \in T} p_k
+4. Crude B Availability
+The total crude B used cannot exceed the initial inventory.
+\sum_{j \in G} u_{B,j} \leq \text{InitialInventory}[B]
+5. Tiered Purchasing
+The amount purchased in each tier cannot exceed the limit for that tier. This is often modeled with additional binary variables to enforce the tiered pricing structure correctly.
+p_k \leq \text{PurchaseLimitA}[k], \forall k \in T
+(The provided code uses binary variables to enforce that a tier is only used if the previous one is full).
+
+Type:
+Mixed-Integer, linear, linear
+MILP

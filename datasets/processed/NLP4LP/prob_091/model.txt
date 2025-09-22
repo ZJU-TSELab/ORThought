@@ -1,0 +1,41 @@
+Set:
+1. BeakerType
+The set of beaker types, \( I = \{0, 1\} \) # 0 for Beaker 1, 1 for Beaker 2
+
+Parameter:
+1. FlourUsage
+[4, 6] # Units of flour used by each beaker type
+2. LiquidUsage
+[6, 3] # Units of special liquid used by each beaker type
+3. SlimeProduction
+[5, 3] # Units of slime produced by each beaker type
+4. WasteProduction
+[4, 2] # Units of waste produced by each beaker type
+5. MaxFlour
+150 # Maximum units of flour available
+6. MaxLiquid
+100 # Maximum units of special liquid available
+7. MaxWaste
+30 # Maximum units of waste allowed
+
+Decision variable:
+1. BeakerCount
+Integer variable, \( x_{i} \) for all \( i \in I \), representing the number of times each beaker type is used.
+
+Objective:
+Maximize the total amount of slime produced.
+max: \( \sum_{i \in I} SlimeProduction[i] \cdot x_{i} \)
+
+Constraint:
+1. Flour constraint
+\( \sum_{i \in I} FlourUsage[i] \cdot x_{i} \leq MaxFlour \)
+2. Liquid constraint
+\( \sum_{i \in I} LiquidUsage[i] \cdot x_{i} \leq MaxLiquid \)
+3. Waste constraint
+\( \sum_{i \in I} WasteProduction[i] \cdot x_{i} \leq MaxWaste \)
+4. Non-negativity
+\( x_{i} \geq 0 \), for all \( i \in I \)
+
+Type:
+Integer, linear, linear
+IP

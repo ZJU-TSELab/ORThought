@@ -1,0 +1,41 @@
+Set:
+1. BrandType
+The set of brand types, \( I = \{0, 1\} \) # 0 for Regular, 1 for Premium
+
+Parameter:
+1. CostPerBag
+[20, 35] # Cost per bag for each brand type
+2. CalciumPerBag
+[4, 12] # Units of calcium in each brand type
+3. VitaminPerBag
+[7, 10] # Units of vitamin mix in each brand type
+4. ProteinPerBag
+[10, 16] # Units of protein in each brand type
+5. MinCalcium
+15 # Minimum required units of calcium
+6. MinVitamin
+20 # Minimum required units of vitamin mix
+7. MinProtein
+20 # Minimum required units of protein
+
+Decision variable:
+1. NumberOfBags
+Integer variable, \( x_{i} \) for all \( i \in I \), representing the number of bags of each brand to mix.
+
+Objective:
+Minimize the total cost.
+min: \( \sum_{i \in I} CostPerBag[i] \cdot x_{i} \)
+
+Constraint:
+1. Calcium constraint
+\( \sum_{i \in I} CalciumPerBag[i] \cdot x_{i} \geq MinCalcium \)
+2. Vitamin constraint
+\( \sum_{i \in I} VitaminPerBag[i] \cdot x_{i} \geq MinVitamin \)
+3. Protein constraint
+\( \sum_{i \in I} ProteinPerBag[i] \cdot x_{i} \geq MinProtein \)
+4. Non-negativity
+\( x_{i} \geq 0 \), for all \( i \in I \)
+
+Type:
+Integer, linear, linear
+IP

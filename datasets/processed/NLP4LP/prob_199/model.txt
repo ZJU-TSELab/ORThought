@@ -1,0 +1,35 @@
+Set:
+1. OilType
+The set of oil types, \( I = \{0, 1, 2\} \) # 0 for Light Oil, 1 for Non-sticky Oil, 2 for Heavy Oil
+
+Parameter:
+1. RevenuePerTank
+[550, 750, 950] # Net revenue per tank for each oil type
+2. CompoundAPerTank
+[3, 6, 9] # Units of compound A required for each oil type
+3. CompoundBPerTank
+[3, 2, 3] # Units of compound B required for each oil type
+4. MaxCompoundA
+250 # Maximum available units of compound A
+5. MaxCompoundB
+150 # Maximum available units of compound B
+
+Decision variable:
+1. NumberOfTanks
+Continuous variable, \( x_{i} \) for all \( i \in I \), representing the number of tanks of each oil type to process.
+
+Objective:
+Maximize the total net revenue.
+max: \( \sum_{i \in I} RevenuePerTank[i] \cdot x_{i} \)
+
+Constraint:
+1. Compound A constraint
+\( \sum_{i \in I} CompoundAPerTank[i] \cdot x_{i} \leq MaxCompoundA \)
+2. Compound B constraint
+\( \sum_{i \in I} CompoundBPerTank[i] \cdot x_{i} \leq MaxCompoundB \)
+3. Non-negativity
+\( x_{i} \geq 0 \), for all \( i \in I \)
+
+Type:
+Continuous, linear, linear
+LP

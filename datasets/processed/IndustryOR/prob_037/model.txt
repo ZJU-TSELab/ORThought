@@ -1,0 +1,44 @@
+Set:
+1. Product
+The set of products, \( P = \{0, 1, 2\} \)
+2. Machine
+The set of machines, \( M = \{0, 1, 2\} \)
+3. Position
+The set of sequence positions, \( K = \{0, 1, 2\} \)
+
+Parameter:
+1. ProcessingTime
+A matrix \( t_{p,m} \) where \( p \in P, m \in M \), representing the time to process product \( p \) on machine \( m \).
+
+Decision variable:
+1. Assignment
+Binary variable, \( z_{p,k} \), which is 1 if product \( p \) is in the \( k \)-th sequence position, and 0 otherwise.
+2. StartTime
+Continuous variable, \( S_{k,m} \), representing the start time of the product in the \( k \)-th sequence position on machine \( m \).
+3. Makespan
+Continuous variable, \( C_{max} \), representing the total processing cycle.
+
+Objective:
+Minimize the total processing cycle (makespan).
+min: \( C_{max} \)
+
+Constraint:
+1. Assignment constraints
+Each product must be assigned to exactly one position, and each position must be filled by exactly one product.
+\sum_{k \in K} z_{p,k} = 1, \forall p \in P
+\sum_{p \in P} z_{p,k} = 1, \forall k \in K
+2. Scheduling constraints
+- A product can only start on the next machine after it has finished on the previous one.
+\( S_{k,m} \geq S_{k,m-1} + \sum_{p \in P} z_{p,k} \cdot t_{p,m-1}, \forall k \in K, m \in M, m > 0 \)
+- A machine can only start processing the next product in the sequence after it has finished the previous one.
+\( S_{k,m} \geq S_{k-1,m} + \sum_{p \in P} z_{p,k-1} \cdot t_{p,m}, \forall k \in K, k > 0, m \in M \)
+3. Makespan definition
+The makespan is the completion time of the last product on the last machine.
+\( C_{max} \geq S_{\text{last_pos}, \text{last_mach}} + \sum_{p \in P} z_{p, \text{last_pos}} \cdot t_{p, \text{last_mach}} \)
+4. Non-negativity
+\( S_{k,m} \geq 0, \forall k \in K, m \in M \)
+\( C_{max} \geq 0 \)
+
+Type:
+Mixed-Integer, linear, linear
+MILP

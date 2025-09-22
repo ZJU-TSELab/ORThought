@@ -1,0 +1,71 @@
+Set:
+1. Weeks
+The set of weeks, \( W = \{1, 2, ..., 8\} \)
+2. Products
+The set of food products, \( P = \{I, II\} \)
+
+Parameter:
+1. Demand
+\( D_{p,w} \), Demand for product \( p \) in week \( w \).
+   - I: [10000, 10000, 12000, 12000, 16000, 16000, 20000, 20000]
+   - II: [6000, 7200, 8400, 10800, 10800, 12000, 12000, 12000]
+2. InitialSkilledWorkers
+50 # The number of skilled workers at the beginning.
+3. TotalNewWorkers
+50 # The total number of new workers to be trained.
+4. ProdRate
+[10, 6] # Production rate in kg/h for products I and II.
+5. WorkHoursNormal
+40 # Normal work hours per week.
+6. WorkHoursOvertime
+60 # Overtime work hours per week.
+7. WageSkilledNormal
+360 # Weekly wage for a skilled worker (normal/training).
+8. WageSkilledOvertime
+540 # Weekly wage for a skilled worker (overtime).
+9. WageTrainee
+120 # Weekly wage for a trainee.
+10. WageNewlySkilled
+240 # Weekly wage for a newly skilled worker.
+11. TrainingRatio
+3 # Trainees per skilled worker.
+12. TrainingDuration
+2 # Training duration in weeks.
+13. DelayPenalty
+[0.5, 0.6] # Penalty per kg per week of delay for products I and II.
+
+Decision variable:
+1. SWNormal
+Integer variable, \( SW_{normal,w} \), number of skilled workers on normal time in week \( w \).
+2. SWOvertime
+Integer variable, \( SW_{overtime,w} \), number of skilled workers on overtime in week \( w \).
+3. SWTrain
+Integer variable, \( SW_{train,w} \), number of skilled workers training in week \( w \).
+4. NWStart
+Integer variable, \( NW_{start,w} \), number of new workers starting training in week \( w \).
+5. Production
+Continuous variable, \( P_{p,w} \), amount (kg) of product \( p \) produced in week \( w \).
+6. Backlog
+Continuous variable, \( B_{p,w} \), backlog amount (kg) for product \( p \) at the end of week \( w \).
+
+Objective:
+Minimize the total cost (wages and penalties).
+min: \(\sum_{w \in W} (WageSkilledNormal \cdot (SW_{normal,w} + SW_{train,w}) + WageSkilledOvertime \cdot SW_{overtime,w} + WageTrainee \cdot \text{Trainees}_w + WageNewlySkilled \cdot \text{NewlySkilled}_w) + \sum_{w \in W} \sum_{p \in P} DelayPenalty_p \cdot B_{p,w}\)
+
+Constraint:
+1. Skilled Worker Allocation
+\(SW_{normal,w} + SW_{overtime,w} + SW_{train,w} = \text{AvailableSkilled}_w, \forall w \in W\)
+2. Total New Worker Training
+\(\sum_{w=1}^{8-TrainingDuration+1} NW_{start,w} = TotalNewWorkers\)
+3. Training Capacity
+\(NW_{start,w} \leq TrainingRatio \cdot SW_{train,w}, \forall w \in W\)
+4. Production Capacity
+\(\sum_{p \in P} \frac{P_{p,w}}{ProdRate_p} \leq WorkHoursNormal \cdot SW_{normal,w} + WorkHoursOvertime \cdot SW_{overtime,w} + WorkHoursNormal \cdot \text{NewlySkilled}_w, \forall w \in W\)
+5. Demand and Backlog Balance
+\(B_{p,w-1} + P_{p,w} = D_{p,w} + B_{p,w}, \forall p \in P, w \in W\)
+6. Non-negativity
+All decision variables \(\geq 0\).
+
+Type:
+Mixed-Integer Linear Programming
+MILP

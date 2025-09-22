@@ -1,0 +1,1 @@
+A logistics company has 6 boxes with capacity of [5, 9, 8, 7, 7, 8] and 7 items with loads of 6, 7, 8, 3, 2, 4 and 5 that need to be packed into the boxes. Find a loading method that uses the minimum number of boxes to pack all 7 items.

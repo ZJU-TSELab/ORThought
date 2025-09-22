@@ -1,0 +1,43 @@
+Set:
+1. TransportationType
+The set of transportation types, \( I = \{0, 1\} \) # 0 for Bike, 1 for Scooter
+
+Parameter:
+1. OrdersPerShift
+[10, 7] # Number of orders delivered per shift for each transportation type
+2. EnergyPerShift
+[5, 6] # Units of energy consumed per shift for each transportation type
+3. TipsPerShift
+[50, 43] # Amount of tips received per shift for each transportation type
+4. MaxTotalShifts
+40 # Maximum number of shifts available per month
+5. MaxEnergy
+230 # Total units of energy available
+6. MinOrders
+320 # Minimum number of orders to be delivered
+7. MinScooterShifts
+5 # Minimum number of scooter shifts required
+
+Decision variable:
+1. NumberOfShifts
+Integer variable, \( x_{i} \) for all \( i \in I \), representing the number of shifts for each transportation type.
+
+Objective:
+Maximize the total tips received.
+max: \( \sum_{i \in I} TipsPerShift[i] \cdot x_{i} \)
+
+Constraint:
+1. Total shifts limit
+\( \sum_{i \in I} x_{i} \leq MaxTotalShifts \)
+2. Energy limit
+\( \sum_{i \in I} EnergyPerShift[i] \cdot x_{i} \leq MaxEnergy \)
+3. Minimum orders
+\( \sum_{i \in I} OrdersPerShift[i] \cdot x_{i} \geq MinOrders \)
+4. Minimum scooter shifts
+\( x_{1} \geq MinScooterShifts \)
+5. Non-negativity
+\( x_{i} \geq 0 \), for all \( i \in I \)
+
+Type:
+Integer, linear, linear
+IP

@@ -1,0 +1,35 @@
+Set:
+1. CatalystType
+The set of catalyst types, \( I = \{0, 1\} \) # 0 for palladium-heavy, 1 for platinum-heavy
+
+Parameter:
+1. ConversionRate
+[5, 4] # CO2 conversion rate for each catalyst type (units per second)
+2. PlatinumRequired
+[15, 20] # Units of platinum required for each catalyst type
+3. PalladiumRequired
+[25, 14] # Units of palladium required for each catalyst type
+4. PlatinumAvailable
+450 # Total units of platinum available
+5. PalladiumAvailable
+390 # Total units of palladium available
+
+Decision variable:
+1. NumberOfCatalysts
+Continuous variable, \( x_{i} \) for all \( i \in I \), representing the number of catalysts of each type to use.
+
+Objective:
+Maximize the total amount converted into carbon dioxide.
+max: \( \sum_{i \in I} ConversionRate[i] \cdot x_{i} \)
+
+Constraint:
+1. Platinum availability
+\( \sum_{i \in I} PlatinumRequired[i] \cdot x_{i} \leq PlatinumAvailable \)
+2. Palladium availability
+\( \sum_{i \in I} PalladiumRequired[i] \cdot x_{i} \leq PalladiumAvailable \)
+3. Non-negativity
+\( x_{i} \geq 0 \), for all \( i \in I \)
+
+Type:
+Continuous, linear, linear
+LP

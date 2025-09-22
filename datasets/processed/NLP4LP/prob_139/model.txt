@@ -1,0 +1,43 @@
+Set:
+1. BottleType
+The set of bottle types, \( I = \{0, 1\} \) # 0 for Small Bottle, 1 for Large Bottle
+
+Parameter:
+1. HoneyPerBottle
+[5, 20] # Units of honey each bottle type can hold
+2. MaxSmallBottles
+300 # Maximum number of small bottles available
+3. MaxLargeBottles
+100 # Maximum number of large bottles available
+4. MaxTotalBottles
+200 # Maximum total number of bottles that can be transported
+5. MinLargeBottles
+50 # Minimum number of large bottles to be used
+6. MinSmallToLargeRatio
+2 # Minimum ratio of small bottles to large bottles
+
+Decision variable:
+1. NumberOfBottles
+Integer variable, \( x_{i} \) for all \( i \in I \), representing the number of bottles of each type to use.
+
+Objective:
+Maximize the total amount of honey he can transport.
+max: \( \sum_{i \in I} HoneyPerBottle[i] \cdot x_{i} \)
+
+Constraint:
+1. Maximum small bottles constraint
+\( x_{0} \leq MaxSmallBottles \)
+2. Maximum large bottles constraint
+\( x_{1} \leq MaxLargeBottles \)
+3. Total bottles constraint
+\( \sum_{i \in I} x_{i} \leq MaxTotalBottles \)
+4. Minimum large bottles constraint
+\( x_{1} \geq MinLargeBottles \)
+5. Small to large ratio constraint
+\( x_{0} \geq MinSmallToLargeRatio \cdot x_{1} \)
+6. Non-negativity
+\( x_{i} \geq 0 \), for all \( i \in I \)
+
+Type:
+Integer, linear, linear
+IP

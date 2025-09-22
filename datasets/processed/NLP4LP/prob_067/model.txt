@@ -1,0 +1,35 @@
+Set:
+1. CrateType
+The set of crate types, \( I = \{0, 1\} \) # 0 for Small, 1 for Large
+
+Parameter:
+1. BananaCapacity
+[20, 50] # Bananas held by each crate type
+2. MaxBananas
+500 # Total bananas available
+3. MinSmallCrates
+5 # Minimum number of small crates to be used
+4. LargeToSmallRatio
+2 # Minimum ratio of large crates to small crates
+
+Decision variable:
+1. CrateCount
+Integer variable, \( x_{i} \) for all \( i \in I \), representing the number of crates of type \( i \) to be used.
+
+Objective:
+Maximize the total number of crates produced.
+max: \( \sum_{i \in I} x_{i} \)
+
+Constraint:
+1. Banana limit constraint
+\( \sum_{i \in I} BananaCapacity[i] \cdot x_{i} \leq MaxBananas \)
+2. Minimum small crates constraint
+\( x_{0} \geq MinSmallCrates \)
+3. Large to small ratio constraint
+\( x_{1} \geq LargeToSmallRatio \cdot x_{0} \)
+4. Non-negativity
+\( x_{i} \geq 0 \), for all \( i \in I \)
+
+Type:
+Integer, linear, linear
+IP

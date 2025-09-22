@@ -1,0 +1,35 @@
+Set:
+1. MedicationType
+The set of medication types, \( I = \{0, 1\} \) # 0 for anxiety medication, 1 for anti-depressants
+
+Parameter:
+1. EffectivenessTime
+[3, 5] # Minutes per unit for each medication type to be effective
+2. MinTotalUnits
+100 # Minimum total units of medication
+3. MinAnxietyUnits
+30 # Minimum units of anxiety medication
+4. AnxietyToAntidepressantRatio
+2 # Maximum ratio of anxiety medication to anti-depressants
+
+Decision variable:
+1. MedicationUnits
+Integer variable, \( x_{i} \) for all \( i \in I \), representing the number of units of each medication type.
+
+Objective:
+Minimize the total time it takes for the medication to be effective.
+min: \( \sum_{i \in I} EffectivenessTime[i] \cdot x_{i} \)
+
+Constraint:
+1. Total units constraint
+\( \sum_{i \in I} x_{i} \geq MinTotalUnits \)
+2. Minimum anxiety units constraint
+\( x_{0} \geq MinAnxietyUnits \)
+3. Ratio constraint
+\( x_{0} \leq AnxietyToAntidepressantRatio \cdot x_{1} \)
+4. Non-negativity
+\( x_{i} \geq 0 \), for all \( i \in I \)
+
+Type:
+Integer, linear, linear
+IP

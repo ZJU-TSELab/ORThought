@@ -1,0 +1,23 @@
+A regional tobacco distribution company operates three distribution centers located in different zones of a metropolitan area to serve 15 retail outlets. The company needs to optimize its weekly delivery operations to minimize total transportation costs while satisfying regulatory constraints and customer demands.
+
+The three distribution centers have different storage capacities and operational costs. Center A can handle up to 800 units per week with a fixed operating cost of $2,500, Center B can handle up to 600 units per week with a fixed cost of $2,000, and Center C can handle up to 500 units per week with a fixed cost of $1,800. Each retail outlet has specific weekly demand requirements ranging from 45 to 120 units, and due to regulatory compliance, each outlet must receive deliveries from exactly one distribution center to maintain proper tracking and accountability.
+
+The transportation cost varies based on the distance between distribution centers and retail outlets, ranging from $8 to $25 per unit delivered. Additionally, there are regulatory constraints that limit the maximum number of outlets each distribution center can serve - Center A can serve at most 7 outlets, Center B can serve at most 6 outlets, and Center C can serve at most 5 outlets. The company must also ensure that the total demand assigned to each center does not exceed its capacity, and all retail outlets must be served to maintain market coverage.
+
+| Outlet | Demand | Cost from A | Cost from B | Cost from C |
+|--------|--------|-------------|-------------|-------------|
+| 1      | 85     | $12         | $18         | $22         |
+| 2      | 67     | $15         | $11         | $25         |
+| 3      | 92     | $20         | $14         | $16         |
+| 4      | 78     | $13         | $19         | $23         |
+| 5      | 105    | $17         | $12         | $20         |
+| 6      | 56     | $25         | $16         | $14         |
+| 7      | 120    | $14         | $21         | $18         |
+| 8      | 73     | $16         | $13         | $24         |
+| 9      | 89     | $19         | $15         | $17         |
+| 10     | 95     | $11         | $22         | $19         |
+| 11     | 62     | $23         | $17         | $15         |
+| 12     | 84     | $18         | $14         | $21         |
+| 13     | 76     | $21         | $20         | $13         |
+| 14     | 45     | $24         | $25         | $16         |
+| 15     | 58     | $22         | $23         | $12         |

@@ -1,0 +1,33 @@
+Set:
+1. StoreType
+The set of store types, \( T = \{0, 1\} \) # 0 for Dine-in, 1 for Food-truck
+
+Parameter:
+1. SandwichesPerDay
+[100, 50] # Sandwiches made per day by each store type
+2. EmployeesRequired
+[8, 3] # Employees required to operate each store type
+3. MinSandwichesPerDay
+500 # Minimum sandwiches to make per day
+4. MaxEmployeesAvailable
+35 # Maximum number of employees available
+
+Decision variable:
+1. StoreCount
+Integer variable, \( x_{t} \) for all \( t \in T \), representing the number of stores of type \( t \) to open.
+
+Objective:
+Minimize the total number of stores.
+min: \sum_{t \in T} x_{t}
+
+Constraint:
+1. Sandwich production constraint
+\sum_{t \in T} SandwichesPerDay[t] * x_{t} \geq MinSandwichesPerDay
+2. Employee availability constraint
+\sum_{t \in T} EmployeesRequired[t] * x_{t} \leq MaxEmployeesAvailable
+3. Non-negativity
+x_{t} \geq 0, for all \( t \in T \)
+
+Type:
+Integer, linear, linear
+IP

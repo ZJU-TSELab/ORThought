@@ -1,0 +1,82 @@
+Set:
+1. Months
+The set of months, \( M = \{1, 2, ..., 6\} \)
+
+Parameter:
+1. Demand
+[20000, 40000, 42000, 35000, 19000, 18500] # Monthly demand forecast
+2. RawMaterialCost
+90 # Cost per unit
+3. LaborHoursPerUnit
+5 # Labor hours required per unit
+4. SellingPrice
+300 # Selling price per unit
+5. InitialWorkers
+1000 # Number of workers at the start
+6. InitialInventory
+15000 # Initial product inventory
+7. RegularHourlyWage
+30 # Wage per hour for regular time
+8. OvertimeHourlyWage
+40 # Wage per hour for overtime
+9. NormalHoursPerMonth
+160 # Normal working hours per worker per month (8 hours/day * 20 days/month)
+10. MaxOvertimeHoursPerWorker
+20 # Maximum overtime hours per worker per month
+11. InventoryCost
+15 # Cost to hold one unit in inventory for one month
+12. StockoutCost
+35 # Penalty for each unit of unmet demand
+13. OutsourcingCost
+200 # Cost to outsource one unit
+14. HiringCost
+5000 # Cost to hire one worker
+15. FiringCost
+8000 # Cost to fire one worker
+16. MinEndingInventory
+10000 # Minimum required inventory at the end of June
+
+Decision variable:
+1. Production
+Integer variable, \( P_m \), production quantity in month \( m \).
+2. Workers
+Integer variable, \( W_m \), number of workers in month \( m \).
+3. Hired
+Integer variable, \( H_m \), workers hired in month \( m \).
+4. Fired
+Integer variable, \( F_m \), workers fired in month \( m \).
+5. OvertimeHours
+Integer variable, \( OT_m \), total overtime hours in month \( m \).
+6. Inventory
+Integer variable, \( I_m \), inventory at the end of month \( m \).
+7. Outsourced
+Integer variable, \( O_m \), units outsourced in month \( m \).
+8. Stockout
+Integer variable, \( S_m \), unmet demand (stockout) in month \( m \).
+
+Objective:
+Maximize the total net profit.
+max: TotalRevenue - TotalCosts
+
+TotalRevenue = \(\sum_{m \in M} SellingPrice \cdot (Demand_m - S_m)\)
+TotalCosts = \(\sum_{m \in M} (RawMaterialCost \cdot P_m + RegularHourlyWage \cdot NormalHoursPerMonth \cdot W_m + OvertimeHourlyWage \cdot OT_m + InventoryCost \cdot I_m + OutsourcingCost \cdot O_m + StockoutCost \cdot S_m + HiringCost \cdot H_m + FiringCost \cdot F_m)\)
+
+Constraint:
+1. Worker Balance
+\(W_m = W_{m-1} + H_m - F_m, \forall m \in M\) (where \(W_0 = InitialWorkers\))
+2. Production Capacity
+\(P_m \cdot LaborHoursPerUnit \leq NormalHoursPerMonth \cdot W_m + OT_m, \forall m \in M\)
+3. Overtime Limit
+\(OT_m \leq MaxOvertimeHoursPerWorker \cdot W_m, \forall m \in M\)
+4. Inventory Balance
+\(I_m = I_{m-1} + P_m + O_m - (Demand_m - S_m), \forall m \in M\) (where \(I_0 = InitialInventory\))
+5. Stockout Definition
+\(S_m \geq Demand_m - (I_{m-1} + P_m + O_m), \forall m \in M\)
+6. Final Inventory Requirement
+\(I_6 \geq MinEndingInventory\)
+7. Non-negativity
+All decision variables \(\geq 0\).
+
+Type:
+Integer, linear, linear
+ILP

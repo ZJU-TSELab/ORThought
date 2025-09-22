@@ -1,0 +1,37 @@
+Set:
+1. ConcertType
+The set of concert types, \( I = \{0, 1\} \) # 0 for Pop, 1 for R&B
+
+Parameter:
+1. AudiencePerConcert
+[100, 240] # Number of audience members per concert for each type
+2. PracticeDaysPerConcert
+[2, 4] # Days of practice required per concert for each type
+3. MinAudience
+10000 # Minimum total audience members required
+4. MaxPracticeDays
+180 # Maximum total practice days available
+5. MaxRnBRatio
+0.4 # Maximum ratio of R&B concerts to total concerts
+
+Decision variable:
+1. NumberOfConcerts
+Integer variable, \( x_{i} \) for all \( i \in I \), representing the number of concerts of each type.
+
+Objective:
+Minimize the total number of concerts.
+min: \( \sum_{i \in I} x_{i} \)
+
+Constraint:
+1. Audience requirement
+\( \sum_{i \in I} AudiencePerConcert[i] \cdot x_{i} \geq MinAudience \)
+2. Practice days limit
+\( \sum_{i \in I} PracticeDaysPerConcert[i] \cdot x_{i} \leq MaxPracticeDays \)
+3. R&B concert proportion
+\( x_{1} \leq MaxRnBRatio \cdot \sum_{i \in I} x_{i} \)
+4. Non-negativity
+\( x_{i} \geq 0 \), for all \( i \in I \)
+
+Type:
+Integer, linear, linear
+IP

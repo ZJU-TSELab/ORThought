@@ -1,0 +1,8 @@
+A logistics company needs to pack 6 heavy cylindrical containers into a specialized truck bed. The truck bed has a fixed width of 2.5 meters, and the company wants to find the minimum possible length required to fit all containers. The diameters of the 6 containers (in meters) are: [1.2, 1.1, 1.0, 0.9, 0.8, 0.7].
+
+The containers must be placed flat on the truck bed according to the following rules:
+1.  Each container must be fully contained within the truck bed's boundaries.
+2.  No two containers can overlap.
+3.  The goal is to find an arrangement that minimizes the total length of the truck bed used.
+
+The position of each container is determined by the (x, y) coordinates of its center. The x-axis runs along the length of the truck, and the y-axis runs along its fixed width.

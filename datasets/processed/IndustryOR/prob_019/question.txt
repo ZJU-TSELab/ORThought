@@ -1,0 +1,10 @@
+Bright Future Toys wants to build and sell robots, model cars, building blocks, and dolls. The profit for each robot sold is $15, for each model car sold is $8, for each set of building blocks sold is $12, and for each doll sold is $5. How many types of toys should Bright Future Toys manufacture to maximize profit?
+There are 1200 units of plastic available. Each robot requires 30 units of plastic, each model car requires 10 units of plastic, each set of building blocks requires 20 units of plastic, and each doll requires 15 units of plastic.
+
+There are 800 units of electronic components available. Each robot requires 8 units of electronic components, each model car requires 5 units of electronic components, each set of building blocks requires 3 units of electronic components, and each doll requires 2 units of electronic components.
+
+If Bright Future Toys manufactures robots, they will not manufacture dolls.
+
+However, if they manufacture model cars, they will also manufacture building blocks.
+
+The number of dolls manufactured cannot exceed the number of model cars manufactured.

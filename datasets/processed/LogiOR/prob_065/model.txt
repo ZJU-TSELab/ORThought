@@ -1,0 +1,58 @@
+Mathematical Model (for a Single-Day VRP)
+This mathematical model describes the optimization problem solved for each single day of the week. Let d be the current day.
+
+Set
+1. Customers (for the day)
+   The set of customers requiring a visit on day d, C_d (a subset of {1, ..., 15}).
+2. Nodes (for the day)
+   The set of all locations to be considered on day d, N_d = {0} U C_d, where 0 is the depot.
+3. Vehicles
+   The set of available vehicles, V = {1, 2, 3}.
+
+Parameter
+1. Distance
+   A distance matrix dist_ij between any two nodes i, j in N_d.
+2. Demand
+   The demand q_c for each customer c in C_d.
+3. VehicleCapacity
+   The capacity of each vehicle, Q = 200.
+
+Decision variable
+1. Route
+   Binary variable x_ijv in {0, 1}, which equals 1 if vehicle v travels directly from node i to node j.
+2. Subtour Elimination Variable
+   Continuous variable u_i >= 0 for each customer i in C_d, used for the MTZ formulation.
+
+Objective
+Minimize the total distance traveled by all vehicles on day d.
+min: sum over i in N_d, j in N_d, v in V of (dist_ij * x_ijv)
+
+Constraint
+1. Customer Visitation
+   Each customer required to be visited on day d is visited by exactly one arc of one vehicle.
+   sum over i in N_d, v in V of x_icv = 1, for all c in C_d
+
+2. Vehicle Departure
+   Each vehicle leaves the depot at most once (allowing some vehicles to remain unused).
+   sum over j in C_d of x_0jv <= 1, for all v in V
+
+3. Flow Conservation
+   If a vehicle enters a customer node, it must also leave it.
+   sum over i in N_d of x_icv - sum over j in N_d of x_cjv = 0, for all c in C_d, v in V
+
+4. Vehicle Return
+   If a vehicle leaves the depot, it must return to the depot.
+   sum over j in C_d of x_0jv = sum over i in C_d of x_i0v, for all v in V
+
+5. Capacity Constraint
+   The total demand of all customers on a single vehicle's route cannot exceed the vehicle's capacity.
+   sum over c in C_d of q_c * (sum over i in N_d of x_icv) <= Q, for all v in V
+
+6. Subtour Elimination (MTZ Formulation)
+   Prevents disconnected loops by enforcing a load/sequence order.
+   u_i - u_j + Q * (sum over v in V of x_ijv) <= Q - q_j, for all i, j in C_d, i != j
+   q_i <= u_i <= Q, for all i in C_d
+
+Type
+Mixed, Linear, Linear.
+MILP

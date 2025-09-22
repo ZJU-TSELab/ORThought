@@ -1,0 +1,50 @@
+# Model description for prob_083
+Set:
+1. Candidates
+The set of candidates, \( C = \{A, B, C, D, E\} \).
+
+Parameter:
+1. Salaries
+[8100, 20000, 21000, 3000, 8000] # Salary requirement for each candidate.
+2. Experience
+[3, 10, 4, 3, 7] # Years of work experience for each candidate.
+3. MaxHires
+3 # Maximum number of new employees to hire.
+4. MinHires
+2 # Minimum number of new employees to hire.
+5. Budget
+35000 # Total budget for salaries.
+6. MinExperience
+12 # Minimum total years of work experience for the selected team.
+
+Decision variable:
+1. Hire
+Binary variable, \( x_i \) for all \( i \in C \), is 1 if candidate \( i \) is hired, 0 otherwise.
+
+Objective:
+Minimize the total salary paid to the hired candidates.
+min: \sum_{i \in C} \text{Salaries}[i] * x_i
+
+Constraint:
+1. Maximum Hires
+The total number of hired candidates cannot exceed the maximum limit.
+\sum_{i \in C} x_i \leq \text{MaxHires}
+2. Minimum Hires
+The total number of hired candidates must be at least the minimum limit.
+\sum_{i \in C} x_i \geq \text{MinHires}
+3. Budget
+The total salary paid cannot exceed the budget.
+\sum_{i \in C} \text{Salaries}[i] * x_i \leq \text{Budget}
+4. Qualification
+At least one candidate with a Master's (B) or Doctoral (C) degree must be hired.
+x_B + x_C \geq 1
+5. Work Experience
+The total work experience of the hired candidates must meet the minimum requirement.
+\sum_{i \in C} \text{Experience}[i] * x_i \geq \text{MinExperience}
+6. Skill Equivalence
+At most one of candidates A and E can be hired.
+x_A + x_E \leq 1
+
+Type:
+Integer, linear, linear
+ILP

@@ -1,0 +1,51 @@
+Set:
+1. Parcels
+The set of parcels, \( P = \{1, 2, ..., 12\} \)
+
+Parameter:
+1. ContainerWidth
+100 (cm)
+2. ParcelWidths
+[30, 25, 40, 15, 35, 20, 25, 30, 15, 20, 10, 25] (cm)
+3. ParcelHeights
+[40, 35, 20, 25, 30, 15, 20, 25, 10, 30, 15, 10] (cm)
+4. M (Large constant)
+1000 (sufficiently large number for big-M constraints)
+
+Decision variable:
+1. x_p
+Continuous variable \( x_p \geq 0 \) for all \( p \in P \), x-coordinate of bottom-left corner of parcel p
+2. y_p
+Continuous variable \( y_p \geq 0 \) for all \( p \in P \), y-coordinate of bottom-left corner of parcel p
+3. a_{pq}
+Binary variable for all \( p,q \in P, p < q \), indicating relative positioning:
+   - \( a_{pq} = 1 \) if parcel p is to the left of q
+   - \( a_{pq} = 0 \) otherwise
+4. b_{pq}
+Binary variable for all \( p,q \in P, p < q \), indicating relative positioning:
+   - \( b_{pq} = 1 \) if parcel p is below q
+   - \( b_{pq} = 0 \) otherwise
+5. H
+Continuous variable \( H \geq 0 \), representing total container height
+
+Objective:
+Minimize the total height of the container
+min: H
+
+Constraint:
+1. Parcels must fit within container width
+\( x_p + \text{ParcelWidths}_p \leq \text{ContainerWidth}, \forall p \in P \)
+2. Parcels must fit within container height
+\( y_p + \text{ParcelHeights}_p \leq H, \forall p \in P \)
+3. Non-overlapping constraints (for all \( p,q \in P, p < q \)):
+   \( x_p + \text{ParcelWidths}_p \leq x_q + M(1-a_{pq}) \)
+   \( x_q + \text{ParcelWidths}_q \leq x_p + M(1-a_{qp}) \)
+   \( y_p + \text{ParcelHeights}_p \leq y_q + M(1-b_{pq}) \)
+   \( y_q + \text{ParcelHeights}_q \leq y_p + M(1-b_{qp}) \)
+   \( a_{pq} + a_{qp} + b_{pq} + b_{qp} \geq 1 \)
+4. Height calculation
+\( H \geq y_p + \text{ParcelHeights}_p, \forall p \in P \)
+
+Type:
+Mixed, Linear, Linear
+MILP

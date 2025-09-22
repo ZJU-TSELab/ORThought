@@ -1,0 +1,74 @@
+Sets:
+1.  W: Set of potential warehouse locations. W = {W1, W2, W3}
+2.  C: Set of customers. C = {C1, C2, ..., C15}
+3.  N: Set of all nodes for routing, N = W U C.
+4.  K: Set of available vans at each warehouse. K = {1, 2}
+
+Parameters:
+1.  demand_i: Demand of customer i, for i in C.
+2.  dist_ij: Distance between node i and node j, for i, j in N. This combines customer-customer, warehouse-customer, and depot-warehouse distances.
+3.  CAP_TRUCK: Capacity of a single truck from the depot (50 units).
+4.  CAP_VAN: Capacity of a single van from a warehouse (20 units).
+5.  NUM_VANS: Number of vans available at each warehouse (2).
+
+Decision Variables:
+1.  y_w: Binary variable. y_w = 1 if warehouse w is used, 0 otherwise. For w in W.
+2.  z_iw: Binary variable. z_iw = 1 if customer i is assigned to warehouse w, 0 otherwise. For i in C, w in W.
+3.  x_ijkw: Binary variable. x_ijkw = 1 if van k from warehouse w travels from node i to node j, 0 otherwise. For i, j in N, w in W, k in K.
+4.  u_ikw: Continuous variable for subtour elimination (MTZ formulation). Represents the load accumulated by van k from warehouse w after visiting customer i. For i in C, w in W, k in K.
+
+Objective Function:
+Minimize the total distance traveled in both echelons.
+1.  First-echelon distance: Cost of round trips from the depot to each opened warehouse.
+2.  Second-echelon distance: Cost of all van routes from warehouses to customers.
+
+Minimize Z = sum_{w in W} (2 * dist_depot_w * y_w) + sum_{i in N} sum_{j in N} sum_{w in W} sum_{k in K} (dist_ij * x_ijkw)
+
+Constraints:
+1.  Warehouse Activation: A customer can only be assigned to a warehouse if that warehouse is active (used).
+    forall i in C, w in W:
+    z_iw <= y_w
+
+2.  Customer Assignment: Each customer must be assigned to exactly one warehouse.
+    forall i in C:
+    sum_{w in W} z_iw = 1
+
+3.  Warehouse Capacity: The total demand of customers assigned to a warehouse cannot exceed the truck capacity.
+    forall w in W:
+    sum_{i in C} (demand_i * z_iw) <= CAP_TRUCK * y_w
+
+4.  Van Assignment: If a customer is assigned to a warehouse, it must be visited by exactly one van from that warehouse.
+    forall i in C, w in W:
+    sum_{k in K} sum_{j in N, j != i} x_ijwk = z_iw
+
+5.  Flow Conservation: Each van that enters a customer node must also leave it.
+    forall i in C, w in W, k in K:
+    sum_{j in N, j != i} x_jiwk - sum_{j in N, j != i} x_ijwk = 0
+
+6.  Route Start: Each van used must depart from its assigned warehouse.
+    forall w in W, k in K:
+    sum_{j in C} x_w,j,k,w <= 1
+
+7.  Route End: Each van used must return to its assigned warehouse.
+    forall w in W, k in K:
+    sum_{i in C} x_i,w,k,w <= 1
+
+8.  Start-End Equality: A van only returns to the warehouse if it departed from it.
+    forall w in W, k in K:
+    sum_{j in C} x_w,j,k,w = sum_{i in C} x_i,w,k,w
+
+9.  Van Capacity: The total demand served by any single van cannot exceed its capacity.
+    forall w in W, k in K:
+    sum_{i in C} (demand_i * sum_{j in N, j != i} x_ijwk) <= CAP_VAN
+
+10. Subtour Elimination (MTZ): Prevents routes that do not include the warehouse.
+    forall i in C, j in C (i != j), w in W, k in K:
+    u_ikw - u_jkw + demand_i <= (CAP_VAN + demand_i) * (1 - x_ijkw)
+
+11. Load Bounds: Defines the bounds for the load variables.
+    forall i in C, w in W, k in K:
+    demand_i * sum_{j in N, j != i} x_ijwk <= u_ikw <= CAP_VAN * sum_{j in N, j != i} x_ijwk
+
+Type:
+Mixed, Linear, Linear
+MILP

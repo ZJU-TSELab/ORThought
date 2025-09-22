@@ -1,0 +1,42 @@
+Set:
+1. Grades
+The set of orange grades, \( G = \{9, 6\} \)
+
+Parameter:
+1. Inventory (kg)
+\( Q_9 = 90,000 \), \( Q_6 = 110,000 \)
+2. Quality Scores
+\( s_9 = 9 \), \( s_6 = 6 \)
+3. FP Economic Data
+Revenue \( R_{FP} = 2.80 \), Cost \( C_{FP} = 1.20 \)
+4. JE Economic Data
+Juice Price \( P_{JE} = 3.00 \), Yield \( Y_{JE} = 0.5 \), Cost \( C_{JE} = 0.90 \)
+5. Quality Thresholds
+\( T_{FP} = 7.5 \), \( T_{JE} = 8.25 \)
+6. Operational Limits
+\( JE_{max} = 70,000 \), \( FP_{min} = 20,000 \)
+
+Decision variable:
+1. Allocation
+Continuous variable \( x_{g,p} \geq 0 \) for all \( g \in G, p \in \{FP, JE\} \), representing kg of grade \( g \) oranges allocated to process \( p \)
+
+Objective:
+Maximize daily profit
+max: \( \sum_{g\in G} [(R_{FP} - C_{FP})x_{g,FP} + (P_{JE} \cdot Y_{JE} - C_{JE})x_{g,JE}] \)
+
+Constraint:
+1. Inventory limits
+\( x_{9,FP} + x_{9,JE} \leq Q_9 \)
+\( x_{6,FP} + x_{6,JE} \leq Q_6 \)
+2. Quality requirements
+\( \frac{9x_{9,FP} + 6x_{6,FP}}{x_{9,FP} + x_{6,FP}} \geq T_{FP} \)
+\( \frac{9x_{9,JE} + 6x_{6,JE}}{x_{9,JE} + x_{6,JE}} \geq T_{JE} \)
+3. Operational constraints
+\( x_{9,JE} + x_{6,JE} \leq JE_{max} \)
+\( x_{9,FP} + x_{6,FP} \geq FP_{min} \)
+4. Non-negativity
+\( x_{g,p} \geq 0 \)
+
+Type:
+Continuous, Linear, Linear
+LP

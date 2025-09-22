@@ -1,0 +1,35 @@
+Set:
+1. JarType
+The set of jar types, \( T = \{0, 1\} \) # 0 for Thin Jar, 1 for Stubby Jar
+
+Parameter:
+1. ShapingTimeAvailable
+3000 # Total minutes available for shaping
+2. BakingTimeAvailable
+4000 # Total minutes available for baking
+3. Profit
+[5, 9] # Profit per jar type
+4. ShapingTime
+[50, 30] # Shaping time in minutes per jar type
+5. BakingTime
+[90, 150] # Baking time in minutes per jar type
+
+Decision variable:
+1. JarCount
+Integer variable, \( x_{t} \) for all \( t \in T \), representing the number of jars of type \( t \) to make.
+
+Objective:
+Maximize the total profit.
+max: \sum_{t \in T} Profit[t] * x_{t}
+
+Constraint:
+1. Shaping time constraint
+\sum_{t \in T} ShapingTime[t] * x_{t} \leq ShapingTimeAvailable
+2. Baking time constraint
+\sum_{t \in T} BakingTime[t] * x_{t} \leq BakingTimeAvailable
+3. Non-negativity
+x_{t} \geq 0, \forall t \in T
+
+Type:
+Integer, linear, linear
+IP

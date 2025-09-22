@@ -1,0 +1,35 @@
+Set:
+1. BoxType
+The set of box types, \( I = \{0, 1\} \) # 0 for Small, 1 for Large
+
+Parameter:
+1. MasksPerBox
+[25, 45] # Number of masks each box type can hold
+2. MinTotalMasks
+750 # Minimum number of masks to be distributed
+3. SmallToLargeRatio
+3 # The ratio of small boxes to large boxes must be at least this value
+4. MinLargeBoxes
+5 # Minimum number of large boxes to be used
+
+Decision variable:
+1. NumberOfBoxes
+Integer variable, \( x_{i} \) for all \( i \in I \), representing the number of boxes for each type.
+
+Objective:
+Minimize the total number of boxes.
+min: \( \sum_{i \in I} x_{i} \)
+
+Constraint:
+1. Total masks required
+\( \sum_{i \in I} MasksPerBox[i] \cdot x_{i} \geq MinTotalMasks \)
+2. Box ratio
+\( x_{0} \geq SmallToLargeRatio \cdot x_{1} \)
+3. Minimum large boxes
+\( x_{1} \geq MinLargeBoxes \)
+4. Non-negativity
+\( x_{i} \geq 0 \), for all \( i \in I \)
+
+Type:
+Integer, linear, linear
+IP

@@ -1,0 +1,60 @@
+Set:
+1. Ships
+The set of ships, \( S = \{A, B, C, D, E, F, G, H, I, J\} \)
+2. Berths
+The set of berths, \( B = \{B1, B2, B3\} \)
+3. Dependencies
+The set of dependencies, \( D = \{(A, C), (D, E), (B, G), (H, I), (G, J)\} \)  # where each tuple represents a dependency where the first ship must complete its operation before the second ship can start its operation.
+
+Parameter:
+1. ArrivalTime
+# The estimated arrival time of each ship
+[2, 5, 10, 12, 18, 20, 25, 30, 35, 40] # in hours
+2. OperationTime
+# The required operation time for each ship at the berth
+[8, 10, 6, 9, 7, 11, 8, 12, 5, 9] # in hours
+3. RapidTransshipmentBonus
+# The bonus for rapid transshipment
+50000 # in currency units
+4. MaxTransshipmentGap
+# The maximum time gap for rapid transshipment to qualify for the bonus
+2 # in hours
+5. WaitingCost
+# The cost of waiting per hour
+2000 # in currency units
+6. MaxTime
+# The maximum time for the scheduling horizon
+72 # in hours
+
+Decision variable:
+1. StartTime
+Continuous variable, \(StartTime_i \forall i \in Ships\), where \( StartTime_i \) is the start time of ship \( i \) at its assigned berth.
+2. Assignment
+Binary variable, \(Assignment_{ib} \forall i \in Ships, b \in Berths\), where \(Assignment_{ib} = 1\) if vessel \(i\) is assigned to berth \(b\), and 0 otherwise.
+3. Precedence
+Binary variable, \(Precedence_{ij} \forall i, j \in Ships, i \neq j\), where \(Precedence_{ij} = 1\) if vessels \(i\) and \(j\) are assigned to the same berth and \(i\) is serviced before \(j\), and 0 otherwise.
+4. DependencySatisfaction
+Binary variable, \(DependencySatisfaction_{p} \forall p \in Dependencies\), where \(DependencySatisfaction_p = 1\) if the dependency \(p\) is satisfied (i.e., the dependent ship starts its operation within the allowed time gap after the predecessor ship completes its operation), and 0 otherwise.
+
+Objective:
+1. Maximize the total rapid transshipment bonus and minimize the total waiting cost.
+max: \sum_{p \in Dependencies} RapidTransshipmentBonus * DependencySatisfaction_p - \sum_{i \in Ships} WaitingCost * (StartTime_i - ArrivalTime_i)
+
+Constraint:
+1. Each ship must be assigned to exactly one berth.
+\sum_{b \in Berths} Assignment_{ib} = 1 \forall i \in Ships
+2. The start time of each ship must be after its arrival time.
+StartTime_i \geq ArrivalTime_i \forall i \in Ships
+3. The start time of each ship plus its operation time must not exceed the maximum time.
+StartTime_i + OperationTime_i \leq MaxTime \forall i \in Ships
+4. The precedence relation must be respected.
+StartTime_j \geq StartTime_i + OperationTime_i \forall (i, j) \in Dependencies
+5. The berth assignment must be non-overlapping for ships assigned to the same berth.
+StartTime_i + OperationTime_i \leq StartTime_j + M * (1 - Precedence_{ij}) + M * (2 - Assignment_{ib} - Assignment_{jb}) \forall i, j \in Ships, i \neq j, b \in Berths
+StartTime_j + OperationTime_j \leq StartTime_i + M * Precedence_{ij} + M * (2 - Assignment_{ib} - Assignment_{jb}) \forall i, j \in Ships, i \neq j, b \in Berths
+6. The bonus logic constraint.
+StartTime_j - (StartTime_i + OperationTime_i) \leq MaxTransshipmentGap + M * (1 - DependencySatisfaction_p) \forall p=\(i, j\) \in Dependencies
+
+Type:
+Mixed, Linear, Linear
+MILP

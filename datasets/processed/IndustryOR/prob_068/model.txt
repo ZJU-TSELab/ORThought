@@ -1,0 +1,29 @@
+Set:
+1. CuttingPatterns
+The set of possible cutting patterns for a 10-meter raw steel bar.
+- Pattern A: Three 3-meter pieces (waste 1m)
+- Pattern B: Two 3-meter pieces and one 4-meter piece (waste 0m)
+- Pattern C: Two 4-meter pieces (waste 2m)
+
+Parameter:
+1. Demand
+[90, 60] # Required number of 3-meter and 4-meter pieces.
+2. PatternYield
+[[3, 0], [2, 1], [0, 2]] # Yield of 3-meter and 4-meter pieces for each pattern (A, B, C).
+
+Decision variable:
+1. NumBarsCut
+Integer variable, \( x_p \) for \( p \in \{\text{A, B, C}\} \), represents the number of raw steel bars cut using pattern p.
+
+Objective:
+Minimize: \( x_A + x_B + x_C \)
+
+Constraint:
+1. Demand3m
+The total number of 3-meter pieces produced must meet the demand: \( 3x_A + 2x_B \ge 90 \)
+2. Demand4m
+The total number of 4-meter pieces produced must meet the demand: \( x_B + 2x_C \ge 60 \)
+
+Type:
+Integer, linear, linear
+ILP

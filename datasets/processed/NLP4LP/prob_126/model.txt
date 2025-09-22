@@ -1,0 +1,39 @@
+Set:
+1. FruitType
+The set of fruit types, \( I = \{0, 1\} \) # 0 for oranges, 1 for grapefruit
+
+Parameter:
+1. VitaminC
+[5, 7] # Units of vitamin C per fruit for each fruit type
+2. VitaminA
+[3, 5] # Units of vitamin A per fruit for each fruit type
+3. Sugar
+[5, 6] # Grams of sugar per fruit for each fruit type
+4. MinVitaminC
+80 # Minimum units of vitamin C required
+5. MinVitaminA
+70 # Minimum units of vitamin A required
+6. OrangeToGrapefruitRatio
+2 # Minimum ratio of oranges to grapefruit
+
+Decision variable:
+1. FruitCount
+Integer variable, \( x_{i} \) for all \( i \in I \), representing the number of each fruit to be eaten.
+
+Objective:
+Minimize the total sugar intake.
+min: \( \sum_{i \in I} Sugar[i] \cdot x_{i} \)
+
+Constraint:
+1. Vitamin C requirement
+\( \sum_{i \in I} VitaminC[i] \cdot x_{i} \geq MinVitaminC \)
+2. Vitamin A requirement
+\( \sum_{i \in I} VitaminA[i] \cdot x_{i} \geq MinVitaminA \)
+3. Preference constraint
+\( x_{0} \geq OrangeToGrapefruitRatio \cdot x_{1} \)
+4. Non-negativity
+\( x_{i} \geq 0 \), for all \( i \in I \)
+
+Type:
+Integer, linear, linear
+IP

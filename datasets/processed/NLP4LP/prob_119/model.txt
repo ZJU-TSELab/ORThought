@@ -1,0 +1,35 @@
+Set:
+1. PainKillerType
+The set of pain killer types, \( I = \{0, 1\} \) # 0 for Pain Killer 1, 1 for Pain Killer 2
+
+Parameter:
+1. LegMedicine
+[0.5, 0.7] # Units of medicine delivered to the legs per dose for each pain killer type
+2. BackMedicine
+[0.8, 0.4] # Units of medicine delivered to the back per dose for each pain killer type
+3. SleepMedicine
+[0.3, 0.6] # Units of sleeping medicine delivered per dose for each pain killer type
+4. MaxSleepMedicine
+8 # Maximum units of sleep medicine allowed
+5. MinLegMedicine
+4 # Minimum units of medicine to be delivered to the legs
+
+Decision variable:
+1. PainKillerDoses
+Integer variable, \( x_{i} \) for all \( i \in I \), representing the number of doses of each pain killer type.
+
+Objective:
+Maximize the amount of medicine delivered to the back.
+max: \( \sum_{i \in I} BackMedicine[i] \cdot x_{i} \)
+
+Constraint:
+1. Sleep medicine constraint
+\( \sum_{i \in I} SleepMedicine[i] \cdot x_{i} \leq MaxSleepMedicine \)
+2. Leg medicine constraint
+\( \sum_{i \in I} LegMedicine[i] \cdot x_{i} \geq MinLegMedicine \)
+3. Non-negativity
+\( x_{i} \geq 0 \), for all \( i \in I \)
+
+Type:
+Integer, linear, linear
+IP

@@ -1,0 +1,37 @@
+Set:
+1. DogBreed
+The set of dog breeds, \( I = \{0, 1\} \) # 0 for Labrador, 1 for Golden Retriever
+
+Parameter:
+1. NewspapersPerDog
+[7, 10] # Number of newspapers each dog breed can deliver
+2. TreatsPerDog
+[5, 6] # Number of small bone treats required for each dog breed
+3. MaxTreats
+1500 # Maximum number of small bone treats available
+4. MinGoldenRetrievers
+50 # Minimum number of golden retrievers to be used
+5. MaxLabradorRatio
+0.6 # The number of labradors cannot exceed 60% of the total dogs
+
+Decision variable:
+1. NumberOfDogs
+Integer variable, \( x_{i} \) for all \( i \in I \), representing the number of dogs of each breed to use.
+
+Objective:
+Maximize the total number of newspapers that can be delivered.
+max: \( \sum_{i \in I} NewspapersPerDog[i] \cdot x_{i} \)
+
+Constraint:
+1. Treats constraint
+\( \sum_{i \in I} TreatsPerDog[i] \cdot x_{i} \leq MaxTreats \)
+2. Minimum golden retrievers constraint
+\( x_{1} \geq MinGoldenRetrievers \)
+3. Labrador ratio constraint
+\( x_{0} \leq \frac{MaxLabradorRatio}{1 - MaxLabradorRatio} \cdot x_{1} \)
+4. Non-negativity
+\( x_{i} \geq 0 \), for all \( i \in I \)
+
+Type:
+Integer, linear, linear
+IP

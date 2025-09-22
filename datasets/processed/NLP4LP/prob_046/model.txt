@@ -1,0 +1,35 @@
+Set:
+1. MachineType
+The set of machine types, \( T = \{0, 1\} \) # 0 for Cash-based, 1 for Card-only
+
+Parameter:
+1. PeopleProcessedPerHour
+[20, 30] # People processed per hour by each machine type
+2. PaperRollsPerHour
+[4, 5] # Rolls of paper required per hour by each machine type
+3. MinPeopleToProcess
+500 # Minimum people to process per hour
+4. MaxPaperRolls
+90 # Maximum rolls of paper available per hour
+
+Decision variable:
+1. MachineCount
+Integer variable, \( x_{t} \) for all \( t \in T \), representing the number of machines of type \( t \) to buy.
+
+Objective:
+Minimize the total number of machines.
+min: \sum_{t \in T} x_{t}
+
+Constraint:
+1. Processing capacity constraint
+\sum_{t \in T} PeopleProcessedPerHour[t] * x_{t} \geq MinPeopleToProcess
+2. Paper roll usage constraint
+\sum_{t \in T} PaperRollsPerHour[t] * x_{t} \leq MaxPaperRolls
+3. Preference constraint
+x_{1} \leq x_{0}
+4. Non-negativity
+x_{t} \geq 0, for all \( t \in T \)
+
+Type:
+Integer, linear, linear
+IP

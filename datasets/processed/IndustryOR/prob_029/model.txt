@@ -1,0 +1,41 @@
+Set:
+1. Feed
+The set of available feeds, \( F = \{1, 2, 3, 4, 5\} \)
+
+Parameter:
+1. ProteinContent
+[3, 2, 1, 6, 18] # Protein (g) per kg of each feed
+2. MineralContent
+[1, 0.5, 0.2, 2, 0.5] # Minerals (g) per kg of each feed
+3. VitaminContent
+[0.5, 1, 0.2, 2, 0.8] # Vitamins (mg) per kg of each feed
+4. Price
+[0.2, 0.7, 0.4, 0.3, 0.8] # Price (¥) per kg of each feed
+5. MinProtein
+700 # Minimum daily protein requirement (g)
+6. MinMinerals
+30 # Minimum daily mineral requirement (g)
+7. MinVitamins
+100 # Minimum daily vitamin requirement (mg)
+
+Decision variable:
+1. FeedQuantity
+Continuous variable, \( x_{f} \) for all \( f \in F \), representing the quantity (in kg) of feed \( f \) to use.
+
+Objective:
+Minimize the total cost of the feed mixture.
+min: \sum_{f \in F} Price[f] * x_{f}
+
+Constraint:
+1. Protein requirement
+\sum_{f \in F} ProteinContent[f] * x_{f} \geq MinProtein
+2. Mineral requirement
+\sum_{f \in F} MineralContent[f] * x_{f} \geq MinMinerals
+3. Vitamin requirement
+\sum_{f \in F} VitaminContent[f] * x_{f} \geq MinVitamins
+4. Non-negativity
+\( x_{f} \geq 0, \forall f \in F \)
+
+Type:
+Continuous, linear, linear
+LP

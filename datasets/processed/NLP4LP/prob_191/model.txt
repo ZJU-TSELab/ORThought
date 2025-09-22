@@ -1,0 +1,35 @@
+Set:
+1. ProductType
+The set of product types, \( I = \{0, 1\} \) # 0 for Desk, 1 for Drawer
+
+Parameter:
+1. AssemblyTimePerProduct
+[40, 30] # Minutes of assembly time required for each product type
+2. SandingTimePerProduct
+[20, 10] # Minutes of sanding time required for each product type
+3. MaxAssemblyTime
+4000 # Maximum available assembly time in minutes
+4. MaxSandingTime
+3500 # Maximum available sanding time in minutes
+5. ProfitPerProduct
+[100, 90] # Profit per product for each type
+
+Decision variable:
+1. NumberOfProducts
+Integer variable, \( x_{i} \) for all \( i \in I \), representing the number of products of each type to make.
+
+Objective:
+Maximize the total profit.
+max: \( \sum_{i \in I} ProfitPerProduct[i] \cdot x_{i} \)
+
+Constraint:
+1. Assembly time constraint
+\( \sum_{i \in I} AssemblyTimePerProduct[i] \cdot x_{i} \leq MaxAssemblyTime \)
+2. Sanding time constraint
+\( \sum_{i \in I} SandingTimePerProduct[i] \cdot x_{i} \leq MaxSandingTime \)
+3. Non-negativity
+\( x_{i} \geq 0 \), for all \( i \in I \)
+
+Type:
+Integer, linear, linear
+IP

@@ -1,0 +1,35 @@
+Set:
+1. WellSizeType
+The set of well size types, \( T = \{0, 1\} \) # 0 for Small, 1 for Large
+2. ResourceType
+The set of resource types, \( R = \{0, 1, 2\} \) # 0 for Land, 1 for Drill Bits, 2 for Pollution
+
+Parameter:
+1. OilProductionPerAcre
+[2, 5] # Barrels of oil produced per acre by each well size type
+2. ResourceAvailability
+[300, 2500, 4500] # Available amount for each resource type (acres, drill bits, pollution units)
+3. ResourceConsumption
+[[1, 1], [5, 10], [10, 20]] # Resource consumption per acre for each well size type
+
+Decision variable:
+1. AcresToUse
+Continuous variable, \( x_{t} \) for all \( t \in T \), representing the acres to use for well size type \( t \).
+
+Objective:
+Maximize the total production of oil.
+max: \sum_{t \in T} OilProductionPerAcre[t] * x_{t}
+
+Constraint:
+1. Land constraint
+\sum_{t \in T} ResourceConsumption[0][t] * x_{t} \leq ResourceAvailability[0]
+2. Drill bits constraint
+\sum_{t \in T} ResourceConsumption[1][t] * x_{t} \leq ResourceAvailability[1]
+3. Pollution constraint
+\sum_{t \in T} ResourceConsumption[2][t] * x_{t} \leq ResourceAvailability[2]
+4. Non-negativity
+x_{t} \geq 0, for all \( t \in T \)
+
+Type:
+Continuous, linear, linear
+LP

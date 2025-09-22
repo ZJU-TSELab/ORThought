@@ -1,0 +1,16 @@
+{
+  "api_providers": {
+    "link_ai": {
+      "base_url": "https://api.link-ai.tech/v1/chat/completions",
+      "api_key": ""
+    },
+    "qwen": {
+      "base_url": "https://dashscope.aliyuncs.com/compatible-mode/v1",
+      "api_key": ""
+    },
+    "deepseek": {
+      "base_url": "https://api.deepseek.com",
+      "api_key": ""
+    }
+  }
+}

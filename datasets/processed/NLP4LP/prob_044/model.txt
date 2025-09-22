@@ -1,0 +1,35 @@
+Set:
+1. MachineType
+The set of machine types, \( T = \{0, 1\} \) # 0 for Windrower, 1 for Hay Harvester
+2. ResourceType
+The set of resource types, \( R = \{0, 1, 2\} \) # 0 for Land, 1 for Fuel, 2 for Methane Gas
+
+Parameter:
+1. HayProcessedPerAcre
+[10, 8] # kg of hay processed per acre by each machine type
+2. ResourceAvailability
+[200, 300, 800] # Available amount for each resource type (acres, kg of fuel, kg of methane)
+3. ResourceConsumption
+[[1, 1], [2, 1], [5, 3]] # Resource consumption per acre for each machine type
+
+Decision variable:
+1. AcresToProcess
+Continuous variable, \( x_{t} \) for all \( t \in T \), representing the acres to process with machine type \( t \).
+
+Objective:
+Maximize the total amount of hay processed.
+max: \sum_{t \in T} HayProcessedPerAcre[t] * x_{t}
+
+Constraint:
+1. Land constraint
+\sum_{t \in T} ResourceConsumption[0][t] * x_{t} \leq ResourceAvailability[0]
+2. Fuel constraint
+\sum_{t \in T} ResourceConsumption[1][t] * x_{t} \leq ResourceAvailability[1]
+3. Methane gas constraint
+\sum_{t \in T} ResourceConsumption[2][t] * x_{t} \leq ResourceAvailability[2]
+4. Non-negativity
+x_{t} \geq 0, for all \( t \in T \)
+
+Type:
+Continuous, linear, linear
+LP

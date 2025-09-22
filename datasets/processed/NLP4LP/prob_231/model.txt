@@ -1,0 +1,39 @@
+Set:
+1. MealType
+The set of meal types, \( I = \{0, 1\} \) # 0 for Salmon, 1 for Eggs
+
+Parameter:
+1. CaloriesPerMeal
+[300, 200] # Calories per meal for each type
+2. ProteinPerMeal
+[15, 8] # Grams of protein per meal for each type
+3. SodiumPerMeal
+[80, 20] # Milligrams of sodium per meal for each type
+4. MinCalories
+2000 # Minimum total calories required
+5. MinProtein
+90 # Minimum total grams of protein required
+6. MaxEggRatio
+0.4 # Maximum ratio of egg meals to total meals
+
+Decision variable:
+1. NumberOfMeals
+Integer variable, \( x_{i} \) for all \( i \in I \), representing the number of meals of each type.
+
+Objective:
+Minimize the total sodium intake.
+min: \( \sum_{i \in I} SodiumPerMeal[i] \cdot x_{i} \)
+
+Constraint:
+1. Calorie requirement
+\( \sum_{i \in I} CaloriesPerMeal[i] \cdot x_{i} \geq MinCalories \)
+2. Protein requirement
+\( \sum_{i \in I} ProteinPerMeal[i] \cdot x_{i} \geq MinProtein \)
+3. Egg meal proportion
+\( x_{1} \leq MaxEggRatio \cdot \sum_{i \in I} x_{i} \)
+4. Non-negativity
+\( x_{i} \geq 0 \), for all \( i \in I \)
+
+Type:
+Integer, linear, linear
+IP
