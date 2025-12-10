@@ -1,4 +1,3 @@
-Problem description:
 A logistics company manages shipments between 3 suppliers (S1, S2, S3), 2 cross-docking warehouses (W1, W2), and 4 customers (C1, C2, C3, C4). The suppliers have weekly capacities of [120, 150, 90] units respectively. Customers demand [80, 60, 70, 90] units weekly. 
 
 Transport costs per unit:
