@@ -397,12 +397,12 @@
   },
   "prob_037": {
     "description": "LogiCorp operates a logistics network that ships two types of products: Basic and Advanced. The raw materials needed to produce these products can be purchased for $5 per unit. Processing 1 unit of raw material requires 2 hours of warehouse labor. Each unit of processed raw material yields 2 units of Basic Product and 3 units of Advanced Product. Basic Product can be sold for $10/unit, and Advanced Product can be sold for $12/unit. LogiCorp also has the option of further processing Basic and Advanced Products to produce Premium Basic and Premium Advanced, which sell for $20/unit and $25/unit, respectively. Each unit of Basic Product processed further requires an additional 3 hours of warehouse labor and $5 processing cost, yielding 1 unit of Premium Basic. Each unit of Advanced Product processed further requires an additional 4 hours of warehouse labor and $6 processing cost, yielding 1 unit of Premium Advanced. Each year, LogiCorp has 8,000 hours of warehouse labor available and can purchase up to 3,000 units of raw material. How can LogiCorp maximize its profits? Assume that the cost of warehouse labor is a fixed cost, raw materials can only be purchased in whole units.",
-    "ground_truth": 348500,
+    "ground_truth": 156500,
     "problem_type": "ILP",
     "details": {
       "variables_num": 5,
-      "constraints_num": 3,
-      "nonzeros_num": 9
+      "constraints_num": 4,
+      "nonzeros_num": 10
     },
     "problem_size": "Toy"
   },

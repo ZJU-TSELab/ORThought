@@ -1,45 +1,48 @@
 Set:
-1. Product
-The set of products, \( P = \{1, 2, 3, 4\} \)  # 1: Basic Product, 2: Advanced Product, 3: Premium Basic, 4: Premium Advanced
+1. Categories
+The set of products categories, \( I = \{1, 2\} \), where 1 represents Basic Product and 2 represents Advanced Product. 
 
 Parameter:
-1. ProductPerRawMaterial
-[2, 3, 2, 3]
-2. LaborHoursPerRawMaterial
-2
-3. LaborHoursPerProduct
-[0, 0, 3, 4]
-4. SellingPrice
-[10, 12, 20, 25] 
-5. ProcessingCost
-[0, 0, 5, 6]
-6. RawMaterialCost
-5
-7. MaxLaborHours
-8000
-8. MaxRawMaterial
-3000
+1. Product Production per Raw Material
+\( p = [2, 3] \)
+2. Labor Hours per Raw Material
+\( h^r = 2 \)
+3. Labor Hours per Premium Product
+\( h^q = [3, 4] \)
+4. Conversion Rate
+# The number of products not further processed needed to produce one unit of further processed product.
+\( p^q = [1, 1] \) 
+5. Processing Cost per Premium Product ($/unit)
+\( c^q = [5, 6] \)
+6. Product Selling Price ($/unit)
+\( s = [10, 12] \)
+7. Premium Product Selling Price ($/unit)
+\( s^q = [20, 25] \)
+8. Raw Material Cost ($/unit)
+\( c^r = 5 \)
+9. Max Labor Hours
+\( H_{\max} = 8000 \)
+10. Max Raw Material
+\( R_{\max} = 3000 \)
 
 Decision variable:
 1. RawMaterialPurchased
-Integer variable, \( RawMaterialPurchased \), the amount of raw material purchased in units.
+Integer variable, \( r \in \mathbb{Z}_{\geq 0} \), the amount of raw material purchased in units.
 2. ProductProduced
-Integer variable, \( ProductProduced[p] \forall p \in P \), the amount of product \( p \) produced in units.
+Integer variable, \( x_{i} \in \mathbb{Z}_{\geq 0}, \forall i \in I \), the amount of product without further processing produced in units.
+3. PremiumProductProduced
+Integer variable, \( y_{i} \in \mathbb{Z}_{\geq 0}, \forall i \in I \), the amount of further processed product produced in units.
 
 Objective:
 1. Maximize the total profit.
-max: \sum_{p \in P} SellingPrice[p] * ProductProduced[p] - RawMaterialCost * RawMaterialPurchased - \sum_{p \in P} ProcessingCost[p] * ProductProduced[p]
-
+max: \sum_{i \in I} s_{i} x_{i} + \sum_{i \in I} s^q_{i} y_{i} - c^r r - \sum_{i \in I} c^q_{i} y_{i}
 Constraint:
 1. Labor hours constraint.
-LaborHoursPerRawMaterial * RawMaterialPurchased + \sum_{p \in P} LaborHoursPerProduct[p] * ProductProduced[p] \leq MaxLaborHours
+h^r r + \sum_{i \in I} h^q_{i} y_{i} \leq H_{\max}
 2. Raw material constraint.
-RawMaterialPurchased \leq MaxRawMaterial
-3. Product production constraint.
-\sum_{p \in P}ProductProduced[p] == \sum_{p \in P}ProductPerRawMaterial[p] * RawMaterialPurchased
-4. Non-negativity constraint.
-ProductProduced[p] \geq 0 \forall p \in P
-RawMaterialPurchased \geq 0
+r \leq R_{\max}
+3. Material balance constraint.
+x_{i} + p^q_{i} y_{i} = p_{i} r, \forall i \in I
 
 Type:
 Integer, Linear, Linear
